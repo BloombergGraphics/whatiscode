@@ -70,3 +70,19 @@ function destroyPage() {
     $el.remove();
   },100);
 }
+
+// var colors = ["#d5cdfb", "#fdc8d8", "#fae665", "#fbba7d", "#94e1bb"];
+// function randomize() {
+//   var selectors = ["h1", "h2", "div", "p"];
+//   var properties = [
+//     {
+//       "name": "background",
+//       "values": ["#d5cdfb", "#fdc8d8", "#fae665", "#fbba7d", "#94e1bb"]
+//     }
+//   ]
+//   // var colors = ["#d5cdfb", "#fdc8d8", "#fae665", "#fbba7d", "#94e1bb"];
+//
+//   $els = $("article").find("p, h1, h2, div, span");
+//   el = _.sample($els);
+//   $(el).css("background", _.sample(colors));
+// }
