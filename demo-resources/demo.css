@@ -1,0 +1,230 @@
+/**
+ * demo styles for the javascript sandbox console
+ * 
+ * not required for operation, but spanky nonetheless
+ */
+
+/* --- fonts from fontsquirrel.com --- */
+
+@font-face {
+    font-family: 'cp-mono';
+    src: url('fonts/cpmono/CPMono_v07_Plain-webfont.eot');
+    src: url('fonts/cpmono/CPMono_v07_Plain-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/cpmono/CPMono_v07_Plain-webfont.woff') format('woff'),
+         url('fonts/cpmono/CPMono_v07_Plain-webfont.ttf') format('truetype'),
+         url('fonts/cpmono/CPMono_v07_Plain-webfont.svg#CPMono_v07Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'cp-mono-bold';
+    src: url('fonts/cpmono/CPMono_v07_Bold-webfont.eot');
+    src: url('fonts/cpmono/CPMono_v07_Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/cpmono/CPMono_v07_Bold-webfont.woff') format('woff'),
+         url('fonts/cpmono/CPMono_v07_Bold-webfont.ttf') format('truetype'),
+         url('fonts/cpmono/CPMono_v07_Bold-webfont.svg#CPMono_v07Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+/* --- cssreset (.com) --- */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, del, dfn, em, font, img, ins, kbd, q, s, samp, acronym, address, big, cite, code, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, input, button, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin:0; padding:0; border:0; outline:0;
+	font-size:100%;
+	font-family:inherit;
+	font-weight:inherit;
+	font-style:inherit;
+	vertical-align:baseline;
+	line-height:1.0em;
+	letter-spacing:0;
+	text-indent:0;
+	text-decoration:none;
+
+}
+caption, th, td { text-align:left; font-weight:normal; }
+table { border-collapse:separate; border-spacing:0; }
+blockquote:before, blockquote:after, q:before,q:after { content: ""; } 
+blockquote, q { quotes: "" ""; }
+
+
+/* --- base --- */
+
+html {
+	position:relative;
+	margin:0;
+	padding:0;
+}
+body {
+	background:url('img/body_bg.gif');
+	max-width:640px;
+	min-width:400px;
+	margin:30px auto 120px;
+	padding:0 20px;
+	font-family:sans-serif;
+	font-weight:normal;
+	font-size:14px;
+	line-height:1.61em;
+	color:#464646;
+}
+
+
+/* --- headers --- */
+
+h1, h2, h3, h4, h5, h6 {
+	font-family : "cp-mono-bold", "Consolas", "Andale Mono", "Courier New", "Courier", monospace;;
+	color:#333;
+	letter-spacing:-1px;
+	margin:0 0 1.5em;
+	padding:0;
+}
+h1 {
+	font-size:42px;
+	line-height:1.2;
+	margin:0 0 20px;
+	text-align:center;
+}
+h2 {
+	font-size:21px;
+	line-height:1.2;
+	margin:1.2em 0 1em;
+	text-align:center;
+}
+h3 {
+	font-size:18px;
+	margin:0.5em 0 1.5em;
+}
+h4 {
+	font-size:15px;
+	margin:0 0 1.2em;
+}
+
+
+/* --- Other shiz --- */
+
+a,
+a:visited {
+	color:#28F;
+	font-family:"cp-mono", "Consolas", "Andale Mono", "Courier New", "Courier", monospace;
+	letter-spacing:-0.1em;
+}
+a:hover,
+a:focus,
+a:active {
+	border-bottom:3px solid #59F;
+}
+p, 
+ul {
+	padding:0 0 1.5em;
+	margin:0;
+	line-height:1.61em;
+	color:#464646
+}
+li {
+	margin:0 0 5px 24px;
+	line-height:1.61em;
+}
+abbr {
+	border-bottom:2px dotted #888;
+	cursor:help;
+}
+code {
+	font-family:"Consolas", "Andale Mono", "Courier New", "Courier", monospace;
+	padding:0 2px;
+	color:#676767
+}
+pre {
+	font-size:14px;
+	line-height:1.3;
+	font-weight: normal;
+	font-family:"Consolas", "Andale Mono", "Courier New", "Courier", monospace;
+	white-space:pre;
+	border:0 none;
+	outline:0 none;
+	color: #ccc;
+	background: #333;
+	padding:20px 20px 15px 28px;
+	-webkit-border-radius: 10px;
+	   -moz-border-radius: 10px;
+	        border-radius: 10px;
+	max-width:640px;
+	margin:10px auto 40px;
+	overflow:auto;
+}
+
+
+/* --- Alignment --- */
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+.left { float:left }
+.right { float:right }
+
+
+/* --- Bonus points: --- */
+
+/* For cool header effects, just add lettering.js! */
+h1 span:hover { border-bottom:7px solid #777; }
+h2 span { margin-right:-1px; }
+h2 span:hover { border-bottom:5px solid #777; }
+h3 span { margin-right:-1px; }
+h3 span:hover { border-bottom:4px solid #777; }
+
+/* For hot code highlighting, just add prettify.js! */
+@media screen {
+	.pln{ color:#fdf6e3 }
+	.str{ color:#cb4b16 } /* strings */
+	.kwd{ color:#859900 } /* keywords */
+	.com{ color:#839496 } /* comments */
+	.typ{ color:#fdf6e3 }
+	.lit{ color:#fdf6e3 }
+	.pun{ color:#93a1a1 }
+	.opn{ color:#93a1a1 }
+	.clo{ color:#93a1a1 }
+	.tag{ color:#fdf6e3 }
+	.atn{ color:#b58900 } /* attr name */
+	.atv{ color:#cb4b16 } /* attr value */
+	.dec{ color:#859900 }
+	.var{ color:#859900 }
+	.fun{ color:#fdf6e3 }
+}
+@media print, projection {
+	pre {
+		background:transparent !important;
+		color:#333 !important;
+	}
+	.pln, .str, .kwd, .com, .typ, .lit, .pun, .opn, .clo, .tag, .atn, .atv {
+		color:#333;
+	}
+}
+
+/* For great scrollbars, just add Webkit! */
+.content pre::-webkit-scrollbar {
+	background: transparent;
+}
+.content pre::-webkit-scrollbar {
+	width:  25px;
+	height: 25px;
+	-webkit-border-radius: 15px;
+	        border-radius: 15px;
+}
+.content pre::-webkit-scrollbar-track-piece {
+	-webkit-border-radius: 15px;
+	        border-radius: 15px;
+}
+.content pre::-webkit-scrollbar-thumb {
+	background: #444;
+	-webkit-border-radius: 15px;
+	        border-radius: 15px;
+	border:8px solid #333;
+}
+.content pre::-webkit-scrollbar-button,
+.content pre::-webkit-scrollbar-corner {
+	width:0;
+	height:0;
+}
