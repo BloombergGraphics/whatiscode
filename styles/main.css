@@ -2,3 +2,30 @@ body {
   margin: 0;
   padding: 0;
 }
+
+article * {
+  transition: color .2s, background .2s, border-radius .2s, margin .2s, padding .2s, width .2s, max-width .2s, height .2s;
+}
+
+#chart {
+  max-width: 50em;
+  margin: 0 auto;
+}
+
+.bar {
+  height: 20px;
+  margin-bottom: 2px;
+  background: gray;
+}
+
+pre {
+  display: inline;
+}
+
+header {
+  background: black;
+  color: white;
+  padding: 5px;
+  font-family: Helvetica;
+  font-size: 10pt;
+}
