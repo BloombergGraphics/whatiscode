@@ -133,13 +133,15 @@ var Sandbox = {
 			
 			// Evaluate the command and store the eval result, adding some basic classes for syntax-highlighting
 			try {
-				item.result = this.get('iframe') ? this.iframeEval(command) : eval.call(window, command);
+			    item.result = this.get('iframe') ? this.iframeEval(command) : eval.call(window, command);
+			    item.parsed = esprima.parse(command);
+			    console.log("Parsed command: ", item.parsed);
 				if ( _.isUndefined(item.result) ) item._class = "undefined";
 				if ( _.isNumber(item.result) ) item._class = "number";
 				if ( _.isString(item.result) ) item._class = "string";
 			} catch(error) {
-				item.result = error.toString();
-				item._class = "error";
+			    item.result = error.toString();
+			    item._class = "error";
 			}
 
 			// Add the item to the history
