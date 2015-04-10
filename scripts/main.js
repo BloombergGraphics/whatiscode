@@ -71,6 +71,13 @@ function destroyPage() {
   },100);
 }
 
+var traverseFun = function(node) {
+    console.log(node);
+}
+
+
+
+
 // var colors = ["#d5cdfb", "#fdc8d8", "#fae665", "#fbba7d", "#94e1bb"];
 // function randomize() {
 //   var selectors = ["h1", "h2", "div", "p"];

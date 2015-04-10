@@ -1,0 +1,10 @@
+div.node {
+    border-bottom:1px solid black;
+    background:#eee;
+    font-size:8pt;
+    margin-left:1em;
+}
+
+td {
+    font-size:8pt;
+}
