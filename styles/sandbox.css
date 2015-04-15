@@ -24,10 +24,12 @@
 	color: #ccc;
 	background: #333;
 	padding:20px 20px 15px;
-	width:100%;
+	width:50%;
 	margin:0;
 	position: fixed;
 	bottom: 0;
+	left: 0;
+	box-sizing: border-box;
 }
 #sandbox pre.output {
 	display:block;

@@ -11,8 +11,8 @@ function ASTtoHTML(node) {
 	    + glue
 	    +  (function() {
 		var appender = [];
-		for (var key in node) { 
-		    if (node.hasOwnProperty(key)) { 
+		for (var key in node) {
+		    if (node.hasOwnProperty(key)) {
 			var child = node[key];
 			if (typeof child === 'object' && child !== null) {
 			    if (Array.isArray(child)) {
@@ -20,7 +20,7 @@ function ASTtoHTML(node) {
 				    appender.push(ASTtoHTML(node));
 				});
 			    } else {
-				appender.push(ASTtoHTML(child)); 
+				appender.push(ASTtoHTML(child));
 			    }
 			}
 		    }
@@ -31,7 +31,5 @@ function ASTtoHTML(node) {
 }
 
 function addHTML(node) {
-    $('article').append(ASTtoHTML(node));
+    $('#ast').html(ASTtoHTML(node));
 }
-
-
