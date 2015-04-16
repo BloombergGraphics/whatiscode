@@ -15,6 +15,7 @@ var Sandbox = {
 	Model : Backbone.Model.extend({
 		defaults: {
 			history : [],
+			test: function(command) { return eval(command) == 4; },
 			iframe : false, // if true, run `eval` inside a sandboxed iframe
 			fallback : true // if true, use native `eval` if the iframe method fails
 		},
@@ -133,6 +134,8 @@ var Sandbox = {
 			var item = {
 				command : command
 			};
+
+			if(this.get('test')(command)) { alert("completed"); }
 
 			// Evaluate the command and store the eval result, adding some basic classes for syntax-highlighting
 			try {
