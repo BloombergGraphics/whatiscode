@@ -1,15 +1,15 @@
 /**
- * javascript sandbox console 0.1.5 - joss crowcroft
- * 
+ * javascript sandbox console 0.2
+ *
  * requires underscore, backbone, backbone-localStorage and jquery
- * 
- * http://josscrowcroft.github.com/javascript-sandbox-console/
+ *
+ * http://openexchangerates.github.io/javascript-sandbox-console/
  */
 var Sandbox = {
 
 	/**
 	 * The Sandbox.Model
-	 * 
+	 *
 	 * Takes care of command evaluation, history and persistence via localStorage adapter
 	 */
 	Model : Backbone.Model.extend({
@@ -19,7 +19,9 @@ var Sandbox = {
 			fallback : true // if true, use native `eval` if the iframe method fails
 		},
 		initialize: function() {
-			_.bindAll(this);
+			var bindArgs = _.functions(this);
+			bindArgs.unshift(this);
+			_.bindAll.apply(this, bindArgs);
 
 			// Attempt to fetch the Model from localStorage
 			this.fetch();
@@ -35,10 +37,10 @@ var Sandbox = {
 
 		// The Sandbox Model tries to use the localStorage adapter to save the command history
 		localStorage: new Store("SandboxConsole"),
-		
+
 		// Parser for restoring the Model's state
 		// Backbone.localStorage adapter stores a collection, so grab the first 'model'
-		parse : function(data) {	
+		parse : function(data) {
 
 			// `parse` also fires when doing a save, so just return the model for that
 			if ( !_.isArray(data) || data.length < 1 || !data[0] ) return data;
@@ -82,7 +84,8 @@ var Sandbox = {
 			history.push(item);
 
 			// Update the history state and save the model
-			this.set({ history : history }).change();
+			this.set({ history : history });
+			this.trigger('change');
 			this.save();
 
 			return this;
@@ -130,22 +133,22 @@ var Sandbox = {
 			var item = {
 				command : command
 			};
-			
+
 			// Evaluate the command and store the eval result, adding some basic classes for syntax-highlighting
 			try {
-			    item.result = this.get('iframe') ? this.iframeEval(command) : eval.call(window, command);
-			    // Run the parser and mess with it
-			    item.parsed = esprima.parse(command);
-			    console.log("Parsed command: ",
+				item.result = this.get('iframe') ? this.iframeEval(command) : eval.call(window, command);
+				// Run the parser and mess with it
+				item.parsed = esprima.parse(command);
+				console.log("Parsed command: ",
 					item.parsed);
-			    addHTML(item.parsed);
-			    
+				addHTML(item.parsed);
+
 				if ( _.isUndefined(item.result) ) item._class = "undefined";
 				if ( _.isNumber(item.result) ) item._class = "number";
 				if ( _.isString(item.result) ) item._class = "string";
 			} catch(error) {
-			    item.result = error.toString();
-			    item._class = "error";
+				item.result = error.toString();
+				item._class = "error";
 			}
 
 			// Add the item to the history
@@ -156,13 +159,15 @@ var Sandbox = {
 
 	/**
 	 * The Sandbox.View
-	 * 
+	 *
 	 * Defers to the Sandbox.Model for history, evaluation and persistence
 	 * Takes care of all the rendering, controls, events and special commands
 	 */
 	View : Backbone.View.extend({
 		initialize: function(opts) {
-			_.bindAll(this);
+			var bindArgs = _.functions(this);
+			bindArgs.unshift(this);
+			_.bindAll.apply(this, bindArgs);
 
 			// Set up the history state (the up/down access to command history)
 			this.historyState = this.model.get('history').length;
@@ -178,13 +183,13 @@ var Sandbox = {
 			this.model.bind("change", this.update);
 
 			// Delegate key and mouse events to View input
-			this.el.delegate("textarea", {
+			this.$el.delegate("textarea", {
 				keydown : this.keydown,
 				keyup : this.keyup
 			});
 
 			// Delegate click event to View output
-			this.el.delegate(".output", {
+			this.$el.delegate(".output", {
 				click : this.focus
 			});
 
@@ -198,16 +203,16 @@ var Sandbox = {
 
 		// Renders the Sandbox View initially and stores references to the elements
 		render: function() {
-			this.el.html(this.template({
+			this.$el.html(this.template({
 				placeholder : this.placeholder
 			}));
 
-			this.textarea = this.el.find("textarea");
-			this.output = this.el.find(".output");
+			this.textarea = this.$el.find("textarea");
+			this.output = this.$el.find(".output");
 
 			return this;
 		},
-		
+
 		// Updates the Sandbox View, redrawing the output and checking the input's value
 		update : function() {
 			this.output.html(
@@ -221,7 +226,7 @@ var Sandbox = {
 					});
 				}, "", this)
 			);
-			
+
 			// Set the textarea to the value of the currently selected history item
 			// Update the textarea's `rows` attribute, as history items may be multiple lines
 			this.textarea.val(this.currentHistory).attr('rows', this.currentHistory.split("\n").length);
@@ -244,18 +249,18 @@ var Sandbox = {
 		// Returns the index of the cursor inside the textarea
 		getCaret : function() {
 			if (this.textarea[0].selectionStart) {
-				return this.textarea[0].selectionStart; 
-			} else if (document.selection) { 
+				return this.textarea[0].selectionStart;
+			} else if (document.selection) {
 				// This is for IE (apparently ... not tested yet)
 				this.textarea[0].focus();
 				var r = document.selection.createRange();
 				if (r === null) return 0;
-	
+
 				var re = this.textarea[0].createTextRange(),
 				rc = re.duplicate();
 				re.moveToBookmark(r.getBookmark());
 				rc.setEndPoint('EndToStart', re);
-	
+
 				return rc.text.length;
 			}
 			// If nothing else, assume index 0
@@ -285,7 +290,7 @@ var Sandbox = {
 			this.textarea.focus();
 			return false;
 		},
-		
+
 		// The keydown handler, that controls all the input
 		keydown: function(e) {
 			// Register shift, control and alt keydown
@@ -302,44 +307,44 @@ var Sandbox = {
 					this.update();
 					return false;
 				}
-				
+
 				// If submitting a command, set the currentHistory to blank (empties the textarea on update)
 				this.currentHistory = "";
-	
+
 				// Run the command past the special commands to check for ':help' and ':clear' etc.
 				if ( !this.specialCommands( val ) ) {
 
 					// If if wasn't a special command, pass off to the Sandbox Model to evaluate and save
 					this.model.evaluate( val );
 				}
-	
+
 				// Update the View's history state to reflect the latest history item
 				this.historyState = this.model.get('history').length;
-				
+
 				return false;
 			}
-	
+
 			// Up / down keys cycle through past history or move up/down
 			if ( !this.ctrl && (e.which === 38 || e.which === 40) ) {
 				e.preventDefault();
 
 				var history = this.model.get('history');
-				
+
 				// `direction` is -1 or +1 to go forward/backward through command history
 				var direction = e.which - 39;
 				this.historyState += direction;
-	
+
 				// Keep it within bounds
 				if (this.historyState < 0) this.historyState = 0;
 				else if (this.historyState >= history.length) this.historyState = history.length;
-				
+
 				// Update the currentHistory value and update the View
 				this.currentHistory = history[this.historyState] ? history[this.historyState].command : "";
 				this.update();
 
 				return false;
 			}
-	
+
 			// Tab adds a tab character (instead of jumping focus)
 			if ( e.which === 9 ) {
 				e.preventDefault();
@@ -351,7 +356,7 @@ var Sandbox = {
 						value.slice(0, caret),
 						value.slice(caret, value.length)
 					];
-				
+
 				// Insert the tab character into the value and update the textarea
 				this.textarea.val(
 					parts[0] + this.tabCharacter + parts[1]
@@ -363,13 +368,13 @@ var Sandbox = {
 				return false;
 			}
 		},
-		
+
 		// The keyup handler, used to switch off shift/alt keys
 		keyup: function(e) {
 			// Register shift, alt and control keyup
 			if ( _([16,17,18]).indexOf(e.which, true) > -1 ) this.ctrl = false;
 		},
-		
+
 		// Checks for special commands. If any are found, performs their action and returns true
 		specialCommands: function(command) {
 			if (command === ":clear") {
@@ -388,7 +393,7 @@ var Sandbox = {
 					command : command,
 					result : this.model.load( command.substring(6) )
 				});
-			} 
+			}
 
 			// If no special commands, return false so the command gets evaluated
 			return false;
