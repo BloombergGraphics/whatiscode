@@ -15,7 +15,7 @@ var Sandbox = {
 	Model : Backbone.Model.extend({
 		defaults: {
 			history : [],
-			test: function(command) { return true; eval(command) == 4; },
+			test: function(result) { return false; },
 			iframe : false, // if true, run `eval` inside a sandboxed iframe
 			fallback : true // if true, use native `eval` if the iframe method fails
 		},
@@ -135,13 +135,19 @@ var Sandbox = {
 				command : command
 			};
 
-			if(this.get('test')(command)) { alert("completed"); }
-
 			// Evaluate the command and store the eval result, adding some basic classes for syntax-highlighting
 			try {
 				item.result = this.get('iframe') ? this.iframeEval(command) : eval.call(window, command);
+
 				// Run the parser and mess with it
 				item.parsed = esprima.parse(command);
+
+				// Run test
+				if(this.get('test')(item.result)) {
+					console.log("completed");
+				} else {
+					console.log("keep trying!");
+				}
 
 				if ( _.isUndefined(item.result) ) item._class = "undefined";
 				if ( _.isNumber(item.result) ) item._class = "number";
