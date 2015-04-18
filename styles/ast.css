@@ -1,23 +1,19 @@
-#ast {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 50%;
-  margin: 0;
-  background:#333;
-  color: #ccc;
-  padding:20px 20px 15px;
-  height:219px;
-  font-family:"Consolas", "Andale Mono", "Courier New", "Courier", monospace;
-  overflow: scroll;
-  box-sizing: border-box;
+#sandbox .ast {
+  width:50%;
+  display: inline-block;
+  height:150px;
+  overflow-y:auto;
+  position:relative;
+  padding:0;
+  margin:0 0 10px;
+  border:0 none;
 }
 
-div.node {
+#sandbox .ast div.node {
   font-size:8pt;
   margin-left:1em;
 }
 
-td {
+#sandbox .ast td {
   font-size:8pt;
 }

@@ -24,7 +24,7 @@
 	color: #ccc;
 	background: #333;
 	padding:20px 20px 15px;
-	width:50%;
+	width:100%;
 	margin:0;
 	position: fixed;
 	bottom: 0;
@@ -32,9 +32,9 @@
 	box-sizing: border-box;
 }
 #sandbox pre.output {
-	display:block;
+	display:inline-block;
 	white-space:pre;
-	width:100%;
+	width:50%;
 	height:150px;
 	overflow-y:auto;
 	position:relative;

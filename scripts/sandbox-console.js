@@ -15,7 +15,7 @@ var Sandbox = {
 	Model : Backbone.Model.extend({
 		defaults: {
 			history : [],
-			test: function(command) { return eval(command) == 4; },
+			test: function(command) { return true; eval(command) == 4; },
 			iframe : false, // if true, run `eval` inside a sandboxed iframe
 			fallback : true // if true, use native `eval` if the iframe method fails
 		},
@@ -142,9 +142,6 @@ var Sandbox = {
 				item.result = this.get('iframe') ? this.iframeEval(command) : eval.call(window, command);
 				// Run the parser and mess with it
 				item.parsed = esprima.parse(command);
-				console.log("Parsed command: ",
-					item.parsed);
-				addHTML(item.parsed);
 
 				if ( _.isUndefined(item.result) ) item._class = "undefined";
 				if ( _.isNumber(item.result) ) item._class = "number";
@@ -180,7 +177,8 @@ var Sandbox = {
 			this.resultPrefix = opts.resultPrefix || "  => ";
 			this.tabCharacter = opts.tabCharacter || "\t";
 			this.placeholder = opts.placeholder || "// type some javascript and hit enter (:help for info)";
-			this.helpText = opts.helpText || "type javascript commands into the console, hit enter to evaluate. \n[up/down] to scroll through history, ':clear' to reset it. \n[alt + return/up/down] for returns and multi-line editing.";
+			this.helpText = opts.helpText || "Type JavaScript commands into the console; press [enter] to evaluate. \nPress [up/down] to scroll through history, ':clear' to reset it. \n[alt + return/up/down] for returns and multi-line editing.";
+			this.snippets = opts.snippets || [{"name": "Alert", "code": "alert('hi');"}];
 
 			// Bind to the model's change event to update the View
 			this.model.bind("change", this.update);
@@ -198,6 +196,9 @@ var Sandbox = {
 
 			// Render the textarea
 			this.render();
+
+			// Build GUI
+			this.buildGUI();
 		},
 
 		// The templating functions for the View and each history item
@@ -212,6 +213,7 @@ var Sandbox = {
 
 			this.textarea = this.$el.find("textarea");
 			this.output = this.$el.find(".output");
+			this.ast = this.$el.find(".ast");
 
 			return this;
 		},
@@ -228,6 +230,13 @@ var Sandbox = {
 						result :  this.toEscaped(command.result)
 					});
 				}, "", this)
+			);
+
+			// Update AST
+			this.ast.html(
+				this.model.get('history')[this.historyState]
+				? this.ASTtoHTML(this.model.get('history')[this.historyState].parsed)
+				: ""
 			);
 
 			// Set the textarea to the value of the currently selected history item
@@ -247,6 +256,36 @@ var Sandbox = {
 			this.setCaret( this.textarea.val().length );
 			this.textarea.focus();
 			return false;
+		},
+
+		buildGUI : function() {
+
+			//create
+			window.gui = new dat.GUI({
+				autoPlace: false,
+				supressHotKeys: true
+			});
+
+			//position
+			$(gui.domElement).css({
+				position:"absolute",
+				top:0,
+				right:0
+			}).appendTo(this.$el);
+
+			//add commands to populate textarea with each snippet
+			//(i don't love how dat.gui makes you do this)
+			var snippetCommands = {};
+			this.snippets.forEach(function(button) {
+				var snippetContext = this;
+				snippetCommands[button.name] = function() {
+					snippetContext.currentHistory = button.code;
+					snippetContext.update();
+					snippetContext.textarea.focus();
+				};
+				gui.add(snippetCommands, button.name).name(button.name);
+			}, this);
+
 		},
 
 		// Returns the index of the cursor inside the textarea
@@ -400,6 +439,37 @@ var Sandbox = {
 
 			// If no special commands, return false so the command gets evaluated
 			return false;
+		},
+
+		ASTtoHTML: function(node) {
+			var glue = "<table>";
+			for (var key in node) {
+				if (node.hasOwnProperty(key)) {
+					glue += "\n\t<tr>\n\t\t<td>"  + key + "</td>\n\t\t<td>" + node[key] +  '</td></tr>';
+				}
+			}
+			glue += '</table>';
+			return "\n\n<div class=\"node " + node.type + '">'
+			+ glue
+			+  (function() {
+				var appender = [];
+				for (var key in node) {
+					if (node.hasOwnProperty(key)) {
+						var child = node[key];
+						if (typeof child === 'object' && child !== null) {
+							if (Array.isArray(child)) {
+								child.forEach(function(node) {
+									appender.push(this.ASTtoHTML(node));
+								}, this);
+							} else {
+								appender.push(this.ASTtoHTML(child));
+							}
+						}
+					}
+				}
+				return appender;
+			}).call(this);
+			+ '</div>';
 		}
 	})
 };
