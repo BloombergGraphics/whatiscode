@@ -16,6 +16,7 @@ var Sandbox = {
 		defaults: {
 			history : [],
 			test: function(result) { return false; },
+			testState: null,
 			iframe : false, // if true, run `eval` inside a sandboxed iframe
 			fallback : true // if true, use native `eval` if the iframe method fails
 		},
@@ -143,11 +144,13 @@ var Sandbox = {
 				item.parsed = esprima.parse(command);
 
 				// Run test
-				if(this.get('test')(item.result)) {
-					console.log("completed");
-				} else {
-					console.log("keep trying!");
-				}
+				// this.$el.addClass( this.get('test')(item.result) ? "success" : "failure" )
+				console.log("here")
+				console.log(this.get('test')(item.result));
+				console.log("here")
+				this.set("testState", this.get('test')(item.result));
+
+				// debugger
 
 				if ( _.isUndefined(item.result) ) item._class = "undefined";
 				if ( _.isNumber(item.result) ) item._class = "number";
@@ -221,6 +224,9 @@ var Sandbox = {
 			this.output = this.$el.find(".output");
 			this.ast = this.$el.find(".ast");
 
+			// Set test state class
+			this.$el.addClass(this.model.get('testState') ? "success" : "failure");
+
 			return this;
 		},
 
@@ -253,6 +259,11 @@ var Sandbox = {
 			this.output.scrollTop(
 				this.output[0].scrollHeight - this.output.height()
 			);
+
+			// Set test state class
+			this.$el.addClass(this.model.get('testState') ? "success" : "failure");
+			console.log(this.model.get('testState'));
+
 		},
 
 		// Manually set the value in the sandbox textarea and focus it ready to submit:
@@ -267,13 +278,13 @@ var Sandbox = {
 		buildGUI : function() {
 
 			//create
-			window.gui = new dat.GUI({
+			this.gui = new dat.GUI({
 				autoPlace: false,
 				supressHotKeys: true
 			});
 
 			//position
-			$(gui.domElement).css({
+			$(this.gui.domElement).css({
 				position:"absolute",
 				top:0,
 				right:0
@@ -289,7 +300,7 @@ var Sandbox = {
 					snippetContext.update();
 					snippetContext.textarea.focus();
 				};
-				gui.add(snippetCommands, button.name).name(button.name);
+				this.gui.add(snippetCommands, button.name).name(button.name);
 			}, this);
 
 		},

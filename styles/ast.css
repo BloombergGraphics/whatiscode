@@ -1,4 +1,4 @@
-#sandbox .ast {
+.sandbox .ast {
   width:50%;
   display: inline-block;
   height:150px;
@@ -9,11 +9,11 @@
   border:0 none;
 }
 
-#sandbox .ast div.node {
+.sandbox .ast div.node {
   font-size:8pt;
   margin-left:1em;
 }
 
-#sandbox .ast td {
+.sandbox .ast td {
   font-size:8pt;
 }
