@@ -17,6 +17,12 @@ var Sandbox = {
 			history : [],
 			test: function(result) { return false; },
 			testState: null,
+			variables: {
+				"name": "Toph",
+				"age": 25,
+				"male": true,
+				"skin": "#ff00ff"
+			},
 			iframe : false, // if true, run `eval` inside a sandboxed iframe
 			fallback : true // if true, use native `eval` if the iframe method fails
 		},
@@ -301,6 +307,16 @@ var Sandbox = {
 					snippetContext.textarea.focus();
 				};
 				this.gui.add(snippetCommands, button.name).name(button.name);
+			}, this);
+
+			var variables = this.model.get('variables');
+			_.each(variables, function(value, key) {
+				var isColor = /^#[0-9A-F]{6}$/i.test(value);
+				if(isColor) {
+					this.gui.addColor(variables, key);
+				} else {
+					this.gui.add(variables, key);
+				}
 			}, this);
 
 		},
