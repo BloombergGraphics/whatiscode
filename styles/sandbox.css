@@ -19,8 +19,11 @@
 	position: relative;
 }
 
-.sandbox.success {
-	background: #0f0 !important;
+.sandbox.success h3 {
+	color: #0f0;
+}
+.sandbox.success h3::after {
+	content: " ✓";
 }
 /*.sandbox.failure {
 	background: #f00 !important;

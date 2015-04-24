@@ -150,10 +150,6 @@ var Sandbox = {
 				item.parsed = esprima.parse(command);
 
 				// Run test
-				// this.$el.addClass( this.get('test')(item.result) ? "success" : "failure" )
-				console.log("here")
-				console.log(this.get('test')(item.result));
-				console.log("here")
 				this.set("testState", this.get('test')(item.result));
 
 				// debugger
@@ -189,6 +185,7 @@ var Sandbox = {
 			this.currentHistory = "";
 
 			// Set up the View Options
+			this.title = opts.title || "";
 			this.resultPrefix = opts.resultPrefix || "  => ";
 			this.tabCharacter = opts.tabCharacter || "\t";
 			this.placeholder = opts.placeholder || "// type some javascript and hit enter (:help for info)";
@@ -223,7 +220,8 @@ var Sandbox = {
 		// Renders the Sandbox View initially and stores references to the elements
 		render: function() {
 			this.$el.html(this.template({
-				placeholder : this.placeholder
+				placeholder : this.placeholder,
+				title : this.title
 			}));
 
 			this.textarea = this.$el.find("textarea");
@@ -252,7 +250,7 @@ var Sandbox = {
 
 			// Update AST
 			this.ast.html(
-				this.model.get('history')[this.historyState]
+				this.model.get('history')[this.historyState] && this.model.get('history')[this.historyState].parsed
 				? this.ASTtoHTML(this.model.get('history')[this.historyState].parsed)
 				: ""
 			);
@@ -268,7 +266,6 @@ var Sandbox = {
 
 			// Set test state class
 			this.$el.addClass(this.model.get('testState') ? "success" : "failure");
-			console.log(this.model.get('testState'));
 
 		},
 
