@@ -18,6 +18,14 @@
 	width: 500px;
 	position: relative;
 }
+.sandbox-aside.left {
+	float: left;
+}
+.sandbox-aside.full {
+	width: 100%;
+	float: none;
+}
+
 
 .sandbox.success h3 {
 	color: #0f0;

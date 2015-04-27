@@ -7,15 +7,9 @@ article * {
   transition: color .2s, background .2s, border-radius .2s, margin .2s, padding .2s, width .2s, max-width .2s, height .2s;
 }
 
-#chart {
+article {
   max-width: 50em;
   margin: 0 auto;
-}
-
-.bar {
-  height: 20px;
-  margin-bottom: 2px;
-  background: gray;
 }
 
 pre {
@@ -23,14 +17,55 @@ pre {
 }
 
 header {
-  background: black;
-  color: white;
+  background:#333;
+  color: #ccc;
   padding: 5px;
-  font-family: Helvetica;
+  font-family: courier;
   font-size: 10pt;
+}
+
+header .progress-meter {
+  color: #0f0;
+  cursor: pointer;
+}
+header .progress-meter:hover {
+  color: #f0f;
 }
 
 h1 {
   font-size: 3em;
-  text-align:center;
+  text-align: center;
+}
+
+#preroll, #postlude {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 2;
+}
+
+#preroll video, #postlude video {
+  width: 100%;
+  height: 100%;
+}
+
+#preroll p {
+  position: absolute;
+  font-size: 3em;
+  top: 3em;
+  left: 3em;
+  background: black;
+  width: 50%;
+  color: white;
+  font-family: courier;
+}
+
+#postlude {
+  display: none;
+}
+#postlude.visible {
+  display: block;
 }

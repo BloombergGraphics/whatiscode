@@ -151,6 +151,7 @@ var Sandbox = {
 
 				// Run test
 				this.set("testState", this.get('test')(item.result));
+				$('#challenges-completed').text(parseInt($('#challenges-completed').text()) + 1);
 
 				// debugger
 

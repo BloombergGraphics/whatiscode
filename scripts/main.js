@@ -93,3 +93,12 @@ var traverseFun = function(node) {
 //   el = _.sample($els);
 //   $(el).css("background", _.sample(colors));
 // }
+
+$('#preroll').click(function() {
+  $('#preroll').hide();
+});
+
+$(".progress-meter").click(function() {
+  $('#postlude').addClass('visible');
+  $('#postlude video')[0].play();
+})
