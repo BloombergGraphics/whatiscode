@@ -1,0 +1,54 @@
+#ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity .1s;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  border: 2px solid white;
+  background: #f0f;
+  background-image: url('../images/emotes/paul.jpg');
+  background-size: cover;
+  font-family: 'VT323', courier;
+}
+
+#ghost .dialogue {
+  left: 65px;
+  position: absolute;
+}
+
+#ghost .dialogue .speech {
+  background: #0f0;
+  color: #f0f;
+  border: 2px solid #0ff;
+  border-radius: 5px;
+  min-width: 100px;
+  max-width: 400px;
+  padding: 3px;
+}
+
+#ghost .dialogue .code {
+  background: #000;
+  color: #0f0;
+  text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
+  border: 2px solid #f00;
+  border-radius: 5px;
+  min-width: 100px;
+  max-width: 400px;
+  padding: 3px;
+}
+
+#ghost .dialogue .responses .response {
+  background: #000;
+  color: #0f0;
+  text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
+  border: 2px solid #f00;
+  border-radius: 5px;
+  min-width: 100px;
+  max-width: 400px;
+  padding: 3px;
+}
