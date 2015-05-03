@@ -62,7 +62,7 @@ $('#preroll').click(function() {
   $('#preroll').hide();
 });
 
-$(".progress-meter").click(function() {
+$("body").on("click", ".progress-meter", function() {
   $('#postlude').addClass('visible');
   $('#postlude video')[0].play();
-})
+});

@@ -16,7 +16,7 @@ pre {
   display: inline;
 }
 
-header {
+.learninal-header {
   background:#333;
   color: #ccc;
   padding: 5px;
@@ -24,11 +24,11 @@ header {
   font-size: 10pt;
 }
 
-header .progress-meter {
+.learninal-header .progress-meter {
   color: #0f0;
   cursor: pointer;
 }
-header .progress-meter:hover {
+.learninal-header .progress-meter:hover {
   color: #f0f;
 }
 
@@ -68,4 +68,17 @@ h1 {
 }
 #postlude.visible {
   display: block;
+}
+
+.paulbot-prompt {
+  display: inline-block;
+  background-image: url('../images/paulboticon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+}
+.paulbot-prompt:hover {
+  background-color: #f0f;
+  cursor: pointer;
 }

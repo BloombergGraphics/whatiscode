@@ -211,7 +211,7 @@ var Sandbox = {
 			this.render();
 
 			// Build GUI
-			this.buildGUI();
+			// this.buildGUI();
 		},
 
 		// The templating functions for the View and each history item

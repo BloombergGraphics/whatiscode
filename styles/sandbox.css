@@ -8,8 +8,12 @@
 	width:100%;
 	margin:0;
 	position: fixed;
-	bottom: 0;
+	bottom: -270px;
 	left: 0;
+	transition: bottom .5s;
+}
+#sandbox:hover {
+	bottom: 0;
 }
 
 .sandbox-aside {
