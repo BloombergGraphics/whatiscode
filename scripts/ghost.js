@@ -2,9 +2,12 @@
 
 function ghost() {
 
+  var delay = 100;
+
   var sel,
+      script,
       dialogue,
-      response;
+      responses;
 
   var speech,
       speechText,
@@ -23,7 +26,7 @@ function ghost() {
     dialogue = gEnter.append("div").classed("dialogue", true);
     speech = dialogue.append("div").classed("speech", true);
     code = dialogue.append("div").classed("code", true);
-    response = dialogue.append("div").classed("responses", true);
+    responses = dialogue.append("div").classed("responses", true);
 
   }
 
@@ -104,6 +107,9 @@ function ghost() {
   }
 
   casper.speak = function(text, callback) {
+
+    if(!text) text="";
+
     speechText = text;
     speech.text("");
     speechTimer = setInterval(function() {
@@ -112,7 +118,9 @@ function ghost() {
         if(callback) callback();
       }
       speech.text(speechText.substr(0,speech.text().length+1));
-    },100);
+    },delay);
+
+    return casper;
   }
 
   casper.emote = function(em) {
@@ -122,9 +130,14 @@ function ghost() {
       "amiga": "url('images/emotes/amiga.png')"
     }
     sel.style('background-image', emotes[em]);
+
+    return casper;
   }
 
   casper.eval = function(text, callback) {
+
+    if(!text) text="";
+
     codeText = text;
     code.text("");
     codeTimer = setInterval(function() {
@@ -134,11 +147,43 @@ function ghost() {
         if(callback) callback();
       }
       code.text(codeText.substr(0,code.text().length+1));
-    },100);
+    },delay);
+
+    return casper;
+  }
+
+  casper.responses = function(choices) {
+
+    if(!choices) choices = [];
+
+    var rSel = responses.selectAll(".response")
+      .data(choices, function(d) { return d.prompt; });
+
+    rSel.enter()
+      .append("div")
+      .classed("response", true)
+      .text(function(d) { return "» " + d.prompt; })
+      .on("click", function(d) {
+        casper.script(d);
+      });
+
+    rSel.exit()
+      .remove();
+  }
+
+  casper.script = function(_) {
+    script = _;
+
+    if(_.do) _.do();
+
+    casper.speak(_.speak, function() { casper.eval(_.eval, function() { casper.responses(_.responses); }); });
   }
 
   casper.destroy = function() {
 
+    sel.transition().style("opacity",0);
+
+    return casper;
   }
 
   // from http://stackoverflow.com/a/6158050/120290

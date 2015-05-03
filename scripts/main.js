@@ -66,3 +66,28 @@ $("body").on("click", ".progress-meter", function() {
   $('#postlude').addClass('visible');
   $('#postlude video')[0].play();
 });
+
+function rewrite() {
+  var articleTemplate = $("article").html(),
+      styleTemplate = $("style").html();
+
+  var article = $("article"),
+      style = $("style");
+
+  var n = 0;
+
+  var timer = setInterval(function() {
+    if(read(n,n)) {
+      n += 10;
+    } else {
+      clearInterval(timer);
+    }
+  });
+
+  function read(n_article, n_style) {
+    article.html(articleTemplate.substr(0,n_article));
+    style.html(styleTemplate.substr(0,n_style));
+    return n_article <= articleTemplate.length || n_style <= styleTemplate.length;
+  }
+
+}
