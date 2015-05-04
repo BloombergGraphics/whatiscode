@@ -110,6 +110,7 @@ function ghost() {
 
     if(!text) text="";
 
+    clearInterval(speechTimer);
     speechText = text;
     speech.text("");
     speechTimer = setInterval(function() {
@@ -138,6 +139,7 @@ function ghost() {
 
     if(!text) text="";
 
+    clearInterval(codeTimer);
     codeText = text;
     code.text("");
     codeTimer = setInterval(function() {
@@ -154,7 +156,31 @@ function ghost() {
 
   casper.responses = function(choices) {
 
-    if(!choices) choices = [];
+    if(!choices) choices = [{
+      "prompt": _.sample([
+        "OK, bye.",
+        "Cool, thanks.",
+        "That's all? Fine.",
+        "Oh.",
+        "Yeah OK.",
+        "Sure pal.",
+        "Whatever you say, Paulbot.",
+        "Uh huh.",
+        "Well. Sure.",
+        "Mmmm yeah, see ya!"
+        ]),
+      "speak": _.sample([
+        "Bye!",
+        "Peace out!",
+        "Till next time!",
+        "Keep codin'!",
+        "Yup, cheers!",
+        "So long, sucka!",
+        "Stay classy."
+        ]),
+      "eval": "paulbot.hide();",
+      "responses": []
+    }];
 
     var rSel = responses.selectAll(".response")
       .data(choices, function(d) { return d.prompt; });
@@ -169,6 +195,8 @@ function ghost() {
 
     rSel.exit()
       .remove();
+
+    return casper;
   }
 
   casper.script = function(_) {
@@ -176,7 +204,17 @@ function ghost() {
 
     if(_.do) _.do();
 
-    casper.speak(_.speak, function() { casper.eval(_.eval, function() { casper.responses(_.responses); }); });
+    casper
+      .responses([])
+      .speak("")
+      .eval("")
+      .speak(_.speak, function() {
+        casper.eval(_.eval, function() {
+          casper.responses(_.responses);
+        });
+      });
+
+    return casper;
   }
 
   casper.destroy = function() {

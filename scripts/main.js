@@ -68,17 +68,19 @@ $("body").on("click", ".progress-meter", function() {
 });
 
 function rewrite() {
+
+  var speed = 1,
+      n = 0;
+
   var articleTemplate = $("article").html(),
       styleTemplate = $("style").html();
 
   var article = $("article"),
       style = $("style");
 
-  var n = 0;
-
   var timer = setInterval(function() {
     if(read(n,n)) {
-      n += 10;
+      n += speed;
     } else {
       clearInterval(timer);
     }
@@ -90,4 +92,65 @@ function rewrite() {
     return n_article <= articleTemplate.length || n_style <= styleTemplate.length;
   }
 
+}
+
+var log = {
+  "mouse": [],
+  "scroll": []
+}
+function logger() {
+
+  $("body").addClass("log");
+
+  $(window).scroll(function(e) {
+
+    d3.select("body")
+      .append("div")
+      .classed("event-log", true)
+      .classed("scroll", true)
+      .style("position", "fixed")
+      .style("right", "10px")
+      .style("top", (100*$("body").scrollTop()/($("body").height()-$(window).height())) + "%")
+      .html("scroll" + "<br/><small>(" + (100*$("body").scrollTop()/($("body").height()-$(window).height())).toFixed() + "%" + ")</small>")
+      .transition()
+      .duration(1000)
+      .style("opacity", 0)
+      .remove();
+
+    log.scroll.push({
+      "time": new Date(),
+      "scrollTop": $("body").scrollTop()
+    });
+  });
+
+  ["mousemove", "click"].forEach(function(eventName) {
+    $("body").on(eventName, function(e) {
+      d3.select("body")
+        .append("div")
+        .classed("event-log", true)
+        .classed(eventName, true)
+        .style("position", "fixed")
+        .style("left", e.clientX+"px")
+        .style("top", e.clientY+"px")
+        .html(eventName + "<br/><small>(" + e.clientX + ", " + e.clientY + ")</small>")
+        .transition()
+        .ease("exp-out")
+        .duration(10000)
+        .style("opacity", 0)
+        .remove();
+
+      log.mouse.push({
+        "time": new Date(),
+        "event": eventName,
+        "clientX": e.clientX,
+        "clientY": e.clientY,
+        "offsetX": e.offsetX,
+        "offsetY": e.offsetY,
+        "pageX": e.pageX,
+        "pageY": e.pageY,
+        "screenX": e.screenX,
+        "screenY": e.screenY
+      });
+    })
+  })
 }

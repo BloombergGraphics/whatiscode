@@ -50,6 +50,7 @@ ghostScripts.welcome =
     {
       "prompt": "Go away forever",
       "speak": "My mind is going...",
+      "do": function() { return paulbot.emote('pray'); },
       "eval": "paulbot.destroy();"
     }
   ]
@@ -59,4 +60,20 @@ ghostScripts.rewrite = {
   "prompt": null,
   "speak": "Wanna see me rewrite this article?",
   "eval": "rewrite();"
+}
+
+ghostScripts.logger = {
+  "prompt": null,
+  "speak": "Interactions on a web page are driven by events. Events are 'fired', and code can 'listen' for when they happen, and act accordingly. Do you want to see some events?",
+  "responses": [
+    {
+      "prompt": "OK.",
+      "speak": "Cool. Move your mouse and scroll and look at them all!",
+      "do": function() { logger(); }
+    },
+    {
+      "prompt": "Not really.",
+      "speak": "Oh. Well, click that paulbot prompt again if you ever want to."
+    }
+  ]
 }

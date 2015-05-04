@@ -82,3 +82,32 @@ h1 {
   background-color: #f0f;
   cursor: pointer;
 }
+
+.event-log {
+  position: fixed;
+  width: 300px;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 10pt;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.event-log.mousemove {
+  z-index: 2;
+  color: #ccc;
+}
+.event-log.click {
+  z-index: 3;
+  color: #f00;
+  font-size: 16pt;
+}
+.event-log.scroll {
+  text-align: right;
+  transform: translate(0,-50%);
+}
+.log div:hover, .log span:hover, .log p:hover, .log h1:hover, .log h2:hover {
+  background: #f0f !important;
+}
+.log div:active, .log span:active, .log p:active, .log h1:active, .log h2:hover {
+  background: #0f0 !important;
+}
