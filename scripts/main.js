@@ -52,7 +52,6 @@ function randomize() {
 
 function roulette(time) {
   if (!time) time = 1;
-  console.log(time);
   if (time>500) return;
   randomize();
   setTimeout(function() {roulette(time*1.1)}, time);

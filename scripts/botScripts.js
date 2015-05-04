@@ -1,6 +1,6 @@
-var ghostScripts = {};
+var botScripts = {};
 
-ghostScripts.welcome =
+botScripts.welcome =
 {
   "prompt": null,
   "speak": "Hi, I'm Paulbot. Welcome to my Learninal! We will have fun today.",
@@ -56,13 +56,13 @@ ghostScripts.welcome =
   ]
 };
 
-ghostScripts.rewrite = {
+botScripts.rewrite = {
   "prompt": null,
   "speak": "Wanna see me rewrite this article?",
   "eval": "rewrite();"
 }
 
-ghostScripts.logger = {
+botScripts.logger = {
   "prompt": null,
   "speak": "Interactions on a web page are driven by events. Events are 'fired', and code can 'listen' for when they happen, and act accordingly. Do you want to see some events?",
   "responses": [

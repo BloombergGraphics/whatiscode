@@ -1,10 +1,11 @@
 'use strict';
 
-function ghost() {
+function bot() {
 
   var delay = 100;
 
   var sel,
+      botName = "",
       script,
       dialogue,
       responses;
@@ -17,34 +18,31 @@ function ghost() {
       codeText,
       codeTimer;
 
-  function casper() {
-    // Select the ghost element, if it exists.
-    sel = d3.select("body").selectAll("#ghost").data([0]);
-
-    // Otherwise, create the skeletal ghost.
-    var gEnter = sel.enter().append("div").attr("id", "ghost");
-    dialogue = gEnter.append("div").classed("dialogue", true);
+  function bot(name) {
+    sel = d3.select("body").append("div").classed("bot", true).attr("id", botName);
+    dialogue = sel.append("div").classed("dialogue", true);
     speech = dialogue.append("div").classed("speech", true);
     code = dialogue.append("div").classed("code", true);
     responses = dialogue.append("div").classed("responses", true);
 
   }
 
-  function coordsFromSel(sel) {
-    var bounds = sel.node().getBoundingClientRect();
-    return [bounds.left + bounds.width/2, bounds.top + bounds.height/2];
-  }
+  bot.botName = function(_) {
+    if (!arguments.length) return botName;
+    botName = _;
+    return bot;
+  };
 
-  casper.jumpTo = function(coords) {
+  bot.jumpTo = function(coords) {
     if(coords instanceof d3.selection) {
       coords = coordsFromSel(coords);
     }
     sel.style("left", coords[0] + "px")
     .style("top", coords[1] + "px");
-    return casper;
+    return bot;
   }
 
-  casper.goTo = function(coords) {
+  bot.goTo = function(coords) {
     if(coords instanceof d3.selection) {
       coords = coordsFromSel(coords);
     }
@@ -55,20 +53,20 @@ function ghost() {
     .style("left", coords[0] + "px")
     .style("top", coords[1] + "px");
 
-    return casper;
+    return bot;
   }
 
-  casper.show = function() {
+  bot.show = function() {
     sel.style("opacity", 1);
-    return casper;
+    return bot;
   }
 
-  casper.hide = function() {
+  bot.hide = function() {
     sel.style("opacity", 0);
-    return casper;
+    return bot;
   }
 
-  casper.pulse = function() {
+  bot.pulse = function() {
     sel
     .style("width", "20px")
     .style("height", "20px")
@@ -77,13 +75,13 @@ function ghost() {
     .style("width", "10px")
     .style("height", "10px");
 
-    return casper;
+    return bot;
   }
 
-  casper.click = function(target, callback) {
+  bot.click = function(target, callback) {
     var coords = coordsFromSel(target);
 
-    casper.show();
+    bot.show();
 
     sel
     .transition()
@@ -103,12 +101,13 @@ function ghost() {
       callback(target.datum())
     })
 
-    return casper;
+    return bot;
   }
 
-  casper.speak = function(text, callback) {
+  bot.speak = function(text, callback) {
 
     if(!text) text="";
+    delay = Math.min(100, 3000 / text.length);
 
     clearInterval(speechTimer);
     speechText = text;
@@ -121,10 +120,10 @@ function ghost() {
       speech.text(speechText.substr(0,speech.text().length+1));
     },delay);
 
-    return casper;
+    return bot;
   }
 
-  casper.emote = function(em) {
+  bot.emote = function(em) {
     var emotes = {
       "default": "url('images/emotes/paul.jpg')",
       "pray": "url('images/emotes/pray.gif')",
@@ -132,12 +131,13 @@ function ghost() {
     }
     sel.style('background-image', emotes[em]);
 
-    return casper;
+    return bot;
   }
 
-  casper.eval = function(text, callback) {
+  bot.eval = function(text, callback) {
 
     if(!text) text="";
+    delay = Math.min(100, 3000 / text.length);
 
     clearInterval(codeTimer);
     codeText = text;
@@ -151,10 +151,10 @@ function ghost() {
       code.text(codeText.substr(0,code.text().length+1));
     },delay);
 
-    return casper;
+    return bot;
   }
 
-  casper.responses = function(choices) {
+  bot.responses = function(choices) {
 
     if(!choices) choices = [{
       "prompt": _.sample([
@@ -190,38 +190,43 @@ function ghost() {
       .classed("response", true)
       .text(function(d) { return "» " + d.prompt; })
       .on("click", function(d) {
-        casper.script(d);
+        bot.script(d);
       });
 
     rSel.exit()
       .remove();
 
-    return casper;
+    return bot;
   }
 
-  casper.script = function(_) {
+  bot.script = function(_) {
     script = _;
 
     if(_.do) _.do();
 
-    casper
+    bot
       .responses([])
       .speak("")
       .eval("")
       .speak(_.speak, function() {
-        casper.eval(_.eval, function() {
-          casper.responses(_.responses);
+        bot.eval(_.eval, function() {
+          bot.responses(_.responses);
         });
       });
 
-    return casper;
+    return bot;
   }
 
-  casper.destroy = function() {
+  bot.destroy = function() {
 
     sel.transition().style("opacity",0);
 
-    return casper;
+    return bot;
+  }
+
+  function coordsFromSel(sel) {
+    var bounds = sel.node().getBoundingClientRect();
+    return [bounds.left + bounds.width/2, bounds.top + bounds.height/2];
   }
 
   // from http://stackoverflow.com/a/6158050/120290
@@ -283,5 +288,5 @@ function ghost() {
     return destination;
   }
 
-  return casper;
+  return bot;
 }
