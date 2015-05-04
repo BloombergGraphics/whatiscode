@@ -1,4 +1,22 @@
+# Sample
+
+```javascript 
+// create a bot
+paulbot = bot().botName("paulbot");
+// initialize
+paulbot();
+// do some things, load a "script" for the bot to follow
+paulbot.show().goTo([300,300]).script(botScripts.welcome);
+
+// load different scripts when you click buttons
+$('body').on('click', '.paulbot-prompt', function(e) {
+	paulbot.show().script(botScripts[this.dataset.script]);
+})
+```
+
 # bot api
+
+It's a closure, you see, like a degenerate bastardized http://bost.ocks.org/mike/chart/. 
 
 **bot()** — returns a bot
 
@@ -8,7 +26,7 @@ bot.**botName**(*string*) — Getter/setter for #id, for multiple bots on one pa
 
 bot.**jumpTo**(*[x,y] or selection*) — Teleport to coordinates.
 
-bot.goTo([x,y] or selection) — Smoothly go to.
+bot.**goTo**(*[x,y] or selection*) — Smoothly go to.
 
 bot.**show()**, bot.**hide()** — Shows/hides in place. Could have some randomized entrance/exit animation.
 
