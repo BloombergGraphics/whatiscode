@@ -1,57 +1,32 @@
 # bot api
 
-### **bot()** returns a bot
+**bot()** — returns a bot
 
-### **bot()()** initializes
+**bot()()** — initializes
 
-### bot.**botName**(*string*)
+bot.**botName**(*string*) — Getter/setter for #id, for multiple bots on one page.
 
-Getter/setter for #id, for multiple bots on one page.
+bot.**jumpTo**(*[x,y] or selection*) — Teleport to coordinates.
 
-### bot.**jumpTo**(*[x,y] or selection*)
+bot.goTo([x,y] or selection) — Smoothly go to.
 
-Teleport to coordinates.
+bot.**show()**, bot.**hide()** — Shows/hides in place. Could have some randomized entrance/exit animation.
 
-### bot.goTo([x,y] or selection)
+bot.**pulse()** — Desperate for attention, just does some "hey look at me" animation.
 
-Smoothly go to.
+bot.**click**(*selection*) — Fires a click event on the designated target
 
-### bot.**show()**  
-### bot.**hide()**  
+bot.**speak**(*string, [callback]*) — Animates typey-typing string. Callback when finished.
 
-Shows/hides in place. Could have some randomized entrance/exit animation.
+bot.**eval**(*string, [callback]*) — Animates typey-typing string, and then `eval()`s string. Callback when finished.
 
-### bot.**pulse()**
+bot.**emote**(*string*) — Switches bot face to given emotion, currently either "default", "pray", or "amiga"
 
-Desperate for attention, just does some "hey look at me" animation.
+bot.**responses**(*array*) — Sets button prompts; a 'script' for the bot to follow is bound to every button. That script can in turn have more branching responses. So it's a nested tree.
 
-### bot.**click**(*selection*)
+bot.**script**(*object*) — Sets a 'script' (like for an actor) for the bot to follow. A script consists of a set of actions (speak, eval, do, emote[TK]), and branches for the user to follow. Every branch is just another script.
 
-Fires a click event on the designated target
-
-### bot.**speak**(*string, [callback]*)
-
-Animates typey-typing string. Callback when finished.
-
-### bot.**eval**(*string, [callback]*)
-
-Animates typey-typing string, and then `eval()`s string. Callback when finished.
-
-### bot.**emote**(*string*)
-
-Switches bot face to given emotion, currently either "default", "pray", or "amiga"
-
-### bot.**responses**(*array*)
-
-Sets button prompts; a 'script' for the bot to follow is bound to every button. That script can in turn have more branching responses. So it's a nested tree.
-
-### bot.**script**(*object*)
-
-Sets a 'script' (like for an actor) for the bot to follow. A script consists of a set of actions (speak, eval, do, emote[TK]), and branches for the user to follow. Every branch is just another script.
-
-### bot.**destroy**()
-
-Destroys the bot in grand fashion. Currently just hides. ;)
+bot.**destroy**() — Destroys the bot in grand fashion. Currently just hides. ;)
 
 # "Script" syntax
 
