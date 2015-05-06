@@ -4,7 +4,7 @@
  * http://josscrowcroft.github.com/javascript-sandbox-console/
  */
 
-#sandbox {
+#learninal {
 	width:100%;
 	margin:0;
 	position: fixed;
@@ -12,24 +12,9 @@
 	left: 0;
 	transition: bottom .5s;
 }
-#sandbox:hover {
+#learninal:hover, #learninal.open {
 	bottom: 0;
 }
-
-.sandbox-aside {
-	float: right;
-	margin: 20px;
-	width: 500px;
-	position: relative;
-}
-.sandbox-aside.left {
-	float: left;
-}
-.sandbox-aside.full {
-	width: 100%;
-	float: none;
-}
-
 
 .sandbox.success h3 {
 	color: #0f0;

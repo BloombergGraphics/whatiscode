@@ -2,13 +2,15 @@
 
 function bot() {
 
-  var delay = 100;
+  var minDelay = 100,
+      maxDuration = 300;
 
   var sel,
       botName = "",
       script,
       dialogue,
-      responses;
+      responses,
+      learninal;
 
   var speech,
       speechText,
@@ -30,6 +32,12 @@ function bot() {
   bot.botName = function(_) {
     if (!arguments.length) return botName;
     botName = _;
+    return bot;
+  };
+
+  bot.learninal = function(_) {
+    if (!arguments.length) return learninal;
+    learninal = _;
     return bot;
   };
 
@@ -107,7 +115,7 @@ function bot() {
   bot.speak = function(text, callback) {
 
     if(!text) text="";
-    delay = Math.min(100, 3000 / text.length);
+    var delay = Math.min(minDelay, maxDuration / text.length);
 
     clearInterval(speechTimer);
     speechText = text;
@@ -123,21 +131,15 @@ function bot() {
     return bot;
   }
 
-  bot.emote = function(em) {
-    var emotes = {
-      "default": "url('images/emotes/paul.jpg')",
-      "pray": "url('images/emotes/pray.gif')",
-      "amiga": "url('images/emotes/amiga.png')"
-    }
-    sel.style('background-image', emotes[em]);
-
+  bot.emote = function(src) {
+    sel.style('background-image', "url('images/emotes/" + src + "')");
     return bot;
   }
 
   bot.eval = function(text, callback) {
 
     if(!text) text="";
-    delay = Math.min(100, 3000 / text.length);
+    var delay = Math.min(minDelay, maxDuration / text.length);
 
     clearInterval(codeTimer);
     codeText = text;
@@ -190,6 +192,12 @@ function bot() {
       .classed("response", true)
       .text(function(d) { return "» " + d.prompt; })
       .on("click", function(d) {
+
+        if(script.test && !script.test()) {
+          bot.speak("Sorry, try again.");
+          return;
+        }
+
         bot.script(d);
       });
 
@@ -200,9 +208,12 @@ function bot() {
   }
 
   bot.script = function(_) {
+
+    _.hasSeen = true;
+
     script = _;
 
-    if(_.do) _.do();
+    if(_.do) _.do.call(this, _);
 
     bot
       .responses([])

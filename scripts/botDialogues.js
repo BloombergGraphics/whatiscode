@@ -1,6 +1,8 @@
-var botScripts = {};
+var botDialogues = {};
 
-botScripts.welcome =
+var myName = null;
+
+botDialogues.welcome =
 {
   "prompt": null,
   "speak": "Hi, I'm Paulbot. Welcome to my Learninal! We will have fun today.",
@@ -9,11 +11,13 @@ botScripts.welcome =
   "responses": [
     {
       "prompt": "I want to code",
-      "speak": "Great! Hover over the black bar at the bottom and start coding.",
-      "do": function() { paulbot.goTo(d3.select("strong")); },
+      "speak": "Great! First, set your name, like this:",
+      "eval": "myName = 'Paul';",
+      "do": function() { d3.select(learninal.el).classed("open",true); },
+      "test": function() { return myName !== "Paul"; },
       "responses": [
         {
-          "prompt": "OK, bye.",
+          "prompt": "OK, done.",
           "eval": "paulbot.hide();"
         }
       ]
@@ -50,19 +54,19 @@ botScripts.welcome =
     {
       "prompt": "Go away forever",
       "speak": "My mind is going...",
-      "do": function() { return paulbot.emote('pray'); },
+      "do": function() { this.emote('pray.gif'); },
       "eval": "paulbot.destroy();"
     }
   ]
 };
 
-botScripts.rewrite = {
+botDialogues.rewrite = {
   "prompt": null,
   "speak": "Wanna see me rewrite this article?",
   "eval": "rewrite();"
 }
 
-botScripts.logger = {
+botDialogues.logger = {
   "prompt": null,
   "speak": "Interactions on a web page are driven by events. Events are 'fired', and code can 'listen' for when they happen, and act accordingly. Do you want to see some events?",
   "responses": [
@@ -76,4 +80,21 @@ botScripts.logger = {
       "speak": "Oh. Well, click that paulbot prompt again if you ever want to."
     }
   ]
+}
+
+for (var key in botDialogues) {
+  if (botDialogues.hasOwnProperty(key)) {
+    var dialogue = botDialogues[key];
+    initDialogue(dialogue);
+  }
+}
+
+function initDialogue(dialogue) {
+  dialogue.hasSeen = false;
+  dialogue.isPassed = null;
+  if(dialogue.responses) {
+    dialogue.responses.forEach(function(subdialogue, index) {
+      initDialogue(subdialogue);
+    });
+  }
 }

@@ -153,3 +153,5 @@ function logger() {
     })
   })
 }
+
+//http://www.bloomberg.com/api/topics/graphics
