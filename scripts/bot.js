@@ -46,7 +46,7 @@ function bot() {
       coords = coordsFromSel(coords);
     }
     sel.style("left", coords[0] + "px")
-    .style("top", coords[1] + "px");
+      .style("top", coords[1] + "px");
     return bot;
   }
 
@@ -56,10 +56,10 @@ function bot() {
     }
 
     sel
-    .transition()
-    .duration(1000)
-    .style("left", coords[0] + "px")
-    .style("top", coords[1] + "px");
+      .transition()
+      .duration(1000)
+      .style("left", coords[0] + "px")
+      .style("top", coords[1] + "px");
 
     return bot;
   }
@@ -76,12 +76,12 @@ function bot() {
 
   bot.pulse = function() {
     sel
-    .style("width", "20px")
-    .style("height", "20px")
-    .transition()
-    .duration(750)
-    .style("width", "10px")
-    .style("height", "10px");
+      .style("width", "20px")
+      .style("height", "20px")
+      .transition()
+      .duration(750)
+      .style("width", "10px")
+      .style("height", "10px");
 
     return bot;
   }
@@ -92,22 +92,22 @@ function bot() {
     bot.show();
 
     sel
-    .transition()
-    .duration(1000)
-    .style("left", coords[0] + "px")
-    .style("top", coords[1] + "px")
-    .transition()
-    .duration(100)
-    .style("width", "20px")
-    .style("height", "20px")
-    .each("end", function() { simulate(target.node(), "click"); })
-    .transition()
-    .duration(1000)
-    .style("width", "10px")
-    .style("height", "10px")
-    .each("end", function(d) {
-      callback(target.datum())
-    })
+      .transition()
+        .duration(1000)
+        .style("left", coords[0] + "px")
+        .style("top", coords[1] + "px")
+      .transition()
+        .duration(100)
+        .style("width", "20px")
+        .style("height", "20px")
+        .each("end", function() { simulate(target.node(), "click"); })
+      .transition()
+        .duration(1000)
+        .style("width", "10px")
+        .style("height", "10px")
+        .each("end", function(d) {
+          callback(target.datum())
+        });
 
     return bot;
   }
@@ -210,6 +210,7 @@ function bot() {
   bot.script = function(_) {
 
     _.hasSeen = true;
+    _.speak = d3.functor(_.speak);
 
     script = _;
 
@@ -219,7 +220,7 @@ function bot() {
       .responses([])
       .speak("")
       .eval("")
-      .speak(_.speak, function() {
+      .speak(_.speak(), function() {
         bot.eval(_.eval, function() {
           bot.responses(_.responses);
         });

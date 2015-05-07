@@ -1,6 +1,7 @@
 var botDialogues = {};
 
-var myName = null;
+var myName = null,
+    dogs;
 
 botDialogues.welcome =
 {
@@ -17,8 +18,38 @@ botDialogues.welcome =
       "test": function() { return myName !== "Paul"; },
       "responses": [
         {
-          "prompt": "OK, done.",
-          "eval": "paulbot.hide();"
+          "prompt": "OK, done",
+          "speak": function() { return "You got it! Thanks " + myName +". Now, many things in a computer are saved in a LIST form. Many of the tasks that a programmer does involve creating and modifying lists. Let’s create a list. This is the code to make a list of dogs."; },
+          "eval": "dogs = ['black lab', 'tabby', 'golden retriever', 'corgi', 'pug'];",
+          "responses": [
+            {
+              "prompt": "OK, I'm with you.",
+              "speak": "First of all, one of these does not belong. So you should replace it with “boston terrier”. In Javascript arrays start at ZERO which is weird and confusing but you need to work with it, that’s life. So starting at ZERO what number is ‘tabby’?",
+              "eval": "dogs[1] = 'dolphin';",
+              "test": function() { return dogs[1] == "boston terrier"; },
+              "responses": [
+                {
+                  "prompt": "But a dolphin isn't... OK, got it, I did it.",
+                  "speak": "Great! Now you have done it. You have replaced the dogs. Now get rid of the pug. The way you do that is by calling the pop method: dogs.pop();",
+                  "test": function() { return dogs.indexOf("pug") === -1; },
+                  "responses": [
+                {
+                  "prompt": "OK done, I popped the pug.",
+                  "speak": "Now add ‘mutt’ but PUSHING into the end of the array: dogs.push('mutt');",
+                  "test": function() { return dogs.indexOf("mutt") !== -1; },
+                  "responses": [
+                    {
+                      "prompt": "Done.",
+                      "speak": "Awesome, you did it! You've learned how to make and manipulate a list. You can just type dogs and hit enter to see your list.",
+                      "do": function() { d3.select(learninal.el).classed("open",false); }
+                    }
+                  ]
+                }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },

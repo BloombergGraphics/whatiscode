@@ -56,7 +56,7 @@
 .sandbox pre.output {
 	display:inline-block;
 	white-space:pre;
-	width:50%;
+	width:100%;
 	height:150px;
 	overflow-y:auto;
 	position:relative;
