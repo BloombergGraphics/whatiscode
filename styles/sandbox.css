@@ -8,12 +8,15 @@
 	width:100%;
 	margin:0;
 	position: fixed;
-	bottom: -270px;
-	left: 0;
-	transition: bottom .5s;
-}
-#learninal:hover, #learninal.open {
 	bottom: 0;
+	left: 0;
+}
+#learninal.sandbox pre.output {
+	height: 0;
+	transition: height .5s;
+}
+#learninal:hover pre.output, #learninal.open pre.output {
+	height:150px;
 }
 
 .sandbox.success h3 {

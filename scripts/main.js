@@ -57,15 +57,6 @@ function roulette(time) {
   setTimeout(function() {roulette(time*1.1)}, time);
 }
 
-$('#preroll').click(function() {
-  $('#preroll').hide();
-});
-
-$("body").on("click", ".progress-meter", function() {
-  $('#postlude').addClass('visible');
-  $('#postlude video')[0].play();
-});
-
 function rewrite() {
 
   var speed = 1,
@@ -79,6 +70,7 @@ function rewrite() {
 
   var timer = setInterval(function() {
     if(read(n,n)) {
+      speed *= 1.01;
       n += speed;
     } else {
       clearInterval(timer);
