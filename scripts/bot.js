@@ -131,8 +131,8 @@ function bot() {
     return bot;
   }
 
-  bot.emote = function(src) {
-    sel.style('background-image', "url('images/emotes/" + src + "')");
+  bot.emote = function(emotion) {
+    sel.style('background-image', "url('images/emotes/" + emotion + ".gif')");
     return bot;
   }
 
