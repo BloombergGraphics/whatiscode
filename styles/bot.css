@@ -46,3 +46,6 @@
   background: #00f;
   cursor: pointer;
 }
+.bot .messages .responses .response.clicked {
+  background: #666;
+}

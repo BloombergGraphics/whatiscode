@@ -10,13 +10,14 @@ function bot() {
       sidebar,
       messages,
       learninal,
-      learninalSel;
+      learninalSel,
+      pendingDialogue;
 
-  function bot(name) {
+  function robot(name) {
     sel = d3.select("body").append("div").classed("bot", true).attr("id", botName);
     sidebar = sel.append("div").classed("sidebar", true);
     messages = sidebar.append("div").classed("messages", true);
-    learninalSel = sidebar.append("div").classed("sandbox", true);
+    learninalSel = sidebar.append("div").classed("learninal", true);
 
     learninal = new Sandbox.View({
       el: learninalSel[0],
@@ -26,13 +27,14 @@ function bot() {
 
   }
 
-  bot.botName = function(_) {
+  robot.botName = function(_) {
     if (!arguments.length) return botName;
     botName = _;
-    return bot;
+    return robot;
   };
 
-  bot.jumpTo = function(coords) {
+  robot.jumpTo = function(coords) {
+    coords = d3.functor(coords).call(robot);
     if(coords instanceof d3.selection) {
       coords = coordsFromSel(coords);
     }
@@ -41,7 +43,8 @@ function bot() {
     return true;
   }
 
-  bot.goTo = function(coords) {
+  robot.goTo = function(coords) {
+    coords = d3.functor(coords).call(robot);
     if(coords instanceof d3.selection) {
       coords = coordsFromSel(coords);
     }
@@ -58,21 +61,26 @@ function bot() {
     );
   }
 
-  bot.show = function(bool) {
+  robot.show = function(bool) {
+    bool = d3.functor(bool).call(robot);
     sel.style("opacity", bool ? 1 : 0);
     return true;
   }
 
-  bot.emote = function(emotion) {
+  robot.emote = function(emotion) {
+    emotion = d3.functor(emotion).call(robot);
     sel.style('background-image', "url('images/emotes/" + emotion + ".gif')");
     return true;
   }
 
-  bot.speak = function(text) {
+  robot.speak = function(text) {
+
+    if(!text) text="";
+    text = d3.functor(text).call(robot);
+
     return new Promise(
       function(resolve,reject) {
 
-        if(!text) text="";
         var speech = messages.append("div").classed("message", true).classed("speech", true);
         var delay = Math.min(minDelay, maxDuration / text.length);
         var speechTimer = setInterval(function() {
@@ -87,11 +95,14 @@ function bot() {
     )
   }
 
-  bot.eval = function(text) {
+  robot.eval = function(text) {
+
+    if(!text) text="";
+    text = d3.functor(text).call(robot);
+
     return new Promise(
       function(resolve,reject) {
 
-        if(!text) text="";
         var code = messages.append("div").classed("message", true).classed("code", true);
         var delay = Math.min(minDelay, maxDuration / text.length);
         var codeTimer = setInterval(function() {
@@ -107,15 +118,18 @@ function bot() {
     );
   }
 
-  bot.prompts = function(choices) {
+  robot.prompts = function(newPrompts) {
+
+    if(!newPrompts) newPrompts = [];
+    newPrompts = d3.functor(newPrompts).call(robot);
+
     return new Promise(
       function(resolve,reject) {
 
-        if(!choices) choices = [];
         var responses = messages.append("div").classed("message", true).classed("responses", true);
 
         var rSel = responses.selectAll(".response")
-          .data(choices, function(d) { return d.prompt; });
+          .data(newPrompts, function(d) { return d.prompt; });
 
         rSel.enter()
           .append("div")
@@ -123,16 +137,15 @@ function bot() {
           .text(function(d) { return "» " + d.prompt; })
           .on("click", function(d) {
 
+            d3.select(this).classed("clicked", true);
+
             if(d.dialogue) {
-              bot.dialogue(d.dialogue).then(function() {
-                debugger;
-                resolve();
+              robot.dialogue(d.dialogue).then(function(value) {
+                resolve(value);
               });
             } else {
-              resolve();
+              resolve(true);
             }
-
-            // resolve(bot.dialogue(d.dialogue));
 
           });
 
@@ -145,11 +158,14 @@ function bot() {
     );
   }
 
-  bot.test = function(test) {
+  robot.test = function(test) {
     return test();
   }
 
-  bot.dialogue = function(pending) {
+  robot.dialogue = function(pending) {
+
+    pending = d3.functor(pending).call(robot);
+    pendingDialogue = pending;
 
     return new Promise(
       function(resolve,reject) {
@@ -161,14 +177,14 @@ function bot() {
 
         for (var key in current) {
           if (current.hasOwnProperty(key)) {
-            promises.push(bot[key].call(bot, current[key]));
+            promises.push(robot[key].call(robot, current[key]));
           }
         }
 
         Promise.all(promises).then(function(value) {
 
           if(pending.length > 0) {
-            bot.dialogue(pending).then(function(value) { resolve(value); });
+            robot.dialogue(pending).then(function(value) { resolve(value); });
           } else {
             resolve(true);
           }
@@ -189,5 +205,5 @@ function bot() {
     return [bounds.left + bounds.width/2, bounds.top + bounds.height/2];
   }
 
-  return bot;
+  return robot;
 }

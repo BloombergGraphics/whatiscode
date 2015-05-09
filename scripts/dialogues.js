@@ -9,7 +9,7 @@ var subDialogue = [
   { "speak": "Subdialogue part 3..." }
 ];
 
-var randDialogue = function() {
+var randText = function() {
   return _.sample([
     "OK, bye.",
     "Cool, thanks.",
@@ -23,6 +23,14 @@ var randDialogue = function() {
     "Mmmm yeah, see ya!"
     ]);
 };
+
+var randDialogue = function() {
+  var dialogue = [];
+  dialogue.push({"speak": randText()});
+  dialogue.push({"speak": randText()});
+  dialogue.push({"speak": randText()});
+  return dialogue;
+}
 
 botDialogues.welcome = [
   {
