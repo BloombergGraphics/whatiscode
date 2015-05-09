@@ -129,3 +129,31 @@ function initDialogue(dialogue) {
     });
   }
 }
+
+/*
+if(!choices) choices = [{
+"prompt": _.sample([
+"OK, bye.",
+"Cool, thanks.",
+"That's all? Fine.",
+"Oh.",
+"Yeah OK.",
+"Sure pal.",
+"Whatever you say, Paulbot.",
+"Uh huh.",
+"Well. Sure.",
+"Mmmm yeah, see ya!"
+]),
+"speak": _.sample([
+"Bye!",
+"Peace out!",
+"Till next time!",
+"Keep codin'!",
+"Yup, cheers!",
+"So long, sucka!",
+"Stay classy."
+]),
+"eval": "paulbot.hide();",
+"responses": []
+}];
+*/
