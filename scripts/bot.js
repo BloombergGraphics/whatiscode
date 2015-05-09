@@ -168,8 +168,18 @@ function bot() {
     );
   }
 
-  robot.test = function(test) {
-    return test();
+  robot.test = function(testArg) {
+    return new Promise(
+      function(resolve,reject) {
+        var onEvaluate = function(item) {
+          if(testArg.call(robot, item)) {
+            learninal.model.dispatcher.off("evaluate", onEvaluate);
+            resolve();
+          }
+        }
+        learninal.model.dispatcher.on("evaluate", onEvaluate);
+      }
+    );
   }
 
   robot.dialogue = function(pending) {

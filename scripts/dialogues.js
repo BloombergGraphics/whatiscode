@@ -32,6 +32,46 @@ var randDialogue = function() {
   return dialogue;
 }
 
+botDialogues.adding = [
+  {
+    "show": true,
+    "goTo": [100,100],
+    "speak": "Computers can do math. Try adding two numbers, like this:"
+  },
+  {
+    "eval": "2+2"
+  },
+  {
+    "test": function(item) {
+      if(isNaN(item.result)) {
+        this.speak("Sorry, that's not a number.");
+      } else {
+        return true;
+      }
+    }
+  },
+  {
+    "speak": "Great. You can also use - * / for subtraction, multiplication, and division. Now try something that comes out to 5."
+  },
+  {
+    "test": function(item) {
+      if(item.result == 5) {
+        return true;
+      } else {
+        this.speak("That comes out to '" + item.result + "', which does not equal 5.");
+        return false;
+      }
+    }
+  },
+  {
+    "speak": "Great job. Goodbye!",
+    "prompts": [{"prompt": "Bye!"}]
+  },
+  {
+    "show": false
+  }
+]
+
 botDialogues.welcome = [
   {
     "speak": "Welcome!",
