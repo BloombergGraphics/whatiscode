@@ -41,6 +41,9 @@ var Sandbox = {
 			this.bind("destroy", function(model) {
 				model.set({history:[]});
 			});
+
+			// Dispatcher for talking to Paulbot
+			this.dispatcher = _.clone(Backbone.Events);
 		},
 
 		// The Sandbox Model tries to use the localStorage adapter to save the command history
@@ -162,6 +165,9 @@ var Sandbox = {
 				item.result = error.toString();
 				item._class = "error";
 			}
+
+			// Dispatches event for the benefit of Paulbot or any other listeners
+			this.dispatcher.trigger("evaluate", item);
 
 			// Add the item to the history
 			return this.addHistory(item);

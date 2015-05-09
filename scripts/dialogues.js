@@ -4,7 +4,7 @@ var myName = null,
     dogs;
 
 var subDialogue = [
-  { "speak": "Subdialogue part 1..." },
+  { "emote": "love", "speak": "Subdialogue part 1..." },
   { "eval": "//Subdialogue part 2..." },
   { "speak": "Subdialogue part 3..." }
 ];
@@ -26,7 +26,7 @@ var randText = function() {
 
 var randDialogue = function() {
   var dialogue = [];
-  dialogue.push({"speak": randText()});
+  dialogue.push({"emote": "wiggle", "speak": randText()});
   dialogue.push({"speak": randText()});
   dialogue.push({"speak": randText()});
   return dialogue;
@@ -39,7 +39,7 @@ botDialogues.welcome = [
     "goTo": [100,100]
   },
   {
-    "eval": "alert('hi');"
+    "eval": "alert('hi');",
   },
   {
     "prompts": [

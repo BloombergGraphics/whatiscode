@@ -25,6 +25,12 @@ function bot() {
       placeholder: "Hit 'Enter' to run code"
     });
 
+    // Listen to dispatcher
+    learninal.model.dispatcher.on("evaluate", function(item) {
+      messages.append("div").classed("message", true).classed("usercode", true).html(item.command + "<br/> => "+item.result);
+    })
+
+
   }
 
   robot.botName = function(_) {
@@ -89,6 +95,7 @@ function bot() {
             resolve(speech);
           }
           speech.text(text.substr(0,speech.text().length+1));
+          messages.node().scrollTop = messages.node().scrollHeight;
         },delay);
 
       }
@@ -112,6 +119,7 @@ function bot() {
             resolve(code);
           }
           code.text(text.substr(0,code.text().length+1));
+          messages.node().scrollTop = messages.node().scrollHeight;
         },delay);
 
       }
@@ -151,6 +159,8 @@ function bot() {
 
         rSel.exit()
           .remove();
+
+        messages.node().scrollTop = messages.node().scrollHeight;
 
         return true;
 

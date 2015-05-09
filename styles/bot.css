@@ -20,7 +20,8 @@
 }
 
 .bot .messages {
-
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 .bot .messages .message {
@@ -37,6 +38,12 @@
 .bot .messages .code {
   color: #0f0;
   text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
+}
+
+.bot .messages .usercode {
+  color: #0f0;
+  text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
+  border: 2px solid #0f0;
 }
 
 .bot .messages .responses .response {
