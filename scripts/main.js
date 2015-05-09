@@ -91,10 +91,7 @@ var log = {
 }
 function logger() {
 
-  $("body").addClass("log");
-
   $(window).scroll(function(e) {
-
     d3.select("body")
       .append("div")
       .classed("event-log", true)
@@ -116,6 +113,12 @@ function logger() {
 
   ["mousemove", "click"].forEach(function(eventName) {
     $("body").on(eventName, function(e) {
+
+      var xScale = d3.scale.linear().domain([0,$(window).width()]).range([0, 255]);
+      var xScale2 = d3.scale.linear().domain([0,$(window).width()]).range([255, 0]);
+      var yScale = d3.scale.linear().domain([0,$(window).height()]).range([0, 255]);
+      var color = "rgb("+ xScale(e.clientX).toFixed() + "," + yScale(e.clientY).toFixed() + "," + xScale2(e.clientX).toFixed() +")";
+
       d3.select("body")
         .append("div")
         .classed("event-log", true)
@@ -123,6 +126,8 @@ function logger() {
         .style("position", "fixed")
         .style("left", e.clientX+"px")
         .style("top", e.clientY+"px")
+        .style("transform", "translate(-50%,-50%) rotate("+ (Math.random()*60-30).toFixed() +"deg)")
+        .style("color", color)
         .html(eventName + "<br/><small>(" + e.clientX + ", " + e.clientY + ")</small>")
         .transition()
         .ease("exp-out")

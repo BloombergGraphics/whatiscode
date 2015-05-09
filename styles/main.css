@@ -72,7 +72,16 @@ h1 {
 
 .paulbot-prompt {
   display: inline-block;
-  background-image: url('../images/paulboticon.png');
+  position: relative;
+  min-width: 1em;
+  min-height: 1em;
+}
+.paulbot-prompt:before {
+  content:" ";
+  position:absolute;
+  top: 0;
+  left: -1.1em;
+  background-image: url('../images/emotes/restface.gif');
   background-size: contain;
   background-repeat: no-repeat;
   width: 1em;
@@ -98,16 +107,11 @@ h1 {
 }
 .event-log.click {
   z-index: 3;
-  color: #f00;
-  font-size: 16pt;
+  font-size: 18pt;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
 }
 .event-log.scroll {
   text-align: right;
   transform: translate(0,-50%);
-}
-.log div:hover, .log span:hover, .log p:hover, .log h1:hover, .log h2:hover {
-  background: #f0f !important;
-}
-.log div:active, .log span:active, .log p:active, .log h1:active, .log h2:hover {
-  background: #0f0 !important;
 }

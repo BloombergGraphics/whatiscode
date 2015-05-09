@@ -32,6 +32,21 @@ var randDialogue = function() {
   return dialogue;
 }
 
+botDialogues.logger = [
+  {
+    "show": true,
+    "goTo": [100,100],
+    "speak": "Interactions on a web page are driven by events. Events are 'fired', and code can 'listen' for when they happen, and act accordingly."
+  },
+  {
+    "eval": logger+' logger();'
+  },
+  {
+    "speak": "Move your mouse and scroll and look at them all!",
+    "prompts": [{"prompt": "OK."}]
+  }
+];
+
 botDialogues.adding = [
   {
     "show": true,
@@ -72,7 +87,7 @@ botDialogues.adding = [
   }
 ]
 
-botDialogues.welcome = [
+botDialogues.debug = [
   {
     "speak": "Welcome!",
     "show": true,
