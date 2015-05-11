@@ -60,7 +60,7 @@ var randDialogue = function() {
   return dialogue;
 }
 
-botDialogues.logger = [
+botDialogues.eventLogger = [
   {
     "show": true,
     "goTo": [100,100],
@@ -70,7 +70,7 @@ botDialogues.logger = [
     "eval": logger+' logger();'
   },
   {
-    "speak": "Move your mouse and scroll and look at them all!",
+    "speak": "Move your mouse and hit keys and scroll and look at them all!",
     "prompts": [{"prompt": "OK."}]
   }
 ];

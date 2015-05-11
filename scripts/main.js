@@ -115,6 +115,32 @@ function logger() {
     });
   });
 
+  ["keydown", "keypress", "keydown", "keypress", "keyup"].forEach(function(eventName) {
+    $(window).on(eventName, function(e) {
+      var key = event.keyCode || event.which;
+      var keychar = String.fromCharCode(key);
+
+      var x = Math.random()*$(window).width();
+      var y = Math.random()*$(window).height();
+      var color = d3.scale.linear().domain([0,25,50,75,100]).range(["red", "orange", "green", "blue", "purple"]);
+
+      d3.select("body")
+        .append("div")
+        .classed("event-log", true)
+        .classed("keyboard", true)
+        .style("position", "fixed")
+        .style("left", x+"px")
+        .style("top", y+"px")
+        .style("color", color(key%100))
+        .html(keychar + "<br/><small>" + eventName + "</small>")
+        .transition()
+        .duration(1000)
+        .style("opacity", 0)
+        .remove();
+
+    })
+  });
+
   ["mousemove", "click"].forEach(function(eventName) {
     $("body").on(eventName, function(e) {
 
