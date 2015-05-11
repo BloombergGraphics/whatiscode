@@ -3,29 +3,137 @@ body {
   padding: 0;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: black;
+  color: white;
+  text-align: right;
+}
+
 article * {
   transition: color .2s, background .2s, border-radius .2s, margin .2s, padding .2s, width .2s, max-width .2s, height .2s;
 }
 
-#chart {
+article {
   max-width: 50em;
   margin: 0 auto;
-}
-
-.bar {
-  height: 20px;
-  margin-bottom: 2px;
-  background: gray;
 }
 
 pre {
   display: inline;
 }
 
-header {
-  background: black;
-  color: white;
+#dialogues {
+  padding: 1em 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  text-align: right;
+}
+
+.learninal-header {
+  background:#333;
+  color: #ccc;
   padding: 5px;
-  font-family: Helvetica;
+  font-family: courier;
   font-size: 10pt;
+}
+
+.learninal-header .progress-meter {
+  color: #0f0;
+  cursor: pointer;
+}
+.learninal-header .progress-meter:hover {
+  color: #f0f;
+}
+
+h1 {
+  font-size: 3em;
+  text-align: center;
+}
+
+#preroll, #postlude {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 2;
+}
+
+#preroll video, #postlude video {
+  width: 100%;
+  height: 100%;
+}
+
+#preroll .preroll-text {
+  position: absolute;
+  font-size: 3em;
+  top: 3em;
+  left: 3em;
+  background: black;
+  width: 50%;
+  color: white;
+  font-family: courier;
+}
+
+#postlude {
+  display: none;
+}
+#postlude.visible {
+  display: block;
+}
+
+.paulbot-prompt {
+  display: inline-block;
+  position: relative;
+  min-width: 1em;
+  min-height: 1em;
+}
+.paulbot-prompt:before {
+  content:" ";
+  position:absolute;
+  top: 0;
+  left: -1.1em;
+  background-image: url('../images/emotes/restface.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1em;
+  height: 1em;
+}
+.paulbot-prompt:hover {
+  background-color: #f0f;
+  cursor: pointer;
+}
+
+.event-log {
+  position: fixed;
+  width: 300px;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 10pt;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.event-log.mousemove {
+  z-index: 2;
+  color: #ccc;
+  font-size: 1em;
+}
+.event-log.click {
+  z-index: 3;
+  font-size: 3em;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
+}
+.event-log.scroll {
+  text-align: right;
+  transform: translate(0,-50%);
+}
+.event-log.keyboard {
+  font-size: 2em;
 }

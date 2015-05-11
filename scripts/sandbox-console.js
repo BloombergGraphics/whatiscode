@@ -1,25 +1,35 @@
 /**
- * javascript sandbox console 0.1.5 - joss crowcroft
- * 
+ * javascript sandbox console 0.2
+ *
  * requires underscore, backbone, backbone-localStorage and jquery
- * 
- * http://josscrowcroft.github.com/javascript-sandbox-console/
+ *
+ * http://openexchangerates.github.io/javascript-sandbox-console/
  */
 var Sandbox = {
 
 	/**
 	 * The Sandbox.Model
-	 * 
+	 *
 	 * Takes care of command evaluation, history and persistence via localStorage adapter
 	 */
 	Model : Backbone.Model.extend({
 		defaults: {
 			history : [],
+			test: function(result) { return false; },
+			testState: null,
+			variables: {
+				"name": "Toph",
+				"age": 25,
+				"male": true,
+				"skin": "#ff00ff"
+			},
 			iframe : false, // if true, run `eval` inside a sandboxed iframe
 			fallback : true // if true, use native `eval` if the iframe method fails
 		},
 		initialize: function() {
-			_.bindAll(this);
+			var bindArgs = _.functions(this);
+			bindArgs.unshift(this);
+			_.bindAll.apply(this, bindArgs);
 
 			// Attempt to fetch the Model from localStorage
 			this.fetch();
@@ -31,14 +41,17 @@ var Sandbox = {
 			this.bind("destroy", function(model) {
 				model.set({history:[]});
 			});
+
+			// Dispatcher for talking to Paulbot
+			this.dispatcher = _.clone(Backbone.Events);
 		},
 
 		// The Sandbox Model tries to use the localStorage adapter to save the command history
 		localStorage: new Store("SandboxConsole"),
-		
+
 		// Parser for restoring the Model's state
 		// Backbone.localStorage adapter stores a collection, so grab the first 'model'
-		parse : function(data) {	
+		parse : function(data) {
 
 			// `parse` also fires when doing a save, so just return the model for that
 			if ( !_.isArray(data) || data.length < 1 || !data[0] ) return data;
@@ -82,7 +95,8 @@ var Sandbox = {
 			history.push(item);
 
 			// Update the history state and save the model
-			this.set({ history : history }).change();
+			this.set({ history : history });
+			this.trigger('change');
 			this.save();
 
 			return this;
@@ -130,10 +144,20 @@ var Sandbox = {
 			var item = {
 				command : command
 			};
-			
+
 			// Evaluate the command and store the eval result, adding some basic classes for syntax-highlighting
 			try {
 				item.result = this.get('iframe') ? this.iframeEval(command) : eval.call(window, command);
+
+				// Run the parser and mess with it
+				item.parsed = esprima.parse(command);
+
+				// Run test
+				this.set("testState", this.get('test')(item.result));
+				$('#challenges-completed').text(parseInt($('#challenges-completed').text()) + 1);
+
+				// debugger
+
 				if ( _.isUndefined(item.result) ) item._class = "undefined";
 				if ( _.isNumber(item.result) ) item._class = "number";
 				if ( _.isString(item.result) ) item._class = "string";
@@ -141,6 +165,9 @@ var Sandbox = {
 				item.result = error.toString();
 				item._class = "error";
 			}
+
+			// Dispatches event for the benefit of Paulbot or any other listeners
+			this.dispatcher.trigger("evaluate", item);
 
 			// Add the item to the history
 			return this.addHistory(item);
@@ -150,40 +177,47 @@ var Sandbox = {
 
 	/**
 	 * The Sandbox.View
-	 * 
+	 *
 	 * Defers to the Sandbox.Model for history, evaluation and persistence
 	 * Takes care of all the rendering, controls, events and special commands
 	 */
 	View : Backbone.View.extend({
 		initialize: function(opts) {
-			_.bindAll(this);
+			var bindArgs = _.functions(this);
+			bindArgs.unshift(this);
+			_.bindAll.apply(this, bindArgs);
 
 			// Set up the history state (the up/down access to command history)
 			this.historyState = this.model.get('history').length;
 			this.currentHistory = "";
 
 			// Set up the View Options
+			this.title = opts.title || "";
 			this.resultPrefix = opts.resultPrefix || "  => ";
 			this.tabCharacter = opts.tabCharacter || "\t";
 			this.placeholder = opts.placeholder || "// type some javascript and hit enter (:help for info)";
-			this.helpText = opts.helpText || "type javascript commands into the console, hit enter to evaluate. \n[up/down] to scroll through history, ':clear' to reset it. \n[alt + return/up/down] for returns and multi-line editing.";
+			this.helpText = opts.helpText || "Type JavaScript commands into the console; press [enter] to evaluate. \nPress [up/down] to scroll through history, ':clear' to reset it. \n[alt + return/up/down] for returns and multi-line editing.";
+			this.snippets = opts.snippets || [{"name": "Alert", "code": "alert('hi');"}];
 
 			// Bind to the model's change event to update the View
 			this.model.bind("change", this.update);
 
 			// Delegate key and mouse events to View input
-			this.el.delegate("textarea", {
+			this.$el.delegate("textarea", {
 				keydown : this.keydown,
 				keyup : this.keyup
 			});
 
 			// Delegate click event to View output
-			this.el.delegate(".output", {
+			this.$el.delegate(".output", {
 				click : this.focus
 			});
 
 			// Render the textarea
 			this.render();
+
+			// Build GUI
+			// this.buildGUI();
 		},
 
 		// The templating functions for the View and each history item
@@ -192,16 +226,21 @@ var Sandbox = {
 
 		// Renders the Sandbox View initially and stores references to the elements
 		render: function() {
-			this.el.html(this.template({
-				placeholder : this.placeholder
+			this.$el.html(this.template({
+				placeholder : this.placeholder,
+				title : this.title
 			}));
 
-			this.textarea = this.el.find("textarea");
-			this.output = this.el.find(".output");
+			this.textarea = this.$el.find("textarea");
+			this.output = this.$el.find(".output");
+			this.ast = this.$el.find(".ast");
+
+			// Set test state class
+			this.$el.addClass(this.model.get('testState') ? "success" : "failure");
 
 			return this;
 		},
-		
+
 		// Updates the Sandbox View, redrawing the output and checking the input's value
 		update : function() {
 			this.output.html(
@@ -215,7 +254,14 @@ var Sandbox = {
 					});
 				}, "", this)
 			);
-			
+
+			// Update AST
+			this.ast.html(
+				this.model.get('history')[this.historyState] && this.model.get('history')[this.historyState].parsed
+				? this.ASTtoHTML(this.model.get('history')[this.historyState].parsed)
+				: ""
+			);
+
 			// Set the textarea to the value of the currently selected history item
 			// Update the textarea's `rows` attribute, as history items may be multiple lines
 			this.textarea.val(this.currentHistory).attr('rows', this.currentHistory.split("\n").length);
@@ -224,6 +270,10 @@ var Sandbox = {
 			this.output.scrollTop(
 				this.output[0].scrollHeight - this.output.height()
 			);
+
+			// Set test state class
+			this.$el.addClass(this.model.get('testState') ? "success" : "failure");
+
 		},
 
 		// Manually set the value in the sandbox textarea and focus it ready to submit:
@@ -235,21 +285,61 @@ var Sandbox = {
 			return false;
 		},
 
+		buildGUI : function() {
+
+			//create
+			this.gui = new dat.GUI({
+				autoPlace: false,
+				supressHotKeys: true
+			});
+
+			//position
+			$(this.gui.domElement).css({
+				position:"absolute",
+				top:0,
+				right:0
+			}).appendTo(this.$el);
+
+			//add commands to populate textarea with each snippet
+			//(i don't love how dat.gui makes you do this)
+			var snippetCommands = {};
+			this.snippets.forEach(function(button) {
+				var snippetContext = this;
+				snippetCommands[button.name] = function() {
+					snippetContext.currentHistory = button.code;
+					snippetContext.update();
+					snippetContext.textarea.focus();
+				};
+				this.gui.add(snippetCommands, button.name).name(button.name);
+			}, this);
+
+			var variables = this.model.get('variables');
+			_.each(variables, function(value, key) {
+				var isColor = /^#[0-9A-F]{6}$/i.test(value);
+				if(isColor) {
+					this.gui.addColor(variables, key);
+				} else {
+					this.gui.add(variables, key);
+				}
+			}, this);
+
+		},
+
 		// Returns the index of the cursor inside the textarea
 		getCaret : function() {
 			if (this.textarea[0].selectionStart) {
-				return this.textarea[0].selectionStart; 
-			} else if (document.selection) { 
+				return this.textarea[0].selectionStart;
+			} else if (document.selection) {
 				// This is for IE (apparently ... not tested yet)
 				this.textarea[0].focus();
 				var r = document.selection.createRange();
 				if (r === null) return 0;
-	
+
 				var re = this.textarea[0].createTextRange(),
 				rc = re.duplicate();
 				re.moveToBookmark(r.getBookmark());
 				rc.setEndPoint('EndToStart', re);
-	
+
 				return rc.text.length;
 			}
 			// If nothing else, assume index 0
@@ -279,7 +369,7 @@ var Sandbox = {
 			this.textarea.focus();
 			return false;
 		},
-		
+
 		// The keydown handler, that controls all the input
 		keydown: function(e) {
 			// Register shift, control and alt keydown
@@ -296,44 +386,44 @@ var Sandbox = {
 					this.update();
 					return false;
 				}
-				
+
 				// If submitting a command, set the currentHistory to blank (empties the textarea on update)
 				this.currentHistory = "";
-	
+
 				// Run the command past the special commands to check for ':help' and ':clear' etc.
 				if ( !this.specialCommands( val ) ) {
 
 					// If if wasn't a special command, pass off to the Sandbox Model to evaluate and save
 					this.model.evaluate( val );
 				}
-	
+
 				// Update the View's history state to reflect the latest history item
 				this.historyState = this.model.get('history').length;
-				
+
 				return false;
 			}
-	
+
 			// Up / down keys cycle through past history or move up/down
 			if ( !this.ctrl && (e.which === 38 || e.which === 40) ) {
 				e.preventDefault();
 
 				var history = this.model.get('history');
-				
+
 				// `direction` is -1 or +1 to go forward/backward through command history
 				var direction = e.which - 39;
 				this.historyState += direction;
-	
+
 				// Keep it within bounds
 				if (this.historyState < 0) this.historyState = 0;
 				else if (this.historyState >= history.length) this.historyState = history.length;
-				
+
 				// Update the currentHistory value and update the View
 				this.currentHistory = history[this.historyState] ? history[this.historyState].command : "";
 				this.update();
 
 				return false;
 			}
-	
+
 			// Tab adds a tab character (instead of jumping focus)
 			if ( e.which === 9 ) {
 				e.preventDefault();
@@ -345,7 +435,7 @@ var Sandbox = {
 						value.slice(0, caret),
 						value.slice(caret, value.length)
 					];
-				
+
 				// Insert the tab character into the value and update the textarea
 				this.textarea.val(
 					parts[0] + this.tabCharacter + parts[1]
@@ -357,13 +447,13 @@ var Sandbox = {
 				return false;
 			}
 		},
-		
+
 		// The keyup handler, used to switch off shift/alt keys
 		keyup: function(e) {
 			// Register shift, alt and control keyup
 			if ( _([16,17,18]).indexOf(e.which, true) > -1 ) this.ctrl = false;
 		},
-		
+
 		// Checks for special commands. If any are found, performs their action and returns true
 		specialCommands: function(command) {
 			if (command === ":clear") {
@@ -382,10 +472,41 @@ var Sandbox = {
 					command : command,
 					result : this.model.load( command.substring(6) )
 				});
-			} 
+			}
 
 			// If no special commands, return false so the command gets evaluated
 			return false;
+		},
+
+		ASTtoHTML: function(node) {
+			var glue = "<table>";
+			for (var key in node) {
+				if (node.hasOwnProperty(key)) {
+					glue += "\n\t<tr>\n\t\t<td>"  + key + "</td>\n\t\t<td>" + node[key] +  '</td></tr>';
+				}
+			}
+			glue += '</table>';
+			return "\n\n<div class=\"node " + node.type + '">'
+			+ glue
+			+  (function() {
+				var appender = [];
+				for (var key in node) {
+					if (node.hasOwnProperty(key)) {
+						var child = node[key];
+						if (typeof child === 'object' && child !== null) {
+							if (Array.isArray(child)) {
+								child.forEach(function(node) {
+									appender.push(this.ASTtoHTML(node));
+								}, this);
+							} else {
+								appender.push(this.ASTtoHTML(child));
+							}
+						}
+					}
+				}
+				return appender;
+			}).call(this);
+			+ '</div>';
 		}
 	})
 };

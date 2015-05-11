@@ -1,0 +1,19 @@
+.sandbox .ast {
+  width:50%;
+  display: inline-block;
+  height:150px;
+  overflow-y:auto;
+  position:relative;
+  padding:0;
+  margin:0 0 10px;
+  border:0 none;
+}
+
+.sandbox .ast div.node {
+  font-size:8pt;
+  margin-left:1em;
+}
+
+.sandbox .ast td {
+  font-size:8pt;
+}
