@@ -7,8 +7,8 @@ var dialogueArray = [
   // first step
   { 
     // concurrently performed
-    "methodName": *value or function*,
-    "anotherMethod": *value or function*,
+    "methodName": value,
+    "anotherMethod": function,
     ... 
   },
   // second step 
