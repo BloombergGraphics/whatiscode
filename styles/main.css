@@ -122,14 +122,18 @@ h1 {
 .event-log.mousemove {
   z-index: 2;
   color: #ccc;
+  font-size: 1em;
 }
 .event-log.click {
   z-index: 3;
-  font-size: 18pt;
+  font-size: 3em;
   font-weight: bold;
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
 }
 .event-log.scroll {
   text-align: right;
   transform: translate(0,-50%);
+}
+.event-log.keyboard {
+  font-size: 2em;
 }
