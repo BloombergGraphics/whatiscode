@@ -17,7 +17,7 @@ function randomize() {
     },
     {
       "name": "font-family",
-      "values": ["helvetica", "garamond", "times new roman", "comic sans", "verdana", "georgia", "palatino", "courier"]
+      "values": ["helvetica, arial", "garamond", "times new roman", "comic sans ms", "verdana", "georgia", "palatino", "courier"]
     },
     {
       "name": "font-size",
@@ -41,7 +41,7 @@ function randomize() {
     },
     {
       "name": "transform",
-      "values": ["rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(5deg)","rotate(-5deg)","rotate(-10deg)","rotate(10deg)","rotate(15deg)"]
+      "values": ["rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(5deg)","rotate(-5deg)","rotate(-10deg)","rotate(10deg)","rotate(15deg)"]
     }
   ];
 
@@ -55,6 +55,10 @@ function roulette(time) {
   if (time>500) return;
   randomize();
   setTimeout(function() {roulette(time*1.1)}, time);
+}
+
+function resetArticle() {
+  $("article").html(originalArticle);
 }
 
 function rewrite() {

@@ -22,12 +22,13 @@ function bot() {
     learninal = new Sandbox.View({
       el: learninalSel[0],
       model: new Sandbox.Model(),
-      placeholder: "Hit 'Enter' to run code"
+      placeholder: "Write code, hit 'Enter'"
     });
 
     // Listen to dispatcher
     learninal.model.dispatcher.on("evaluate", function(item) {
       messages.append("div").classed("message", true).classed("usercode", true).html(item.command + "<br/> => "+item.result);
+      messages.node().scrollTop = messages.node().scrollHeight;
     })
 
 
@@ -110,17 +111,20 @@ function bot() {
     return new Promise(
       function(resolve,reject) {
 
-        var code = messages.append("div").classed("message", true).classed("code", true);
-        var delay = Math.min(minDelay, maxDuration / text.length);
-        var codeTimer = setInterval(function() {
-          if(code.text().length == text.length) {
-            clearInterval(codeTimer);
-            eval(text);
-            resolve(code);
-          }
-          code.text(text.substr(0,code.text().length+1));
-          messages.node().scrollTop = messages.node().scrollHeight;
-        },delay);
+        learninal.model.evaluate(text);
+        resolve(true);
+
+        // var code = messages.append("div").classed("message", true).classed("code", true);
+        // var delay = Math.min(minDelay, maxDuration / text.length);
+        // var codeTimer = setInterval(function() {
+        //   if(code.text().length == text.length) {
+        //     clearInterval(codeTimer);
+        //     eval(text);
+        //     resolve(code);
+        //   }
+        //   code.text(text.substr(0,code.text().length+1));
+        //   messages.node().scrollTop = messages.node().scrollHeight;
+        // },delay);
 
       }
     );
@@ -142,7 +146,7 @@ function bot() {
         rSel.enter()
           .append("div")
           .classed("response", true)
-          .text(function(d) { return "» " + d.prompt; })
+          .text(function(d) { return (d.link ? "☛ " : "» ") + d.prompt; })
           .on("click", function(d) {
 
             d3.select(this).classed("clicked", true);
@@ -151,6 +155,9 @@ function bot() {
               robot.dialogue(d.dialogue).then(function(value) {
                 resolve(value);
               });
+            } else if(d.link) {
+              window.open(d.link, '_blank');
+              resolve(true);
             } else {
               resolve(true);
             }
@@ -173,8 +180,11 @@ function bot() {
       function(resolve,reject) {
         var onEvaluate = function(item) {
           if(testArg.call(robot, item)) {
+            robot.emote("wiggle");
             learninal.model.dispatcher.off("evaluate", onEvaluate);
             resolve();
+          } else {
+            robot.emote("notimpressed");
           }
         }
         learninal.model.dispatcher.on("evaluate", onEvaluate);
@@ -184,7 +194,7 @@ function bot() {
 
   robot.dialogue = function(pending) {
 
-    pending = d3.functor(pending).call(robot);
+    pending = d3.functor(pending).call(robot).slice(0);
     pendingDialogue = pending;
 
     return new Promise(
