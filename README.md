@@ -3,7 +3,7 @@ So basically we have this bot object, which is a closure, like a degenerate bast
 You can call those methods directly, but typically you'll pass a "dialogue" to the robot.dialogue method, which is an array of steps to follow. Each element of the array is an object specifying actions to be taken concurrently; each successive element is performed serially. This is not JSON — it's a JS object, and thus can contain real functions. It looks like this:
 
 ```javascript
-var dialogue = [
+var dialogueArray = [
   // first step
   { 
     // concurrently performed
@@ -18,12 +18,12 @@ var dialogue = [
 
 - Every method's argument is upcasted, so it can be either a value or a function.
 - Every method returns a promise; every step is a set of promises; the bot goes to the next step when all promises have resolved.
-- `bot.**dialogue**(*dialogue*)` returns a promise that resolves when all steps have resolved, so sub-dialogues can be included in any step. And since they're upcasted, you can pass it a function that dynamically returns a subdialogue.
+- `bot.dialogue(dialogueArray)` returns a promise that resolves when all steps have resolved, so sub-dialogues can be included in any step. And since they're upcasted, you can pass it a function that dynamically returns a subdialogue.
 
 # Sample script
 
 ```javascript
-botDialogues.debug = [
+var dialogueArray = [
   {
     "speak": "Welcome!",
     "show": true,
