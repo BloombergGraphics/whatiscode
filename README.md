@@ -1,70 +1,73 @@
-# Sample
+So basically we have this bot object, which is a closure, like a degenerate bastardized http://bost.ocks.org/mike/chart/. It has a bunch of actions: show, goTo, speak, eval, emote, prompts, dialogue. Each of those returns a promise that's resolved when the action is finished or the user supplies some input. 
 
-```javascript 
-// create a bot
-paulbot = bot().botName("paulbot");
-// initialize
-paulbot();
-// do some things, load a "script" for the bot to follow
-paulbot.show().goTo([300,300]).script(botScripts.welcome);
+You can call those methods directly, but typically you'll pass in a "dialogue", which is an array of steps to follow. Each element of the array is an object specifying actions to be taken concurrently; each successive element is performed serially. This is **NOT JSON** — it's a JS object, and thus can contain real functions. It looks like this:
 
-// load different scripts when you click buttons
-$('body').on('click', '.paulbot-prompt', function(e) {
-	paulbot.show().script(botScripts[this.dataset.script]);
-})
+```javascript
+var dialogue = [
+  // first step
+  { 
+    "methodName": *value or function*,
+    ... 
+  },
+  // second step 
+  ...
+];
+```
+
+- Every method's argument is upcasted, so it can be either a value or a function.
+- Every method returns a promise; every step is a set of promises; the bot goes to the next step when all promises have resolved.
+- `bot.**dialogue**(*dialogue*)` returns a promise that resolves when all steps have resolved, so sub-dialogues can be included in any step. And since they're upcasted, you can pass it a function that dynamically returns a subdialogue.
+
+# Sample script
+
+```javascript
+botDialogues.debug = [
+  {
+    "speak": "Welcome!",
+    "show": true,
+    "goTo": [100,100]
+  },
+  {
+    "eval": "alert('hi');",
+  },
+  {
+    "prompts": [
+      {
+        "prompt": "OK",
+        "dialogue": subDialogue //another dialogue
+      },
+      {
+        "prompt": "No thanks",
+        "dialogue": randDialogue //a function that returns a random dialogue
+      },
+      {
+        "prompt": "Just continue" //this'll just flow through to the next step
+      }
+    ],
+  },
+  {
+    "test": function() { return myName=='Toph'; } //this will listen for user code input until myName=='Toph' and then continue
+  },
+  {
+    "speak": "Next we're gonna…"
+  }
+];
 ```
 
 # bot api
 
-It's a closure, you see, like a degenerate bastardized http://bost.ocks.org/mike/chart/. 
-
-**bot()** — returns a bot
-
-**bot()()** — initializes
-
-bot.**botName**(*string*) — Getter/setter for #id, for multiple bots on one page.
-
-bot.**jumpTo**(*[x,y] or selection*) — Teleport to coordinates.
-
 bot.**goTo**(*[x,y] or selection*) — Smoothly go to.
 
-bot.**show()**, bot.**hide()** — Shows/hides in place. Could have some randomized entrance/exit animation.
+bot.**show**(*bool*) — Shows/hides in place. Could have some randomized entrance/exit animation.
 
-bot.**pulse()** — Desperate for attention, just does some "hey look at me" animation.
+bot.**speak**(*string, [callback]*) — Animates typey-typing string. Returns a promise that resolves when it's done speaking.
 
-bot.**click**(*selection*) — Fires a click event on the designated target
+bot.**eval**(*string, [callback]*) — Animates typey-typing string, and then `eval()`s string. Returns a promise that resolves after execution.
 
-bot.**speak**(*string, [callback]*) — Animates typey-typing string. Callback when finished.
+bot.**emote**(*string*) — Switches bot face to given emotion: ded, love, notimpressed, restface, troll, wiggle, wink.
 
-bot.**eval**(*string, [callback]*) — Animates typey-typing string, and then `eval()`s string. Callback when finished.
+bot.**test**(*function*) — Listens for event that fires every time user enters code; promise resolves when the function it's passed returns true.
 
-bot.**emote**(*string*) — Switches bot face to given emotion, currently either "default", "pray", or "amiga"
+bot.**prompts**(*object*) — Sets button prompts; resolves when user picks one.
 
-bot.**responses**(*array*) — Sets button prompts; a 'script' for the bot to follow is bound to every button. That script can in turn have more branching responses. So it's a nested tree.
-
-bot.**script**(*object*) — Sets a 'script' (like for an actor) for the bot to follow. A script consists of a set of actions (speak, eval, do, emote[TK]), and branches for the user to follow. Every branch is just another script.
-
-bot.**destroy**() — Destroys the bot in grand fashion. Currently just hides. ;)
-
-# "Script" syntax
-
-We need a better term than "script" because that just sounds like a generic javascript script. Anyway, you can pass the bot an object that defines actions for it to follow. This is **NOT JSON** — it's a JS object, and thus can contain real functions. It looks like this:
-
-```javascript
-var botScript =
-{
-  "prompt": null,
-  "speak": "Hi, I'm Paulbot. Welcome to my Learninal! We will have fun today.",
-  "do": null,
-  "eval": null,
-  "responses": [
-    {
-      "prompt": "Button Label 1",
-      "speak": "Great! Hover over the black bar at the bottom and start coding.",
-      "do": function() { paulbot.goTo(d3.select("strong")); },
-      "responses": [ ... ]
-    },
-    ...
-  ]
-}
-```
+bot.**dialogue**(*array*) — Sets a 'dialogue script' (like for an actor) for the bot to follow.
