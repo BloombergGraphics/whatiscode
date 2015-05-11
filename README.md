@@ -6,7 +6,9 @@ You can call those methods directly, but typically you'll pass in a "dialogue", 
 var dialogue = [
   // first step
   { 
+    // concurrently performed
     "methodName": *value or function*,
+    "anotherMethod": *value or function*,
     ... 
   },
   // second step 
