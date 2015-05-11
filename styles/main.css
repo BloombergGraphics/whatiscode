@@ -3,6 +3,16 @@ body {
   padding: 0;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: black;
+  color: white;
+  text-align: right;
+}
+
 article * {
   transition: color .2s, background .2s, border-radius .2s, margin .2s, padding .2s, width .2s, max-width .2s, height .2s;
 }
@@ -14,6 +24,14 @@ article {
 
 pre {
   display: inline;
+}
+
+#dialogues {
+  padding: 1em 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  text-align: right;
 }
 
 .learninal-header {
@@ -52,7 +70,7 @@ h1 {
   height: 100%;
 }
 
-#preroll p {
+#preroll .preroll-text {
   position: absolute;
   font-size: 3em;
   top: 3em;

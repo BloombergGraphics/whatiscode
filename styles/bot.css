@@ -19,6 +19,17 @@
   width: 200px;
 }
 
+.bot.docked {
+  height: 100%;
+}
+.bot.docked .sidebar {
+  height: 100%;
+  width: 400px;
+}
+.bot.docked .messages {
+  max-height: 90%;
+}
+
 .bot .messages {
   max-height: 300px;
   overflow-y: scroll;
@@ -60,4 +71,5 @@
 }
 .bot .messages .responses .response.clicked {
   background: #666;
+  cursor: default;
 }

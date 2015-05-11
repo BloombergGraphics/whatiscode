@@ -11,7 +11,9 @@ function bot() {
       messages,
       learninal,
       learninalSel,
-      pendingDialogue;
+      pendingDialogue,
+      botCoords,
+      oldBotCoords;
 
   function robot(name) {
     sel = d3.select("body").append("div").classed("bot", true).attr("id", botName);
@@ -27,10 +29,11 @@ function bot() {
 
     // Listen to dispatcher
     learninal.model.dispatcher.on("evaluate", function(item) {
-      messages.append("div").classed("message", true).classed("usercode", true).html(item.command + "<br/> => "+item.result);
+      messages.append("div").classed("message", true).classed("usercode", true).html(learninal.toEscaped(item.command) + "<br/> ⇒ "+learninal.toEscaped(item.result));
       messages.node().scrollTop = messages.node().scrollHeight;
     })
 
+    return robot;
 
   }
 
@@ -41,20 +44,25 @@ function bot() {
   };
 
   robot.jumpTo = function(coords) {
+    oldBotCoords = botCoords;
     coords = d3.functor(coords).call(robot);
     if(coords instanceof d3.selection) {
       coords = coordsFromSel(coords);
     }
+    botCoords = coords;
+
     sel.style("left", coords[0] + "px")
       .style("top", coords[1] + "px");
     return true;
   }
 
   robot.goTo = function(coords) {
+    oldBotCoords = botCoords;
     coords = d3.functor(coords).call(robot);
     if(coords instanceof d3.selection) {
       coords = coordsFromSel(coords);
     }
+    botCoords = coords;
 
     return new Promise(
       function(resolve,reject) {
@@ -71,6 +79,19 @@ function bot() {
   robot.show = function(bool) {
     bool = d3.functor(bool).call(robot);
     sel.style("opacity", bool ? 1 : 0);
+    return true;
+  }
+
+  robot.dock = function(bool) {
+    bool = d3.functor(bool).call(robot);
+    if(bool) {
+      this.goTo([0,0]).then(function(value) {
+        sel.classed("docked", bool);
+      })
+    } else {
+      sel.classed("docked", bool);
+      this.goTo(oldBotCoords);
+    }
     return true;
   }
 
@@ -180,11 +201,11 @@ function bot() {
       function(resolve,reject) {
         var onEvaluate = function(item) {
           if(testArg.call(robot, item)) {
-            robot.emote("wiggle");
+            // if test passes
             learninal.model.dispatcher.off("evaluate", onEvaluate);
             resolve();
           } else {
-            robot.emote("notimpressed");
+            // if test fails
           }
         }
         learninal.model.dispatcher.on("evaluate", onEvaluate);
