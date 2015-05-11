@@ -43,12 +43,16 @@ var dialogueArray = [
         "dialogue": randDialogue //a function that returns a random dialogue
       },
       {
+        "prompt": "Take me away",
+        "link": "http://bloomberg.com/" //"Take me away" button will open bloomberg.com in new window
+      },
+      {
         "prompt": "Just continue" //this'll just flow through to the next step
       }
     ],
   },
   {
-    "test": function() { return myName=='Toph'; } //this will listen for user code input until myName=='Toph' and then continue
+    "test": function(userInput) { return myName=='Toph'; } //this will listen for user code input until myName=='Toph' and then continue
   },
   {
     "speak": "Next we're gonna…"
@@ -58,18 +62,18 @@ var dialogueArray = [
 
 # bot api
 
-bot.**goTo**(*[x,y] or selection*) — Smoothly go to.
+bot.**goTo**(*[x,y] or selection*) — Smoothly animate the bot to that position.
 
 bot.**show**(*bool*) — Shows/hides in place. Could have some randomized entrance/exit animation.
 
-bot.**speak**(*string, [callback]*) — Animates typey-typing string. Returns a promise that resolves when it's done speaking.
+bot.**speak**(*string*) — Animates typey-typing string. Returns a promise that resolves when it's done speaking. Currently plaintext only, no html.
 
-bot.**eval**(*string, [callback]*) — Animates typey-typing string, and then `eval()`s string. Returns a promise that resolves after execution.
+bot.**eval**(*string*) — Animates typey-typing string (TK gotta fix), and then `eval()`s string. Returns a promise that resolves after execution.
 
 bot.**emote**(*string*) — Switches bot face to given emotion: ded, love, notimpressed, restface, troll, wiggle, wink.
 
-bot.**test**(*function*) — Listens for event that fires every time user enters code; promise resolves when the function it's passed returns true.
+bot.**test**(*function*) — Listens for event that fires every time user enters code; promise resolves when the function it's passed returns true. Test function is passed an object with the user's latest input and its evaluated value, like `{"command": "2+2", "result": 4}`.
 
-bot.**prompts**(*object*) — Sets button prompts; resolves when user picks one.
+bot.**prompts**(*array*) — Sets button prompts; pass it an array of prompts; resolves when user picks one. A single prompt object looks like this: `{"prompt": "Button label", "dialogue": [ ... ], "link": "http://..."}`. Both dialogue and link are optional; if not specified, clicking the button just continues the dialogue.
 
-bot.**dialogue**(*array*) — Sets a 'dialogue script' (like for an actor) for the bot to follow.
+bot.**dialogue**(*array*) — Sets a set of steps for the bot to follow; see above.
