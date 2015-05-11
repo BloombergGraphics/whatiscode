@@ -17,7 +17,7 @@ function randomize() {
     },
     {
       "name": "font-family",
-      "values": ["helvetica", "garamond", "times new roman", "comic sans", "verdana", "georgia", "palatino", "courier"]
+      "values": ["helvetica, arial", "garamond", "times new roman", "comic sans ms", "verdana", "georgia", "palatino", "courier"]
     },
     {
       "name": "font-size",
@@ -41,7 +41,7 @@ function randomize() {
     },
     {
       "name": "transform",
-      "values": ["rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(5deg)","rotate(-5deg)","rotate(-10deg)","rotate(10deg)","rotate(15deg)"]
+      "values": ["rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(0deg)","rotate(5deg)","rotate(-5deg)","rotate(-10deg)","rotate(10deg)","rotate(15deg)"]
     }
   ];
 
@@ -55,6 +55,10 @@ function roulette(time) {
   if (time>500) return;
   randomize();
   setTimeout(function() {roulette(time*1.1)}, time);
+}
+
+function resetArticle() {
+  $("article").html(originalArticle);
 }
 
 function rewrite() {
@@ -91,10 +95,7 @@ var log = {
 }
 function logger() {
 
-  $("body").addClass("log");
-
   $(window).scroll(function(e) {
-
     d3.select("body")
       .append("div")
       .classed("event-log", true)
@@ -114,8 +115,40 @@ function logger() {
     });
   });
 
+  ["keydown", "keypress", "keydown", "keypress", "keyup"].forEach(function(eventName) {
+    $(window).on(eventName, function(e) {
+      var key = event.keyCode || event.which;
+      var keychar = String.fromCharCode(key);
+
+      var x = Math.random()*$(window).width();
+      var y = Math.random()*$(window).height();
+      var color = d3.scale.linear().domain([0,25,50,75,100]).range(["red", "orange", "green", "blue", "purple"]);
+
+      d3.select("body")
+        .append("div")
+        .classed("event-log", true)
+        .classed("keyboard", true)
+        .style("position", "fixed")
+        .style("left", x+"px")
+        .style("top", y+"px")
+        .style("color", color(key%100))
+        .html(keychar + "<br/><small>" + eventName + "</small>")
+        .transition()
+        .duration(1000)
+        .style("opacity", 0)
+        .remove();
+
+    })
+  });
+
   ["mousemove", "click"].forEach(function(eventName) {
     $("body").on(eventName, function(e) {
+
+      var xScale = d3.scale.linear().domain([0,$(window).width()]).range([0, 255]);
+      var xScale2 = d3.scale.linear().domain([0,$(window).width()]).range([255, 0]);
+      var yScale = d3.scale.linear().domain([0,$(window).height()]).range([0, 255]);
+      var color = "rgb("+ xScale(e.clientX).toFixed() + "," + yScale(e.clientY).toFixed() + "," + xScale2(e.clientX).toFixed() +")";
+
       d3.select("body")
         .append("div")
         .classed("event-log", true)
@@ -123,6 +156,8 @@ function logger() {
         .style("position", "fixed")
         .style("left", e.clientX+"px")
         .style("top", e.clientY+"px")
+        .style("transform", "translate(-50%,-50%) rotate("+ (Math.random()*60-30).toFixed() +"deg)")
+        .style("color", color)
         .html(eventName + "<br/><small>(" + e.clientX + ", " + e.clientY + ")</small>")
         .transition()
         .ease("exp-out")
@@ -147,3 +182,6 @@ function logger() {
 }
 
 //http://www.bloomberg.com/api/topics/graphics
+
+
+console.log("                    ___\n                _.-'   ```'--.._                 _____ ___ ___   ____  _____ __ __      ______  __ __    ___  \n              .'                `-._            / ___/|   |   | /    |/ ___/|  |  |    |      ||  |  |  /  _] \n             /                      `.         (   \\_ | _   _ ||  o  (   \\_ |  |  |    |      ||  |  | /  [_        \n            /                         `.        \\__  ||  \\_/  ||     |\\__  ||  _  |    |_|  |_||  _  ||    _]       \n           /                            `.      /  \\ ||   |   ||  _  |/  \\ ||  |  |      |  |  |  |  ||   [_        \n          :       (                       \\     \\    ||   |   ||  |  |\\    ||  |  |      |  |  |  |  ||     |       \n          |    (   \\_                  )   `.    \\___||___|___||__|__| \\___||__|__|      |__|  |__|__||_____|       \n          |     \\__/ '.               /  )  ;  \n          |   (___:    \\            _/__/   ;    ____   ____  ______  ____   ____   ____  ____      __  __ __  __ __ \n          :       | _  ;          .'   |__) :   |    \\ /    ||      ||    \\ |    | /    ||    \\    /  ]|  |  ||  |  |\n           :      |` \\ |         /     /   /    |  o  )  o  ||      ||  D  ) |  | |  o  ||  D  )  /  / |  |  ||  |  |\n            \\     |_  ;|        /`\\   /   /     |   _/|     ||_|  |_||    /  |  | |     ||    /  /  /  |  _  ||  ~  |\n             \\    ; ) :|       ;_  ; /   /      |  |  |  _  |  |  |  |    \\  |  | |  _  ||    \\ /   \\_ |  |  ||___, |\n              \\_  .-''-.       | ) :/   /       |  |  |  |  |  |  |  |  .  \\ |  | |  |  ||  .  \\\\     ||  |  ||     |\n             .-         `      .--.'   /        |__|  |__|__|  |__|  |__|\\_||____||__|__||__|\\_| \\____||__|__||____/ \n            :         _.----._     `  < \n            :       -'........'-       `.\n             `.        `''''`           ;\n               `'-.__                  ,'\n                     ``--.   :'-------'\n                         :   :\n                        .'   '.\n      \n      \n                                                                    ");
