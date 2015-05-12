@@ -18,7 +18,8 @@ header {
   width: 100%;
   background: black;
   color: white;
-  text-align: right;
+  text-align: center;
+  z-index: 9;
 }
 
 article {
@@ -38,33 +39,21 @@ article img {
   text-align: right;
 }
 
-nav {
+.sidepane {
   position: fixed;
-  left: -499px;
   top: 0;
   width: 500px;
   height: 100%;
   overflow-y: scroll;
   background: #eee;
-  transition: left 1s;
-}
-nav:hover {
-  left:0;
+  transition: left 1s, right 1s;
+  z-index: 2;
 }
 
-#glossary {
-  position: fixed;
-  right: -499px;
-  top: 0;
-  width: 500px;
-  height: 100%;
-  overflow-y: scroll;
-  background: #eee;
-  transition: right 1s;
-}
-#glossary:hover {
-  right:0;
-}
+#toc { left: -500px; }
+#toc.open { left: 0; }
+#glossary { right: -500px; }
+#glossary.open { right: 0; }
 
 h1 {
   font-size: 3em;
