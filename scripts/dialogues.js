@@ -60,7 +60,7 @@ var randDialogue = function() {
   return dialogue;
 }
 
-botDialogues.eventLogger = [
+botDialogues.exampleEventLogger = [
   {
     "show": true,
     "goTo": [100,100],
@@ -75,7 +75,7 @@ botDialogues.eventLogger = [
   }
 ];
 
-botDialogues.adding = [
+botDialogues.tutorialAdding = [
   {
     "show": true,
     "goTo": [100,100],
@@ -115,7 +115,7 @@ botDialogues.adding = [
   }
 ]
 
-botDialogues.roulette = [
+botDialogues.exampleRoulette = [
 {
   "show": true,
   "goTo": [100,100],
@@ -135,7 +135,7 @@ botDialogues.roulette = [
 }
 ];
 
-botDialogues.destroy = [
+botDialogues.exampleDestroy = [
 {
   "show": true,
   "goTo": [100,100],
@@ -151,7 +151,7 @@ botDialogues.destroy = [
 }
 ];
 
-botDialogues.arrays = [
+botDialogues.tutorialArrays = [
 {
   "show": true,
   "goTo": [100,100],
@@ -232,7 +232,7 @@ botDialogues.arrays = [
 }
 ];
 
-botDialogues.dom = [
+botDialogues.tutorialDOM = [
 dialogueShow,
 { "speak": "Hello! Did you know that the web pages you read are all OBJECTS that can be manipulated by code? IT IS TRUE BELIEVE IT WHY WOULD YOU DOUBT ME MY GOD I'M TRYING SO HARD. Anyway, this idea applies to every web page. They can all be manipulated. A web page is a weird data object and all the pieces can be manipulated. If you thought they were in any way like documents on paper you've been living a terrible lie." },
 dialoguePause(),

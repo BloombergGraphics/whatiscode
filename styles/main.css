@@ -1,6 +1,14 @@
-body {
+html, body {
+  width: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Georgia;
+  font-size: 12pt;
+  line-height: 1.3em;
 }
 
 header {
@@ -13,17 +21,13 @@ header {
   text-align: right;
 }
 
-article * {
-  transition: color .2s, background .2s, border-radius .2s, margin .2s, padding .2s, width .2s, max-width .2s, height .2s;
-}
-
 article {
-  max-width: 50em;
+  max-width: 40em;
   margin: 0 auto;
 }
 
-pre {
-  display: inline;
+article img {
+  max-width: 100%;
 }
 
 #dialogues {
@@ -34,20 +38,32 @@ pre {
   text-align: right;
 }
 
-.learninal-header {
-  background:#333;
-  color: #ccc;
-  padding: 5px;
-  font-family: courier;
-  font-size: 10pt;
+nav {
+  position: fixed;
+  left: -499px;
+  top: 0;
+  width: 500px;
+  height: 100%;
+  overflow-y: scroll;
+  background: #eee;
+  transition: left 1s;
+}
+nav:hover {
+  left:0;
 }
 
-.learninal-header .progress-meter {
-  color: #0f0;
-  cursor: pointer;
+#glossary {
+  position: fixed;
+  right: -499px;
+  top: 0;
+  width: 500px;
+  height: 100%;
+  overflow-y: scroll;
+  background: #eee;
+  transition: right 1s;
 }
-.learninal-header .progress-meter:hover {
-  color: #f0f;
+#glossary:hover {
+  right:0;
 }
 
 h1 {
@@ -55,85 +71,19 @@ h1 {
   text-align: center;
 }
 
-#preroll, #postlude {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: 2;
-}
-
-#preroll video, #postlude video {
-  width: 100%;
-  height: 100%;
-}
-
-#preroll .preroll-text {
+aside {
+  font-size: small;
+  right: 0;
   position: absolute;
-  font-size: 3em;
-  top: 3em;
-  left: 3em;
-  background: black;
-  width: 50%;
-  color: white;
-  font-family: courier;
+  width: 180px;
 }
-
-#postlude {
-  display: none;
+aside .footdef sup {
+  vertical-align: baseline;
+  font-size: inherit;
 }
-#postlude.visible {
-  display: block;
+aside .footdef sup a {
+  text-decoration: none;
 }
-
-.paulbot-prompt {
-  display: inline-block;
-  position: relative;
-  min-width: 1em;
-  min-height: 1em;
-}
-.paulbot-prompt:before {
-  content:" ";
-  position:absolute;
-  top: 0;
-  left: -1.1em;
-  background-image: url('../images/emotes/restface.gif');
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 1em;
-  height: 1em;
-}
-.paulbot-prompt:hover {
-  background-color: #f0f;
-  cursor: pointer;
-}
-
-.event-log {
-  position: fixed;
-  width: 300px;
-  font-family: helvetica, arial, sans-serif;
-  font-size: 10pt;
-  pointer-events: none;
-  transform: translate(-50%,-50%);
-  text-align: center;
-}
-.event-log.mousemove {
-  z-index: 2;
-  color: #ccc;
-  font-size: 1em;
-}
-.event-log.click {
-  z-index: 3;
-  font-size: 3em;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
-}
-.event-log.scroll {
-  text-align: right;
-  transform: translate(0,-50%);
-}
-.event-log.keyboard {
-  font-size: 2em;
+aside .footdef p {
+  display: inline;
 }

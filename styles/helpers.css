@@ -1,0 +1,27 @@
+.event-log {
+  position: fixed;
+  width: 300px;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 10pt;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.event-log.mousemove {
+  z-index: 2;
+  color: #ccc;
+  font-size: 1em;
+}
+.event-log.click {
+  z-index: 3;
+  font-size: 3em;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
+}
+.event-log.scroll {
+  text-align: right;
+  transform: translate(0,-50%);
+}
+.event-log.keyboard {
+  font-size: 2em;
+}
