@@ -32,8 +32,7 @@ var dialogueTest = function(test, error) {
 }
 
 var dialogueShow = {
-  "show": true,
-  "goTo": [100,100],
+  "mode": "on",
   "emote": "restface"
 }
 
@@ -60,14 +59,13 @@ var randDialogue = function() {
   return dialogue;
 }
 
-botDialogues.eventLogger = [
+botDialogues.exampleEventLogger = [
   {
-    "show": true,
-    "goTo": [100,100],
+    "mode": "on",
     "speak": "Interactions on a web page are driven by events. Events are 'fired', and code can 'listen' for when they happen, and act accordingly."
   },
   {
-    "eval": logger+' logger();'
+    "eval": 'logger();'
   },
   {
     "speak": "Move your mouse and hit keys and scroll and look at them all!",
@@ -75,50 +73,54 @@ botDialogues.eventLogger = [
   }
 ];
 
-botDialogues.adding = [
+botDialogues.tutorialAdding = [
   {
-    "show": true,
-    "goTo": [100,100],
-    "speak": "Computers can do math. Try adding two numbers, like this:"
+    "mode": "on",
+    "speak": "So obviously you know computers can do math:"
   },
-  {
-    "eval": "2+2"
-  },
+  { "eval": "2+2" },
+  { "speak": "Now you try."},
   {
     "test": function(item) {
       if(isNaN(item.result)) {
         this.speak("Sorry, that's not a number.");
+      } else if(item.command.indexOf("+") === -1) {
+        this.speak("Sorry, that's a number but there's no addition in there.");
       } else {
         return true;
       }
     }
   },
-  {
-    "speak": "Great. You can also use - * / for subtraction, multiplication, and division. Now try something that comes out to 5."
-  },
+  { "speak": "Right, OK, easy enough. The weird thing is, in JavaScript, the symbol + means more than one thing: if you put it between strings, it 'concatenates' them, which just means it jams the letters together into one longer string:" },
+  { "eval": '"mank" + "ind"'},
+  { "speak": "Now you try."},
   {
     "test": function(item) {
-      if(item.result == 5) {
-        return true;
-      } else {
-        this.speak("That comes out to '" + item.result + "', which does not equal 5.");
+      if(typeof item.result !== "string") {
+        this.speak("Mmmm, doesn't look like you have a string there.")
         return false;
+      } else if(item.command.indexOf("+") === -1) {
+        this.speak("Doesn't look like you added anything there.")
+        return false;
+      } else {
+        return true;
       }
     }
   },
-  {
-    "speak": "Great job. Goodbye!",
-    "prompts": [{"prompt": "Bye!"}]
-  },
-  {
-    "show": false
-  }
+{ "speak": "Great. Now, the REALLY weird thing is that these two uses of + can sometimes collide. First, easy math question: what's 4 + 20?"},
+dialogueTest(function(item) { return item.result===24; }, "Nope. Simple question, just answer with a number: what's 4 + 20?"),
+{ "speak": "Correct. But look at this:" },
+{ "eval": '4+"20"'},
+{ "speak": "WTF? Well, see the quotation marks around \"20\"? That means that it's being treated as a string here, which forces JavaScript to treat 4 as a string too and just jam 20 on the end. Try adding a string to a number:"},
+dialogueTest(function(item) { return typeof item.result === "string" && item.command.indexOf("+") !== -1 }, "Nope. Just try something like: \"one\" + 1"),
+{ "speak": "Weird, right? In fact, you can 'add' all sorts of different types of things together:" },
+{ "eval": 'document+"one"+1+Array' },
+{ "speak": "And this is why programmers are angry." }
 ]
 
-botDialogues.roulette = [
+botDialogues.exampleRoulette = [
 {
-  "show": true,
-  "goTo": [100,100],
+  "mode": "on",
   "speak": "Web pages are made up of different HTML 'elements'. Many of them have some semantic meaning: paragraphs, headers, lists. Others are just arbitrary containers of stuff, like divs and spans. These elements are styled according to rules written in CSS. Here, let's randomize the CSS rules being applied to the HTML elements on this page.",
   "prompts": [{"prompt": "OK..."}]
 },
@@ -128,21 +130,20 @@ botDialogues.roulette = [
 {
   "speak": "Cool, right?",
   "prompts": [
-    {"prompt": "OK. Neat.", "dialogue": [{"show": false}]},
-    {"prompt": "Again! Again!!", "dialogue": function() { return botDialogues.roulette.slice(1); }},
-    {"prompt": "Back to normal, please...", "dialogue": [{"show": false, "eval": "resetArticle();"}]}
+    {"prompt": "OK. Neat.", "dialogue": [{"mode": "off"}]},
+    {"prompt": "Again! Again!!", "dialogue": function() { return botDialogues.exampleRoulette.slice(1); }},
+    {"prompt": "Back to normal, please...", "dialogue": [{"mode": "off", "eval": "resetArticle();"}]}
   ]
 }
 ];
 
-botDialogues.destroy = [
+botDialogues.exampleDestroy = [
 {
-  "show": true,
-  "goTo": [100,100],
+  "mode": "on",
   "speak": "OK cool well now we'll just delete random things on the page.",
 },
 {
-  "eval": destroyPage+' destroyPage();',
+  "eval": 'destroyPage();',
   "prompts": [{"prompt": "Hey where's everything going?"}]
 },
 {
@@ -151,10 +152,9 @@ botDialogues.destroy = [
 }
 ];
 
-botDialogues.arrays = [
+botDialogues.tutorialArrays = [
 {
-  "show": true,
-  "goTo": [100,100],
+  "mode": "on",
   "speak": "Hello! Many, many things in a computer are saved in a LIST form. Many of the tasks that a programmer does involve creating and modifying lists. Let’s create a list.",
 },
 {
@@ -232,7 +232,7 @@ botDialogues.arrays = [
 }
 ];
 
-botDialogues.dom = [
+botDialogues.tutorialDOM = [
 dialogueShow,
 { "speak": "Hello! Did you know that the web pages you read are all OBJECTS that can be manipulated by code? IT IS TRUE BELIEVE IT WHY WOULD YOU DOUBT ME MY GOD I'M TRYING SO HARD. Anyway, this idea applies to every web page. They can all be manipulated. A web page is a weird data object and all the pieces can be manipulated. If you thought they were in any way like documents on paper you've been living a terrible lie." },
 dialoguePause(),
@@ -308,4 +308,8 @@ dialogueTest(function(i) { return paragraphs[0].style.background !== "black" && 
 { "speak": "Great. But what if we do the same to our headlines?" },
 { "eval": 'stripeify("h2", "orange", "lightgreen");' },
 { "speak": "Nice work.", "emote": "love" }
+]
+
+botDialogues.goAway = [
+{"mode": "off"}
 ]

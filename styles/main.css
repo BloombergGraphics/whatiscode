@@ -1,6 +1,18 @@
-body {
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Georgia;
+  font-size: 16px;
+  line-height: 1.667em;
 }
 
 header {
@@ -10,130 +22,90 @@ header {
   width: 100%;
   background: black;
   color: white;
-  text-align: right;
-}
-
-article * {
-  transition: color .2s, background .2s, border-radius .2s, margin .2s, padding .2s, width .2s, max-width .2s, height .2s;
+  text-align: center;
+  z-index: 9;
 }
 
 article {
-  max-width: 50em;
+  max-width: 40em;
   margin: 0 auto;
+  position: relative;
 }
 
-pre {
-  display: inline;
+article img {
+  max-width: 100%;
 }
 
-#dialogues {
-  padding: 1em 0;
+#glossary-bug, #toc-bug {
   position: fixed;
-  top: 0;
-  right: 0;
-  text-align: right;
+  top: 10px;
+  width: 60px;
+  height: 60px;
+  opacity: .1;
+  z-index: 3;
 }
-
-.learninal-header {
-  background:#333;
-  color: #ccc;
-  padding: 5px;
-  font-family: courier;
-  font-size: 10pt;
-}
-
-.learninal-header .progress-meter {
-  color: #0f0;
+#glossary-bug:hover, #toc-bug:hover {
+  opacity: 1;
   cursor: pointer;
 }
-.learninal-header .progress-meter:hover {
-  color: #f0f;
+#glossary-bug { right: 10px; }
+#toc-bug { left: 10px; }
+
+.sidepane {
+  position: fixed;
+  top: 0;
+  width: 500px;
+  height: 100%;
+  overflow-y: scroll;
+  background: #eee;
+  transition: left 1s, right 1s;
+  z-index: 2;
 }
+
+#toc { left: -500px; }
+#toc.open { left: 0; }
+#glossary { right: -500px; }
+#glossary.open { right: 0; }
 
 h1 {
   font-size: 3em;
   text-align: center;
 }
 
-#preroll, #postlude {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: 2;
-}
-
-#preroll video, #postlude video {
-  width: 100%;
-  height: 100%;
-}
-
-#preroll .preroll-text {
+aside {
+  font-size:0.875em;
+  line-height: 1.3em;
+  left: 100%;
   position: absolute;
-  font-size: 3em;
-  top: 3em;
-  left: 3em;
-  background: black;
-  width: 50%;
-  color: white;
-  font-family: courier;
-}
+  width: 180px;
+  margin-left: 1em;
 
-#postlude {
-  display: none;
+  /* ehhhh sloppy temp */
+  /*max-height: 2.5em;*/
+  background: white;
+  /*overflow: hidden;
+  transition: max-height .5s, height .5s;*/
 }
-#postlude.visible {
-  display: block;
+aside:hover {
+  z-index: 2;
+  max-height: inherit;
+}
+aside .footdef sup {
+  vertical-align: baseline;
+  font-size: inherit;
+}
+aside .footdef sup a {
+  text-decoration: none;
+}
+aside .footdef p {
+  display: inline;
 }
 
 .paulbot-prompt {
-  display: inline-block;
-  position: relative;
-  min-width: 1em;
-  min-height: 1em;
-}
-.paulbot-prompt:before {
-  content:" ";
-  position:absolute;
-  top: 0;
-  left: -1.1em;
-  background-image: url('../images/emotes/restface.gif');
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 1em;
-  height: 1em;
-}
-.paulbot-prompt:hover {
-  background-color: #f0f;
+  background: yellow;
+  margin: -4px;
+  padding: 4px;
+} .paulbot-prompt:hover {
+  background: #f0f;
   cursor: pointer;
-}
-
-.event-log {
-  position: fixed;
-  width: 300px;
-  font-family: helvetica, arial, sans-serif;
-  font-size: 10pt;
-  pointer-events: none;
-  transform: translate(-50%,-50%);
-  text-align: center;
-}
-.event-log.mousemove {
-  z-index: 2;
-  color: #ccc;
-  font-size: 1em;
-}
-.event-log.click {
-  z-index: 3;
-  font-size: 3em;
-  font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
-}
-.event-log.scroll {
-  text-align: right;
-  transform: translate(0,-50%);
-}
-.event-log.keyboard {
-  font-size: 2em;
 }

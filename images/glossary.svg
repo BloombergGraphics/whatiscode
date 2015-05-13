@@ -1,0 +1,40 @@
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="100" height="100" id="gmb-icon-05" version="1.1" inkscape:version="0.48.4 r9939" sodipodi:docname="icon-book.svg">
+  <title id="title9546">Icon of a book</title>
+  <defs id="defs6721"/>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="4" inkscape:cx="49.558136" inkscape:cy="53.547281" inkscape:current-layer="layer4" showgrid="true" inkscape:document-units="px" inkscape:grid-bbox="true" showguides="true" inkscape:guide-bbox="true" inkscape:window-width="925" inkscape:window-height="768" inkscape:window-x="156" inkscape:window-y="108" inkscape:window-maximized="0">
+    
+  </sodipodi:namedview>
+  <metadata id="metadata6724">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title>Icon of a book</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Alejandro Gonzalo Bravo Garc&#237;a</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/"/>
+        <dc:language>EN</dc:language>
+        <dc:date>2014-02-12</dc:date>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/by-sa/3.0/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+        <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+        <cc:requires rdf:resource="http://creativecommons.org/ns#ShareAlike"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g id="layer1" inkscape:label="marco" inkscape:groupmode="layer" transform="translate(0,36)" style="display:inline" sodipodi:insensitive="true"/>
+  <g inkscape:groupmode="layer" id="layer4" inkscape:label="Dibujo">
+    <rect style="fill:#000000;fill-opacity:1;stroke:none" id="rect9020" width="55" height="75" x="15" y="20"/>
+    <path style="fill:#000000;fill-opacity:1;stroke:none" d="m 80,5 5,0 0,75 -5,0 z" id="rect9022" inkscape:connector-curvature="0"/>
+    <rect style="fill:#000000;fill-opacity:1;stroke:none" id="rect9024" width="50" height="5" x="30" y="5"/>
+    <path style="fill:#000000;fill-opacity:1;stroke:none" d="m 30,5 2.5,5 -10,10 -7.5,0 z" id="rect9538" inkscape:connector-curvature="0" sodipodi:nodetypes="ccccc"/>
+    <rect style="fill:#ffffff;fill-opacity:1;stroke:none" id="rect9543" width="35" height="25" x="25" y="30"/>
+  </g>
+</svg>
