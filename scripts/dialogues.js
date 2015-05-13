@@ -65,7 +65,7 @@ botDialogues.exampleEventLogger = [
     "speak": "Interactions on a web page are driven by events. Events are 'fired', and code can 'listen' for when they happen, and act accordingly."
   },
   {
-    "eval": logger+' logger();'
+    "eval": 'logger();'
   },
   {
     "speak": "Move your mouse and hit keys and scroll and look at them all!",
@@ -76,40 +76,46 @@ botDialogues.exampleEventLogger = [
 botDialogues.tutorialAdding = [
   {
     "mode": "on",
-    "speak": "Computers can do math. Try adding two numbers, like this:"
+    "speak": "So obviously you know computers can do math:"
   },
-  {
-    "eval": "2+2"
-  },
+  { "eval": "2+2" },
+  { "speak": "Now you try."},
   {
     "test": function(item) {
       if(isNaN(item.result)) {
         this.speak("Sorry, that's not a number.");
+      } else if(item.command.indexOf("+") === -1) {
+        this.speak("Sorry, that's a number but there's no addition in there.");
       } else {
         return true;
       }
     }
   },
-  {
-    "speak": "Great. You can also use - * / for subtraction, multiplication, and division. Now try something that comes out to 5."
-  },
+  { "speak": "Right, OK, easy enough. The weird thing is, in JavaScript, the symbol + means more than one thing: if you put it between strings, it 'concatenates' them, which just means it jams the letters together into one longer string:" },
+  { "eval": '"mank" + "ind"'},
+  { "speak": "Now you try."},
   {
     "test": function(item) {
-      if(item.result == 5) {
-        return true;
-      } else {
-        this.speak("That comes out to '" + item.result + "', which does not equal 5.");
+      if(typeof item.result !== "string") {
+        this.speak("Mmmm, doesn't look like you have a string there.")
         return false;
+      } else if(item.command.indexOf("+") === -1) {
+        this.speak("Doesn't look like you added anything there.")
+        return false;
+      } else {
+        return true;
       }
     }
   },
-  {
-    "speak": "Great job. Goodbye!",
-    "prompts": [{"prompt": "Bye!"}]
-  },
-  {
-    "mode": "off"
-  }
+{ "speak": "Great. Now, the REALLY weird thing is that these two uses of + can sometimes collide. First, easy math question: what's 4 + 20?"},
+dialogueTest(function(item) { return item.result===24; }, "Nope. Simple question, just answer with a number: what's 4 + 20?"),
+{ "speak": "Correct. But look at this:" },
+{ "eval": '4+"20"'},
+{ "speak": "WTF? Well, see the quotation marks around \"20\"? That means that it's being treated as a string here, which forces JavaScript to treat 4 as a string too and just jam 20 on the end. Try adding a string to a number:"},
+dialogueTest(function(item) { return typeof item.result === "string" && item.command.indexOf("+") !== -1 }, "Nope. Just try something like: \"one\" + 1"),
+{ "speak": "Weird, right? In fact, you can 'add' all sorts of different types of things together:" },
+{ "eval": 'document+"one"+1+Array' },
+{ "speak": "And this is why programmers are angry." }
 ]
 
 botDialogues.exampleRoulette = [
@@ -125,7 +131,7 @@ botDialogues.exampleRoulette = [
   "speak": "Cool, right?",
   "prompts": [
     {"prompt": "OK. Neat.", "dialogue": [{"mode": "off"}]},
-    {"prompt": "Again! Again!!", "dialogue": function() { return botDialogues.roulette.slice(1); }},
+    {"prompt": "Again! Again!!", "dialogue": function() { return botDialogues.exampleRoulette.slice(1); }},
     {"prompt": "Back to normal, please...", "dialogue": [{"mode": "off", "eval": "resetArticle();"}]}
   ]
 }
@@ -137,7 +143,7 @@ botDialogues.exampleDestroy = [
   "speak": "OK cool well now we'll just delete random things on the page.",
 },
 {
-  "eval": destroyPage+' destroyPage();',
+  "eval": 'destroyPage();',
   "prompts": [{"prompt": "Hey where's everything going?"}]
 },
 {
