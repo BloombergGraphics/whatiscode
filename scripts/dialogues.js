@@ -310,6 +310,6 @@ dialogueTest(function(i) { return paragraphs[0].style.background !== "black" && 
 { "speak": "Nice work.", "emote": "love" }
 ]
 
-botDialogues.goAway = [
+botDialogues.CLOSE = [
 {"mode": "off"}
 ]
