@@ -1,4 +1,5 @@
 var originalArticle;
+var loadTime = new Date();
 
 jQuery(document).ready(function($) {
 
@@ -8,8 +9,39 @@ jQuery(document).ready(function($) {
     .mode("off")
     .menu(botDialogues);
 
+  setTimeout(function() {
+    paulbot.tease({
+      "message": "Hey! Have you noticed me?",
+      "buttons": [
+        {"text": "Start a tutorial", "click": function() { paulbot.dialogue(botDialogues.tutorialArrays); }},
+        {"text": "Go away", "click": function() { paulbot.mode("off"); }}
+      ]
+    })
+  }, 5000);
+
   $('body').on('click', '.paulbot-prompt', function(e) {
-    paulbot.dialogue(botDialogues[this.dataset.script]);
+    var thisDialogue = botDialogues[this.dataset.dialogue];
+    logger(true);
+    paulbot.tease({
+      "message": "The browser is constantly firing events in response to mouse and keyboard actions. Try mashing keys!",
+      "buttons": [
+        {"text": "Learn more", "click": function() { paulbot.dialogue(thisDialogue); }},
+        {"text": "Stop it", "click": function() { logger(false); }}
+      ]
+    })
+  });
+
+  $(window).on('scroll', function(e) {
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+      var bottomTime = new Date();
+      var timeDiff = (((bottomTime - loadTime) / 1000 / 60)*100).toFixed()/100;
+      paulbot.tease({
+        "message": function() { return "Oh so you read 38,000 words in only " + timeDiff + " minutes, did you? Stop and smell the roses." },
+        "buttons": [
+          {"text": "Guilty!", "click": function() { paulbot.mode("off"); }}
+        ]
+      });
+    }
   })
 
   footnotesToAsides();

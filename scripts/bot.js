@@ -27,13 +27,20 @@ function bot() {
     body = sel.append("div").classed("body", true);
     messages = body.append("div").classed("messages", true);
     learninalSel = body.append("div").classed("learninal", true);
+
     tease = sel.append("div").classed("tease", true);
+    tease.append("div").classed("message", true);
+    tease.append("div").classed("buttons", true);
 
-    tease.append("div").classed("message", true).text("Welcome to the Bloomberg Learninal! I'm Paulbot and I'll be your guide today.");
-    tease.append("button").text("Open Learninal").on("click", function() { robot.mode("on"); });
-    tease.append("button").text("Go away").on("click", function() { robot.mode("off"); });
-
-    face.on("click", function() { robot.mode("tease"); });
+    face.on("click", function() {
+      robot.tease({
+        "message": "Welcome to the Bloomberg Learninal! I'm Paulbot and I'll be your guide today.",
+        "buttons": [
+          {"text": "Open Learninal", "click": function() { robot.mode("on"); }},
+          {"text": "Go away", "click": function() { robot.mode("off"); }}
+        ]
+      });
+    });
     robot.mode("off");
 
     learninal = new Sandbox.View({
@@ -240,6 +247,22 @@ function bot() {
       }
     );
 
+  }
+
+  robot.tease = function(teaser) {
+
+    teaser.message = d3.functor(teaser.message).call(robot);
+
+    robot.mode("tease");
+    tease.select('.message').text(teaser.message);
+    var buttonSel = tease.select('.buttons').selectAll('button').data(teaser.buttons)
+    buttonSel.enter().append('button');
+    buttonSel.exit().remove();
+    buttonSel
+      .text(function(d) { return d.text; })
+      .on("click", function(d) { d.click(); });
+
+    return robot;
   }
 
   function coordsFromSel(sel) {
