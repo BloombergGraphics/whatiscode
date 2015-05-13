@@ -1,6 +1,12 @@
 var originalArticle;
 var loadTime = new Date();
 
+if(!localStorage.getItem('visitCount')) {
+  localStorage.setItem('visitCount', 1);
+} else {
+  localStorage.setItem('visitCount', parseInt(localStorage.getItem('visitCount'))+1);
+}
+
 jQuery(document).ready(function($) {
 
   paulbot = bot().botName("paulbot");
@@ -10,23 +16,69 @@ jQuery(document).ready(function($) {
     .menu(botDialogues);
 
   setTimeout(function() {
+
+    var message = "";
+    if(localStorage.getItem('visitCount') == 1) {
+      message += "Hey, welcome" + (document.referrer ? " from " + document.referrer + " " : "") + "! Have you noticed me?";
+    } else {
+      message += "Hey, welcome back" + (document.referrer ? " from " + document.referrer + " " : "") + "! You've visited " + localStorage.getItem('visitCount') + " times. Remember, I'm here for you!";
+    }
     paulbot.tease({
-      "message": "Hey! Have you noticed me?",
+      "message": message,
       "buttons": [
         {"text": "Start a tutorial", "click": function() { paulbot.dialogue(botDialogues.tutorialArrays); }},
         {"text": "Go away", "click": function() { paulbot.mode("off"); }}
       ]
     })
-  }, 5000);
+  }, 0);
 
-  $('body').on('click', '.paulbot-prompt', function(e) {
+  $('body').on('mouseover', '.paulbot-prompt', function(e) {
+    paulbot.emote('wiggle');
+  }).on('mouseout', '.paulbot-prompt', function(e) {
+    paulbot.emote('restface');
+  });
+
+  $('body').on('click', '.paulbot-prompt[data-dialogue="tutorialDOM"]', function(e) {
     var thisDialogue = botDialogues[this.dataset.dialogue];
     logger(true);
     paulbot.tease({
       "message": "The browser is constantly firing events in response to mouse and keyboard actions. Try mashing keys!",
       "buttons": [
         {"text": "Learn more", "click": function() { paulbot.dialogue(thisDialogue); }},
-        {"text": "Stop it", "click": function() { logger(false); }}
+        {"text": "Stop it", "click": function() { logger(false); paulbot.mode("off"); }}
+      ]
+    })
+  });
+
+  $('body').on('click', '.paulbot-prompt[data-dialogue="tutorialAdding"]', function(e) {
+    var thisDialogue = botDialogues[this.dataset.dialogue];
+    paulbot.tease({
+      "message": "Hey, what's the difference between 4+20 and 4+\"20\"?",
+      "buttons": [
+        {"text": "Learn more", "click": function() { paulbot.dialogue(thisDialogue); }},
+        {"text": "Sounds boring", "click": function() { paulbot.mode("off"); }}
+      ]
+    })
+  });
+
+  $('body').on('click', '.paulbot-prompt[data-dialogue="tutorialArrays"]', function(e) {
+    var thisDialogue = botDialogues[this.dataset.dialogue];
+    paulbot.tease({
+      "message": "Something something TK cool illustration of things happening on the page with arrays",
+      "buttons": [
+        {"text": "Learn more", "click": function() { paulbot.dialogue(thisDialogue); }},
+        {"text": "Sounds boring", "click": function() { paulbot.mode("off"); }}
+      ]
+    })
+  });
+
+  $('body').on('click', '.paulbot-prompt[data-dialogue="css"]', function(e) {
+    roulette();
+    paulbot.tease({
+      "message": "Randomizing page styles...",
+      "buttons": [
+        {"text": "Again!", "click": function() { roulette(); }},
+        {"text": "Back to normal please", "click": function() { resetArticle(); paulbot.mode("off"); }}
       ]
     })
   });
@@ -35,10 +87,11 @@ jQuery(document).ready(function($) {
     if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
       var bottomTime = new Date();
       var timeDiff = (((bottomTime - loadTime) / 1000 / 60)*100).toFixed()/100;
+      paulbot.emote('troll');
       paulbot.tease({
         "message": function() { return "Oh so you read 38,000 words in only " + timeDiff + " minutes, did you? Stop and smell the roses." },
         "buttons": [
-          {"text": "Guilty!", "click": function() { paulbot.mode("off"); }}
+          {"text": "Guilty!", "click": function() { paulbot.emote('restface'); paulbot.mode("off"); }}
         ]
       });
     }

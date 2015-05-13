@@ -48,13 +48,15 @@
   height: 100%;
 }
 
+.bot .face:hover {
+  background-image: url('../images/emotes/wiggle.gif') !important;
+}
+
 .bot[data-mode="off"] .face { opacity: .1 }
 .bot[data-mode="off"] .face:hover {
   opacity: 1;
   cursor: pointer;
-  background-image: url('../images/emotes/wiggle.gif');
 }
-
 .bot[data-mode="tease"] .face, .bot[data-mode="on"] .face {
   width: 20%;
 }
@@ -97,6 +99,23 @@
   float: right;
   width: 20%;
   height: 100%;
+  text-align: right;
+}
+
+.bot .menu button {
+  display: block;
+  float: right;
+  clear: both;
+  margin: 5px;
+  background: magenta;
+  border: 2px solid #fff;
+  padding: 3px;
+  font-family: Consolas, courier, monospace;
+}
+.bot .menu button:hover {
+  background: black;
+  color: magenta;
+  cursor: pointer;
 }
 
 /* BODY */

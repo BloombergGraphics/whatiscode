@@ -76,10 +76,9 @@ function bot() {
   robot.menu = function(_) {
     if (!arguments.length) return availableDialogues;
     availableDialogues = _;
-    menu.selectAll("li")
+    menu.selectAll("button")
       .data(Object.keys(availableDialogues).sort(d3.ascending))
       .enter()
-      .append("li")
       .append("button")
       .style("cursor", "pointer")
       .text(function(d) { return d; })
@@ -215,6 +214,7 @@ function bot() {
 
     pending = d3.functor(pending).call(robot).slice(0);
     pendingDialogue = pending;
+    robot.mode("on");
 
     return new Promise(
       function(resolve,reject) {
