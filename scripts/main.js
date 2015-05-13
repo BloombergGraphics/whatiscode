@@ -1,28 +1,16 @@
 var originalArticle;
+
 jQuery(document).ready(function($) {
 
   paulbot = bot().botName("paulbot");
-  paulbot().jumpTo([100,100]);
-
-  $("body").on("click", ".progress-meter", function() {
-    $('#postlude').addClass('visible');
-    $('#postlude video')[0].play();
-  });
+  d3.select("#paulbot").call(paulbot);
+  paulbot
+    .mode("off")
+    .menu(botDialogues);
 
   $('body').on('click', '.paulbot-prompt', function(e) {
     paulbot.dialogue(botDialogues[this.dataset.script]);
   })
-
-  d3.select("#dialogues ul").selectAll("li")
-  .data(Object.keys(botDialogues).sort(d3.ascending))
-  .enter()
-  .append("li")
-  .append("button")
-  .style("cursor", "pointer")
-  .text(function(d) { return d; })
-  .on("click", function(d) {
-    paulbot.dialogue(botDialogues[d]);
-  });
 
   footnotesToAsides();
   preCode();

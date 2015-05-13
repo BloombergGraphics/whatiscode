@@ -32,8 +32,7 @@ var dialogueTest = function(test, error) {
 }
 
 var dialogueShow = {
-  "show": true,
-  "goTo": [100,100],
+  "mode": "on",
   "emote": "restface"
 }
 
@@ -62,8 +61,7 @@ var randDialogue = function() {
 
 botDialogues.exampleEventLogger = [
   {
-    "show": true,
-    "goTo": [100,100],
+    "mode": "on",
     "speak": "Interactions on a web page are driven by events. Events are 'fired', and code can 'listen' for when they happen, and act accordingly."
   },
   {
@@ -77,8 +75,7 @@ botDialogues.exampleEventLogger = [
 
 botDialogues.tutorialAdding = [
   {
-    "show": true,
-    "goTo": [100,100],
+    "mode": "on",
     "speak": "Computers can do math. Try adding two numbers, like this:"
   },
   {
@@ -111,14 +108,13 @@ botDialogues.tutorialAdding = [
     "prompts": [{"prompt": "Bye!"}]
   },
   {
-    "show": false
+    "mode": "off"
   }
 ]
 
 botDialogues.exampleRoulette = [
 {
-  "show": true,
-  "goTo": [100,100],
+  "mode": "on",
   "speak": "Web pages are made up of different HTML 'elements'. Many of them have some semantic meaning: paragraphs, headers, lists. Others are just arbitrary containers of stuff, like divs and spans. These elements are styled according to rules written in CSS. Here, let's randomize the CSS rules being applied to the HTML elements on this page.",
   "prompts": [{"prompt": "OK..."}]
 },
@@ -128,17 +124,16 @@ botDialogues.exampleRoulette = [
 {
   "speak": "Cool, right?",
   "prompts": [
-    {"prompt": "OK. Neat.", "dialogue": [{"show": false}]},
+    {"prompt": "OK. Neat.", "dialogue": [{"mode": "off"}]},
     {"prompt": "Again! Again!!", "dialogue": function() { return botDialogues.roulette.slice(1); }},
-    {"prompt": "Back to normal, please...", "dialogue": [{"show": false, "eval": "resetArticle();"}]}
+    {"prompt": "Back to normal, please...", "dialogue": [{"mode": "off", "eval": "resetArticle();"}]}
   ]
 }
 ];
 
 botDialogues.exampleDestroy = [
 {
-  "show": true,
-  "goTo": [100,100],
+  "mode": "on",
   "speak": "OK cool well now we'll just delete random things on the page.",
 },
 {
@@ -153,8 +148,7 @@ botDialogues.exampleDestroy = [
 
 botDialogues.tutorialArrays = [
 {
-  "show": true,
-  "goTo": [100,100],
+  "mode": "on",
   "speak": "Hello! Many, many things in a computer are saved in a LIST form. Many of the tasks that a programmer does involve creating and modifying lists. Let’s create a list.",
 },
 {
@@ -308,4 +302,8 @@ dialogueTest(function(i) { return paragraphs[0].style.background !== "black" && 
 { "speak": "Great. But what if we do the same to our headlines?" },
 { "eval": 'stripeify("h2", "orange", "lightgreen");' },
 { "speak": "Nice work.", "emote": "love" }
+]
+
+botDialogues.goAway = [
+{"mode": "off"}
 ]

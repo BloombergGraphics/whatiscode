@@ -1,42 +1,76 @@
 .bot {
   position: fixed;
-  left: 0;
-  top: 0;
   z-index: 999;
-  opacity: 0;
-  transition: opacity .1s;
+  font-family: Consolas, courier, monospace;
+}
+
+.bot[data-mode="off"] {
+  left: 10px;
+  bottom: 10px;
   width: 60px;
-  height: 80px;
+  height: 100px;
+}
+.bot[data-mode="off"] .tease { display: none; }
+.bot[data-mode="off"] .body { display: none; }
+.bot[data-mode="off"] .menu { display: none; }
+
+.bot[data-mode="tease"] {
+  left: 10px;
+  bottom: 10px;
+  width: 300px;
+  height: 100px;
+  font-size: 12px;
+  line-height: 1.1em;
+}
+.bot[data-mode="tease"] .tease { display: block; }
+.bot[data-mode="tease"] .body { display: none; }
+.bot[data-mode="tease"] .menu { display: none; }
+
+.bot[data-mode="on"] {
+  width: 100%;
+  height: 300px;
+  background: #333;
+  bottom: 0;
+  left:0;
+}
+.bot[data-mode="on"] .tease { display: none; }
+.bot[data-mode="on"] .body { display: block; }
+.bot[data-mode="on"] .menu { display: block; }
+
+/* FACE */
+
+.bot .face {
   background-image: url('../images/emotes/restface.gif');
   background-size: contain;
   background-repeat: no-repeat;
-  font-family: 'VT323', courier;
-}
-
-.bot .sidebar {
-  position: absolute;
-  left: 65px;
-  width: 200px;
-}
-
-.bot.docked {
+  float: left;
+  width: 100%;
   height: 100%;
 }
-.bot.docked .sidebar {
-  height: 100%;
-  width: 400px;
-}
-.bot.docked .messages {
-  max-height: 90%;
+
+.bot[data-mode="off"] .face { opacity: .1 }
+.bot[data-mode="off"] .face:hover {
+  opacity: 1;
+  cursor: pointer;
+  background-image: url('../images/emotes/wiggle.gif');
 }
 
-.bot .messages {
-  max-height: 300px;
+.bot[data-mode="tease"] .face, .bot[data-mode="on"] .face {
+  width: 20%;
+}
+
+/* TEASE */
+
+.bot .tease {
+  float: right;
+  width: 80%;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+  padding-left: 1em;
 }
 
-.bot .messages .message {
+.bot .tease .message {
   background: #000;
   color: white;
   border: 2px solid #00f;
@@ -44,32 +78,74 @@
   margin-bottom: 5px;
 }
 
-.bot .messages .speech {
+.bot .tease button {
+  display: inline-block;
+  background: magenta;
+  border: 2px solid #fff;
+  padding: 3px;
+  font-family: Consolas, courier, monospace;
+}
+.bot .tease button:hover {
+  background: black;
+  color: magenta;
+  cursor: pointer;
 }
 
-.bot .messages .code {
+/* MENU */
+
+.bot .menu {
+  float: right;
+  width: 20%;
+  height: 100%;
+}
+
+/* BODY */
+
+.bot .body {
+  float: right;
+  width: 60%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.bot .body .messages {
+}
+
+.bot .body .messages .message {
+  background: #000;
+  color: white;
+  border: 2px solid #00f;
+  padding: 3px;
+  margin-bottom: 5px;
+}
+
+.bot .body .messages .speech {
+}
+
+.bot .body .messages .code {
   color: #0f0;
   text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
 }
 
-.bot .messages .usercode {
+.bot .body .messages .usercode {
   color: #0f0;
   text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
   border: 2px solid #0f0;
 }
 
-.bot .messages .responses {
+.bot .body .messages .responses {
   border: 2px solid #0f0;
 }
 
-.bot .messages .responses .response {
+.bot .body .messages .responses .response {
   color: #f0f;
 }
-.bot .messages .responses .response:hover {
+.bot .body .messages .responses .response:hover {
   background: #00f;
   cursor: pointer;
 }
-.bot .messages .responses .response.clicked {
+.bot .body .messages .responses .response.clicked {
   background: #666;
   cursor: default;
 }

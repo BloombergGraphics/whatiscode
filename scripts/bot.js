@@ -7,19 +7,34 @@ function bot() {
 
   var sel,
       botName = "",
-      sidebar,
-      messages,
-      learninal,
-      learninalSel,
-      pendingDialogue,
-      botCoords,
-      oldBotCoords;
+      mode = "off",
+      face,
+      tease,
+      body,
+        messages,
+        learninal,
+        learninalSel,
+      menu,
+        pendingDialogue,
+        availableDialogues;
 
-  function robot(name) {
-    sel = d3.select("body").append("div").classed("bot", true).attr("id", botName);
-    sidebar = sel.append("div").classed("sidebar", true);
-    messages = sidebar.append("div").classed("messages", true);
-    learninalSel = sidebar.append("div").classed("learninal", true);
+  function robot(selection) {
+
+    sel = selection;
+    sel.classed("bot", true).attr("id", botName);
+    face = sel.append("div").classed("face", true);
+    menu = sel.append("div").classed("menu", true);
+    body = sel.append("div").classed("body", true);
+    messages = body.append("div").classed("messages", true);
+    learninalSel = body.append("div").classed("learninal", true);
+    tease = sel.append("div").classed("tease", true);
+
+    tease.append("div").classed("message", true).text("Welcome to the Bloomberg Learninal! I'm Paulbot and I'll be your guide today.");
+    tease.append("button").text("Open Learninal").on("click", function() { robot.mode("on"); });
+    tease.append("button").text("Go away").on("click", function() { robot.mode("off"); });
+
+    face.on("click", function() { robot.mode("tease"); });
+    robot.mode("off");
 
     learninal = new Sandbox.View({
       el: learninalSel[0],
@@ -30,7 +45,7 @@ function bot() {
     // Listen to dispatcher
     learninal.model.dispatcher.on("evaluate", function(item) {
       messages.append("div").classed("message", true).classed("usercode", true).html(learninal.toEscaped(item.command) + "<br/> ⇒ "+learninal.toEscaped(item.result));
-      messages.node().scrollTop = messages.node().scrollHeight;
+      body.node().scrollTop = body.node().scrollHeight;
     })
 
     return robot;
@@ -43,61 +58,34 @@ function bot() {
     return robot;
   };
 
-  robot.jumpTo = function(coords) {
-    oldBotCoords = botCoords;
-    coords = d3.functor(coords).call(robot);
-    if(coords instanceof d3.selection) {
-      coords = coordsFromSel(coords);
-    }
-    botCoords = coords;
-
-    sel.style("left", coords[0] + "px")
-      .style("top", coords[1] + "px");
-    return true;
+  robot.mode = function(_) {
+    // off, tease, on
+    if (!arguments.length) return mode;
+    mode = d3.functor(_).call(robot);
+    sel.attr("data-mode", mode);
+    return robot;
   }
 
-  robot.goTo = function(coords) {
-    oldBotCoords = botCoords;
-    coords = d3.functor(coords).call(robot);
-    if(coords instanceof d3.selection) {
-      coords = coordsFromSel(coords);
-    }
-    botCoords = coords;
+  robot.menu = function(_) {
+    if (!arguments.length) return availableDialogues;
+    availableDialogues = _;
+    menu.selectAll("li")
+      .data(Object.keys(availableDialogues).sort(d3.ascending))
+      .enter()
+      .append("li")
+      .append("button")
+      .style("cursor", "pointer")
+      .text(function(d) { return d; })
+      .on("click", function(d) {
+        robot.dialogue(availableDialogues[d]);
+      });
 
-    return new Promise(
-      function(resolve,reject) {
-        sel
-          .transition()
-          .duration(1000)
-          .style("left", coords[0] + "px")
-          .style("top", coords[1] + "px")
-          .each("end", resolve(true));
-      }
-    );
-  }
-
-  robot.show = function(bool) {
-    bool = d3.functor(bool).call(robot);
-    sel.style("opacity", bool ? 1 : 0);
-    return true;
-  }
-
-  robot.dock = function(bool) {
-    bool = d3.functor(bool).call(robot);
-    if(bool) {
-      this.goTo([0,0]).then(function(value) {
-        sel.classed("docked", bool);
-      })
-    } else {
-      sel.classed("docked", bool);
-      this.goTo(oldBotCoords);
-    }
-    return true;
-  }
+    return robot;
+  };
 
   robot.emote = function(emotion) {
     emotion = d3.functor(emotion).call(robot);
-    sel.style('background-image', "url('images/emotes/" + emotion + ".gif')");
+    face.style('background-image', "url('images/emotes/" + emotion + ".gif')");
     return true;
   }
 
@@ -117,7 +105,7 @@ function bot() {
             resolve(speech);
           }
           speech.text(text.substr(0,speech.text().length+1));
-          messages.node().scrollTop = messages.node().scrollHeight;
+          body.node().scrollTop = body.node().scrollHeight;
         },delay);
 
       }
@@ -144,7 +132,7 @@ function bot() {
         //     resolve(code);
         //   }
         //   code.text(text.substr(0,code.text().length+1));
-        //   messages.node().scrollTop = messages.node().scrollHeight;
+        //   body.node().scrollTop = body.node().scrollHeight;
         // },delay);
 
       }
@@ -188,7 +176,7 @@ function bot() {
         rSel.exit()
           .remove();
 
-        messages.node().scrollTop = messages.node().scrollHeight;
+        body.node().scrollTop = body.node().scrollHeight;
 
         return true;
 
@@ -199,10 +187,13 @@ function bot() {
   robot.test = function(testArg) {
     return new Promise(
       function(resolve,reject) {
+        learninalSel.style("display", "block");
+        body.node().scrollTop = body.node().scrollHeight;
         var onEvaluate = function(item) {
           if(testArg.call(robot, item)) {
             // if test passes
             learninal.model.dispatcher.off("evaluate", onEvaluate);
+            learninalSel.style("display", "none");
             resolve();
           } else {
             // if test fails

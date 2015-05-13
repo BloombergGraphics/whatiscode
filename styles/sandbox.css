@@ -4,6 +4,9 @@
  * http://josscrowcroft.github.com/javascript-sandbox-console/
  */
 
+.bot .learninal {
+	display: none;
+}
 .bot .learninal pre.output {
 	display: none;
 }

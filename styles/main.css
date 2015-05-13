@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   width: 100%;
   margin: 0;
@@ -7,8 +11,8 @@ html, body {
 
 body {
   font-family: Georgia;
-  font-size: 12pt;
-  line-height: 1.3em;
+  font-size: 16px;
+  line-height: 1.667em;
 }
 
 header {
@@ -25,19 +29,27 @@ header {
 article {
   max-width: 40em;
   margin: 0 auto;
+  position: relative;
 }
 
 article img {
   max-width: 100%;
 }
 
-#dialogues {
-  padding: 1em 0;
+#glossary-bug, #toc-bug {
   position: fixed;
-  top: 0;
-  right: 0;
-  text-align: right;
+  top: 10px;
+  width: 60px;
+  height: 60px;
+  opacity: .1;
+  z-index: 3;
 }
+#glossary-bug:hover, #toc-bug:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+#glossary-bug { right: 10px; }
+#toc-bug { left: 10px; }
 
 .sidepane {
   position: fixed;
@@ -61,10 +73,12 @@ h1 {
 }
 
 aside {
-  font-size: small;
-  right: 0;
+  font-size:0.875em;
+  line-height: 1.3em;
+  left: 100%;
   position: absolute;
   width: 180px;
+  margin-left: 1em;
 }
 aside .footdef sup {
   vertical-align: baseline;
@@ -75,4 +89,13 @@ aside .footdef sup a {
 }
 aside .footdef p {
   display: inline;
+}
+
+.paulbot-prompt {
+  background: yellow;
+  margin: -4px;
+  padding: 4px;
+} .paulbot-prompt:hover {
+  background: #f0f;
+  cursor: pointer;
 }
