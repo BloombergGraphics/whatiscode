@@ -113,8 +113,12 @@ dialogueTest(function(item) { return item.result===24; }, "Nope. Simple question
 { "eval": '4+"20"'},
 { "speak": "WTF? Well, see the quotation marks around \"20\"? That means that it's being treated as a string here, which forces JavaScript to treat 4 as a string too and just jam 20 on the end. Try adding a string to a number:"},
 dialogueTest(function(item) { return typeof item.result === "string" && item.command.indexOf("+") !== -1 }, "Nope. Just try something like: \"one\" + 1"),
-{ "speak": "Weird, right? In fact, you can 'add' all sorts of different types of things together:" },
-{ "eval": 'document+"one"+1+Array' },
+{ "speak": "Weird, right? Worse, sometimes \"2\" is treated as a number:" },
+{"eval": '"2" - 1'},
+{"speak": "And sometimes as a string:"},
+{"eval": '"2" + 1'},
+{"speak": "Sneaky double negation addition:"},
+{"eval": '"2" - -1'},
 { "speak": "And this is why programmers are angry." }
 ]
 
