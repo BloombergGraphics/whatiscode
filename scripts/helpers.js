@@ -106,9 +106,9 @@ function logger(bool) {
 
   for(var eventName in eventHandlers) {
     if(bool) {
-      $(window).on(eventName, eventHandlers[eventName]);
+      d3.select(window).on(eventName+".logger", eventHandlers[eventName]);
     } else {
-      $(window).off(eventName, eventHandlers[eventName]);
+      d3.select(window).on(eventName+".logger", null);
     }
   }
 
@@ -150,7 +150,7 @@ function logger(bool) {
     .style("left", x+"px")
     .style("top", y+"px")
     .style("color", color(key%100))
-    .html(keychar + "<br/><small>" + e.type + "</small>")
+    .html(keychar + "<br/><small>" + d3.event.type + "</small>")
     .transition()
     .duration(1000)
     .style("opacity", 0)
@@ -162,18 +162,18 @@ function logger(bool) {
     var xScale = d3.scale.linear().domain([0,$(window).width()]).range([0, 255]);
     var xScale2 = d3.scale.linear().domain([0,$(window).width()]).range([255, 0]);
     var yScale = d3.scale.linear().domain([0,$(window).height()]).range([0, 255]);
-    var color = "rgb("+ xScale(e.clientX).toFixed() + "," + yScale(e.clientY).toFixed() + "," + xScale2(e.clientX).toFixed() +")";
+    var color = "rgb("+ xScale(d3.event.clientX).toFixed() + "," + yScale(d3.event.clientY).toFixed() + "," + xScale2(d3.event.clientX).toFixed() +")";
 
     d3.select("body")
     .append("div")
     .classed("event-log", true)
-    .classed(e.type, true)
+    .classed(d3.event.type, true)
     .style("position", "fixed")
-    .style("left", e.clientX+"px")
-    .style("top", e.clientY+"px")
+    .style("left", d3.event.clientX+"px")
+    .style("top", d3.event.clientY+"px")
     .style("transform", "translate(-50%,-50%) rotate("+ (Math.random()*60-30).toFixed() +"deg)")
     .style("color", color)
-    .html(e.type + "<br/><small>(" + e.clientX + ", " + e.clientY + ")</small>")
+    .html(d3.event.type + "<br/><small>(" + d3.event.clientX + ", " + d3.event.clientY + ")</small>")
     .transition()
     .ease("exp-out")
     .duration(10000)
@@ -182,15 +182,15 @@ function logger(bool) {
 
     log.mouse.push({
       "time": new Date(),
-      "type": e.type,
-      "clientX": e.clientX,
-      "clientY": e.clientY,
-      "offsetX": e.offsetX,
-      "offsetY": e.offsetY,
-      "pageX": e.pageX,
-      "pageY": e.pageY,
-      "screenX": e.screenX,
-      "screenY": e.screenY
+      "type": d3.event.type,
+      "clientX": d3.event.clientX,
+      "clientY": d3.event.clientY,
+      "offsetX": d3.event.offsetX,
+      "offsetY": d3.event.offsetY,
+      "pageX": d3.event.pageX,
+      "pageY": d3.event.pageY,
+      "screenX": d3.event.screenX,
+      "screenY": d3.event.screenY
     });
   }
 }

@@ -78,8 +78,8 @@
 }
 
 .bot .tease .message {
-  background: black;
-  color: white;
+  background: #333;
+  color: #0f0;
   border: 2px solid #00f;
   padding: 3px;
   margin-bottom: 5px;
@@ -138,7 +138,7 @@
 }
 
 .bot .body .messages .message {
-  color: white;
+  color: #0f0;
   padding: 3px;
   margin-bottom: 5px;
 }
