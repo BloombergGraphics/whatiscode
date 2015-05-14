@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
     paulbot.tease({
       "message": message,
       "buttons": [
-        {"text": "Start a tutorial", "click": function() { paulbot.dialogue(botDialogues.tutorialArrays); }},
+        {"text": "Start a tutorial", "click": function() { paulbot.mode("on"); }},
         {"text": "Go away", "click": function() { paulbot.mode("off"); }}
       ]
     })
