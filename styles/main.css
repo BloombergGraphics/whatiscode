@@ -109,3 +109,7 @@ aside .footdef p {
   background: #f0f;
   cursor: pointer;
 }
+
+#live-html-iframe {
+  width: 100%;
+}

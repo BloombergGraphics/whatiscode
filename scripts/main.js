@@ -97,15 +97,31 @@ jQuery(document).ready(function($) {
     }
   })
 
+  $("#live-html-source").on("keyup", renderLiveHTML);
+  $("#live-html-source").on("blur", function() {
+    $(this).text($(this).text());
+    hljs.highlightBlock(this);
+  });
+
   footnotesToAsides();
   preCode();
   buildGlossary();
+  renderLiveHTML();
 
   hljs.initHighlightingOnLoad();
 
   originalArticle = $("article").html();
 
 });
+
+function renderLiveHTML() {
+  // update iframe
+  var iframe = document.getElementById('live-html-iframe');
+  var html = $("#live-html-source").text();
+  iframe.contentWindow.document.open();
+  iframe.contentWindow.document.write(html);
+  iframe.contentWindow.document.close();
+}
 
 function footnotesToAsides() {
   var footnotes = $(".footdef");
@@ -125,7 +141,9 @@ function footnotesToAsides() {
 
 function preCode() {
   $("pre").each(function(i, pre) {
-    $(pre).html("<code>"+$(pre).html()+"</code>");
+    if($(pre).find("code").length === 0) {
+      $(pre).html("<code>"+$(pre).html()+"</code>");
+    }
   })
 }
 
