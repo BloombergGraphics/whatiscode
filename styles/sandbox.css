@@ -22,9 +22,9 @@
 	font-weight: normal;
 	font-family:"Consolas", "Andale Mono", "Courier New", "Courier", monospace;*/
 	font-size: 16px;
-	font-family: 'VT323', courier;
-	background: #000;
-	color: #0f0;
+	font-family: Consolas, courier;
+	background: #23241f;
+	color: #fff;
 	border:0 none;
 	outline:0 none;
 	-webkit-box-shadow:none;
@@ -32,7 +32,7 @@
 	        box-shadow:none;
 }
 .learninal {
-	background:#000;
+	background: #23241f;
 	padding:3px;
 	border: 2px solid #0f0;
 	/*width:100%;
@@ -62,15 +62,16 @@
 .learninal pre.output span.error     { color:#f77; }
 
 .learninal .input {
-	padding:0 0 0 15px;
+	padding:0 0 0 3em;
 	position:relative;
 }
 .learninal .input:before {
-	content:">";
+	content:"IN";
 	position:absolute;
+	font-size: small;
 	top: 1px;
-	left: 0;
-	color:#ddd
+	left: 2px;
+	color: #666;
 }
 .learninal textarea {
 	border:0 none;

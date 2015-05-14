@@ -51,8 +51,14 @@ function bot() {
 
     // Listen to dispatcher
     learninal.model.dispatcher.on("evaluate", function(item) {
-      messages.append("div").classed("message", true).classed("usercode", true).html(learninal.toEscaped(item.command) + "<br/> ⇒ "+learninal.toEscaped(item.result));
+
+      var msg = messages.append("div").classed("message", true).classed("eval", true).classed(item._class, true);
+      var input = msg.append("pre").append("code").classed("javascript", true).classed("input", true).html(learninal.toEscaped(item.command));
+      var output = msg.append("pre").append("code").classed("javascript", true).classed("output", true).html(learninal.toEscaped(item.result));
       body.node().scrollTop = body.node().scrollHeight;
+
+      hljs.highlightBlock(input.node());
+      hljs.highlightBlock(output.node());
     })
 
     return robot;
@@ -194,6 +200,7 @@ function bot() {
     return new Promise(
       function(resolve,reject) {
         learninalSel.style("display", "block");
+        learninal.textarea.focus();
         body.node().scrollTop = body.node().scrollHeight;
         var onEvaluate = function(item) {
           if(testArg.call(robot, item)) {

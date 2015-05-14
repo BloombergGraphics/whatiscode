@@ -173,7 +173,7 @@ botDialogues.tutorialArrays = [
 },
 {
   "test": function(item) {
-    if(item.result == 1) {
+    if(item.result === 1) {
       return true;
     } else if((item.command+'').toLowerCase().trim() == "one") {
       this.speak("OK, true, but please just enter it in numerals, like 8 or 9 or 2345235.");
