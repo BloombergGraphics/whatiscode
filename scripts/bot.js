@@ -196,6 +196,14 @@ function bot() {
     );
   }
 
+  robot.wait = function(ms) {
+    return new Promise(
+      function(resolve,reject) {
+        setTimeout(function() { resolve(); }, ms);
+      }
+    );
+  }
+
   robot.test = function(testArg) {
     return new Promise(
       function(resolve,reject) {

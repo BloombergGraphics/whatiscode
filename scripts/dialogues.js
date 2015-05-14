@@ -117,7 +117,8 @@ dialogueTest(function(item) { return typeof item.result === "string" && item.com
 {"eval": '"2" - 1'},
 {"speak": "And sometimes as a string:"},
 {"eval": '"2" + 1'},
-{"speak": "Sneaky double negation addition:"},
+{"wait": 1000},
+{"speak": "Which you can get around with sneaky double negation addition:"},
 {"eval": '"2" - -1'},
 { "speak": "And this is why programmers are angry." }
 ]
