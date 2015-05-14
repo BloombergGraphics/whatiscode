@@ -95,6 +95,12 @@ var log = {
 }
 function logger(bool) {
 
+  if(this.state === bool) {
+    return;
+  } else {
+    this.state = bool;
+  }
+
   var eventHandlers = {
     "scroll": drawScroll,
     "keydown": drawKey,

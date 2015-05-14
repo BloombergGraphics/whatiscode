@@ -268,6 +268,8 @@ function bot() {
 
     teaser.message = d3.functor(teaser.message).call(robot);
 
+    if(teaser.do) teaser.do();
+
     robot.mode("tease");
     tease.select('.message').text(teaser.message);
     var buttonSel = tease.select('.buttons').selectAll('button').data(teaser.buttons)

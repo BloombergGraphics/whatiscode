@@ -32,55 +32,13 @@ jQuery(document).ready(function($) {
     })
   }, 0);
 
+  // those yellow-highlighted paulbot prompts launch teases which launch tutorials
   $('body').on('mouseover', '.paulbot-prompt', function(e) {
     paulbot.emote('wiggle');
   }).on('mouseout', '.paulbot-prompt', function(e) {
     paulbot.emote('restface');
-  });
-
-  $('body').on('click', '.paulbot-prompt[data-dialogue="tutorialDOM"]', function(e) {
-    var thisDialogue = botDialogues[this.dataset.dialogue];
-    logger(true);
-    paulbot.tease({
-      "message": "The browser is constantly firing events in response to mouse and keyboard actions. Try mashing keys!",
-      "buttons": [
-        {"text": "Learn more", "click": function() { paulbot.dialogue(thisDialogue); }},
-        {"text": "Stop it", "click": function() { logger(false); paulbot.mode("off"); }}
-      ]
-    })
-  });
-
-  $('body').on('click', '.paulbot-prompt[data-dialogue="tutorialAdding"]', function(e) {
-    var thisDialogue = botDialogues[this.dataset.dialogue];
-    paulbot.tease({
-      "message": "Hey, what's the difference between 4+20 and 4+\"20\"?",
-      "buttons": [
-        {"text": "Learn more", "click": function() { paulbot.dialogue(thisDialogue); }},
-        {"text": "Sounds boring", "click": function() { paulbot.mode("off"); }}
-      ]
-    })
-  });
-
-  $('body').on('click', '.paulbot-prompt[data-dialogue="tutorialArrays"]', function(e) {
-    var thisDialogue = botDialogues[this.dataset.dialogue];
-    paulbot.tease({
-      "message": "Something something TK cool illustration of things happening on the page with arrays",
-      "buttons": [
-        {"text": "Learn more", "click": function() { paulbot.dialogue(thisDialogue); }},
-        {"text": "Sounds boring", "click": function() { paulbot.mode("off"); }}
-      ]
-    })
-  });
-
-  $('body').on('click', '.paulbot-prompt[data-dialogue="css"]', function(e) {
-    roulette();
-    paulbot.tease({
-      "message": "Randomizing page styles...",
-      "buttons": [
-        {"text": "Again!", "click": function() { roulette(); }},
-        {"text": "Back to normal please", "click": function() { resetArticle(); paulbot.mode("off"); }}
-      ]
-    })
+  }).on('click', '.paulbot-prompt[data-tease]', function(e) {
+    paulbot.tease(botTeases[this.dataset.tease])
   });
 
   $(window).on('scroll', function(e) {

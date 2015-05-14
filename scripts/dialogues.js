@@ -318,3 +318,36 @@ dialogueTest(function(i) { return paragraphs[0].style.background !== "black" && 
 botDialogues.CLOSE = [
 {"mode": "off"}
 ]
+
+botTeases = {
+  "events": {
+    "message": "The browser is constantly firing events in response to mouse and keyboard actions. Try mashing keys!",
+    "do": function() { logger(true); },
+    "buttons": [
+      {"text": "Learn more", "click": function() { paulbot.dialogue(botDialogues.tutorialDOM); }},
+      {"text": "Stop it", "click": function() { logger(false); paulbot.mode("off"); }}
+    ]
+  },
+  "adding": {
+    "message": "Hey, what's the difference between 4+20 and 4+\"20\"?",
+    "buttons": [
+      {"text": "Learn more", "click": function() { paulbot.dialogue(botDialogues.tutorialAdding); }},
+      {"text": "Sounds boring", "click": function() { paulbot.mode("off"); }}
+    ]
+  },
+  "arrays": {
+    "message": "Something something TK cool illustration of things happening on the page with arrays",
+    "buttons": [
+      {"text": "Learn more", "click": function() { paulbot.dialogue(botDialogues.tutorialArrays); }},
+      {"text": "Sounds boring", "click": function() { paulbot.mode("off"); }}
+    ]
+  },
+  "css": {
+    "message": "Randomizing page styles...",
+    "do": roulette,
+    "buttons": [
+      {"text": "Again!", "click": function() { roulette(); }},
+      {"text": "Back to normal please", "click": function() { resetArticle(); paulbot.mode("off"); }}
+    ]
+  }
+}
