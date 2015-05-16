@@ -199,3 +199,25 @@ aside .footdef p {
   opacity: .5;
   z-index: 2;
 }
+
+/* GLOSSARY */
+
+.glossary-item {
+  border-bottom: 1px dotted gray;
+}
+.glossary-tooltip {
+  position: absolute;
+  display: none;
+  max-width: 200px;
+  font-family: helvetica;
+  font-size: small;
+  line-height: 1em;
+  padding: .5em;
+  background: white;
+  border: 1px solid black;
+  transform: translate(0%,-110%);
+  pointer-events: none;
+}
+.glossary-tooltip.on {
+  display: block;
+}

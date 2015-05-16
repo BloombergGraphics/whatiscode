@@ -27,6 +27,7 @@ jQuery(document).ready(function($) {
     },
     {
       "name": "glossary",
+      "initialize": buildGlossary
     },
     {
       "name": "recirc",
@@ -43,6 +44,7 @@ jQuery(document).ready(function($) {
     .attr("id", function(d) { return d.name+"-bug"; })
     .each(function(d,i) {
       d.overlay = d3.select("#"+d.name);
+      if(d.initialize) { d.initialize.call(d.overlay.node(), d.data, i); }
     })
     .on("click", function(d,i) {
       if(d.overlay.attr("data-mode") === "on") {
