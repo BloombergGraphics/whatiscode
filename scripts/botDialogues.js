@@ -65,7 +65,7 @@ botDialogues.exampleEventLogger = [
     "speak": "Interactions on a web page are driven by events. Events are 'fired', and code can 'listen' for when they happen, and act accordingly."
   },
   {
-    "eval": 'logger();'
+    "eval": 'logger(true);'
   },
   {
     "speak": "Move your mouse and hit keys and scroll and look at them all!",

@@ -36,21 +36,37 @@ article img {
   max-width: 100%;
 }
 
-#glossary-bug, #toc-bug, #recirc-bug {
+.bug {
   position: fixed;
-
   width: 60px;
   height: 60px;
   opacity: .1;
-  z-index: 3;
+  z-index: 2;
+  background-size: contain;
 }
-#glossary-bug:hover, #toc-bug:hover, #recirc-bug:hover {
+.bug:hover {
   opacity: 1;
   cursor: pointer;
 }
-#glossary-bug { top: 10px; right: 10px; }
-#toc-bug { top: 10px; left: 10px; }
-#recirc-bug{ bottom: 10px; right: 10px; z-index: 5; }
+.bug[data-mode="on"] {
+  opacity: 1;
+  z-index: 5;
+}
+#glossary-bug {
+  background-image: url('../images/glossary.svg');
+  top: 10px;
+  right: 10px;
+}
+#toc-bug {
+  background-image: url('../images/toc.svg');
+  top: 10px;
+  left: 10px;
+}
+#recirc-bug {
+  background-image: url('../images/recirc.svg');
+  bottom: 10px;
+  right: 10px;
+}
 
 .sidepane {
   position: fixed;
@@ -59,13 +75,13 @@ article img {
   height: 100%;
   overflow-y: scroll;
   background: #eee;
-  z-index: 2;
+  z-index: 3;
 }
 
 #toc { left: -500px; }
-#toc.open { left: 0; }
+#toc[data-mode="on"] { left: 0; }
 #glossary { right: -500px; }
-#glossary.open { right: 0; }
+#glossary[data-mode="on"] { right: 0; }
 
 #recirc {
   position: fixed;
@@ -75,9 +91,9 @@ article img {
   height: 100%;
   display: none;
   background: white;
-  z-index: 4;
+  z-index: 3;
 }
-#recirc.open {
+#recirc[data-mode="on"] {
   display: block;
 }
 
