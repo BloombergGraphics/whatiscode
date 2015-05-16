@@ -36,20 +36,21 @@ article img {
   max-width: 100%;
 }
 
-#glossary-bug, #toc-bug {
+#glossary-bug, #toc-bug, #recirc-bug {
   position: fixed;
-  top: 10px;
+
   width: 60px;
   height: 60px;
   opacity: .1;
   z-index: 3;
 }
-#glossary-bug:hover, #toc-bug:hover {
+#glossary-bug:hover, #toc-bug:hover, #recirc-bug:hover {
   opacity: 1;
   cursor: pointer;
 }
-#glossary-bug { right: 10px; }
-#toc-bug { left: 10px; }
+#glossary-bug { top: 10px; right: 10px; }
+#toc-bug { top: 10px; left: 10px; }
+#recirc-bug{ bottom: 10px; right: 10px; z-index: 5; }
 
 .sidepane {
   position: fixed;
@@ -58,7 +59,6 @@ article img {
   height: 100%;
   overflow-y: scroll;
   background: #eee;
-  transition: left 1s, right 1s;
   z-index: 2;
 }
 
@@ -66,6 +66,20 @@ article img {
 #toc.open { left: 0; }
 #glossary { right: -500px; }
 #glossary.open { right: 0; }
+
+#recirc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: white;
+  z-index: 4;
+}
+#recirc.open {
+  display: block;
+}
 
 h1 {
   font-size: 3em;
@@ -112,4 +126,60 @@ aside .footdef p {
 
 #live-html-iframe {
   width: 100%;
+}
+
+.recirc {
+  width: 300px;
+  height: 200px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+}
+.recirc .title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  z-index: 3;
+}
+.recirc:hover .title {
+  background: black;
+  color: white;
+}
+.recirc .source {
+  font-family: Consolas, courier, monospace;
+  font-size: .5em;
+  line-height: 1em;
+  color: #ddd;
+  word-wrap: break-word;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 1;
+}
+.recirc .body {
+  position: absolute;
+  width: 133%;
+  height: 133%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  border: none;
+  pointer-events: none;
+
+  -ms-zoom: 0.75;
+  -moz-transform: scale(0.75);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.75);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.75);
+  -webkit-transform-origin: 0 0;
+}
+.recirc:hover .body {
+  opacity: .5;
+  z-index: 2;
 }

@@ -1,6 +1,6 @@
 .bot {
   position: fixed;
-  z-index: 999;
+  z-index: 3;
   font-family: Consolas, courier, monospace;
 }
 
