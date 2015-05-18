@@ -29,6 +29,10 @@ $('body').on('mouseover', '.paulbot-prompt', function(e) {
 });
 
 $(window).on('scroll', function(e) {
+
+  
+
+  // when you hit the bottom of the page
   if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
     var bottomTime = new Date();
     var timeDiff = (((bottomTime - loadTime) / 1000 / 60)*100).toFixed()/100;

@@ -184,3 +184,40 @@
   background: #666;
   cursor: default;
 }
+
+/* SLIDER */
+/* http://bl.ocks.org/mbostock/6452972 */
+
+.bot .axis {
+  font: 10px sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.bot .axis text {
+  fill: #0f0;
+}
+
+.bot .axis .domain {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .3;
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+
+.bot .axis .halo {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 8px;
+  stroke-linecap: round;
+}
+
+.bot .slider .handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: .5;
+  stroke-width: 1.25px;
+  cursor: crosshair;
+}

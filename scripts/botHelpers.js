@@ -59,6 +59,8 @@ function roulette(time) {
 
 function resetArticle() {
   $("article").html(originalArticle);
+  d3.select("body").style("background-color", "inherit");
+  d3.select("body").style("color", "inherit");
 }
 
 function rewrite() {

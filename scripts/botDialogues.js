@@ -59,6 +59,31 @@ var randDialogue = function() {
   return dialogue;
 }
 
+botDialogues.slider = [
+  {
+    "mode": "on",
+    "speak": "LOOK AT THE SLIDER CHANGE THE BACKGROUND COLOR! TK TK TK"
+  },
+  {
+    "slider": function(value) {
+      d3.select("body").style("background-color", d3.hsl(value, .8, .8));
+      d3.select("aside").style("background-color", d3.hsl(value, .8, .8));
+    }
+  },
+  {
+    "prompts": [{"prompt": "OK, how about font color?"}]
+  },
+  {
+    "slider": function(value) { d3.select("body").style("color", d3.hsl(value, .8, .2)); }
+  },
+  {
+    "prompts": [{"prompt": "For God's sake, back to normal, please."}]
+  },
+  {
+    "eval": "resetArticle();"
+  }
+];
+
 botDialogues.exampleEventLogger = [
   {
     "mode": "on",
@@ -137,7 +162,7 @@ botDialogues.exampleRoulette = [
   "prompts": [
     {"prompt": "OK. Neat.", "dialogue": [{"mode": "off"}]},
     {"prompt": "Again! Again!!", "dialogue": function() { return botDialogues.exampleRoulette.slice(1); }},
-    {"prompt": "Back to normal, please...", "dialogue": [{"mode": "off", "eval": "resetArticle();"}]}
+    {"prompt": "Back to normal, please...", "dialogue": [{"mode": "off", }]}
   ]
 }
 ];
