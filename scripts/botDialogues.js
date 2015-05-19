@@ -60,9 +60,9 @@ var randDialogue = function() {
 }
 
 botDialogues.shoppingCart = [
-  // {
-  //   "wait": "scroll"
-  // },
+  {
+    "wait": "scroll"
+  },
   {
     "speak": "Drag the slider, move the cart. Easy.",
     "slider": {

@@ -28,12 +28,14 @@
   background-image: url('../images/emotes/restface.gif');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
   background-size: 60%;
-  float: left;
+  /*float: left;*/
   width: 20%;
   height: 100%;
   min-height: 100px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .bot .face:hover {
@@ -43,11 +45,13 @@
 /* BODY */
 
 .bot .body {
-  float: right;
+  /*float: right;*/
+  display: inline-block;
   width: 80%;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+  vertical-align: top;
 }
 
 .bot .body .messages {
@@ -136,4 +140,7 @@
   stroke-opacity: .5;
   stroke-width: 1.25px;
   cursor: crosshair;
+}
+
+.bot .slidey .label {
 }

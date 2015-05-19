@@ -245,7 +245,15 @@ function bot() {
   robot.wait = function(ms) {
     return new Promise(
       function(resolve,reject) {
-        setTimeout(function() { resolve(); }, ms);
+
+        if(ms==="scroll") {
+          d3.select(window).on('scroll', function() {
+            if(isVisible(sel.node())) resolve();
+          });
+        } else {
+          setTimeout(function() { resolve(); }, ms);
+        }
+
       }
     );
   }
@@ -313,6 +321,14 @@ function bot() {
   function coordsFromSel(sel) {
     var bounds = sel.node().getBoundingClientRect();
     return [bounds.left + bounds.width/2, bounds.top + bounds.height/2];
+  }
+
+  function isVisible(el) {
+    var elemTop = el.getBoundingClientRect().top;
+    var elemBottom = el.getBoundingClientRect().bottom;
+
+    var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+    return isVisible;
   }
 
   return robot;
