@@ -25,3 +25,15 @@
 .event-log.keyboard {
   font-size: 2em;
 }
+
+/* SHOPPING CART */
+
+#cart {
+  position: fixed;
+  background-image: url(../images/cart.jpg);
+  background-size: contain;
+  height: 60px;
+  width: 60px;
+  top: 0;
+  left: -25%;
+}

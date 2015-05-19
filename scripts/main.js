@@ -16,18 +16,15 @@ jQuery(document).ready(function($) {
   // create paulbot
   paulbot = bot().botName("paulbot");
   d3.select("#paulbot").call(paulbot);
-  paulbot
-    .mode("off")
-    .menu(botDialogues);
+
+  cartbot = bot().botName("cartbot");
+  d3.select("[data-dialogue='shoppingCart']").call(cartbot);
+  cartbot.dialogue(botDialogues.shoppingCart);
 
   // create overlay views
   var overlayViews = [
     {
       "name": "toc",
-    },
-    {
-      "name": "glossary",
-      "initialize": buildGlossary
     },
     {
       "name": "recirc",

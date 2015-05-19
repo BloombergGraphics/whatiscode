@@ -59,6 +59,22 @@ var randDialogue = function() {
   return dialogue;
 }
 
+botDialogues.shoppingCart = [
+  // {
+  //   "wait": "scroll"
+  // },
+  {
+    "speak": "Drag the slider, move the cart. Easy.",
+    "slider": {
+      "onbrush": function(value) {
+        document.getElementById('cart').style.left = value + "%";
+        return "document.getElementById('cart').style.left = '" + value + "%'";
+      },
+      "domain": [-20,120]
+    }
+  }
+]
+
 botDialogues.slider = [
   {
     "mode": "on",
