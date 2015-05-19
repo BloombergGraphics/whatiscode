@@ -101,14 +101,21 @@ function bot() {
     return true;
   }
 
-  robot.slider = function(onbrush) {
+  robot.slider = function(config) {
 
-    var margin = {top: 25, right: 25, bottom: 25, left: 25},
-        width = 760 - margin.left - margin.right,
-        height = 100 - margin.bottom - margin.top;
+    config = _.extend({
+      "onbrush": null,
+      "domain": [0,1]
+    }, config);
+
+    var message = messages.append("div").classed("message", true).classed("slidey", true);
+
+    var margin = {top: 0, right: 25, bottom: 0, left: 25},
+        width = message.node().offsetWidth - margin.left - margin.right,
+        height = 50 - margin.bottom - margin.top;
 
     var x = d3.scale.linear()
-        .domain([0, 180])
+        .domain(config.domain)
         .range([0, width])
         .clamp(true);
 
@@ -117,11 +124,13 @@ function bot() {
         .extent([0, 0])
         .on("brush", brushed);
 
-    var svg = messages.append("svg")
+    var svg = message.append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var label = message.append("div").classed("label", true);
 
     svg.append("g")
         .attr("class", "x axis")
@@ -129,9 +138,8 @@ function bot() {
         .call(d3.svg.axis()
           .scale(x)
           .orient("bottom")
-          .tickFormat(function(d) { return d + "°"; })
           .tickSize(0)
-          .tickPadding(12))
+          .ticks(0))
       .select(".domain")
       .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
         .attr("class", "halo");
@@ -168,7 +176,9 @@ function bot() {
 
       handle.attr("cx", x(value));
 
-      onbrush.call(this, value);
+      if(config.onbrush) {
+        label.text(config.onbrush.call(this, value));
+      }
     }
   }
 

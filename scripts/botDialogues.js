@@ -65,16 +65,26 @@ botDialogues.slider = [
     "speak": "LOOK AT THE SLIDER CHANGE THE BACKGROUND COLOR! TK TK TK"
   },
   {
-    "slider": function(value) {
-      d3.select("body").style("background-color", d3.hsl(value, .8, .8));
-      d3.select("aside").style("background-color", d3.hsl(value, .8, .8));
+    "slider": {
+      "onbrush": function(value) {
+        d3.select("body").style("background-color", d3.hsl(value, .8, .8));
+        d3.select("aside").style("background-color", d3.hsl(value, .8, .8));
+        return "document.getElementsByTagName('body')[0].style.backgroundColor = \"" + document.getElementsByTagName('body')[0].style.backgroundColor + "\"";
+      },
+      "domain": [0, 180]
     }
   },
   {
     "prompts": [{"prompt": "OK, how about font color?"}]
   },
   {
-    "slider": function(value) { d3.select("body").style("color", d3.hsl(value, .8, .2)); }
+    "slider": {
+      "onbrush": function(value) {
+        d3.select("body").style("color", d3.hsl(value, .8, .2));
+        return "document.getElementsByTagName('body')[0].style.backgroundColor = \"" + document.getElementsByTagName('body')[0].style.color + "\"";
+      },
+      "domain": [0,180]
+    }
   },
   {
     "prompts": [{"prompt": "For God's sake, back to normal, please."}]
