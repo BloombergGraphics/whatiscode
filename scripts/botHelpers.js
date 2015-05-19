@@ -269,7 +269,7 @@ function logger(bool) {
     .style("left", x+"px")
     .style("top", y+"px")
     .style("color", color(key%100))
-    .html(keychar + " <strong>" + scancode + "</strong><br/><small>" + d3.event.type + "</small>")
+    .html("<strong>" + keychar + "</strong> " + scancode + "<br/><small>" + d3.event.type + "</small>")
     .transition()
     .duration(1000)
     .style("opacity", 0)
