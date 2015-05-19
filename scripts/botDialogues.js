@@ -59,13 +59,48 @@ var randDialogue = function() {
   return dialogue;
 }
 
+botDialogues.slider = [
+  {
+    "mode": "on",
+    "speak": "LOOK AT THE SLIDER CHANGE THE BACKGROUND COLOR! TK TK TK"
+  },
+  {
+    "slider": {
+      "onbrush": function(value) {
+        d3.select("body").style("background-color", d3.hsl(value, .8, .8));
+        d3.select("aside").style("background-color", d3.hsl(value, .8, .8));
+        return "document.getElementsByTagName('body')[0].style.backgroundColor = \"" + document.getElementsByTagName('body')[0].style.backgroundColor + "\"";
+      },
+      "domain": [0, 180]
+    }
+  },
+  {
+    "prompts": [{"prompt": "OK, how about font color?"}]
+  },
+  {
+    "slider": {
+      "onbrush": function(value) {
+        d3.select("body").style("color", d3.hsl(value, .8, .2));
+        return "document.getElementsByTagName('body')[0].style.backgroundColor = \"" + document.getElementsByTagName('body')[0].style.color + "\"";
+      },
+      "domain": [0,180]
+    }
+  },
+  {
+    "prompts": [{"prompt": "For God's sake, back to normal, please."}]
+  },
+  {
+    "eval": "resetArticle();"
+  }
+];
+
 botDialogues.exampleEventLogger = [
   {
     "mode": "on",
     "speak": "Interactions on a web page are driven by events. Events are 'fired', and code can 'listen' for when they happen, and act accordingly."
   },
   {
-    "eval": 'logger();'
+    "eval": 'logger(true);'
   },
   {
     "speak": "Move your mouse and hit keys and scroll and look at them all!",
@@ -113,8 +148,13 @@ dialogueTest(function(item) { return item.result===24; }, "Nope. Simple question
 { "eval": '4+"20"'},
 { "speak": "WTF? Well, see the quotation marks around \"20\"? That means that it's being treated as a string here, which forces JavaScript to treat 4 as a string too and just jam 20 on the end. Try adding a string to a number:"},
 dialogueTest(function(item) { return typeof item.result === "string" && item.command.indexOf("+") !== -1 }, "Nope. Just try something like: \"one\" + 1"),
-{ "speak": "Weird, right? In fact, you can 'add' all sorts of different types of things together:" },
-{ "eval": 'document+"one"+1+Array' },
+{ "speak": "Weird, right? Worse, sometimes \"2\" is treated as a number:" },
+{"eval": '"2" - 1'},
+{"speak": "And sometimes as a string:"},
+{"eval": '"2" + 1'},
+{"wait": 1000},
+{"speak": "Which you can get around with sneaky double negation addition:"},
+{"eval": '"2" - -1'},
 { "speak": "And this is why programmers are angry." }
 ]
 
@@ -132,7 +172,7 @@ botDialogues.exampleRoulette = [
   "prompts": [
     {"prompt": "OK. Neat.", "dialogue": [{"mode": "off"}]},
     {"prompt": "Again! Again!!", "dialogue": function() { return botDialogues.exampleRoulette.slice(1); }},
-    {"prompt": "Back to normal, please...", "dialogue": [{"mode": "off", "eval": "resetArticle();"}]}
+    {"prompt": "Back to normal, please...", "dialogue": [{"mode": "off", }]}
   ]
 }
 ];
@@ -313,3 +353,36 @@ dialogueTest(function(i) { return paragraphs[0].style.background !== "black" && 
 botDialogues.CLOSE = [
 {"mode": "off"}
 ]
+
+botTeases = {
+  "events": {
+    "message": "The browser is constantly firing events in response to mouse and keyboard actions. Try mashing keys!",
+    "do": function() { logger(true); },
+    "buttons": [
+      {"text": "Learn more", "click": function() { paulbot.dialogue(botDialogues.tutorialDOM); }},
+      {"text": "Stop it", "click": function() { logger(false); paulbot.mode("off"); }}
+    ]
+  },
+  "adding": {
+    "message": "Hey, what's the difference between 4+20 and 4+\"20\"?",
+    "buttons": [
+      {"text": "Learn more", "click": function() { paulbot.dialogue(botDialogues.tutorialAdding); }},
+      {"text": "Sounds boring", "click": function() { paulbot.mode("off"); }}
+    ]
+  },
+  "arrays": {
+    "message": "Something something TK cool illustration of things happening on the page with arrays",
+    "buttons": [
+      {"text": "Learn more", "click": function() { paulbot.dialogue(botDialogues.tutorialArrays); }},
+      {"text": "Sounds boring", "click": function() { paulbot.mode("off"); }}
+    ]
+  },
+  "css": {
+    "message": "Randomizing page styles...",
+    "do": roulette,
+    "buttons": [
+      {"text": "Again!", "click": function() { roulette(); }},
+      {"text": "Back to normal please", "click": function() { resetArticle(); paulbot.mode("off"); }}
+    ]
+  }
+}
