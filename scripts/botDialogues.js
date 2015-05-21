@@ -68,7 +68,7 @@ botDialogues.shoppingCart = [
     "slider": {
       "onbrush": function(value) {
         document.getElementById('cart').style.left = value + "%";
-        return "document.getElementById('cart').style.left = '" + value + "%'";
+        return "document.getElementById('cart').style.left = '" + value + "%';";
       },
       "domain": [-20,120]
     }

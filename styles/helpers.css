@@ -37,3 +37,43 @@
   top: 0;
   left: -25%;
 }
+
+/* KEYBOARD */
+
+.keyboard {
+  pointer-events: none;
+  position: fixed;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  transform: translate(0,-50%);
+}
+.keyRow {
+
+}
+.key {
+  padding: 10px;
+  position: relative;
+}
+.key-inner {
+  border: 1px solid rgba(0,0,0,.3);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 10px;
+  overflow: none;
+  font-size: 5px;
+  font-family: sans-serif;
+}
+.key-event {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 3em;
+  font-family: consolas, courier, monospace;
+  text-align: center;
+  padding: 20px;
+  transform: rotate(0deg) translate(-50%, -50%);
+}
