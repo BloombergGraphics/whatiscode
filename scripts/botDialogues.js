@@ -76,6 +76,39 @@ botDialogues.shoppingCart = [
   }
 ]
 
+botDialogues.keyboardEvents = [
+  {
+    "trigger": "in",
+  },
+  {
+    "speak": "Mash your keys, see the scancodes.",
+    "eval": "keyboardEvents(true)"
+  },
+  {
+    "trigger": "out",
+  },
+  {
+    "eval": "keyboardEvents(false)"
+  }
+]
+
+botDialogues.mouseEvents = [
+  {
+    "trigger": "in",
+  },
+  {
+    "speak": "Move your mouse, see the events.",
+    "eval": "mouseEvents(true)"
+  },
+  {
+    "trigger": "out",
+  },
+  {
+    "eval": "mouseEvents(false)"
+  }
+]
+
+
 botDialogues.slider = [
   {
     "mode": "on",

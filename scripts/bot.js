@@ -147,7 +147,7 @@ function bot() {
       //   .call(brush.event);
 
     if(config.onscroll !== null) {
-      d3.select(window).on('scroll', function() {
+      d3.select(window).on('scroll.'+botName, function() {
         var top = sel.node().getBoundingClientRect().top;
 
         if(top<0 || top>window.innerHeight) return;
@@ -287,7 +287,7 @@ function bot() {
     return new Promise(
       function(resolve,reject) {
 
-        d3.select(window).on(event, function() {
+        d3.select(window).on(event+"."+botName, function() {
           Promise.all([callback.call(robot,d3.event)]).then(function(value) {
             resolve(value);
           })
@@ -302,14 +302,14 @@ function bot() {
       function(resolve,reject) {
 
         if(trig==="in") {
-          d3.select(window).on('scroll', function() {
+          d3.select(window).on('scroll.'+botName, function() {
             if(!visible && isVisible(sel.node())) {
               visible=true;
               resolve(true);
             }
           });
         } else if(trig==="out") {
-          d3.select(window).on('scroll', function() {
+          d3.select(window).on('scroll.'+botName, function() {
             if(visible && !isVisible(sel.node())) {
               visible=false;
               resolve();
