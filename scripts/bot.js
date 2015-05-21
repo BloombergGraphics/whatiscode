@@ -13,7 +13,9 @@ function bot() {
         messages,
         learninal,
         learninalSel,
-      pendingDialogue;
+      pendingDialogue,
+      visible,
+      attachment;
 
   function robot(selection) {
 
@@ -52,6 +54,18 @@ function bot() {
     return robot;
   };
 
+  robot.attachment = function(_) {
+    if (!arguments.length) return attachment;
+    attachment = _;
+    return robot;
+  };
+
+  robot.visible = function(_) {
+    if (!arguments.length) return visible;
+    visible = _;
+    return robot;
+  };
+
   robot.mode = function(_) {
     // off, tease, on
     if (!arguments.length) return mode;
@@ -70,6 +84,7 @@ function bot() {
 
     config = _.extend({
       "onbrush": null,
+      "onscroll": null,
       "domain": [0,1]
     }, config);
 
@@ -126,15 +141,33 @@ function bot() {
 
     slider
         .call(brush.event)
-      .transition() // gratuitous intro!
-        .duration(750)
-        .call(brush.extent([70, 70]))
-        .call(brush.event);
+      // .transition() // gratuitous intro!
+      //   .duration(750)
+      //   .call(brush.extent([70, 70]))
+      //   .call(brush.event);
+
+    if(config.onscroll !== null) {
+      d3.select(window).on('scroll', function() {
+        var top = sel.node().getBoundingClientRect().top;
+
+        if(top<0 || top>window.innerHeight) return;
+
+        var scrollScale = d3.scale.linear()
+          .domain([window.innerHeight, 0])
+          .range(x.domain());
+
+          // debugger
+
+        slider.call(brush.extent([scrollScale(top), scrollScale(top)]))
+          .call(brush.event);
+
+      });
+    }
 
     function brushed() {
       var value = brush.extent()[0];
 
-      if (d3.event.sourceEvent) { // not a programmatic event
+      if (d3.event.sourceEvent && d3.mouse(this)[0]) { // not a programmatic event
         value = x.invert(d3.mouse(this)[0]);
         brush.extent([value, value]);
       }
@@ -245,13 +278,45 @@ function bot() {
   robot.wait = function(ms) {
     return new Promise(
       function(resolve,reject) {
+        setTimeout(function() { resolve(); }, ms);
+      }
+    );
+  }
 
-        if(ms==="scroll") {
+  robot.on = function(event, callback) {
+    return new Promise(
+      function(resolve,reject) {
+
+        d3.select(window).on(event, function() {
+          Promise.all([callback.call(robot,d3.event)]).then(function(value) {
+            resolve(value);
+          })
+        });
+
+      }
+    );
+  }
+
+  robot.trigger = function(trig) {
+    return new Promise(
+      function(resolve,reject) {
+
+        if(trig==="in") {
           d3.select(window).on('scroll', function() {
-            if(isVisible(sel.node())) resolve();
+            if(!visible && isVisible(sel.node())) {
+              visible=true;
+              resolve(true);
+            }
+          });
+        } else if(trig==="out") {
+          d3.select(window).on('scroll', function() {
+            if(visible && !isVisible(sel.node())) {
+              visible=false;
+              resolve();
+            }
           });
         } else {
-          setTimeout(function() { resolve(); }, ms);
+          resolve();
         }
 
       }
@@ -279,6 +344,17 @@ function bot() {
     );
   }
 
+  // dump in actions to be performed in parallel
+  robot.async = function(todo) {
+    for (var key in todo) {
+      if (todo.hasOwnProperty(key)) {
+        robot[key].call(robot, todo[key]);
+      }
+    }
+    return true;
+  }
+
+  // queue up a sequence of actions to be performed serially
   robot.dialogue = function(pending) {
 
     pending = d3.functor(pending).call(robot).slice(0);

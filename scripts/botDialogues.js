@@ -61,15 +61,16 @@ var randDialogue = function() {
 
 botDialogues.shoppingCart = [
   {
-    "wait": "scroll"
+    "trigger": "in",
   },
   {
     "speak": "Drag the slider, move the cart. Easy.",
     "slider": {
       "onbrush": function(value) {
-        document.getElementById('cart').style.left = value + "%";
-        return "document.getElementById('cart').style.left = '" + value + "%';";
+        document.getElementById('cart').style.left = value.toFixed() + "%";
+        return "document.getElementById('cart').style.left = '" + value.toFixed() + "%';";
       },
+      "onscroll": true,
       "domain": [-20,120]
     }
   }
