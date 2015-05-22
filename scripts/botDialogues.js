@@ -59,6 +59,56 @@ var randDialogue = function() {
   return dialogue;
 }
 
+botDialogues.shoppingCart = [
+  {
+    "trigger": "in",
+  },
+  {
+    "speak": "Drag the slider, move the cart. Easy.",
+    "slider": {
+      "onbrush": function(value) {
+        document.getElementById('cart').style.left = value.toFixed() + "%";
+        return "document.getElementById('cart').style.left = '" + value.toFixed() + "%';";
+      },
+      "onscroll": true,
+      "domain": [-20,120]
+    }
+  }
+]
+
+botDialogues.keyboardEvents = [
+  {
+    "trigger": "in",
+  },
+  {
+    "speak": "Mash your keys, see the scancodes.",
+    "eval": "keyboardEvents(true)"
+  },
+  {
+    "trigger": "out",
+  },
+  {
+    "eval": "keyboardEvents(false)"
+  }
+]
+
+botDialogues.mouseEvents = [
+  {
+    "trigger": "in",
+  },
+  {
+    "speak": "Move your mouse, see the events.",
+    "eval": "mouseEvents(true)"
+  },
+  {
+    "trigger": "out",
+  },
+  {
+    "eval": "mouseEvents(false)"
+  }
+]
+
+
 botDialogues.slider = [
   {
     "mode": "on",

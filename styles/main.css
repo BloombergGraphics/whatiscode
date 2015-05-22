@@ -109,12 +109,10 @@ aside {
   position: absolute;
   width: 180px;
   margin-left: 1em;
-
-  /* ehhhh sloppy temp */
-  /*max-height: 2.5em;*/
   background: white;
-  /*overflow: hidden;
-  transition: max-height .5s, height .5s;*/
+
+  /* DECIDEDLY TEMPORARY. #TODO */
+  display: none;
 }
 aside:hover {
   z-index: 2;
