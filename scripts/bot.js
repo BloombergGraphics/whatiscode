@@ -7,41 +7,24 @@ function bot() {
 
   var sel,
       botName = "",
-      mode = "off",
+      mode = "on",
       face,
-      tease,
       body,
         messages,
         learninal,
         learninalSel,
-      menu,
-        pendingDialogue,
-        availableDialogues;
+      pendingDialogue,
+      visible,
+      attachment;
 
   function robot(selection) {
 
     sel = selection;
     sel.classed("bot", true).attr("id", botName);
     face = sel.append("div").classed("face", true);
-    menu = sel.append("div").classed("menu", true);
     body = sel.append("div").classed("body", true);
     messages = body.append("div").classed("messages", true);
     learninalSel = body.append("div").classed("learninal", true);
-
-    tease = sel.append("div").classed("tease", true);
-    tease.append("div").classed("message", true);
-    tease.append("div").classed("buttons", true);
-
-    face.on("click", function() {
-      robot.tease({
-        "message": "Welcome to the Bloomberg Learninal! I'm Paulbot and I'll be your guide today.",
-        "buttons": [
-          {"text": "Open Learninal", "click": function() { robot.mode("on"); }},
-          {"text": "Go away", "click": function() { robot.mode("off"); }}
-        ]
-      });
-    });
-    robot.mode("off");
 
     learninal = new Sandbox.View({
       el: learninalSel[0],
@@ -71,6 +54,18 @@ function bot() {
     return robot;
   };
 
+  robot.attachment = function(_) {
+    if (!arguments.length) return attachment;
+    attachment = _;
+    return robot;
+  };
+
+  robot.visible = function(_) {
+    if (!arguments.length) return visible;
+    visible = _;
+    return robot;
+  };
+
   robot.mode = function(_) {
     // off, tease, on
     if (!arguments.length) return mode;
@@ -78,22 +73,6 @@ function bot() {
     sel.attr("data-mode", mode);
     return robot;
   }
-
-  robot.menu = function(_) {
-    if (!arguments.length) return availableDialogues;
-    availableDialogues = _;
-    menu.selectAll("button")
-      .data(Object.keys(availableDialogues).sort(d3.ascending))
-      .enter()
-      .append("button")
-      .style("cursor", "pointer")
-      .text(function(d) { return d; })
-      .on("click", function(d) {
-        robot.dialogue(availableDialogues[d]);
-      });
-
-    return robot;
-  };
 
   robot.emote = function(emotion) {
     emotion = d3.functor(emotion).call(robot);
@@ -105,6 +84,7 @@ function bot() {
 
     config = _.extend({
       "onbrush": null,
+      "onscroll": null,
       "domain": [0,1]
     }, config);
 
@@ -161,15 +141,33 @@ function bot() {
 
     slider
         .call(brush.event)
-      .transition() // gratuitous intro!
-        .duration(750)
-        .call(brush.extent([70, 70]))
-        .call(brush.event);
+      // .transition() // gratuitous intro!
+      //   .duration(750)
+      //   .call(brush.extent([70, 70]))
+      //   .call(brush.event);
+
+    if(config.onscroll !== null) {
+      d3.select(window).on('scroll.'+botName, function() {
+        var top = sel.node().getBoundingClientRect().top;
+
+        if(top<0 || top>window.innerHeight) return;
+
+        var scrollScale = d3.scale.linear()
+          .domain([window.innerHeight, 0])
+          .range(x.domain());
+
+          // debugger
+
+        slider.call(brush.extent([scrollScale(top), scrollScale(top)]))
+          .call(brush.event);
+
+      });
+    }
 
     function brushed() {
       var value = brush.extent()[0];
 
-      if (d3.event.sourceEvent) { // not a programmatic event
+      if (d3.event.sourceEvent && d3.mouse(this)[0]) { // not a programmatic event
         value = x.invert(d3.mouse(this)[0]);
         brush.extent([value, value]);
       }
@@ -285,6 +283,46 @@ function bot() {
     );
   }
 
+  robot.on = function(event, callback) {
+    return new Promise(
+      function(resolve,reject) {
+
+        d3.select(window).on(event+"."+botName, function() {
+          Promise.all([callback.call(robot,d3.event)]).then(function(value) {
+            resolve(value);
+          })
+        });
+
+      }
+    );
+  }
+
+  robot.trigger = function(trig) {
+    return new Promise(
+      function(resolve,reject) {
+
+        if(trig==="in") {
+          d3.select(window).on('scroll.'+botName, function() {
+            if(!visible && isVisible(sel.node())) {
+              visible=true;
+              resolve(true);
+            }
+          });
+        } else if(trig==="out") {
+          d3.select(window).on('scroll.'+botName, function() {
+            if(visible && !isVisible(sel.node())) {
+              visible=false;
+              resolve();
+            }
+          });
+        } else {
+          resolve();
+        }
+
+      }
+    );
+  }
+
   robot.test = function(testArg) {
     return new Promise(
       function(resolve,reject) {
@@ -306,6 +344,17 @@ function bot() {
     );
   }
 
+  // dump in actions to be performed in parallel
+  robot.async = function(todo) {
+    for (var key in todo) {
+      if (todo.hasOwnProperty(key)) {
+        robot[key].call(robot, todo[key]);
+      }
+    }
+    return true;
+  }
+
+  // queue up a sequence of actions to be performed serially
   robot.dialogue = function(pending) {
 
     pending = d3.functor(pending).call(robot).slice(0);
@@ -345,27 +394,17 @@ function bot() {
 
   }
 
-  robot.tease = function(teaser) {
-
-    teaser.message = d3.functor(teaser.message).call(robot);
-
-    if(teaser.do) teaser.do();
-
-    robot.mode("tease");
-    tease.select('.message').text(teaser.message);
-    var buttonSel = tease.select('.buttons').selectAll('button').data(teaser.buttons)
-    buttonSel.enter().append('button');
-    buttonSel.exit().remove();
-    buttonSel
-      .text(function(d) { return d.text; })
-      .on("click", function(d) { d.click(); });
-
-    return robot;
-  }
-
   function coordsFromSel(sel) {
     var bounds = sel.node().getBoundingClientRect();
     return [bounds.left + bounds.width/2, bounds.top + bounds.height/2];
+  }
+
+  function isVisible(el) {
+    var elemTop = el.getBoundingClientRect().top;
+    var elemBottom = el.getBoundingClientRect().bottom;
+
+    var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+    return isVisible;
   }
 
   return robot;

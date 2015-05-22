@@ -1,41 +1,26 @@
-.bot {
+#paulbot {
   position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 30%;
   z-index: 3;
+}
+#paulbot .message {
+  display: none;
+}
+#paulbot .message:last-child {
+  display: block;
+}
+
+.bot {
   font-family: Consolas, courier, monospace;
+  background: #333;
+  transition: opacity .5s;
 }
 
 .bot[data-mode="off"] {
-  left: 10px;
-  bottom: 10px;
-  width: 60px;
-  height: 100px;
+  opacity: 0;
 }
-.bot[data-mode="off"] .tease { display: none; }
-.bot[data-mode="off"] .body { display: none; }
-.bot[data-mode="off"] .menu { display: none; }
-
-.bot[data-mode="tease"] {
-  left: 10px;
-  bottom: 10px;
-  width: 300px;
-  height: 100px;
-  font-size: 12px;
-  line-height: 1.1em;
-}
-.bot[data-mode="tease"] .tease { display: block; }
-.bot[data-mode="tease"] .body { display: none; }
-.bot[data-mode="tease"] .menu { display: none; }
-
-.bot[data-mode="on"] {
-  width: 100%;
-  height: 300px;
-  background: #333;
-  bottom: 0;
-  left:0;
-}
-.bot[data-mode="on"] .tease { display: none; }
-.bot[data-mode="on"] .body { display: block; }
-.bot[data-mode="on"] .menu { display: block; }
 
 /* FACE */
 
@@ -43,95 +28,30 @@
   background-image: url('../images/emotes/restface.gif');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
-  float: left;
-  width: 100%;
+  background-position: top;
+  background-size: 60%;
+  /*float: left;*/
+  width: 20%;
   height: 100%;
+  min-height: 100px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .bot .face:hover {
   background-image: url('../images/emotes/wiggle.gif') !important;
 }
 
-.bot[data-mode="off"] .face { opacity: .1 }
-.bot[data-mode="off"] .face:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-.bot[data-mode="tease"] .face, .bot[data-mode="on"] .face {
-  width: 20%;
-}
+/* BODY */
 
-.bot[data-mode="on"] .face {
-  background-size: 60%;
-}
-
-/* TEASE */
-
-.bot .tease {
-  float: right;
+.bot .body {
+  /*float: right;*/
+  display: inline-block;
   width: 80%;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding-left: 1em;
-}
-
-.bot .tease .message {
-  background: #333;
-  color: #0f0;
-  border: 2px solid #00f;
-  padding: 3px;
-  margin-bottom: 5px;
-}
-
-.bot .tease button {
-  display: inline-block;
-  background: magenta;
-  border: 2px solid #fff;
-  padding: 3px;
-  font-family: Consolas, courier, monospace;
-}
-.bot .tease button:hover {
-  background: black;
-  color: magenta;
-  cursor: pointer;
-}
-
-/* MENU */
-
-.bot .menu {
-  float: right;
-  width: 20%;
-  height: 100%;
-  text-align: right;
-}
-
-.bot .menu button {
-  display: block;
-  float: right;
-  clear: both;
-  margin: 5px;
-  background: #000;
-  border: 2px solid #0f0;
-  padding: 3px;
-  font-family: Consolas, courier, monospace;
-  color: #0f0;
-}
-.bot .menu button:hover {
-  background: #0f0;
-  color: #000;
-  cursor: pointer;
-}
-
-/* BODY */
-
-.bot .body {
-  float: right;
-  width: 60%;
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  vertical-align: top;
 }
 
 .bot .body .messages {
@@ -220,4 +140,7 @@
   stroke-opacity: .5;
   stroke-width: 1.25px;
   cursor: crosshair;
+}
+
+.bot .slidey .label {
 }

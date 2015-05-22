@@ -1,4 +1,4 @@
-var originalArticle;
+var originalArticle, paulbots = {};
 var loadTime = new Date();
 
 if(!localStorage.getItem('visitCount')) {
@@ -16,18 +16,18 @@ jQuery(document).ready(function($) {
   // create paulbot
   paulbot = bot().botName("paulbot");
   d3.select("#paulbot").call(paulbot);
-  paulbot
-    .mode("off")
-    .menu(botDialogues);
+
+  d3.selectAll("article .paulbot").each(function(d,i) {
+    var uuid = "paulbot"+(Math.random()*10000).toFixed();
+    paulbots[uuid] = bot().botName(uuid);
+    d3.select(this).call(paulbots[uuid]);
+    paulbots[uuid].dialogue(botDialogues[this.dataset.dialogue]);
+  })
 
   // create overlay views
   var overlayViews = [
     {
       "name": "toc",
-    },
-    {
-      "name": "glossary",
-      "initialize": buildGlossary
     },
     {
       "name": "recirc",
