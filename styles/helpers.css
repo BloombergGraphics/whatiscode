@@ -80,11 +80,21 @@
 
 /* TREE */
 
-.chart {
+.dom-tree {
   display: block;
   margin: auto;
   margin-top: 60px;
   font-size: 11px;
+  position: relative;
+  font-family: monospace;
+  overflow: hidden;
+}
+
+.dom-tree .node {
+  position: absolute;
+  overflow: hidden;
+  background: #eee;
+  border: 1px solid #fff;
 }
 
 rect {

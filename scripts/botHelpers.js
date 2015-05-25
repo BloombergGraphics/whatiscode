@@ -346,13 +346,10 @@ function treeMe() {
       x = d3.scale.linear().range([0, w]),
       y = d3.scale.linear().range([0, h]);
 
-  var vis = d3.select("body").append("div")
-      .attr("class", "chart")
+  var tree = d3.select("body").append("div")
+      .attr("class", "dom-tree")
       .style("width", w + "px")
-      .style("height", h + "px")
-    .append("svg:svg")
-      .attr("width", w)
-      .attr("height", h);
+      .style("height", h + "px");
 
   var partition = d3.layout.partition()
       .sort(null)
@@ -360,54 +357,30 @@ function treeMe() {
 
   var root = getDomTree(document.getElementsByTagName("body")[0]);
 
-  var g = vis.selectAll("g")
+  var rect = tree.selectAll("div");
+
+  rect = rect
       .data(partition.nodes(root))
-    .enter().append("svg:g")
-      .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; })
-      .on("click", click);
+    .enter().append("div")
+      .style("left", function(d) { return x(d.x) + "px"; })
+      .style("top", function(d) { return y(d.y) + "px"; })
+      .style("width", function(d) { return x(d.dx) + "px"; })
+      .style("height", function(d) { return y(d.dy) + "px"; })
+      .classed("node", true)
+      .text(function(d) { return d.children ? d.name : d.name + d.ref.innerHTML })
+      .on("click", clicked);
 
-  var kx = w / root.dx,
-      ky = h / 1;
+  function clicked(d) {
+    x.domain([d.x, d.x + d.dx]);
+    y.domain([d.y, 1]).range([d.y ? 20 : 0, h]);
 
-  g.append("svg:rect")
-      .attr("width", root.dy * kx)
-      .attr("height", function(d) { return d.dx * ky; })
-      .attr("class", function(d) { return d.children ? "parent" : "child"; });
-
-  g.append("svg:text")
-      .attr("transform", transform)
-      .attr("dy", ".35em")
-      .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; })
-      .text(function(d) { return d.name; })
-
-  d3.select(window)
-      .on("click", function() { click(root); })
-
-  function click(d) {
-    if (!d.children) return;
-
-    kx = (d.y ? w - 40 : w) / (1 - d.y);
-    ky = h / d.dx;
-    x.domain([d.y, 1]).range([d.y ? 40 : 0, w]);
-    y.domain([d.x, d.x + d.dx]);
-
-    var t = g.transition()
-        .duration(d3.event.altKey ? 7500 : 750)
-        .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; });
-
-    t.select("rect")
-        .attr("width", d.dy * kx)
-        .attr("height", function(d) { return d.dx * ky; });
-
-    t.select("text")
-        .attr("transform", transform)
-        .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; });
-
-    d3.event.stopPropagation();
-  }
-
-  function transform(d) {
-    return "translate(8," + d.dx * ky / 2 + ")";
+    rect
+        .transition()
+        .duration(750)
+        .style("left", function(d) { return x(d.x) + "px"; })
+        .style("top", function(d) { return y(d.y) + "px"; })
+        .style("width", function(d) { return x(d.x + d.dx) - x(d.x) + "px"; })
+        .style("height", function(d) { return y(d.y + d.dy) - y(d.y) + "px"; });
   }
 
   function getDomTree(node) {
@@ -420,7 +393,7 @@ function treeMe() {
   }
 
 }
-
+treeMe();
 
 
 console.log("                    ___\n                _.-'   ```'--.._                 _____ ___ ___   ____  _____ __ __      ______  __ __    ___  \n              .'                `-._            / ___/|   |   | /    |/ ___/|  |  |    |      ||  |  |  /  _] \n             /                      `.         (   \\_ | _   _ ||  o  (   \\_ |  |  |    |      ||  |  | /  [_        \n            /                         `.        \\__  ||  \\_/  ||     |\\__  ||  _  |    |_|  |_||  _  ||    _]       \n           /                            `.      /  \\ ||   |   ||  _  |/  \\ ||  |  |      |  |  |  |  ||   [_        \n          :       (                       \\     \\    ||   |   ||  |  |\\    ||  |  |      |  |  |  |  ||     |       \n          |    (   \\_                  )   `.    \\___||___|___||__|__| \\___||__|__|      |__|  |__|__||_____|       \n          |     \\__/ '.               /  )  ;  \n          |   (___:    \\            _/__/   ;    ____   ____  ______  ____   ____   ____  ____      __  __ __  __ __ \n          :       | _  ;          .'   |__) :   |    \\ /    ||      ||    \\ |    | /    ||    \\    /  ]|  |  ||  |  |\n           :      |` \\ |         /     /   /    |  o  )  o  ||      ||  D  ) |  | |  o  ||  D  )  /  / |  |  ||  |  |\n            \\     |_  ;|        /`\\   /   /     |   _/|     ||_|  |_||    /  |  | |     ||    /  /  /  |  _  ||  ~  |\n             \\    ; ) :|       ;_  ; /   /      |  |  |  _  |  |  |  |    \\  |  | |  _  ||    \\ /   \\_ |  |  ||___, |\n              \\_  .-''-.       | ) :/   /       |  |  |  |  |  |  |  |  .  \\ |  | |  |  ||  .  \\\\     ||  |  ||     |\n             .-         `      .--.'   /        |__|  |__|__|  |__|  |__|\\_||____||__|__||__|\\_| \\____||__|__||____/ \n            :         _.----._     `  < \n            :       -'........'-       `.\n             `.        `''''`           ;\n               `'-.__                  ,'\n                     ``--.   :'-------'\n                         :   :\n                        .'   '.\n      \n      \n                                                                    ");

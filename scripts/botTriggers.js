@@ -15,10 +15,14 @@ setTimeout(function() {
   paulbot.wait(5000).then(function() { paulbot.mode("off"); });
 }, 0);
 
+var hasTriggered = false;
 $(window).on('scroll', function(e) {
 
   // when you hit the bottom of the page
-  if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+  if($(window).scrollTop() + $(window).height() > $(document).height() - 100 && !hasTriggered) {
+
+    hasTriggered = true;
+
     var bottomTime = new Date();
     var timeDiff = (((bottomTime - loadTime) / 1000 / 60)*100).toFixed()/100;
     paulbot.mode("on");
