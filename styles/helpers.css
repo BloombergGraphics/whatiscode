@@ -77,3 +77,27 @@
   padding: 20px;
   transform: rotate(0deg) translate(-50%, -50%);
 }
+
+/* TREE */
+
+.chart {
+  display: block;
+  margin: auto;
+  margin-top: 60px;
+  font-size: 11px;
+}
+
+rect {
+  stroke: #eee;
+  fill: #aaa;
+  fill-opacity: .8;
+}
+
+rect.parent {
+  cursor: pointer;
+  fill: steelblue;
+}
+
+text {
+  pointer-events: none;
+}
