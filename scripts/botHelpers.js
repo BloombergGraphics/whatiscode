@@ -362,25 +362,25 @@ function treeMe() {
   rect = rect
       .data(partition.nodes(root))
     .enter().append("div")
-      .style("left", function(d) { return x(d.x) + "px"; })
-      .style("top", function(d) { return y(d.y) + "px"; })
-      .style("width", function(d) { return x(d.dx) + "px"; })
-      .style("height", function(d) { return y(d.dy) + "px"; })
+      .style("left", function(d) { return x(d.y) + "px"; })
+      .style("top", function(d) { return y(d.x) + "px"; })
+      .style("width", function(d) { return x(d.dy) + "px"; })
+      .style("height", function(d) { return y(d.dx) + "px"; })
       .classed("node", true)
       .text(function(d) { return d.children ? d.name : d.name + d.ref.innerHTML })
       .on("click", clicked);
 
   function clicked(d) {
-    x.domain([d.x, d.x + d.dx]);
-    y.domain([d.y, 1]).range([d.y ? 20 : 0, h]);
+    y.domain([d.x, d.x + d.dx]);
+    x.domain([d.y, 1]).range([d.y ? 20 : 0, w]);
 
     rect
         .transition()
         .duration(750)
-        .style("left", function(d) { return x(d.x) + "px"; })
-        .style("top", function(d) { return y(d.y) + "px"; })
-        .style("width", function(d) { return x(d.x + d.dx) - x(d.x) + "px"; })
-        .style("height", function(d) { return y(d.y + d.dy) - y(d.y) + "px"; });
+        .style("left", function(d) { return x(d.y) + "px"; })
+        .style("top", function(d) { return y(d.x) + "px"; })
+        .style("width", function(d) { return x(d.y + d.dy) - x(d.y) + "px"; })
+        .style("height", function(d) { return y(d.x + d.dx) - y(d.x) + "px"; });
   }
 
   function getDomTree(node) {
