@@ -1,6 +1,8 @@
 // based on http://bl.ocks.org/mbostock/4339083
 function treeMe(sel, node) {
 
+  sel.classed("module-tree", true);
+
   var margin = {top: 20, right: 120, bottom: 20, left: 120},
       width = sel.node().offsetWidth - margin.right - margin.left,
       height = 800 - margin.top - margin.bottom;
@@ -65,7 +67,8 @@ function treeMe(sel, node) {
     var nodeEnter = node.enter().append("g")
         .attr("class", "node")
         .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-        .on("click", click);
+        .on("click", click)
+        .on("mouseover", mouseover);
 
     nodeEnter.append("circle")
         .attr("r", 1e-6)
@@ -145,6 +148,16 @@ function treeMe(sel, node) {
       d._children = null;
     }
     update(d);
+  }
+
+  function mouseover(d) {
+    var iframe = sel.selectAll("iframe").data([d]);
+    iframe.enter().append("iframe");
+    var iframeDocument = iframe.node().contentWindow.document;
+
+    iframeDocument.open();
+    iframeDocument.write(d.ref.innerHTML);
+    iframeDocument.close();
   }
 
   function getDomTree(node) {
