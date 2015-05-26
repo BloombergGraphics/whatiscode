@@ -1,0 +1,40 @@
+.module-tree {
+  position: relative;
+}
+
+.module-tree .node {
+  cursor: pointer;
+}
+
+.module-tree .node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.module-tree .node.expandable circle {
+  fill: lightsteelblue;
+}
+
+.module-tree .node:hover circle {
+  fill: #0f0 !important;
+}
+
+.module-tree .node text {
+  font: 10px sans-serif;
+}
+
+.module-tree .link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.module-tree iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid black;
+  width: 300px;
+  height: 150px;
+}
