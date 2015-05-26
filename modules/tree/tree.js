@@ -33,6 +33,12 @@ function treeMe(sel, node) {
     }
   }
 
+  function findMaxDepth(nodes) {
+    return _.max(nodes.map(function(node, index) {
+      return node.children ? findMaxDepth(node.children) : node.depth;
+    }));
+  }
+
   root.children.forEach(collapse);
   update(root);
 
@@ -44,8 +50,12 @@ function treeMe(sel, node) {
     var nodes = tree.nodes(root).reverse(),
         links = tree.links(nodes);
 
+    maxDepth = findMaxDepth(nodes);
+
     // Normalize for fixed-depth.
-    nodes.forEach(function(d) { d.y = d.depth * 60; });
+    nodes.forEach(function(d) {
+      d.y = maxDepth ? d.depth * (width / maxDepth) : 0;
+    });
 
     // Update the nodes…
     var node = svg.selectAll("g.node")
@@ -75,7 +85,7 @@ function treeMe(sel, node) {
 
     nodeUpdate.select("circle")
         .attr("r", 4.5)
-        .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+        .style("fill", function(d) { return d._children && d._children.length ? "lightsteelblue" : "#fff"; });
 
     nodeUpdate.select("text")
         .style("fill-opacity", 1);
