@@ -77,3 +77,28 @@
   padding: 20px;
   transform: rotate(0deg) translate(-50%, -50%);
 }
+
+/* TREE */
+
+.dom-tree {
+  display: block;
+  margin: auto;
+  margin-top: 60px;
+  font-size: 11px;
+  position: relative;
+  font-family: monospace;
+  overflow: hidden;
+}
+
+.dom-tree .node {
+  position: absolute;
+  overflow: hidden;
+  background: #eee;
+  border: 1px solid #fff;
+  line-height:0.9em;
+}
+
+.dom-tree .node:hover {
+  cursor: pointer;
+  background: #ddd;
+}

@@ -339,5 +339,65 @@ function keyboardEvents(bool) {
 
 }
 
+// based on http://bl.ocks.org/mbostock/1005873
+// & http://mbostock.github.io/d3/talk/20111018/partition.html
+function treeMe(sel, node) {
+
+  var w = 1120,
+      h = 600,
+      x = d3.scale.linear().range([0, w]),
+      y = d3.scale.linear().range([0, h]);
+
+  var tree = sel.append("div")
+      .attr("class", "dom-tree")
+      .style("width", w + "px")
+      .style("height", h + "px");
+
+  var partition = d3.layout.partition()
+      .sort(null)
+      .value(function(d) { return d.size; });
+
+  var root = getDomTree(node);
+
+  var rect = tree.selectAll("div");
+
+  rect = rect
+      .data(partition.nodes(root))
+    .enter().append("div")
+      .style("left", function(d) { return x(d.y) + "px"; })
+      .style("top", function(d) { return y(d.x) + "px"; })
+      .style("width", function(d) { return x(d.dy) + "px"; })
+      .style("height", function(d) { return y(d.dx) + "px"; })
+      .classed("node", true)
+      .classed("child", function(d) { return !d.children; })
+      .classed("parent", function(d) { return d.children; })
+      .text(function(d) { return d.children ? d.name : d.name + d.ref.innerHTML })
+      .on("click", clicked);
+
+  function clicked(d) {
+    y.domain([d.x, d.x + d.dx]);
+    x.domain([d.y, 1]).range([d.y ? 20 : 0, w]);
+
+    rect
+        .transition()
+        .duration(750)
+        .style("left", function(d) { return x(d.y) + "px"; })
+        .style("top", function(d) { return y(d.x) + "px"; })
+        .style("width", function(d) { return x(d.y + d.dy) - x(d.y) + "px"; })
+        .style("height", function(d) { return y(d.x + d.dx) - y(d.x) + "px"; });
+  }
+
+  function getDomTree(node) {
+    return {
+      "name": "<"+node.nodeName+">",
+      "ref": node,
+      "size": node.innerHTML.length,
+      "children": Array.prototype.slice.call(node.children).map(getDomTree)
+    };
+  }
+
+}
+treeMe(d3.select("body"), document.getElementById("text-2-8"));
+
 
 console.log("                    ___\n                _.-'   ```'--.._                 _____ ___ ___   ____  _____ __ __      ______  __ __    ___  \n              .'                `-._            / ___/|   |   | /    |/ ___/|  |  |    |      ||  |  |  /  _] \n             /                      `.         (   \\_ | _   _ ||  o  (   \\_ |  |  |    |      ||  |  | /  [_        \n            /                         `.        \\__  ||  \\_/  ||     |\\__  ||  _  |    |_|  |_||  _  ||    _]       \n           /                            `.      /  \\ ||   |   ||  _  |/  \\ ||  |  |      |  |  |  |  ||   [_        \n          :       (                       \\     \\    ||   |   ||  |  |\\    ||  |  |      |  |  |  |  ||     |       \n          |    (   \\_                  )   `.    \\___||___|___||__|__| \\___||__|__|      |__|  |__|__||_____|       \n          |     \\__/ '.               /  )  ;  \n          |   (___:    \\            _/__/   ;    ____   ____  ______  ____   ____   ____  ____      __  __ __  __ __ \n          :       | _  ;          .'   |__) :   |    \\ /    ||      ||    \\ |    | /    ||    \\    /  ]|  |  ||  |  |\n           :      |` \\ |         /     /   /    |  o  )  o  ||      ||  D  ) |  | |  o  ||  D  )  /  / |  |  ||  |  |\n            \\     |_  ;|        /`\\   /   /     |   _/|     ||_|  |_||    /  |  | |     ||    /  /  /  |  _  ||  ~  |\n             \\    ; ) :|       ;_  ; /   /      |  |  |  _  |  |  |  |    \\  |  | |  _  ||    \\ /   \\_ |  |  ||___, |\n              \\_  .-''-.       | ) :/   /       |  |  |  |  |  |  |  |  .  \\ |  | |  |  ||  .  \\\\     ||  |  ||     |\n             .-         `      .--.'   /        |__|  |__|__|  |__|  |__|\\_||____||__|__||__|\\_| \\____||__|__||____/ \n            :         _.----._     `  < \n            :       -'........'-       `.\n             `.        `''''`           ;\n               `'-.__                  ,'\n                     ``--.   :'-------'\n                         :   :\n                        .'   '.\n      \n      \n                                                                    ");
