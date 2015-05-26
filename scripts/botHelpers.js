@@ -339,14 +339,16 @@ function keyboardEvents(bool) {
 
 }
 
-function treeMe() {
+// based on http://bl.ocks.org/mbostock/1005873
+// & http://mbostock.github.io/d3/talk/20111018/partition.html
+function treeMe(sel, node) {
 
   var w = 1120,
       h = 600,
       x = d3.scale.linear().range([0, w]),
       y = d3.scale.linear().range([0, h]);
 
-  var tree = d3.select("body").append("div")
+  var tree = sel.append("div")
       .attr("class", "dom-tree")
       .style("width", w + "px")
       .style("height", h + "px");
@@ -355,7 +357,7 @@ function treeMe() {
       .sort(null)
       .value(function(d) { return d.size; });
 
-  var root = getDomTree(document.getElementsByTagName("body")[0]);
+  var root = getDomTree(node);
 
   var rect = tree.selectAll("div");
 
@@ -393,7 +395,7 @@ function treeMe() {
   }
 
 }
-treeMe();
+treeMe(d3.select("body"), document.getElementById("text-2-8"));
 
 
 console.log("                    ___\n                _.-'   ```'--.._                 _____ ___ ___   ____  _____ __ __      ______  __ __    ___  \n              .'                `-._            / ___/|   |   | /    |/ ___/|  |  |    |      ||  |  |  /  _] \n             /                      `.         (   \\_ | _   _ ||  o  (   \\_ |  |  |    |      ||  |  | /  [_        \n            /                         `.        \\__  ||  \\_/  ||     |\\__  ||  _  |    |_|  |_||  _  ||    _]       \n           /                            `.      /  \\ ||   |   ||  _  |/  \\ ||  |  |      |  |  |  |  ||   [_        \n          :       (                       \\     \\    ||   |   ||  |  |\\    ||  |  |      |  |  |  |  ||     |       \n          |    (   \\_                  )   `.    \\___||___|___||__|__| \\___||__|__|      |__|  |__|__||_____|       \n          |     \\__/ '.               /  )  ;  \n          |   (___:    \\            _/__/   ;    ____   ____  ______  ____   ____   ____  ____      __  __ __  __ __ \n          :       | _  ;          .'   |__) :   |    \\ /    ||      ||    \\ |    | /    ||    \\    /  ]|  |  ||  |  |\n           :      |` \\ |         /     /   /    |  o  )  o  ||      ||  D  ) |  | |  o  ||  D  )  /  / |  |  ||  |  |\n            \\     |_  ;|        /`\\   /   /     |   _/|     ||_|  |_||    /  |  | |     ||    /  /  /  |  _  ||  ~  |\n             \\    ; ) :|       ;_  ; /   /      |  |  |  _  |  |  |  |    \\  |  | |  _  ||    \\ /   \\_ |  |  ||___, |\n              \\_  .-''-.       | ) :/   /       |  |  |  |  |  |  |  |  .  \\ |  | |  |  ||  .  \\\\     ||  |  ||     |\n             .-         `      .--.'   /        |__|  |__|__|  |__|  |__|\\_||____||__|__||__|\\_| \\____||__|__||____/ \n            :         _.----._     `  < \n            :       -'........'-       `.\n             `.        `''''`           ;\n               `'-.__                  ,'\n                     ``--.   :'-------'\n                         :   :\n                        .'   '.\n      \n      \n                                                                    ");
