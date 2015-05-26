@@ -12,6 +12,10 @@
   stroke-width: 1.5px;
 }
 
+.module-tree .node.expandable circle {
+  fill: lightsteelblue;
+}
+
 .module-tree .node:hover circle {
   fill: #0f0 !important;
 }

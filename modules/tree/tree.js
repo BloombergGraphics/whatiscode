@@ -65,14 +65,16 @@ function treeMe(sel, node) {
 
     // Enter any new nodes at the parent's previous position.
     var nodeEnter = node.enter().append("g")
-        .attr("class", "node")
+        .classed("node", true)
+        .classed("child", function(d) { return !d.children; })
+        .classed("parent", function(d) { return d.children; })
+        .classed("expandable", function(d) { return d._children && d._children.length; })
         .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
         .on("click", click)
         .on("mouseover", mouseover);
 
     nodeEnter.append("circle")
-        .attr("r", 1e-6)
-        .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+        .attr("r", 1e-6);
 
     nodeEnter.append("text")
         .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
@@ -81,14 +83,19 @@ function treeMe(sel, node) {
         .text(function(d) { return d.name; })
         .style("fill-opacity", 1e-6);
 
+    // Update classes
+    node
+        .classed("child", function(d) { return !d.children; })
+        .classed("parent", function(d) { return d.children; })
+        .classed("expandable", function(d) { return d._children && d._children.length; })
+
     // Transition nodes to their new position.
     var nodeUpdate = node.transition()
         .duration(duration)
         .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
     nodeUpdate.select("circle")
-        .attr("r", 4.5)
-        .style("fill", function(d) { return d._children && d._children.length ? "lightsteelblue" : "#fff"; });
+        .attr("r", 4.5);
 
     nodeUpdate.select("text")
         .style("fill-opacity", 1);
