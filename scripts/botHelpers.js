@@ -369,6 +369,8 @@ function treeMe(sel, node) {
       .style("width", function(d) { return x(d.dy) + "px"; })
       .style("height", function(d) { return y(d.dx) + "px"; })
       .classed("node", true)
+      .classed("child", function(d) { return !d.children; })
+      .classed("parent", function(d) { return d.children; })
       .text(function(d) { return d.children ? d.name : d.name + d.ref.innerHTML })
       .on("click", clicked);
 
