@@ -80,6 +80,10 @@
 
 /* TREE */
 
+#put-tree-here {
+  margin-left: -250px;
+}
+
 .dom-tree {
   display: block;
   margin: auto;
