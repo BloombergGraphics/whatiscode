@@ -85,19 +85,11 @@ function renderLiveHTML() {
 }
 
 function footnotesToAsides() {
+  var footrefs = $(".footref").unwrap();
   var footnotes = $(".footdef");
   footnotes.each(function(i, fn) {
-    // debugger
-    fn = $(fn);
-    var ref = document.getElementById(fn.find("a").eq(0).attr("href").split("#")[1]);
-    var para = $(ref).closest("p");
-    // debugger
-    var aside = $("<aside/>", {
-      class: "footnote"
-    }).insertBefore(para);
-    fn.detach();
-    fn.appendTo(aside);
-  })
+    $(fn).attr("data-fn-id", $(fn).find("a").eq(0).attr("id").split(".")[1]);
+  });
 }
 
 function preCode() {
@@ -107,3 +99,19 @@ function preCode() {
     }
   })
 }
+
+// Footnote popups
+d3.selectAll(".footref").on("click", function() {
+  d3.event.preventDefault();
+
+  var fnId = this.getAttribute("href").split(".")[1];
+  var popup = d3.select("body").selectAll(".paulnote-popup");
+  var data = fnId === popup.data()[0] ? [] : [fnId];
+
+  popup = popup.data(data, function(d) { return d; });
+  popup.exit().remove();
+  popup.enter().append("div").classed("paulnote-popup", true)
+    .html(document.querySelector("[data-fn-id='"+fnId+"']").innerHTML)
+    .style("left", this.getBoundingClientRect().left + this.getBoundingClientRect().width/2 +"px")
+    .style("top", (this.getBoundingClientRect().bottom + document.getElementsByTagName("body")[0].scrollTop) +"px");
+})
