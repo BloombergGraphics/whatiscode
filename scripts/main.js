@@ -85,19 +85,23 @@ function renderLiveHTML() {
 }
 
 function footnotesToAsides() {
+  // Org-mode exports as <sup><a class="footdef">...</a></sup>; we wanna ditch the sup.
+  var footrefs = $(".footref").unwrap();
   var footnotes = $(".footdef");
+  // For each footnote link, find the associated footnote and prepend it as an aside.
   footnotes.each(function(i, fn) {
-    // debugger
     fn = $(fn);
-    var ref = document.getElementById(fn.find("a").eq(0).attr("href").split("#")[1]);
+    var fnrId = fn.find("a").eq(0).attr("href").split("#")[1];
+    var fnId = fn.find("a").eq(0).attr("id").split(".")[1];
+    var ref = document.getElementById(fnrId);
     var para = $(ref).closest("p");
-    // debugger
     var aside = $("<aside/>", {
-      class: "footnote"
+      class: "paulnote",
+      "data-fn-id": fnId
     }).insertBefore(para);
     fn.detach();
     fn.appendTo(aside);
-  })
+  });
 }
 
 function preCode() {
@@ -107,3 +111,17 @@ function preCode() {
     }
   })
 }
+
+// Footnote popups
+d3.selectAll(".footref").on("click", function() {
+  d3.event.preventDefault();
+
+  var fnId = this.getAttribute("href").split(".")[1];
+
+  var popup = d3.select("body").selectAll(".paulnote-popup").data([this]);
+  popup.enter().append("div").classed("paulnote-popup", true);
+  popup
+    .html(d3.select("[data-fn-id='"+fnId+"']").node().innerHTML)
+    .style("left", this.getBoundingClientRect().left +"px")
+    .style("top", (this.getBoundingClientRect().top + document.getElementsByTagName("body")[0].scrollTop) +"px");
+})
