@@ -94,45 +94,23 @@ h1 {
 
 .paulnote-popup {
   position: absolute;
-}
-
-.paulnote {
   font-size:0.875em;
   line-height: 1.3em;
-  left: 100%;
-  position: absolute;
-  width: 180px;
-  margin-left: 1em;
+  width: 300px;
+  padding: 1em;
   background: white;
+  border: 1px solid black;
+  margin-top: 0.5em;
+  transform: translate(-50%,0);
+}
+.paulnote-popup sup {
   display: none;
 }
-.paulnote:hover {
-  z-index: 2;
-  max-height: inherit;
-}
-.paulnote .footdef sup {
-  vertical-align: baseline;
-  top: inherit;
-  font-size: inherit;
-  display: none;
-}
-.paulnote .footdef sup a {
-  text-decoration: none;
-}
-.paulnote .footdef p {
-  display: inline;
+.paulnote-popup p {
+  margin: 0;
 }
 
 /* GIMMICKS */
-
-.highlight {
-  background: yellow;
-  margin: -4px;
-  padding: 4px;
-} .highlight:hover {
-  background: #f0f;
-  cursor: pointer;
-}
 
 #live-html-iframe {
   width: 100%;
