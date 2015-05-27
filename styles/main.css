@@ -9,23 +9,6 @@ html, body {
   overflow-x: hidden;
 }
 
-body {
-  font-family: Georgia;
-  font-size: 16px;
-  line-height: 1.667em;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: black;
-  color: white;
-  text-align: center;
-  z-index: 9;
-}
-
 article {
   max-width: 40em;
   margin: 0 auto;
@@ -52,15 +35,10 @@ article img {
   opacity: 1;
   z-index: 5;
 }
-#glossary-bug {
-  background-image: url('../images/glossary.svg');
-  top: 10px;
-  right: 10px;
-}
 #toc-bug {
   background-image: url('../images/toc.svg');
-  top: 10px;
-  left: 10px;
+  bottom: 10px;
+  top: 130px;
 }
 #recirc-bug {
   background-image: url('../images/recirc.svg');
@@ -80,8 +58,6 @@ article img {
 
 #toc { left: -500px; }
 #toc[data-mode="on"] { left: 0; }
-#glossary { right: -500px; }
-#glossary[data-mode="on"] { right: 0; }
 
 #recirc {
   position: fixed;
@@ -102,45 +78,45 @@ h1 {
   text-align: center;
 }
 
-aside {
+/* FOOTNOTES */
+
+.footref {
+  background: #ddd;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: small;
+}
+.footref:hover {
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+}
+
+.paulnote-popup {
+  position: absolute;
   font-size:0.875em;
   line-height: 1.3em;
-  left: 100%;
-  position: absolute;
-  width: 180px;
-  margin-left: 1em;
+  width: 300px;
+  padding: 1em;
   background: white;
-
-  /* DECIDEDLY TEMPORARY. #TODO */
+  border: 1px solid black;
+  margin-top: 0.5em;
+  transform: translate(-50%,0);
+}
+.paulnote-popup sup {
   display: none;
 }
-aside:hover {
-  z-index: 2;
-  max-height: inherit;
-}
-aside .footdef sup {
-  vertical-align: baseline;
-  font-size: inherit;
-}
-aside .footdef sup a {
-  text-decoration: none;
-}
-aside .footdef p {
-  display: inline;
+.paulnote-popup p {
+  margin: 0;
 }
 
-.paulbot-prompt {
-  background: yellow;
-  margin: -4px;
-  padding: 4px;
-} .paulbot-prompt:hover {
-  background: #f0f;
-  cursor: pointer;
-}
+/* GIMMICKS */
 
 #live-html-iframe {
   width: 100%;
 }
+
+/* RECIRC */
 
 .recirc {
   width: 300px;
@@ -196,26 +172,4 @@ aside .footdef p {
 .recirc:hover .body {
   opacity: .5;
   z-index: 2;
-}
-
-/* GLOSSARY */
-
-.glossary-item {
-  border-bottom: 1px dotted gray;
-}
-.glossary-tooltip {
-  position: absolute;
-  display: none;
-  max-width: 200px;
-  font-family: helvetica;
-  font-size: small;
-  line-height: 1em;
-  padding: .5em;
-  background: white;
-  border: 1px solid black;
-  transform: translate(0%,-110%);
-  pointer-events: none;
-}
-.glossary-tooltip.on {
-  display: block;
 }
