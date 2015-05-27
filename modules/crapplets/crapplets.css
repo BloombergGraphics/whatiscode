@@ -1,0 +1,21 @@
+[data-module="crapplets"] {
+  height: 300px;
+  border: 1px solid gray;
+  background-image: url('img/loading.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.crapplets {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.crapplets img {
+  position: absolute;
+  transform: translate(-50%,-50%);
+}
