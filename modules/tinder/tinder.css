@@ -1,18 +1,9 @@
 /* http://codepen.io/arjentienkamp/pen/MYpYMO */
 
 .phone {
-	width: 350px;
+	width: 285px;
 	height: 600px;
-	font-family: 'Noto Sans', sans-serif;
-	background: url(http://web.arjentienkamp.com/codepen/tinder/iphone.png);
-	background-size: 382px;
-	background-repeat: no-repeat;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 4em;
-	padding-top: 7em;
-	padding-left: 3.2em;
-	padding-right: 3.7em;
+
 }
 
 .app {
@@ -20,24 +11,12 @@
 	height: 490px;
 	background-color: #FFF;
 	padding-top: 12px;
+  margin: 0 auto;
 }
 
 .content {
 	padding: 10px;
 	padding-top: 0px;
-}
-
-.header {
-	background-color: #FFF;
-	width:100%;
-	height:40px;
-	border-bottom: 1px solid #e2e2e2;
-	text-align: center;
-	margin-bottom: 10px;
-}
-
-.header img {
-	width:70px;
 }
 
 div.photo {
@@ -68,52 +47,6 @@ span.meta {
 span.meta span {
 	float: right;
 	color:#cfcfcf;
-}
-
-.users {
-	display: block;
-	width: 20px;
-	background: url(http://web.arjentienkamp.com/codepen/tinder/users.png);
-	background-size: 20px;
-	background-repeat: no-repeat;
-	padding-left: 30px;
-	background-position: 5px;
-}
-
-.moments {
-	display: block;
-	width: 14px;
-	background: url(http://web.arjentienkamp.com/codepen/tinder/moments.png);
-	background-size: 26px;
-	background-repeat: no-repeat;
-	padding-left: 35px;
-	background-position: 5px;
-}
-
-.chat {
-	display: block;
-	width: 34px;
-	height: 30px;
-	background: url(http://web.arjentienkamp.com/codepen/tinder/chat.png);
-	background-size: 30px;
-	background-repeat: no-repeat;
-	padding-left: 4px;
-	background-position: 5px;
-	float: right;
-	margin-top: 0px;
-}
-
-.settings {
-	display: block;
-	width: 34px;
-	height: 30px;
-	background: url(http://web.arjentienkamp.com/codepen/tinder/settings.png);
-	background-size: 30px;
-	background-repeat: no-repeat;
-	padding-left: 4px;
-	background-position: 5px;
-	float: left;
-	margin-top: 0px;
 }
 
 .footer {

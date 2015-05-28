@@ -58,8 +58,6 @@ $(document).ready(function(event) {
 		$("div.content").prepend('<div class="photo" id="photo" style="background-image:url(http://web.arjentienkamp.com/codepen/tinder/photo'+photos+'.jpg)">'
     	+ '<span class="meta">'
     	+ '<p>'+names+', '+ages+'</p>'
-    	+ '<span class="moments">0</span>'
-    	+ '<span class="users">0</span>'
     	+ '</span>'
     	+ '</div>');
 
