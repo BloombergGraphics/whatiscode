@@ -2,16 +2,16 @@ jQuery(document).ready(botTriggers);
 
 function botTriggers($) {
   setTimeout(function() {
-    if(localStorage.getItem('visitCount') == 1) {
-      var message = "Hey, welcome" +
-        (document.referrer ? " from " + document.referrer + " " : "") +
-        "! Look for me throughout the article for moments where you can play along.";
-    } else {
+    if(localStorage.getItem('visitCount') && parseInt(localStorage.getItem('visitCount')) > 1) {
       var message = "Hey, welcome back" +
         (document.referrer ? " from " + document.referrer + " " : "") +
         "! You've visited " +
-        localStorage.getItem('visitCount') +
-        " times. Remember to look for me throughout the article for moments where you can play along.";
+        localStorage.getItem('visitCount') + " times and spent " + (localStorage.getItem('timeOnPage')/1000/60).toFixed() +
+        " minutes here. Remember to look for me throughout the article for moments where you can play along.";
+    } else {
+      var message = "Hey, welcome" +
+        (document.referrer ? " from " + document.referrer + " " : "") +
+        "! Look for me throughout the article for moments where you can play along.";
     }
 
     var dialogue = [
@@ -20,7 +20,7 @@ function botTriggers($) {
         "speak": message
       }
     ];
-    if(localStorage.getItem('scrollTop')) {
+    if(localStorage.getItem('scrollTop') && false) {
       dialogue.push({
         "prompts": [
           {"prompt": "Continue reading from last spot","dialogue": [{
@@ -31,7 +31,7 @@ function botTriggers($) {
       })
     } else {
       dialogue.push({
-        "wait": 5000
+        "wait": 6000
       })
     }
     dialogue.push({
