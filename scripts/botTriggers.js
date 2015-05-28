@@ -59,6 +59,24 @@ $(window).on('scroll', function(e) {
 })
 
 var scrollLog = [];
+var fastSass = _.shuffle([
+  "You're scrolling so fast! Sloooowww dowwnnnn!",
+  "Wow you can read so quickly!",
+  "This is like a zillion wpm.",
+  "Are you reading my article or are you looking at my article.",
+  "Hey Barbecue, where's the fire?",
+  "Trying to skip to the bottom?",
+  "Are you just looking for fancy Snowfally things to jump out at you? Read more words. They're good.",
+  "Excuse me, my words are up here."
+]);
+var throttler = $.throttle(6000, alertTooFast);
+function alertTooFast() {
+  console.log("alerting too fast...");
+  paulbot.mode("on");
+  paulbot.emote('troll');
+  paulbot.speak(function() { return fastSass.pop(); });
+  paulbot.wait(3000).then(function() { paulbot.mode("off"); });
+}
 setInterval(function() {
   var scrollTop = document.getElementsByTagName("body")[0].scrollTop;
   scrollLog.push({
@@ -70,12 +88,10 @@ setInterval(function() {
     (scrollLog[scrollLog.length-1].scrollTop - scrollLog[scrollLog.length-2].scrollTop) /
     (scrollLog[scrollLog.length-1].timestamp - scrollLog[scrollLog.length-2].timestamp)
 
-
-  if(scrollSpeed > 4) {
-    paulbot.mode("on");
-    paulbot.emote('troll');
-    paulbot.speak(function() { return "You're scrolling so fast! Sloooowww dowwnnnn!" });
-    paulbot.wait(3000).then(function() { paulbot.mode("off"); });
+  console.log("logging scroll...");
+  if(scrollSpeed > 4 && fastSass.length) {
+    console.log("too fast...");
+    throttler();
   }
 
 }, 1000);
