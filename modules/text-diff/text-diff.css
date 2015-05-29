@@ -1,0 +1,7 @@
+.falling{
+  position: relative;
+  display: inline-block;
+}
+#text-diff span, #width-calc span{
+  float: left;
+}
