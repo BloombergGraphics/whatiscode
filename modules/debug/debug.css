@@ -1,0 +1,35 @@
+#debug{
+  position: relative;
+  height: 570px;
+  margin-left: -200px;
+}
+
+#debug .bugg{
+  width: 300px;
+  position: absolute;
+}
+
+#debug .bug-img{
+  width: 100px;
+  display:block;
+  margin:auto;
+  height: 108px;
+}
+
+#debug .q-container div{
+  border: 1px solid black;
+  padding: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+#debug .correct .q-container div{
+  border: 1px solid lightgrey;
+  color: lightgrey;
+}
+
+#debug .lazer{
+}
+
+#debug svg{
+  pointer-events: none;
+}
