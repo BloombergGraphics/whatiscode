@@ -2,6 +2,6 @@
   position: relative;
   display: inline-block;
 }
-#text-diff span, #width-calc span{
+#text-diff div, #width-calc div{
   float: left;
 }
