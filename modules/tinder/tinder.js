@@ -52,12 +52,36 @@ $(document).ready(function(event) {
 	}
 
 	function addNewProfile() {
-		var names = ['Lieke', 'Christina', 'Sanne', 'Soraya', 'Chanella', 'Larissa', 'Michelle'][Math.floor(Math.random() * 7)];
-		var ages = ['19','22','18','27','21', '18', '24'][Math.floor(Math.random() * 7)]
-		var photos = ['1', '2', '3', '4', '5', '6', '7'][Math.floor(Math.random() * 7)]
-		$("div.content").prepend('<div class="photo" id="photo" style="background-image:url(http://web.arjentienkamp.com/codepen/tinder/photo'+photos+'.jpg)">'
+		var profile = [
+			{
+				"name": "D3",
+				"author": "Mike Bostock",
+				"photo": "5.png"
+			},
+			{
+				"name": "D3 Jetpack",
+				"author": "Gregor Aisch",
+				"photo": "4.png"
+			},
+			{
+				"name": "A bit of Code Issue",
+				"author": "Toph Tucker",
+				"photo": "3.png"
+			},
+			{
+				"name": "Sandbox",
+				"author": "Joss Crowcroft",
+				"photo": "2.png"
+			},
+			{
+				"name": "A bit of Paulbot",
+				"author": "Toph Tucker",
+				"photo": "1.png"
+			},
+		][Math.floor(Math.random()*5)];
+		$("div.content").prepend('<div class="photo" id="photo" style="background-image:url(img/'+profile.photo+')">'
     	+ '<span class="meta">'
-    	+ '<p>'+names+', '+ages+'</p>'
+    	+ '<p>'+profile.name+', '+profile.author+'</p>'
     	+ '</span>'
     	+ '</div>');
 
