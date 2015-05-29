@@ -92,7 +92,7 @@ h1 {
   color: #fff;
 }
 
-.paulnote-popup {
+.paulnote-popup, .syntax-tooltip {
   position: absolute;
   font-size:0.875em;
   line-height: 1.3em;

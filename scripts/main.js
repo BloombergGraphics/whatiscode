@@ -69,11 +69,49 @@ jQuery(document).ready(function($) {
 
   // syntax highlighting
   hljs.initHighlightingOnLoad();
+  $("body").on("mouseover mouseout", "code.hljs span", highlightTooltip);
 
   // save uncontaminated version for reset ability
   originalArticle = $("article").html();
 
 });
+
+function highlightTooltip(e) {
+  if(e.type=="mouseout") {
+    d3.select("body").selectAll(".syntax-tooltip").remove();
+    return;
+  }
+  var codeClass = this.getAttribute('class');
+  var codeClasses = {
+    "hljs-keyword": "Language keywords mean something special in the language.",
+    "hljs-number": "A number",
+    "hljs-title": "A title names something, like a function in C or element in XML",
+    "hljs-params": "The parameters that get passed to the function",
+    "hljs-function": "A function declaration",
+    "hljs-built_in": "A built-in function",
+    "hljs-string": "This is a string; it may mean something to you, but to the computer it's pretty much just an arbitrary sequence of letters.",
+    "hljs-list": "A list",
+    "hljs-tag": "A tag",
+    "hljs-attribute": "The name of an attribute",
+    "hljs-value": "The value of an attribute",
+    "hljs-import": "An import lets you use code written somewhere else",
+    "hljs-class": "A class",
+    "hljs-container": "A container",
+    "hljs-type": "A type",
+    "hljs-variable": "A variable"
+  }
+
+  console.log("----------");
+  console.log(this)
+  console.log(codeClass);
+  console.log(codeClasses[codeClass]);
+
+  var popup = d3.select("body").selectAll(".syntax-tooltip").data([codeClass]);
+  popup.enter().append("div").classed("syntax-tooltip", true);
+  popup.text(codeClasses[codeClass])
+    .style("left", this.getBoundingClientRect().left + this.getBoundingClientRect().width/2 +"px")
+    .style("top", (this.getBoundingClientRect().bottom + document.getElementsByTagName("body")[0].scrollTop) +"px");
+}
 
 function renderLiveHTML() {
   // update iframe
