@@ -11,7 +11,14 @@ var addModule = (function(){
 
   d3.select(window).on('scroll.module', _.debounce(function(d){
     modules.forEach(function(d){
+      var wasActive = d.active;
       d.active = d.startPos < pageYOffset && pageYOffset < d.endPos
+
+      // if active changed, call load / unload function
+      if (d.active !== wasActive) {
+        d.active && d.onload ? d.onload() : null;
+        !d.active && d.onunload ? d.onunload() : null;
+      }
     })
   }, 300))
 
