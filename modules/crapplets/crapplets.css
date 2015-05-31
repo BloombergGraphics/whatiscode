@@ -5,10 +5,11 @@
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
+  position: relative;
 }
 
 .crapplets {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
