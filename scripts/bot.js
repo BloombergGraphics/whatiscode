@@ -203,6 +203,11 @@ function bot() {
     )
   }
 
+  robot.do = function(fn) {
+    fn.call(robot);
+    return robot;
+  }
+
   robot.eval = function(text) {
 
     if(!text) text="";
