@@ -256,13 +256,14 @@ function bot() {
 
             d3.select(this).classed("clicked", true);
 
+            if(d.link) window.open(d.link, '_blank');
+
+            if(d.do) d.do.call(robot);
+
             if(d.dialogue) {
               robot.dialogue(d.dialogue).then(function(value) {
                 resolve(value);
               });
-            } else if(d.link) {
-              window.open(d.link, '_blank');
-              resolve(true);
             } else {
               resolve(true);
             }
