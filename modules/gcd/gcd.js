@@ -39,7 +39,6 @@
 
       d.translate = d.prev.translate.slice()
       if (i) d.translate[+!d.flipped] += d.prev.v*d.prev.num
-      console.log(d.flipped, d.translate)
       d.color = colors[i]
     })
 
