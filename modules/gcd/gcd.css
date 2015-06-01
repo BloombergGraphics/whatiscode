@@ -2,6 +2,12 @@
   width: 960px;
   height: 500px;
   margin-left: -150px;
+  font-family: "HaasTextBold",Arial,Helvetica;
+}
+
+#gcd text{
+  font-family: "HaasTextBold",Arial,Helvetica;
+
 }
 
 #gcd rect{
@@ -26,7 +32,10 @@
 
 #gcd .number{
   font-size: 500%;
-  font-family: monospace;
+  /*font-family: monospace;*/
   text-shadow: 0 1px 0 #ccc, 1px 0 0 #ccc, 0 -1px 0 #ccc, -1px 0 0 #ccc;
 
 }
+
+
+

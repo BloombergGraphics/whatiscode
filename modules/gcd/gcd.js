@@ -4,13 +4,19 @@
   function drawGCD(){
     var stack = []
 
-    var a = 960 - Math.floor(Math.random()*100), b = 400 + Math.floor(Math.random()*100)
+    var a, b, stack
 
     function gcd(u, v){
       stack.push({u: u, v: v})
       return v ? gcd(v, u % v) : u
     }
-    gcd(a, b)
+
+    while (!stack.length || stack.length > 7){
+      a = 960 - Math.floor(Math.random()*100)
+      b = 400 + Math.floor(Math.random()*100)
+      stack = []
+      gcd(a, b)
+    }
 
 
     window.setTimeout(drawGCD, stack.length*700 + 1000)

@@ -103,7 +103,7 @@
   gateGs.append('text')
       .text(ƒ('type', 'str'))
       .attr({'text-anchor': 'middle', dy: '.33em'})
-      .style('font-size', '70%')
+      .style('font-size', '68%')
 
 
   var wireBotEls = svg.dataAppend(wires, 'path.wire.bot').attr('d', ƒ('pathStr'))
