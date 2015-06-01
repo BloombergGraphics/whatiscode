@@ -20,7 +20,8 @@ function bot() {
   function robot(selection) {
 
     sel = selection;
-    sel.classed("bot", true).attr("id", botName);
+    sel.classed("bot", true);
+    if(botName) sel.attr("id", botName);
     face = sel.append("div").classed("face", true);
     body = sel.append("div").classed("body", true);
     messages = body.append("div").classed("messages", true);

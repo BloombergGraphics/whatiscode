@@ -13,40 +13,17 @@ jQuery(document).ready(function($) {
   footnotesToAsides();
   preCode();
 
-  // create paulbot
-  paulbot = bot().botName("paulbot");
-  d3.select("#paulbot").call(paulbot);
-
-  // create overlay views
-  var overlayViews = [
-    {
-      "name": "toc",
-    }
-  ];
-
-  d3.select("#bugs").selectAll(".bug")
-    .data(overlayViews)
-    .enter()
-    .append("div")
-    .classed("bug", true)
-    .attr("id", function(d) { return d.name+"-bug"; })
-    .each(function(d,i) {
-      d.overlay = d3.select("#"+d.name);
-      if(d.initialize) { d.initialize.call(d.overlay.node(), d.data, i); }
-    })
+  // set up toc toggle
+  d3.select("#toc-bug")
     .on("click", function(d,i) {
-      if(d.overlay.attr("data-mode") === "on") {
+      if(d3.select("#toc").attr("data-mode") === "on") {
         d3.select(this).attr("data-mode", "off");
-        d.overlay.attr("data-mode", "off");
+        d3.select("#toc").attr("data-mode", "off");
       } else {
-        d3.selectAll(".bug").attr("data-mode", "off");
-        d3.selectAll(".overlay").attr("data-mode", "off");
         d3.select(this).attr("data-mode", "on");
-        d.overlay.attr("data-mode", "on");
-        if(d.handler) { d.handler.call(d.overlay.node(), d.data, i); }
+        d3.select("#toc").attr("data-mode", "on");
       }
     });
-
 
   // syntax highlighting
   hljs.initHighlightingOnLoad();

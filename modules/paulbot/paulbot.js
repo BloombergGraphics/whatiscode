@@ -1,6 +1,14 @@
-jQuery(document).ready(botTriggers);
+var paulbot;
 
-function botTriggers($) {
+!(function(){
+
+  var module = {sel: d3.select('#paulbot')}
+  addModule(module)
+
+  // create sticky fixed paulbot
+  paulbot = module.bot = bot();
+  module.sel.call(paulbot);
+
   setTimeout(function() {
     if(localStorage.getItem('visitCount') && parseInt(localStorage.getItem('visitCount')) > 1) {
       var message = "Hey, welcome back" +
@@ -113,4 +121,5 @@ function botTriggers($) {
 
     return;
   }
-}
+
+})();

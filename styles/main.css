@@ -19,45 +19,44 @@ article img {
   max-width: 100%;
 }
 
-.bug {
+h1 {
+  font-size: 3em;
+  text-align: center;
+}
+
+/* TOC */
+
+#toc-bug {
   position: fixed;
   width: 60px;
   height: 60px;
   opacity: .1;
   z-index: 2;
   background-size: contain;
-}
-.bug:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-.bug[data-mode="on"] {
-  opacity: 1;
-  z-index: 5;
-}
-#toc-bug {
   background-image: url('../images/toc.svg');
   bottom: 10px;
   top: 130px;
 }
-
-.sidepane {
+#toc-bug:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+#toc-bug[data-mode="on"] {
+  opacity: 1;
+  z-index: 5;
+}
+#toc {
   position: fixed;
   top: 0;
+  left: 0;
   width: 500px;
   height: 100%;
   overflow-y: scroll;
   background: #eee;
   z-index: 3;
+  display: none;
 }
-
-#toc { left: -500px; }
-#toc[data-mode="on"] { left: 0; }
-
-h1 {
-  font-size: 3em;
-  text-align: center;
-}
+#toc[data-mode="on"] { display: block; }
 
 /* FOOTNOTES */
 

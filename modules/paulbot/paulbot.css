@@ -1,0 +1,13 @@
+#paulbot {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  z-index: 3;
+}
+#paulbot .message {
+  display: none;
+}
+#paulbot .message:last-child {
+  display: block;
+}
