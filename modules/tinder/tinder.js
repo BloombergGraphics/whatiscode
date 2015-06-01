@@ -50,10 +50,11 @@
 		name.text(profile.name);
 		bio.text(profile.bio);
 		code.text(profile.code);
-		buttonLike.on("click", like);
-		buttonDislike.on("click", like);
+		buttonLike.classed("selected", false).on("click", like);
+		buttonDislike.classed("selected", false).on("click", like);
 
-		function like() {
+		function like(d,i) {
+			d3.select(this).classed("selected", true);
 			module.bot.speak(profile.paulbot).then(function() {
 				return module.bot.prompts([{
 					"prompt": "Next",

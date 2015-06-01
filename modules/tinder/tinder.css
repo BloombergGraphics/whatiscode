@@ -19,6 +19,14 @@ pre {
 	cursor: pointer;
 }
 
+.button:hover {
+	border-color: #f0f;
+}
+
+.button.selected {
+	border-color: #0f0;
+}
+
 .button.dislike {
 	margin-left: 4px;
 	background: url(img/dislike.png);
