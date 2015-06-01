@@ -32,3 +32,18 @@ var addModule = (function(){
     calcPositions()
   }
 })()
+
+
+
+
+
+//random global varibles go here?
+var blue  = '#2800d7'
+var Lblue = '#6381ff'
+var purple = '#c63eff'
+var Lpurple = '#fc99ff'
+var green = '#00c770'
+var Lgreen = '#91f29b'
+var red = '#f94600'
+
+var colorArray = [blue, purple, green, red, Lblue, Lpurple, Lgreen]

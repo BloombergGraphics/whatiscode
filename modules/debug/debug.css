@@ -2,6 +2,8 @@
   position: relative;
   height: 570px;
   margin-left: -200px;
+  font-family: monospace;
+  /*font-family: "HaasTextBold",Arial,Helvetica;*/
 }
 
 #debug .bugg{

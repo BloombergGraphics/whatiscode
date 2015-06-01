@@ -69,7 +69,7 @@
           if (d.right == e){
             d.correct = true
             d.imgEl.transition().delay(300).style('opacity', .3)
-            d3.select(this).style('color', 'green')
+            d3.select(this).style('color', green)
             d.div.classed('correct', true)
 
             svg.append('g').dataAppend([[Math.random()*width, 0], [0, Math.random()*height]], 'path.lazer')
@@ -77,14 +77,14 @@
                 .style({'stroke-width': 1, stroke: 'yellow'})
               .transition().duration(400)
                 .attr('d', function(e){ return ['M', e, 'L', [d.pos[0] + 150, d.pos[1] + 50]].join('') })
-                .style({'stroke-width': 8, stroke: 'green'})
+                .style({'stroke-width': 8, stroke: red})
               .transition()
                 .style('opacity', 0)
                 .style('stroke-width', 50)
 
           } else{
             addBug(bugs.filter(_.negate(ƒ('visable')))[0], d)
-            d3.select(this).style('color', 'red')
+            d3.select(this).style('color', red)
           }
         })
 
