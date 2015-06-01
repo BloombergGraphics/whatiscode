@@ -19,64 +19,44 @@ article img {
   max-width: 100%;
 }
 
-.bug {
+h1 {
+  font-size: 3em;
+  text-align: center;
+}
+
+/* TOC */
+
+#toc-bug {
   position: fixed;
   width: 60px;
   height: 60px;
   opacity: .1;
   z-index: 2;
   background-size: contain;
-}
-.bug:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-.bug[data-mode="on"] {
-  opacity: 1;
-  z-index: 5;
-}
-#toc-bug {
   background-image: url('../images/toc.svg');
   bottom: 10px;
   top: 130px;
 }
-#recirc-bug {
-  background-image: url('../images/recirc.svg');
-  bottom: 10px;
-  right: 10px;
+#toc-bug:hover {
+  opacity: 1;
+  cursor: pointer;
 }
-
-.sidepane {
+#toc-bug[data-mode="on"] {
+  opacity: 1;
+  z-index: 5;
+}
+#toc {
   position: fixed;
   top: 0;
+  left: 0;
   width: 500px;
   height: 100%;
   overflow-y: scroll;
   background: #eee;
   z-index: 3;
-}
-
-#toc { left: -500px; }
-#toc[data-mode="on"] { left: 0; }
-
-#recirc {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: none;
-  background: white;
-  z-index: 3;
 }
-#recirc[data-mode="on"] {
-  display: block;
-}
-
-h1 {
-  font-size: 3em;
-  text-align: center;
-}
+#toc[data-mode="on"] { display: block; }
 
 /* FOOTNOTES */
 
@@ -92,7 +72,7 @@ h1 {
   color: #fff;
 }
 
-.paulnote-popup {
+.paulnote-popup, .syntax-tooltip {
   position: absolute;
   font-size:0.875em;
   line-height: 1.3em;
@@ -108,68 +88,4 @@ h1 {
 }
 .paulnote-popup p {
   margin: 0;
-}
-
-/* GIMMICKS */
-
-#live-html-iframe {
-  width: 100%;
-}
-
-/* RECIRC */
-
-.recirc {
-  width: 300px;
-  height: 200px;
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  margin: 10px;
-}
-.recirc .title {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-family: helvetica, sans-serif;
-  font-weight: bold;
-  font-size: 1em;
-  z-index: 3;
-}
-.recirc:hover .title {
-  background: black;
-  color: white;
-}
-.recirc .source {
-  font-family: Consolas, courier, monospace;
-  font-size: .5em;
-  line-height: 1em;
-  color: #ddd;
-  word-wrap: break-word;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  z-index: 1;
-}
-.recirc .body {
-  position: absolute;
-  width: 133%;
-  height: 133%;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  border: none;
-  pointer-events: none;
-
-  -ms-zoom: 0.75;
-  -moz-transform: scale(0.75);
-  -moz-transform-origin: 0 0;
-  -o-transform: scale(0.75);
-  -o-transform-origin: 0 0;
-  -webkit-transform: scale(0.75);
-  -webkit-transform-origin: 0 0;
-}
-.recirc:hover .body {
-  opacity: .5;
-  z-index: 2;
 }

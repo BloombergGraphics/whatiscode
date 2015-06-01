@@ -1,109 +1,45 @@
-/* http://codepen.io/arjentienkamp/pen/MYpYMO */
-
-.phone {
-	width: 285px;
-	height: 600px;
-
+.screen {
+	border: 1px solid gray;
+	padding: 20px;
+	text-align: center;
 }
 
-.app {
-	width: 285px;
-	height: 490px;
-	background-color: #FFF;
-	padding-top: 12px;
-  margin: 0 auto;
+pre {
+	text-align: left;
 }
 
-.content {
-	padding: 10px;
-	padding-top: 0px;
-}
-
-div.photo {
-	position:absolute;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width:265px;
-	height:315px;
-	border:1px solid #a6a9aa;
-	border-radius: 8px;
-	background-size: cover;
-	background-repeat: no-repeat;
-	box-shadow: 0px 1px 7px 0px #cfcfcf;
-}
-
-span.meta {
-	display: block;
-	height:48px;
-	background-color: #FFF;
-	margin-top: 267px;
-	border-radius: 0px 0px 8px 8px;
-	font-size: 18px;
-	box-sizing:border-box;
-	padding: 12px;
-}
-
-span.meta span {
-	float: right;
-	color:#cfcfcf;
-}
-
-.footer {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 318px;
-	width: 100%;
-	padding-left: 40px;
-	padding-top: 6px;
-}
-
-.rate {
+.button {
 	width: 70px;
 	height:70px;
 	border-radius: 70px;
 	background: #FFF;
 	border: 5px solid #f0f0f0;
-	float: left;
+	display: inline-block;
 	box-shadow: 1px 1px 1px 0px #e9e9e9;
+	cursor: pointer;
 }
 
-.rate:nth-child(1) {
+.button:hover {
+	border-color: #f0f;
+}
+
+.button.selected {
+	border-color: #0f0;
+}
+
+.button.dislike {
 	margin-left: 4px;
-	background: url(http://web.arjentienkamp.com/codepen/tinder/delete.png);
+	background: url(img/dislike.png);
 	background-size: 25px;
 	background-position: center;
 	background-repeat: no-repeat;
 }
 
 
-.rate:nth-child(3) {
+.button.like {
 	margin-left: -4px;
-	background: url(http://web.arjentienkamp.com/codepen/tinder/heart.png);
+	background: url(img/like.png);
 	background-size: 25px;
 	background-position: center;
 	background-repeat: no-repeat;
-}
-
-.info {
-	width: 40px;
-	height: 40px;
-	border-radius: 40px;
-	background: #FFF;
-	border: 5px solid #f0f0f0;
-	float: left;
-	box-shadow: 1px 1px 1px 0px #e9e9e9;
-	margin-top: 14px;
-	margin-left: -4px;
-
-	background: url(http://web.arjentienkamp.com/codepen/tinder/info.png);
-	background-size: 15px;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-p {
-	padding:0;
-	margin:0;
-	float: left;
 }
