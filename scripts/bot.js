@@ -20,7 +20,8 @@ function bot() {
   function robot(selection) {
 
     sel = selection;
-    sel.classed("bot", true).attr("id", botName);
+    sel.classed("bot", true);
+    if(botName) sel.attr("id", botName);
     face = sel.append("div").classed("face", true);
     body = sel.append("div").classed("body", true);
     messages = body.append("div").classed("messages", true);
@@ -203,6 +204,11 @@ function bot() {
     )
   }
 
+  robot.do = function(fn) {
+    fn.call(robot);
+    return robot;
+  }
+
   robot.eval = function(text) {
 
     if(!text) text="";
@@ -251,13 +257,14 @@ function bot() {
 
             d3.select(this).classed("clicked", true);
 
+            if(d.link) window.open(d.link, '_blank');
+
+            if(d.do) d.do.call(robot);
+
             if(d.dialogue) {
               robot.dialogue(d.dialogue).then(function(value) {
                 resolve(value);
               });
-            } else if(d.link) {
-              window.open(d.link, '_blank');
-              resolve(true);
             } else {
               resolve(true);
             }
