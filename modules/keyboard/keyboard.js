@@ -9,7 +9,7 @@
     }
   ];
 
-  module.bot = bot().botName("keybot");
+  module.bot = bot();
   module.sel.append("div.bot.aside").call(module.bot);
 
   module.onload = function() {

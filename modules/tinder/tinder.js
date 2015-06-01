@@ -6,7 +6,7 @@
 	}
   addModule(module)
 
-	module.bot = bot().botName("keybot");
+	module.bot = bot();
   module.sel.append("div.bot.aside").call(module.bot);
 
 	var screen = module.sel.append("div.screen");

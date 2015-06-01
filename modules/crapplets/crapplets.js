@@ -3,7 +3,7 @@
   var module = {sel: d3.select('[data-module="crapplets"]')}
   addModule(module)
 
-  module.bot = bot().botName("crapbot");
+  module.bot = bot();
   module.sel.append("div.bot.aside").call(module.bot);
 
   var alertIntervals = [];

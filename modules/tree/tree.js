@@ -3,7 +3,7 @@
   var module = {sel: d3.select('#put-tree-here')}
   addModule(module)
 
-  module.bot = bot().botName("treebot");
+  module.bot = bot();
   module.sel.append("div.bot.aside").call(module.bot);
 
   module.onload = function() {
