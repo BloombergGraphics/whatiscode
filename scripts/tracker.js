@@ -413,20 +413,21 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
   if(ads.length<1) return;
 
   var sizeStr  = window.innerWidth > 740 ? 'width="728" height="90' : 'width="300" height="250"'
-  var sizeParm = window.innerWidth > 740 ? '728x90' : '300x250"'
+  var sizeParm = window.innerWidth > 740 ? '728x90|1x1' : '300x250'
+  var sizePos  = window.innerWidth > 740 ? 'leaderboard' : 'box'
 
   var new_leader = '<iframe ' + sizeStr + ' id="lb_ad_frame" style="visibility:hidden;"' +
       'onload="this.style.visibility=' + "'visible'" +
       '" class="ad_frame" scrolling="no" frameborder="no" src="' +
       'http://www.bloomberg.com/graphics/assets/ad.html?url=/' + config.bb_slug + 
-      "&size=" + sizeParm + "|1x1&iu="+config.ad_code+"&correlator=" +
+      "&size=" + sizeParm + "&iu="+config.ad_code+"&correlator=" +
       (config.correlator || new String(Math.random()).substring(2,11));
 
   for (var i=0; i< ads.length; i++){
       ads[i].style.display = "block";
       var randValue = new String(Math.random()).substring(2,11);
       var n = i + 1;
-      ads[i].innerHTML = new_leader + '&position=leaderboard' + n + '&ord=' + randValue + '"></iframe>';
+      ads[i].innerHTML = new_leader + '&position=' + sizePos + n + '&ord=' + randValue + '"></iframe>';
   }
 })()
 
