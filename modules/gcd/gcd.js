@@ -11,7 +11,7 @@
       return v ? gcd(v, u % v) : u
     }
 
-    while (!stack.length || stack.length > 7){
+    while (!stack.length || stack.length > 6){
       a = 960 - Math.floor(Math.random()*100)
       b = 400 + Math.floor(Math.random()*100)
       stack = []
@@ -25,7 +25,7 @@
     var size = 960,
         s    = 960/Math.max(a, b),
         s = 1
-        colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
+        colors = colorArray
 
     stack[0].translate = [0, 0]
 
