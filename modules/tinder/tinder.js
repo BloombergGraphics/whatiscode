@@ -50,6 +50,9 @@
 		name.text(profile.name);
 		bio.text(profile.bio);
 		code.text(profile.code);
+
+    hljs.highlightBlock(code.node());
+
 		buttonLike.classed("selected", false).on("click", like);
 		buttonDislike.classed("selected", false).on("click", like);
 

@@ -1,30 +1,30 @@
-#circut {
+#circuit {
   background: black;
   height: 500px;
   margin-left: -150px;
   width: 960px;
 }
 
-#circut rect{
+#circuit rect{
   fill-opacity: .5;
   stroke: black;
   fill: lightgrey;
   cursor: pointer;
 }
-#circut text{
+#circuit text{
   pointer-events: none;
 }
 
-#circut svg{
+#circuit svg{
   overflow: visible;
 }
 
 
-#circut .wire{
+#circuit .wire{
   fill: none;
   shape-rendering: crispEdges;
 }
 
-#circut .wire.bot{
+#circuit .wire.bot{
   opacity: .5;
 }

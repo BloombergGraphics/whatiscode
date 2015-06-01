@@ -50,7 +50,7 @@
     wireCol.key = +wireCol.key
 
     var prevGateCol = gatesByCol[wireCol.key - 1]
-    
+
     var gateSpace = x(1) - x(0) - gS
     var vXscale = d3.scale.linear().domain([0, wireCol.values.length]).range([10, gateSpace - 10])
 
@@ -60,7 +60,7 @@
 
     _.shuffle(wireCol.values).forEach(function(wire, i){
       var gate = prevGateCol.values[Math.floor(i/2)]
-      
+
       wire.from = gate
       gate.outputs.push(wire)
 
@@ -79,7 +79,7 @@
 
   wires.forEach(function(d){
     d.pathStr = [
-      'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS/3 : -gS/5)], 
+      'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS/3 : -gS/5)],
       'h', d.vX,
       'V', d.to.y + (d.toN ? gS/3 : gS/5),
       'L', [d.to.x - gS/2, d.to.y + (d.toN ? gS/3 : gS/5)]
@@ -88,7 +88,7 @@
 
 
   //add elements to the page
-  var svg = d3.select('#circut').append('svg')
+  var svg = d3.select('#circuit').append('svg')
       .attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
     .append('g').translate([margin.left, margin.right])
 
@@ -121,7 +121,7 @@
         gate.changedOn = gate.lastOn != gate.on
 
         gate.outputs.forEach(function(d){
-          d.on = gate.on 
+          d.on = gate.on
           d.changedOn = gate.changedOn
         })
       })
@@ -159,7 +159,7 @@
     if (d.i){
       var oldType = d.type
       while (oldType == d.type) d.type = types[Math.floor(Math.random()*types.length)]
-    
+
     } else{
       d.type = d.type == onType ? offType : onType
     }
@@ -169,7 +169,7 @@
     update(d.i)
   })
 
-  var module = {sel: d3.select('#circut')}
+  var module = {sel: d3.select('#circuit')}
   addModule(module)
 
   window.setInterval(function(){

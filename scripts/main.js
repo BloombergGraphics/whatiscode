@@ -1,4 +1,4 @@
-var originalArticle, paulbots = {};
+var originalArticle;
 var loadTime = new Date();
 
 if(!localStorage.getItem('visitCount')) {
@@ -17,22 +17,10 @@ jQuery(document).ready(function($) {
   paulbot = bot().botName("paulbot");
   d3.select("#paulbot").call(paulbot);
 
-  d3.selectAll("article .paulbot").each(function(d,i) {
-    var uuid = "paulbot"+(Math.random()*10000).toFixed();
-    paulbots[uuid] = bot().botName(uuid);
-    d3.select(this).call(paulbots[uuid]);
-    paulbots[uuid].dialogue(botDialogues[this.dataset.dialogue]);
-  })
-
   // create overlay views
   var overlayViews = [
     {
       "name": "toc",
-    },
-    {
-      "name": "recirc",
-      "handler": renderRecircs,
-      "data": recircs
     }
   ];
 
@@ -59,13 +47,6 @@ jQuery(document).ready(function($) {
       }
     });
 
-  // live html
-  renderLiveHTML();
-  $("#live-html-source").on("keyup", renderLiveHTML);
-  $("#live-html-source").on("blur", function() {
-    $(this).text($(this).text());
-    hljs.highlightBlock(this);
-  });
 
   // syntax highlighting
   hljs.initHighlightingOnLoad();
@@ -101,11 +82,6 @@ function highlightTooltip(e) {
     "hljs-variable": "A variable"
   }
 
-  console.log("----------");
-  console.log(this)
-  console.log(codeClass);
-  console.log(codeClasses[codeClass]);
-
   var popup = d3.select("body").selectAll(".syntax-tooltip").data([codeClass]);
   popup.enter().append("div").classed("syntax-tooltip", true);
   popup.text(codeClasses[codeClass])
@@ -113,14 +89,6 @@ function highlightTooltip(e) {
     .style("top", (this.getBoundingClientRect().bottom + document.getElementsByTagName("body")[0].scrollTop) +"px");
 }
 
-function renderLiveHTML() {
-  // update iframe
-  var iframe = document.getElementById('live-html-iframe');
-  var html = $("#live-html-source").text();
-  iframe.contentWindow.document.open();
-  iframe.contentWindow.document.write(html);
-  iframe.contentWindow.document.close();
-}
 
 function footnotesToAsides() {
   var footrefs = $(".footref").unwrap();
