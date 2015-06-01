@@ -7,14 +7,6 @@
   position: relative;
 }
 
-[data-module="crapplets"] .bot {
-  position: absolute;
-  left: 100%;
-  margin-left: 10px;
-  width: 200px;
-  z-index: 2;
-}
-
 .crapplets {
   position: absolute;
   top: 0;

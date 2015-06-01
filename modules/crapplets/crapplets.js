@@ -4,7 +4,7 @@
   addModule(module)
 
   module.bot = bot().botName("crapbot");
-  module.sel.append("div.bot").call(module.bot);
+  module.sel.append("div.bot.aside").call(module.bot);
 
   var alertIntervals = [];
   var container = module.sel.append("div").classed("crapplets", true);

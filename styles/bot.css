@@ -20,6 +20,15 @@
 
 .bot[data-mode="off"] {
   opacity: 0;
+  pointer-events: none;
+}
+
+.bot.aside {
+  position: absolute;
+  left: 100%;
+  margin-left: 10px;
+  width: 200px;
+  z-index: 2;
 }
 
 /* FACE */
