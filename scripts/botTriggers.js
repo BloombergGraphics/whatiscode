@@ -43,9 +43,9 @@ jQuery(document).ready(function($) {
 
 var hasTriggered = false;
 $(window).on('scroll', function(e) {
-
   // when you hit the bottom of the page
   if($(window).scrollTop() + $(window).height() > $(document).height() - 100 && !hasTriggered) {
+    if (true) return
 
     hasTriggered = true;
 
@@ -60,6 +60,7 @@ $(window).on('scroll', function(e) {
 
 var scrollLog = [];
 setInterval(function() {
+  return
   var scrollTop = document.getElementsByTagName("body")[0].scrollTop;
   scrollLog.push({
     "scrollTop": scrollTop,
