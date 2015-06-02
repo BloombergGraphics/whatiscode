@@ -15,6 +15,7 @@ var backgroundSVG = d3.select('#background-canvas')
       lastColorI = -1,
       colors = colorArray.slice(0, 3)
 
+  s = 25
   s = window.innerWidth/Math.floor(window.innerWidth/s)
 
   var module = {sel: d3.select('#headerArt'), active: true}
