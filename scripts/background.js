@@ -1,6 +1,8 @@
 var svgWidth  = window.innerWidth,
-    svgHeight = window.innerHeight
+    svgHeight = window.innerHeight,
 
+    s = 25,
+    s = window.innerWidth/Math.floor(window.innerWidth/s)
 
 var backgroundSVG = d3.select('#background-canvas')
   .append('svg')
@@ -11,12 +13,9 @@ var backgroundSVG = d3.select('#background-canvas')
   var offset = 0,
       width  = window.innerWidth,
       height = window.innerHeight,
-      s = Math.sqrt(width*height/3000),
       lastColorI = -1,
       colors = colorArray.slice(0, 3)
 
-  s = 25
-  s = window.innerWidth/Math.floor(window.innerWidth/s)
 
   var module = {sel: d3.select('#headerArt'), active: true}
   addModule(module)
@@ -25,7 +24,12 @@ var backgroundSVG = d3.select('#background-canvas')
   function drawSquares(){
     setTimeout(drawSquares, 5/4*1000)
 
-    if (!module.active) return backgroundSVG.selectAll('rect').filter(function(d){ return !d.started }).transition()
+    if (!module.active){
+      return backgroundSVG.selectAll('rect.spiral')
+          .filter(function(d){ return !d.started })
+        .transition()
+          .each('start', function(d){ d.started = true })
+    }
 
     offset++
 
@@ -39,7 +43,7 @@ var backgroundSVG = d3.select('#background-canvas')
       })
     })
 
-    backgroundSVG.append('g.spin-square').dataAppend(squares, 'rect')
+    backgroundSVG.append('g.spin-square').dataAppend(squares, 'rect.spiral')
         .attr('x', function(d){ return d.isLeft ? d.x : d.x + s })
         .attr('y', function(d){ return d.isTop  ? d.y : d.y + s })
         .attr({width: 0, height: 0})
@@ -76,12 +80,8 @@ var backgroundSVG = d3.select('#background-canvas')
   var offset = 0,
       width  = window.innerWidth,
       height = window.innerHeight,
-      s = Math.sqrt(width*height/3000),
       lastColorI = -1,
-      colors = colorArray.slice(0, 0 + 5)
-
-  s = window.innerWidth/Math.floor(window.innerWidth/s)
-
+      colors = colorArray.slice(1, 4)
 
   var module = {sel: d3.select('#sec-2')}
   addModule(module)
@@ -90,30 +90,35 @@ var backgroundSVG = d3.select('#background-canvas')
   function drawSquares(){
     setTimeout(drawSquares, 900)
 
-    if (!module.active) return
+    if (!module.active){
+      return backgroundSVG.selectAll('rect.wave')
+          .filter(function(d){ return !d.started })
+        .transition()
+          .each('start', function(d){ d.started = true })
+    }
 
     offset++
 
     var squares = []
     d3.range(0, width + s, s).forEach(function(x, i){
       d3.range(0, height + s, s).forEach(function(y, j){
-        if ((i + j + offset) % 3) return
+        if ((i + j + offset + (Math.random() < .05 ? 1 : 0)) % 4) return
         squares.push({x: x, y: y, i: i, j: j})
       })
     })
 
-    backgroundSVG.append('g.wave-square').dataAppend(squares, 'rect')
+    backgroundSVG.append('g.wave-square').dataAppend(squares, 'rect.wave')
         .attr({x: ƒ('x'), y: ƒ('y')})
         .attr({width: 0, height: 0})
         .style('fill', randColor())
       .transition()
-        .duration(1500)
-        .delay(function(d, i){ return (d.i + d.j + Math.random()*0)*90 })
-        .attr({width: s, height: s})
+        .duration(500)
+        .delay(function(d, i){ return (d.i + d.j + Math.random()*16)*70 })
+        .attr({width: s + 1, height: s + 1})
 
     var numGroups = backgroundSVG.selectAll('g.wave-square').size()
     backgroundSVG.selectAll('g.wave-square')
-       .filter(function(d, i){ return i + 8 < numGroups })
+       .filter(function(d, i){ return i + 18 < numGroups })
        .remove()
 
   }
