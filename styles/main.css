@@ -20,13 +20,28 @@ html, body {
   overflow-x: hidden;
 }
 #paulbot {display: none;}
+#toc-bug {display: none;}
 
 hr{width: 75%; border:none;height:4px;background-color:#262626;margin: 60px auto 60px auto;}
 
-#canvasL{position: fixed;width:36px;height:100%;left:0;top:0;z-index: 2;background: url(../images/test_pattern.gif);}
-#canvasR{position: fixed;width:36px;height:100%;right:0;top:0;z-index: 2;background: url(../images/test_pattern.gif);}
-#canvasB{position: fixed;height:36px;width:100%;bottom:0;left:0;z-index: 2;background: url(../images/test_pattern.gif);}
-#canvasT{position: fixed;height:36px;width:100%;top:0;left:0;z-index: 2;background: url(../images/test_pattern.gif);}
+#canvasL{position: fixed;width:36px;height:100%;left:0;top:0;z-index: 1;background: url(../images/test_pattern.gif);
+ -webkit-transition: width 0.8s ease;
+    -moz-transition: width 0.8s ease;
+      -o-transition: width 0.8s ease;
+     -ms-transition: width 0.8s ease;
+         transition: width 0.8s ease;
+       }
+
+#canvasL:hover{
+    width:220px;
+}
+
+#canvasR{position: fixed;width:36px;height:100%;right:0;top:0;z-index: 1;background: url(../images/test_pattern.gif);}
+#canvasB{position: fixed;height:36px;width:100%;bottom:0;left:0;z-index: 1;background: url(../images/test_pattern.gif);}
+#canvasT{position: fixed;height:36px;width:100%;top:0;left:0;z-index: 1;background: url(../images/test_pattern.gif);}
+
+
+#tableOfContents{width:30px;height:100%;opacity:1;overflow: hidden;float:right;}
 
 article {
   max-width: 740px;
@@ -61,20 +76,9 @@ article img {max-width: 100%;}
 .bigimg {margin: 0 auto;}
 .bigimg img{max-width: 100%;}
 
-#headerArt h1,h2,h3{margin: 0;}
-#headerArt h1{
-  text-transform: uppercase;
-  font-size: 260px;
-  font-family: 'Roboto Mono', courier, monospace;
-  font-weight: 700;
-  line-height: 240px;
-  margin: 0;
-  /* font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif; */
-}
-#headerArt h2{text-shadow:none;}
 
 
-.kevin{max-width:740px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 30px}
+.kevin{max-width:740px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 22px;margin:20px 0 20px 0;}
 .kevin img{width: 100%}
 .kevinleft{display: inline-block;width:35%;vertical-align: top;}
 .kevinright{display: inline-block;width:65%;vertical-align: middle;}
@@ -109,26 +113,35 @@ article img {max-width: 100%;}
    margin: -25px;
 }
 
-.example{  font-family: 'Roboto Mono', courier, monospace;}
-
-#headerArt h2 {font-size: 46px; line-height:80px; font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;margin-top: 20px;}
-#headerArt h3{font-size: 24px; line-heght:60px; font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;margin: 0;}
+.example{ font-family: 'Roboto Mono', courier, monospace;}
 
 h2{
     font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif;
-    font-size: 94px;margin: 90px 0 40px 0;
+    font-size: 100px;
+    line-height: 94px;
+    margin: 100px 0 40px 0;
     text-align: center;
-    text-shadow: 2px 2px 0 #f94600, -2px -2px 0 #00c770;
+    /* text-shadow: 2px 2px 0 #f94600, -2px -2px 0 #00c770; */
 }
 h3{font-size: 34px;line-height: 40px;font-weight: bold;margin-top:74px }
 
 #headerArt {
-  text-align: center;
+    text-align: center;
     width: 100%;
     height:500px;
     background: url(../images/test_pattern.gif) fixed;
     display: table;
 }
+
+#headerArt h2 {font-size: 46px; line-height:80px; margin: 0;font-family:'BWHaasText-65Medium';}
+
+#headerArt h1{
+      font-family: 'Roboto Mono', courier, monospace;
+      font-weight: 700;
+      margin: 0;
+      /* font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif; */
+}
+#headerArt h2{text-shadow:none;}
 
 
 .vertCenter{
@@ -180,6 +193,21 @@ h3{font-size: 34px;line-height: 40px;font-weight: bold;margin-top:74px }
     padding: 10px;
   }
 .sidebarImg img{width: 100%}
+
+
+.sideLeft{
+  margin:0 0 0 -100px;
+  padding: 0 20px;
+  float: left;
+}
+
+.sideRight{
+  margin:0 -100px 0 0;
+  padding: 0 20px 10px 0;
+  float: right;
+}
+.caption{font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 16px;}
+.photoCaption{text-transform: uppercase;font-size: 10px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;}
 
 
 .blinking-cursor {
@@ -235,6 +263,8 @@ h3{font-size: 34px;line-height: 40px;font-weight: bold;margin-top:74px }
   }
 }
 
+.certificate {margin: 40px -50px;}
+.certificate img{width: 100%}
 
 
 
