@@ -1,4 +1,4 @@
-var originalArticle, paulbots = {};
+var originalArticle;
 var loadTime = new Date();
 
 if(!localStorage.getItem('visitCount')) {
@@ -13,76 +13,59 @@ jQuery(document).ready(function($) {
   footnotesToAsides();
   preCode();
 
-  // create paulbot
-  paulbot = bot().botName("paulbot");
-  d3.select("#paulbot").call(paulbot);
-
-  d3.selectAll("article .paulbot").each(function(d,i) {
-    var uuid = "paulbot"+(Math.random()*10000).toFixed();
-    paulbots[uuid] = bot().botName(uuid);
-    d3.select(this).call(paulbots[uuid]);
-    paulbots[uuid].dialogue(botDialogues[this.dataset.dialogue]);
-  })
-
-  // create overlay views
-  var overlayViews = [
-    {
-      "name": "toc",
-    },
-    {
-      "name": "recirc",
-      "handler": renderRecircs,
-      "data": recircs
-    }
-  ];
-
-  d3.select("#bugs").selectAll(".bug")
-    .data(overlayViews)
-    .enter()
-    .append("div")
-    .classed("bug", true)
-    .attr("id", function(d) { return d.name+"-bug"; })
-    .each(function(d,i) {
-      d.overlay = d3.select("#"+d.name);
-      if(d.initialize) { d.initialize.call(d.overlay.node(), d.data, i); }
-    })
+  // set up toc toggle
+  d3.select("#toc-bug")
     .on("click", function(d,i) {
-      if(d.overlay.attr("data-mode") === "on") {
+      if(d3.select("#toc").attr("data-mode") === "on") {
         d3.select(this).attr("data-mode", "off");
-        d.overlay.attr("data-mode", "off");
+        d3.select("#toc").attr("data-mode", "off");
       } else {
-        d3.selectAll(".bug").attr("data-mode", "off");
-        d3.selectAll(".overlay").attr("data-mode", "off");
         d3.select(this).attr("data-mode", "on");
-        d.overlay.attr("data-mode", "on");
-        if(d.handler) { d.handler.call(d.overlay.node(), d.data, i); }
+        d3.select("#toc").attr("data-mode", "on");
       }
     });
 
-  // live html
-  renderLiveHTML();
-  $("#live-html-source").on("keyup", renderLiveHTML);
-  $("#live-html-source").on("blur", function() {
-    $(this).text($(this).text());
-    hljs.highlightBlock(this);
-  });
-
   // syntax highlighting
   hljs.initHighlightingOnLoad();
+  $("body").on("mouseover mouseout", "code.hljs span", highlightTooltip);
 
   // save uncontaminated version for reset ability
   originalArticle = $("article").html();
 
 });
 
-function renderLiveHTML() {
-  // update iframe
-  var iframe = document.getElementById('live-html-iframe');
-  var html = $("#live-html-source").text();
-  iframe.contentWindow.document.open();
-  iframe.contentWindow.document.write(html);
-  iframe.contentWindow.document.close();
+function highlightTooltip(e) {
+  if(e.type=="mouseout") {
+    d3.select("body").selectAll(".syntax-tooltip").remove();
+    return;
+  }
+  var codeClass = this.getAttribute('class');
+  var codeClasses = {
+    "hljs-keyword": "Language keywords mean something special in the language.",
+    "hljs-number": "A number",
+    "hljs-title": "A title names something, like a function in C or element in XML",
+    "hljs-params": "The parameters that get passed to the function",
+    "hljs-function": "A function declaration",
+    "hljs-built_in": "A built-in function",
+    "hljs-string": "This is a string; it may mean something to you, but to the computer it's pretty much just an arbitrary sequence of letters.",
+    "hljs-list": "A list",
+    "hljs-tag": "A tag",
+    "hljs-attribute": "The name of an attribute",
+    "hljs-value": "The value of an attribute",
+    "hljs-import": "An import lets you use code written somewhere else",
+    "hljs-class": "A class",
+    "hljs-container": "A container",
+    "hljs-type": "A type",
+    "hljs-variable": "A variable"
+  }
+
+  var popup = d3.select("body").selectAll(".syntax-tooltip").data([codeClass]);
+  popup.enter().append("div").classed("syntax-tooltip", true);
+  popup.text(codeClasses[codeClass])
+    .style("left", this.getBoundingClientRect().left + this.getBoundingClientRect().width/2 +"px")
+    .style("top", (this.getBoundingClientRect().bottom + document.getElementsByTagName("body")[0].scrollTop) +"px");
 }
+
 
 function footnotesToAsides() {
   var footrefs = $(".footref").unwrap();
@@ -115,3 +98,11 @@ d3.selectAll(".footref").on("click", function() {
     .style("left", this.getBoundingClientRect().left + this.getBoundingClientRect().width/2 +"px")
     .style("top", (this.getBoundingClientRect().bottom + document.getElementsByTagName("body")[0].scrollTop) +"px");
 })
+
+function resetArticle() {
+  $("article").html(originalArticle);
+  d3.select("body").style("background-color", "inherit");
+  d3.select("body").style("color", "inherit");
+}
+
+console.log("                    ___\n                _.-'   ```'--.._                 _____ ___ ___   ____  _____ __ __      ______  __ __    ___  \n              .'                `-._            / ___/|   |   | /    |/ ___/|  |  |    |      ||  |  |  /  _] \n             /                      `.         (   \\_ | _   _ ||  o  (   \\_ |  |  |    |      ||  |  | /  [_        \n            /                         `.        \\__  ||  \\_/  ||     |\\__  ||  _  |    |_|  |_||  _  ||    _]       \n           /                            `.      /  \\ ||   |   ||  _  |/  \\ ||  |  |      |  |  |  |  ||   [_        \n          :       (                       \\     \\    ||   |   ||  |  |\\    ||  |  |      |  |  |  |  ||     |       \n          |    (   \\_                  )   `.    \\___||___|___||__|__| \\___||__|__|      |__|  |__|__||_____|       \n          |     \\__/ '.               /  )  ;  \n          |   (___:    \\            _/__/   ;    ____   ____  ______  ____   ____   ____  ____      __  __ __  __ __ \n          :       | _  ;          .'   |__) :   |    \\ /    ||      ||    \\ |    | /    ||    \\    /  ]|  |  ||  |  |\n           :      |` \\ |         /     /   /    |  o  )  o  ||      ||  D  ) |  | |  o  ||  D  )  /  / |  |  ||  |  |\n            \\     |_  ;|        /`\\   /   /     |   _/|     ||_|  |_||    /  |  | |     ||    /  /  /  |  _  ||  ~  |\n             \\    ; ) :|       ;_  ; /   /      |  |  |  _  |  |  |  |    \\  |  | |  _  ||    \\ /   \\_ |  |  ||___, |\n              \\_  .-''-.       | ) :/   /       |  |  |  |  |  |  |  |  .  \\ |  | |  |  ||  .  \\\\     ||  |  ||     |\n             .-         `      .--.'   /        |__|  |__|__|  |__|  |__|\\_||____||__|__||__|\\_| \\____||__|__||____/ \n            :         _.----._     `  < \n            :       -'........'-       `.\n             `.        `''''`           ;\n               `'-.__                  ,'\n                     ``--.   :'-------'\n                         :   :\n                        .'   '.\n      \n      \n                                                                    ");
