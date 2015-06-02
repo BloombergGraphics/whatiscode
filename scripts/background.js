@@ -1,31 +1,31 @@
-var blue  = '#2800d7'
-var Lblue = '#6381ff'
-var purple = '#c63eff'
-var Lpurple = '#fc99ff'
-var green = '#00c770'
-var Lgreen = '#91f29b'
-var red = '#f94600'
-
-var colorArray = [blue, purple, green, red, Lblue, Lpurple, Lgreen]
+var svgWidth  = window.innerWidth,
+    svgHeight = window.innerHeight
 
 
+var backgroundSVG = d3.select('#background-canvas')
+  .append('svg')
+    .attr({height: svgHeight, width: svgWidth})
 
-
-
+//spinning squares
 !(function(){
   var offset = 0,
       width  = window.innerWidth,
       height = window.innerHeight,
-      s = Math.sqrt(width*height/200)
+      s = Math.sqrt(width*height/200),
+      lastColorI = -1,
+      colors = colorArray.slice(0, 3)
 
   s = window.innerWidth/Math.floor(window.innerWidth/s)
 
-  var svg = d3.select('#background-canvas')
-    .append('svg')
-      .attr({height: height, width: width})
+  var module = {sel: d3.select('#headerArt'), active: true}
+  addModule(module)
 
 
   function drawSquares(){
+    setTimeout(drawSquares, 5/4*1000)
+
+    if (!module.active) return
+
     offset++
 
     var squares = []
@@ -38,7 +38,7 @@ var colorArray = [blue, purple, green, red, Lblue, Lpurple, Lgreen]
       })
     })
 
-    svg.append('g').dataAppend(squares, 'rect')
+    backgroundSVG.append('g.spin-square').dataAppend(squares, 'rect')
         .attr('x', function(d){ return d.isLeft ? d.x : d.x + s })
         .attr('y', function(d){ return d.isTop  ? d.y : d.y + s })
         .attr({width: 0, height: 0})
@@ -52,20 +52,18 @@ var colorArray = [blue, purple, green, red, Lblue, Lpurple, Lgreen]
         .attr({x: ƒ('x'), y: ƒ('y')})
 
 
-  var numGroupds = svg.selectAll('g').size()
-  d3.selectAll('g')
-     .filter(function(d, i){ return i + 5 < numGroupds })
-     .remove()
+    var numGroups = backgroundSVG.selectAll('g.spin-square').size()
+    backgroundSVG.selectAll('g.spin-square')
+       .filter(function(d, i){ return i + 6 < numGroups })
+       .remove()
 
-
-    setTimeout(drawSquares, 5/4*1000)
   }
   drawSquares()
 
-  var lastColorI = -1
+
   function randColor(){
-    lastColorI = (lastColorI + 1) % colorArray.length
-    return colorArray[lastColorI]
+    lastColorI = (lastColorI + 1) % colors.length
+    return colors[lastColorI]
   }
 
 })()

@@ -69,6 +69,7 @@ article img {max-width: 100%;}
   font-weight: 700;
   line-height: 240px;
   margin: 0;
+  padding-top: 100px;
   /* font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif; */
 }
 #headerArt h2{text-shadow:none;}
