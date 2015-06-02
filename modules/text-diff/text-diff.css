@@ -5,3 +5,8 @@
 #text-diff div, #width-calc div{
   float: left;
 }
+
+#width-calc{
+  position: absolute;
+  top: -100000px;
+}
