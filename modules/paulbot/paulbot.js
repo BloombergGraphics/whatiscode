@@ -110,16 +110,4 @@ var paulbot;
     }
   }
 
-  window.onunload = window.onbeforeunload = function(event) {
-    localStorage.setItem('scrollTop', document.getElementsByTagName("body")[0].scrollTop);
-
-    var timeOnPage = (+new Date()) - scrollLog[0].timestamp;
-    if(localStorage.getItem('timeOnPage')) {
-      timeOnPage += parseInt(localStorage.getItem('timeOnPage'));
-    }
-    localStorage.setItem('timeOnPage', timeOnPage);
-
-    return;
-  }
-
 })();

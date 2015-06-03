@@ -1,11 +1,28 @@
 var originalArticle;
-var loadTime = new Date();
 
-if(!localStorage.getItem('visitCount')) {
-  localStorage.setItem('visitCount', 1);
-} else {
-  localStorage.setItem('visitCount', parseInt(localStorage.getItem('visitCount'))+1);
-}
+// local storage stuff
+(function() {
+
+  var loadTime = new Date();
+
+  // increment visit count
+  localStorage.setItem('visitCount',
+    localStorage.getItem('visitCount')
+    ? parseInt(localStorage.getItem('visitCount')) + 1 : 1);
+
+  // remember time on page and last read position
+  window.onunload = window.onbeforeunload = function(event) {
+    localStorage.setItem('scrollTop', document.getElementsByTagName("body")[0].scrollTop);
+
+    var timeOnPage = (+new Date()) - loadTime;
+    if(localStorage.getItem('timeOnPage')) {
+      timeOnPage += parseInt(localStorage.getItem('timeOnPage'));
+    }
+    localStorage.setItem('timeOnPage', timeOnPage);
+
+    return;
+  }
+})();
 
 jQuery(document).ready(function($) {
 
