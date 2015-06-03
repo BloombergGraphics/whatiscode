@@ -13,7 +13,7 @@
 
   var shapes = [],
       curTime = 0,
-      l = 15
+      l = 8
 
   d3.timer(function(t){
     curTime = t
