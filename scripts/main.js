@@ -1,9 +1,8 @@
 var originalArticle;
+var loadTime = new Date();
 
 // local storage stuff
 (function() {
-
-  var loadTime = new Date();
 
   // increment visit count
   localStorage.setItem('visitCount',
