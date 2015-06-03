@@ -8,10 +8,28 @@
 
   //set up gates
   var types = [
-    {str: 'AND',  fn: function(a, b){ return a && b} },
-    {str: 'OR',   fn: function(a, b){ return a || b} },
-    {str: 'XOR',  fn: function(a, b){ return a ^ b} },
-    {str: 'NAND', fn: function(a, b){ return !(a && b)} },
+    {
+      str: 'AND',
+      fn: function(a, b){ return a && b},
+      paths: ["m -45,-40 c 0,0 40.12951,0 60,0 20,0 40,19.4856 40,40.00002 0,20 -20,40 -40,40 -20.0296,0 -60,0 -60,0 l 0,-80.00002 z"]
+    },
+    {
+      str: 'OR',
+      fn: function(a, b){ return a || b},
+      paths: ["m -45,-40 c 0,0 10,20 10,40.00002 0,19.7683 -10,40 -10,40 0,0 -18.284101,0 30,0 50,0 70,-40 70,-40 0,0 -20,-40.00002 -70,-40.00002 -50.151253,0 -30,0 -30,0 z"]
+    },
+    {
+      str: 'XOR',
+      fn: function(a, b){ return a ^ b},
+      paths:["m -45,-40 c 0,0 10,20 10,40.00002 0,19.7683 -10,40 -10,40 0,0 -18.284101,0 30,0 50,0 70,-40 70,-40 0,0 -20,-40.00002 -70,-40.00002 -50.151253,0 -30,0 -30,0 z",
+        "m -55,-40 c 0,0 10,20 10,40.00002 0,19.7935 -10,40 -10,40"]
+    },
+    {
+      str: 'NAND',
+      fn: function(a, b){ return !(a && b)},
+      paths: ["m -45,-40 c 0,0 40.12951,0 60,0 20,0 40,19.4856 40,40.00002 0,20 -20,40 -40,40 -20.0296,0 -60,0 -60,0 l 0,-80.00002 z",
+        "m 75,0 a 10,10 0 1 1 -20,0 10,10 0 1 1 20,0 z"]
+    },
   ]
 
   var x = d3.scale.linear().domain([0, cols - 1]).range([0, width])
@@ -34,8 +52,8 @@
   })
 
   //first col of gates are off or on, not actual gates
-  var onType  = {str: 'ON',  fn: function(){ return true } }
-  var offType = {str: 'OFF', fn: function(){ return false } }
+  var onType  = {str: 'ON',  fn: function(){ return true },  paths: ["m -40,-40 h 80 v 80 h -80 z"] }
+  var offType = {str: 'OFF', fn: function(){ return false }, paths: ["m -40,-40 h 80 v 80 h -80 z"] }
   var gatesByCol = d3.nest().key(ƒ('i')).entries(gates).sort(d3.ascendingKey('key'))
   gatesByCol[0].values.forEach(function(d){
     d.type = Math.random() < .5 ? onType : offType
@@ -96,9 +114,15 @@
       .translate(function(d){ return [d.x, d.y] })
       .each(function(d){ d.sel = d3.select(this) })
 
-  gateGs.append('rect')
-      .style({stroke: 'black', fill: 'darkgrey'})
-      .attr({x: -gS/2, y: -gS/2, width: gS, height: gS})
+  // gateGs.append('rect')
+  //     .style({stroke: 'black', fill: 'darkgrey'})
+  //     .attr({x: -gS/2, y: -gS/2, width: gS, height: gS})
+
+  gateGs.append('g.gate-icon').selectAll('path')
+    .data(function(d) { return d.type.paths; })
+    .enter()
+      .append('path')
+      .attr('d', function(d) { return d; })
 
   gateGs.append('text')
       .text(ƒ('type', 'str'))
@@ -129,7 +153,7 @@
 
     var uuid = Math.random()
 
-    gateGs.selectAll('rect').filter(ƒ('changedOn'))
+    gateGs.selectAll('g.gate-icon').filter(ƒ('changedOn'))
       .transition(uuid).delay(function(d){ return (d.i - i)*300+ 100})
         .style('fill', color)
         .style('fill-opacity', 1)
@@ -149,7 +173,7 @@
         .style('stroke-width', 0)
 
 
-    function color(d){ return d.on ? 'yellow' : 'darkgrey' }
+    function color(d){ return d.on ? '#00c770' : '#f94600' }
   }
 
   update(0)
