@@ -97,10 +97,10 @@
 
   wires.forEach(function(d){
     d.pathStr = [
-      'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS/3 : -gS/5)],
+      'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS*.1 : gS*.1)],
       'h', d.vX,
-      'V', d.to.y + (d.toN ? gS/3 : gS/5),
-      'L', [d.to.x - gS/2, d.to.y + (d.toN ? gS/3 : gS/5)]
+      'V', d.to.y + (d.toN ? -gS*.4 : gS*.4),
+      'L', [d.to.x - gS/2, d.to.y + (d.toN ? -gS*.4 : gS*.4)]
     ].join('')
   })
 
