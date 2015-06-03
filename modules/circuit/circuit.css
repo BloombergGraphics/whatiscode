@@ -1,16 +1,18 @@
 #circuit {
-  background: black;
   height: 500px;
   margin-left: -150px;
   width: 960px;
   font-family: "HaasTextBold",Arial,Helvetica
 }
 
-#circuit rect{
+#circuit g.gate-icon{
   fill-opacity: .5;
   stroke: black;
-  fill: lightgrey;
+  fill: #f94600;
   cursor: pointer;
+  /* TODO: redo paths so you don't need to scale... */
+  transform: scale(.45);
+  stroke-width: 2;
 }
 #circuit text{
   pointer-events: none;

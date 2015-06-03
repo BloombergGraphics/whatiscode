@@ -67,6 +67,7 @@ article img {max-width: 100%;}
     float: left;
 }
 
+<<<<<<< HEAD
 .figureInline p {
   display: inline-block;
   vertical-align: middle;
@@ -277,3 +278,97 @@ h3{font-size: 34px;line-height: 40px;font-weight: bold;margin-top:74px }
 
 .certificate {margin: 40px -50px;}
 .certificate img{width: 100%}
+
+/* TOC */
+
+#toc-bug {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  opacity: .1;
+  z-index: 2;
+  background-size: contain;
+  background-image: url('../images/toc.svg');
+  bottom: 10px;
+  top: 130px;
+}
+#toc-bug:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+#toc-bug[data-mode="on"] {
+  opacity: 1;
+  z-index: 5;
+}
+#toc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 100%;
+  overflow-y: scroll;
+  background: #eee;
+  z-index: 3;
+  display: none;
+}
+#toc[data-mode="on"] { display: block; }
+
+/* FOOTNOTES */
+
+.footwrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.footref {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 2px 8px;
+  font-size: small;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  text-decoration: none;
+}
+.footref:hover {
+  cursor: pointer;
+  border: 1px solid #00f;
+}
+.footref::before {
+  content: "■ ";
+}
+
+.fn-popup {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  font-size:0.875em;
+  line-height: 1.3em;
+  width: 300px;
+  padding: 1em;
+  background: white;
+  border: 1px solid black;
+  margin-top: 0.5em;
+  transform: translate(-50%,0);
+  display: none;
+  z-index: 2;
+}
+.fn-popup p {
+  margin: 1em 0 0 0;
+}
+.fn-popup p:first-child {
+  margin: 0;
+}
+
+/* SYNTAX HIGHLIGHTING POPUPS */
+
+.syntax-tooltip {
+  position: absolute;
+  font-size:0.875em;
+  line-height: 1.3em;
+  width: 300px;
+  padding: 1em;
+  background: white;
+  border: 1px solid black;
+  margin-top: 0.5em;
+  transform: translate(-50%,0);
+}

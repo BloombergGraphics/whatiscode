@@ -80,9 +80,7 @@ var paulbot;
     "Excuse me, my words are up here."
   ]);
 
-  var throttler = $.throttle(6000, alertTooFast);
-
-  $(window).on("scroll", $.throttle(1000, logScroll));
+  $(window).on("scroll", _.throttle(logScroll, 1000));
   logScroll();
 
   function alertTooFast() {
@@ -91,6 +89,7 @@ var paulbot;
     paulbot.speak(function() { return fastSass.pop(); });
     paulbot.wait(3000).then(function() { paulbot.mode("off"); });
   }
+  var alertTooFastThrottled = _.throttle(alertTooFast, 15000);
 
   function logScroll() {
     var scrollTop = document.getElementsByTagName("body")[0].scrollTop;
@@ -106,20 +105,8 @@ var paulbot;
       (scrollLog[scrollLog.length-1].timestamp - scrollLog[scrollLog.length-2].timestamp)
 
     if(scrollSpeed > 4 && fastSass.length) {
-      throttler();
+      alertTooFastThrottled();
     }
-  }
-
-  window.onunload = window.onbeforeunload = function(event) {
-    localStorage.setItem('scrollTop', document.getElementsByTagName("body")[0].scrollTop);
-
-    var timeOnPage = (+new Date()) - scrollLog[0].timestamp;
-    if(localStorage.getItem('timeOnPage')) {
-      timeOnPage += parseInt(localStorage.getItem('timeOnPage'));
-    }
-    localStorage.setItem('timeOnPage', timeOnPage);
-
-    return;
   }
 
 })();

@@ -1,16 +1,34 @@
 var originalArticle;
 var loadTime = new Date();
 
-if(!localStorage.getItem('visitCount')) {
-  localStorage.setItem('visitCount', 1);
-} else {
-  localStorage.setItem('visitCount', parseInt(localStorage.getItem('visitCount'))+1);
-}
+// local storage stuff
+(function() {
+
+  // increment visit count
+  localStorage.setItem('visitCount',
+    localStorage.getItem('visitCount')
+    ? parseInt(localStorage.getItem('visitCount')) + 1 : 1);
+
+  // remember time on page and last read position
+  window.onunload = window.onbeforeunload = function(event) {
+    localStorage.setItem('scrollTop', document.getElementsByTagName("body")[0].scrollTop);
+
+    var timeOnPage = (+new Date()) - loadTime;
+    if(localStorage.getItem('timeOnPage')) {
+      timeOnPage += parseInt(localStorage.getItem('timeOnPage'));
+    }
+    localStorage.setItem('timeOnPage', timeOnPage);
+
+    return;
+  }
+})();
 
 jQuery(document).ready(function($) {
 
-  // preprocessing org-mode html
-  footnotesToAsides();
+  // preprocess org-mode html and append events
+  footnotes();
+
+  // preprocess org-mode html
   preCode();
 
   // set up toc toggle
@@ -67,12 +85,70 @@ function highlightTooltip(e) {
 }
 
 
-function footnotesToAsides() {
-  var footrefs = $(".footref").unwrap();
-  var footnotes = $(".footdef");
-  footnotes.each(function(i, fn) {
-    $(fn).attr("data-fn-id", $(fn).find("a").eq(0).attr("id").split(".")[1]);
-  });
+function footnotes() {
+
+  // read footnotes out of footer and stick into hidden popup divs
+  (function() {
+    var footrefs = $(".footref").unwrap();
+    var footnotes = $(".footdef");
+    footnotes.each(function(i, fn) {
+      var fnId = $(fn).find("a").eq(0).attr("id").split(".")[1];
+      $(fn).attr("data-fn-id", fnId);
+
+      var footref = $(document.getElementById("fnr."+fnId));
+      footref.wrap("<div class='footwrapper'></div>");
+      footref.attr("data-fn-id", fnId);
+      footref.parent().attr("data-fn-id", fnId);
+
+      var fnContent = $(fn).html().split("</sup> ")[1];
+      footref.parent().append("<div class='fn-popup'>" + fnContent + "</div>");
+    });
+  })();
+
+  // Footnote popups
+  d3.selectAll(".footref")
+    .on("mouseover", showFootnote)
+    .on("mouseout", hideFootnote)
+    .on("click", toggleFootnote)
+
+  function showFootnote(d,i) {
+    var popup = d3.select(this.parentElement).select(".fn-popup");
+    if(!popup.classed("stick")) {
+      popup
+        .style("opacity", 0)
+        .style("display", "block")
+        .transition()
+        .duration(300)
+        .style("opacity", 1);
+      return;
+    } else {
+      return;
+    }
+
+  }
+
+  function hideFootnote(d,i) {
+    var popup = d3.select(this.parentElement).select(".fn-popup");
+    if(!popup.classed("stick")) {
+      popup
+        .transition()
+        .duration(300)
+        .style("opacity", 0)
+        .transition()
+        .style("display", "none");
+      return;
+    } else {
+      return;
+    }
+  }
+
+  // toggle stickiness
+  function toggleFootnote(d,i) {
+    d3.event.preventDefault();
+    var popup = d3.select(this.parentElement).select(".fn-popup")
+    popup.classed("stick", !popup.classed("stick"));
+  }
+
 }
 
 function preCode() {
@@ -82,22 +158,6 @@ function preCode() {
     }
   })
 }
-
-// Footnote popups
-d3.selectAll(".footref").on("click", function() {
-  d3.event.preventDefault();
-
-  var fnId = this.getAttribute("href").split(".")[1];
-  var popup = d3.select("body").selectAll(".paulnote-popup");
-  var data = fnId === popup.data()[0] ? [] : [fnId];
-
-  popup = popup.data(data, function(d) { return d; });
-  popup.exit().remove();
-  popup.enter().append("div").classed("paulnote-popup", true)
-    .html(document.querySelector("[data-fn-id='"+fnId+"']").innerHTML)
-    .style("left", this.getBoundingClientRect().left + this.getBoundingClientRect().width/2 +"px")
-    .style("top", (this.getBoundingClientRect().bottom + document.getElementsByTagName("body")[0].scrollTop) +"px");
-})
 
 function resetArticle() {
   $("article").html(originalArticle);
