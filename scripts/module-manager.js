@@ -14,6 +14,12 @@ var addModule = (function(){
       var wasActive = d.active;
       d.active = d.startPos < pageYOffset && pageYOffset < d.endPos
 
+      // if module hasn't yet been initiated, call init function
+      if(d.active && !d.initiated) {
+        d.initiated = true;
+        d.oninit ? d.oninit() : null;
+      }
+
       // if active changed, call load / unload function
       if (d.active !== wasActive) {
         d.active && d.onload ? d.onload() : null;

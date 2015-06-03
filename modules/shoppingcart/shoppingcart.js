@@ -20,7 +20,7 @@
   module.bot = bot();
   module.sel.append("div.bot.aside").call(module.bot);
 
-  module.onload = function() {
+  module.oninit = function() {
     module.bot.mode("on").dialogue(dialogue);
   }
 
