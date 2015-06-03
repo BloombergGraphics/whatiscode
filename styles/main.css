@@ -60,19 +60,52 @@ h1 {
 
 /* FOOTNOTES */
 
+.footwrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .footref {
-  background: #ddd;
   border-radius: 10px;
+  border: 1px solid #eee;
   padding: 2px 8px;
   font-size: small;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  text-decoration: none;
 }
 .footref:hover {
   cursor: pointer;
-  background: #000;
-  color: #fff;
+  border: 1px solid #00f;
+}
+.footref::before {
+  content: "■ ";
 }
 
-.paulnote-popup, .syntax-tooltip {
+.fn-popup {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  font-size:0.875em;
+  line-height: 1.3em;
+  width: 300px;
+  padding: 1em;
+  background: white;
+  border: 1px solid black;
+  margin-top: 0.5em;
+  transform: translate(-50%,0);
+  display: none;
+}
+.fn-popup p {
+  margin: 1em 0 0 0;
+}
+.fn-popup p:first-child {
+  margin: 0;
+}
+
+/* SYNTAX HIGHLIGHTING POPUPS */
+
+.syntax-tooltip {
   position: absolute;
   font-size:0.875em;
   line-height: 1.3em;
@@ -82,10 +115,4 @@ h1 {
   border: 1px solid black;
   margin-top: 0.5em;
   transform: translate(-50%,0);
-}
-.paulnote-popup sup {
-  display: none;
-}
-.paulnote-popup p {
-  margin: 0;
 }
