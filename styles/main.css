@@ -95,6 +95,7 @@ h1 {
   margin-top: 0.5em;
   transform: translate(-50%,0);
   display: none;
+  z-index: 2;
 }
 .fn-popup p {
   margin: 1em 0 0 0;
