@@ -1,16 +1,22 @@
 !(function(){
 
-  var module = {sel: d3.select('#put-tree-here')}
+  var module = {sel: d3.select('[data-module="tree"]')}
   addModule(module)
 
   module.bot = bot();
-  module.sel.append("div.bot.aside").call(module.bot);
+  module.sel.append("div.bot").call(module.bot);
 
-  module.onload = function() {
-    if(module.sel.attr("data-loaded")) return;
+  var dialogue = [
+    {
+      "emote": "explaining",
+      "speak": "Even this very Web page, the page that you are reading, is a tree (and since this is an article about code, we filled this page with code). Here's a small piece of that for just this section of the article. Click around and see what happens: every paragraph is a branch; images and tables are branches, too. In a table, every row is a branch, and then every column is a branch off of that. And in a paragraph, anything with its own formatting is a branch. Even the tree visualization itself is a branch (try to find the branch labeled 'svg'). That’s right: The tree contains the tree. Computers are weird."
+    },
+    { "emote": "chill" }
+  ];
+
+  module.oninit = function() {
     treeMe(module.sel, document.getElementById("text-2-8"));
-    module.sel.attr("data-loaded", true);
-    module.bot.mode("on").speak("Even this Web page is a tree. Here's the tree for just this section of the article. Click a branch to expand it and see what part of the page it represents. Every paragraph is a branch; images and tables are branches, too. In a table, every row is a branch, and then every column is a branch off of that. And in a paragraph, anything with its own formatting is a branch. Even the tree visualization itself is a branch (try to find the branch labeled 'svg').");
+    module.bot.dialogue(dialogue);
   }
 
   // based on http://bl.ocks.org/mbostock/4339083

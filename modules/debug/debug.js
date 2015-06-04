@@ -10,6 +10,23 @@
   var module = {sel: d3.select('#debug')}
   addModule(module)
 
+  var dialogue = [
+    {
+      "emote": "explaining",
+      "speak": "There are bugs in your code! Click the line of code that looks like they are BUG-FREE. And to make it extra-realistic, we made it so that every time you don’t fix a bug, a new bug is born. This is the true experience of programming!"
+    },
+    {
+      "emote": "chill"
+    }
+  ];
+
+  // announce itself
+  module.bot = bot();
+  module.sel.append("div.bot").call(module.bot);
+  module.oninit = function() {
+    module.bot.dialogue(dialogue);
+  }
+
 
   var bugs = [
     { img: 'bug.svg',
@@ -105,7 +122,7 @@
           })
       //todo - hide questions, till pos is done, scale bug size
     } else{
-      d.div.call(posAt, d.pos) 
+      d.div.call(posAt, d.pos)
     }
 
   }
@@ -119,9 +136,9 @@
     bugs.forEach(function(d){
       if (d.correct || !d.visable) return
       d.imgEl
-        .style('-webkit-transform', 'rotate(' + Math.sin(t/500 + d.t*500)*30 + 'deg)') 
-        .style('padding-left', Math.sin(t/743 + d.t*500)*60 + 'px') 
-        .style('padding-top', Math.sin(t/343 + d.t*700)*20 + 'px') 
+        .style('-webkit-transform', 'rotate(' + Math.sin(t/500 + d.t*500)*30 + 'deg)')
+        .style('padding-left', Math.sin(t/743 + d.t*500)*60 + 'px')
+        .style('padding-top', Math.sin(t/343 + d.t*700)*20 + 'px')
     })
   })
 

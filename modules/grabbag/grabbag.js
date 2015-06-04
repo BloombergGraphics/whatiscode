@@ -4,7 +4,10 @@
   addModule(module)
 
   var dialogue = [
-    {"speak": "In the process of building this page, we built Paulbot with a 'standard library' of his own. I can speak, run code, make sliders, test conditions, and give you options."},
+    {
+      "emote": "explaining",
+      "speak": "I am made of code and I have a standard library of functions of my own. I can speak, run code, make sliders, and give you options."
+    },
     {"prompts": [
       {"prompt": "Destroy the page", do: destroyPage },
       {"prompt": "Mess with styles", do: roulette },
@@ -13,9 +16,9 @@
   ]
 
   module.bot = bot();
-  module.sel.append("div.bot.aside").call(module.bot);
+  module.sel.append("div.bot").call(module.bot);
 
-  module.onload = function() {
+  module.oninit = function() {
     module.bot.mode("on").dialogue(dialogue);
   }
 

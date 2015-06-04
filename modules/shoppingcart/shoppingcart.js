@@ -18,7 +18,7 @@
   ]
 
   module.bot = bot();
-  module.sel.append("div.bot.aside").call(module.bot);
+  module.sel.append("div.bot").call(module.bot);
 
   module.oninit = function() {
     module.bot.mode("on").dialogue(dialogue);

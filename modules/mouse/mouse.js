@@ -5,16 +5,18 @@
 
   var dialogue = [
     {
-      "speak": "Move your mouse, see the events."
-    }
+      "emote": "explaining",
+      "speak": "Move your mouse, see the events. Every time you do something, your computer knows about it. That’s its job. And sometimes, marketers are listening and your web browser reports back to them. That’s their job! Is that happening right now on this website? Great question!"
+    },
+    { "emote": "chill" }
   ];
 
   module.bot = bot();
-  module.sel.append("div.bot.aside").call(module.bot);
+  module.sel.append("div.bot").call(module.bot);
 
-  module.onload = function() {
-    module.bot.mode("on").dialogue(dialogue);
-    mouseEvents(true);
+  module.oninit = function() {
+    module.bot.dialogue(dialogue);
+    mouseEvents();
   }
 
   function mouseEvents() {

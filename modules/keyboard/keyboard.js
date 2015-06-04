@@ -5,19 +5,17 @@
 
   var dialogue = [
     {
-      "speak": "Mash your keys, see the scancodes."
-    }
+      "emote": "explaining",
+      "speak": "Try just mashing the keys on your keyboard and see what 'make' and 'break' codes come out and get sent to the computer. Every key makes a code. The computer interprets these codes. There are many steps between pressing the “a” key and seeing an “a” on the screen."
+    },
+    { "emote": "chill" }
   ];
 
   module.bot = bot();
-  module.sel.append("div.bot.aside").call(module.bot);
+  module.sel.append("div.bot").call(module.bot);
 
-  module.onload = function() {
-    // splice means it'll only get said once
-    module.bot.dialogue(dialogue.splice(0, dialogue.length));
-    // draw keyboard if it doesn't exist and turn on logging
-    keyboardEvents(true);
-  };
+  module.oninit = function() { module.bot.dialogue(dialogue); };
+  module.onload = function() { keyboardEvents(true); };
   module.onunload = function() { keyboardEvents(false); };
 
   function keyboardEvents(bool) {

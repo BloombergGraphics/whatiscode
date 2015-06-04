@@ -1,7 +1,6 @@
 .bot {
-  font-family: Consolas, courier, monospace;
-  background: #333;
-  transition: opacity .5s;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  color: #2800d7;
 }
 
 .bot[data-mode="off"] {
@@ -9,40 +8,32 @@
   pointer-events: none;
 }
 
-.bot.aside {
-  position: absolute;
-  left: 100%;
-  margin-left: 10px;
-  width: 300px;
-  z-index: 2;
-}
-
 /* FACE */
 
 .bot .face {
-  background-image: url('../images/emotes/restface.gif');
+  background-image: url('../images/emotes/chill.gif');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top;
   background-size: 60%;
   /*float: left;*/
-  width: 20%;
+  width: 30%;
   height: 100%;
-  min-height: 100px;
+  min-height: 130px;
   display: inline-block;
   vertical-align: top;
 }
 
-.bot .face:hover {
+/*.bot .face:hover {
   background-image: url('../images/emotes/wiggle.gif') !important;
-}
+}*/
 
 /* BODY */
 
 .bot .body {
   /*float: right;*/
   display: inline-block;
-  width: 80%;
+  width: 70%;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -52,11 +43,50 @@
 .bot .body .messages {
 }
 
-.bot .body .messages .message {
-  color: #0f0;
-  padding: 3px;
-  margin-bottom: 5px;
+.bot .body .messages .step {
 }
+
+.bot .body .messages .message {
+  border: 3px solid #2800d7;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 5px;
+  /* for caret */
+  margin-left: 20px;
+  position: relative;
+  min-height: 66px;
+  /* for caret */
+}
+/* all this for that lil notch caret! */
+.bot .body .messages .message:after
+{
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 15px 15px 0;
+  border-color: transparent #FFFFFF;
+  display: block;
+  width: 0;
+  z-index: 1;
+  left: -15px;
+  top: 15px;
+}
+.bot .body .messages .message:before
+{
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 17px 17px 17px 0;
+  border-color: transparent #2800d7;
+  display: block;
+  width: 0;
+  z-index: 0;
+  left: -20px;
+  top: 13px;
+}
+/* /lil notch caret */
 
 .bot .body .messages .speech {
 }
