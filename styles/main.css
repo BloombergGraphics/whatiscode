@@ -19,7 +19,6 @@ html, body {
   padding: 0;
   overflow-x: hidden;
 }
-#paulbot {display: none;}
 #toc-bug {display: none;}
 
 hr{width: 75%; border:none;height:4px;background-color:#262626;margin: 60px auto 60px auto;}
@@ -67,7 +66,6 @@ article img {max-width: 100%;}
     float: left;
 }
 
-<<<<<<< HEAD
 .figureInline p {
   display: inline-block;
   vertical-align: middle;

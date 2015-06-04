@@ -4,10 +4,22 @@
   left: 0;
   width: 30%;
   z-index: 3;
+
+  /*
+  fixes weird bug with Chrome fixed canvas zindex
+  http://stackoverflow.com/questions/13857518/html5-canvas-z-index-issue-in-google-chrome
+  http://stackoverflow.com/questions/28905146/canvas-with-negative-z-index-issue-on-scroll-in-chrome
+  */
+  -webkit-transform: translate3d(0,0,0);
 }
-#paulbot .message {
+#paulbot .step {
   display: none;
 }
-#paulbot .message:last-child {
+#paulbot .step:last-child {
   display: block;
+}
+
+#paulbot:not([data-mode="on"]) {
+  opacity: 0;
+  pointer-events: none;
 }

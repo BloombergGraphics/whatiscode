@@ -24,23 +24,24 @@ var paulbot;
 
     var dialogue = [
       {
-        "mode": "on",
         "speak": message
       }
     ];
-    if(localStorage.getItem('scrollTop') && false) {
-      dialogue.push({
-        "prompts": [
-          {"prompt": "Continue reading from last spot","dialogue": [{
-            "eval": "document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop'))"
-          }]},
-          {"prompt": "No thanks"}
-        ]
-      })
+    if(localStorage.getItem('scrollTop')) {
+      dialogue[0]["prompts"] =
+        [
+          {
+            "prompt": "Continue reading from last spot",
+            "do": function() { document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop')); }
+          },
+          {
+            "prompt": "Please go away."
+          }
+        ];
     } else {
       dialogue.push({
         "wait": 6000
-      })
+      });
     }
     dialogue.push({
       "mode": "off"
@@ -48,7 +49,7 @@ var paulbot;
 
     paulbot.dialogue(dialogue);
 
-  }, 500);
+  }, 5000);
 
   var hasTriggered = false;
   $(window).on('scroll', function(e) {
@@ -84,12 +85,22 @@ var paulbot;
   logScroll();
 
   function alertTooFast() {
-    paulbot.mode("on");
-    paulbot.emote('troll');
-    paulbot.speak(function() { return fastSass.pop(); });
-    paulbot.wait(3000).then(function() { paulbot.mode("off"); });
+    var dialogue = [
+      {
+        "emote": "jumps",
+        "speak": fastSass.pop()
+      },
+      {
+        "wait": 5000
+      },
+      {
+        "mode": "off",
+        "emote": "chill"
+      }
+    ]
+    paulbot.dialogue(dialogue);
   }
-  var alertTooFastThrottled = _.throttle(alertTooFast, 15000);
+  var alertTooFastThrottled = _.throttle(alertTooFast, 10000);
 
   function logScroll() {
     var scrollTop = document.getElementsByTagName("body")[0].scrollTop;
