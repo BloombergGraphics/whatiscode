@@ -5,6 +5,7 @@
   var canvas = d3.select('#background-canvas').append("canvas")
       .attr({width: width, height: height})
 
+
   d3.select(window).on('resize.background', function(){
     width  = innerWidth
     height = innerHeight
@@ -14,9 +15,12 @@
 
   var ctx = canvas.node().getContext("2d");
 
+  ctx.fillStyle = '#f94600'
+  ctx.fillRect(0, 0, width, height)
+
   var shapes = [],
       curTime = 0,
-      l = 12,
+      l = 14,
       unload = function(){ shapes = shapes.filter(function(d){ d.start > curTime }) }
 
   d3.timer(function(t){
@@ -56,7 +60,7 @@
 
     setInterval(function(){
       if (!module.active) return
-      var speed = Math.random()*.5 + .5
+      var speed = Math.random()*.0003 + .2
       offset++
       d3.range(0, width + l, l).forEach(function(x, i){
         d3.range(0, height + l, l).forEach(function(y, j){
@@ -78,7 +82,7 @@
         })
       })
 
-    }, 1000)
+    }, 800)
   })()
 
   //sprial squares

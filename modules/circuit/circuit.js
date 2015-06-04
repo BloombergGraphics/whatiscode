@@ -1,6 +1,6 @@
 !(function(){
   var margin = {left: 25, right: 40, top: 30, bottom: 25}
-      width  = 960 - margin.left - margin.right,
+      width  = Math.min(960, innerWidth) - margin.left - margin.right,
       height = 500 - margin.top  - margin.bottom,
       cols = 8,
       rows = 8,
@@ -104,12 +104,14 @@
     ].join('')
   })
 
-
+  var actualWidth = width + margin.left + margin.right
   //add elements to the page
-  var svgBase = d3.select('#circuit').append('svg')
+  var svgBase = d3.select('#circuit')
+      .style('margin-left', Math.min(-20, 740 - actualWidth)/2 + 'px')
+    .append('svg')
       .attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
   
-  svgBase.append('rect').attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
+  svgBase.append('rect').attr({width: actualWidth, height: height + margin.top + margin.bottom})
       .style('fill', '#eee')
 
   var svg = svgBase

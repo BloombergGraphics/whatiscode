@@ -21,10 +21,12 @@
   ];
 
   // announce itself
-  module.bot = bot();
-  module.sel.append("div.bot").call(module.bot);
-  module.oninit = function() {
-    module.bot.dialogue(dialogue);
+  if (typeof(bot) != 'undefined'){
+    module.bot = bot();
+    module.sel.append("div.bot").call(module.bot);
+    module.oninit = function() {
+      module.bot.dialogue(dialogue);
+    }
   }
 
 
