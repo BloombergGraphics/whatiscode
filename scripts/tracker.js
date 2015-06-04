@@ -431,6 +431,8 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
       d3.select(this)
           .style('display', 'block')
           .html(innerHTML)
+          .style('width', innerWidth > 740 ? '728px' : '300px')
+          .style('margin', '0px auto')
     })  
 
 })()
