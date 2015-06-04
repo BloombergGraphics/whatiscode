@@ -1,9 +1,9 @@
 !(function(){
   var margin = {left: 25, right: 40, top: 30, bottom: 25}
       width  = Math.min(960, innerWidth) - margin.left - margin.right,
-      height = 500 - margin.top  - margin.bottom,
-      cols = 8,
-      rows = 8,
+      cols = Math.ceil(width/900*8),
+      rows = Math.ceil(width/900*8),
+      height = 500*rows/8 - margin.top  - margin.bottom,
       gS = 35   //gate size
 
   //set up gates
