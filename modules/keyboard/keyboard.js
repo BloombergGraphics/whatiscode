@@ -176,7 +176,14 @@
         .append("div.key-inner")
         // .text(ƒ('key'));
 
+    var timeSinceLastKeyTimeout;
     function drawKey(e) {
+
+      module.bot.emote("keyboard");
+      clearInterval(timeSinceLastKeyTimeout);
+      timeSinceLastKeyTimeout = setTimeout(function () {
+        module.bot.emote("chill");
+      }, 500);
 
       // get the key
       var key = event.keyCode || event.which;
