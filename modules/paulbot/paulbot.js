@@ -51,23 +51,6 @@ var paulbot;
 
   }, 5000);
 
-  var hasTriggered = false;
-  $(window).on('scroll', function(e) {
-
-    // when you hit the bottom of the page
-    if($(window).scrollTop() + $(window).height() > $(document).height() - 100 && !hasTriggered) {
-
-      hasTriggered = true;
-
-      var bottomTime = new Date();
-      var timeDiff = (((bottomTime - loadTime) / 1000 / 60)*100).toFixed()/100;
-      paulbot.mode("on");
-      paulbot.emote('troll');
-      paulbot.speak(function() { return "So you read 38,000 words in " + timeDiff + " minutes." });
-      paulbot.wait(3000).then(function() { paulbot.mode("off"); });
-    }
-  })
-
   var scrollLog = [];
 
   var fastSass = _.shuffle([
