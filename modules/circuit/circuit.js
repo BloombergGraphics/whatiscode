@@ -1,5 +1,5 @@
 !(function(){
-  var margin = {left: 20, right: 20, top: 40, bottom: 20}
+  var margin = {left: 25, right: 40, top: 30, bottom: 25}
       width  = 960 - margin.left - margin.right,
       height = 500 - margin.top  - margin.bottom,
       cols = 8,
@@ -110,10 +110,10 @@
       .attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
   
   svgBase.append('rect').attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
-      .style('fill', '#fff')
+      .style('fill', '#eee')
 
   var svg = svgBase
-    .append('g').translate([margin.left, margin.right])
+    .append('g').translate([margin.left, margin.top])
 
 
 
