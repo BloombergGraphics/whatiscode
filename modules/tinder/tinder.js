@@ -1,13 +1,10 @@
 !(function(){
 
-  var module = {
-		sel: d3.select('[data-module="tinder"]'),
-		onload: welcome
-	}
+  var module = { sel: d3.select('[data-module="tinder"]') }
   addModule(module)
 
 	module.bot = bot();
-  module.sel.append("div.bot.aside").call(module.bot);
+  module.sel.append("div.bot").call(module.bot);
 
 	var screen = module.sel.append("div.screen");
 
@@ -41,8 +38,16 @@
 		},
 	];
 
-	function welcome() {
-		module.bot.mode("on").speak("What, you don't think 'pretty' and 'ugly' can apply to code? Take a look at these specimans! They run the gamut. Go on, judge it.");
+  var dialogue = [
+    {
+      "emote": "explaining",
+      "speak": "What, you don't think 'pretty' and 'ugly' can apply to code? Take a look at these specimens! They run the gamut. Go on, judge it."
+    },
+    { "emote": "chill" }
+  ];
+
+	module.oninit = function() {
+		module.bot.dialogue(dialogue);
 		codeSamples.length ? renderProfile(codeSamples.shift()) : null;
 	}
 

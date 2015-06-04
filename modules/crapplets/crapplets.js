@@ -4,7 +4,7 @@
   addModule(module)
 
   module.bot = bot();
-  module.sel.append("div.bot.aside").call(module.bot);
+  module.sel.append("div.bot").call(module.bot);
 
   var alertIntervals = [];
   var container = module.sel.append("div").classed("crapplets", true);
@@ -16,20 +16,27 @@
     "31.jpg", "36.PNG", "40.png", "6.jpg"];
 
   var dialogues = [
-    [{"speak": "Oops, looks like you've gotta update something!"}],
+    [{"speak": "Oops, looks like you've gotta update something! Double-click to escape. Not that you'd want to."}],
     [{"speak": "Hope it doesn't require a restart!"}],
-    [{"speak": "Hmm I wonder if this is even worth it..."}],
     [{"speak": "Honestly let's just forget this ever happened.",
      "prompts": [{"prompt": "Please make it all go away.", "dialogue": [{"do": cleanUp}] }]}]
   ];
 
-  module.onload = welcome;
+  module.oninit = welcome;
   container.on("click", makeItWorse);
   container.on("dblclick", cleanUp);
   module.onunload = cleanUp;
 
+  var dialogue = [
+    {
+      "emote": "explaining",
+      "speak": "Welcome to our Java crapplet simulator, powered by the JVMVM — all the fun with none of the genuine security risks! Click the loading screen to begin."
+    },
+    { "emote": "chill" }
+  ];
+
   function welcome() {
-    module.bot.mode("on").speak("Welcome to our Java simulator, or JVMVM — all the fun with none of the genuine security risks! Click the loading screen to begin.");
+    module.bot.dialogue(dialogue);
   }
 
   function makeItWorse() {
