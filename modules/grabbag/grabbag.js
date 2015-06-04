@@ -23,14 +23,23 @@
   }
 
   function destroyPage() {
-    setInterval(function() {
-      var $el = $('body');
-      while($el.children().length > 0) {
-        $el = $el.children().eq(0);
-      }
-      $el.remove();
-    },100);
+    // setInterval(function() {
+    //   var $el = $('body');
+    //   while($el.children().length > 0) {
+    //     $el = $el.children().eq(0);
+    //   }
+    //   $el.remove();
+    // },100);
+
+    var firstDestroy = d3.select('#outline-container-sec-3-4').node()
+    d3.selectAll('#outline-container-sec-3-4').selectAll('h3, p, img, svg, table, .figureInline, .org-src-container, dl, .bot, .screen')
+        .transition().delay(function(d, i){ return i*50 })
+          .style('display', 'none')
+          .style('opacity', '0')
+
   }
+
+
 
   function roulette(time) {
     if (!time) time = 1;
