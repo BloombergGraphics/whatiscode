@@ -2,12 +2,15 @@
   var width = innerWidth,
       height = innerHeight;
 
-  var x = width / 2,
-      y = height / 2;
-
   var canvas = d3.select('#background-canvas').append("canvas")
-      .attr("width", width)
-      .attr("height", height)
+      .attr({width: width, height: height})
+
+  d3.select(window).on('resize.background', function(){
+    width  = innerWidth
+    height = innerHeight
+    canvas.attr({width: width, height: height})
+  })
+
 
   var ctx = canvas.node().getContext("2d");
 
