@@ -338,83 +338,82 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
 
 
 //load ad into sticky iframe
-(function() {
-  if (isTerminal || window.innerWidth < 1060) return
-  var slug = config.bb_slug;
+// (function() {
+//   if (isTerminal || window.innerWidth < 1060) return
+//   var slug = config.bb_slug;
 
-  var ads = document.getElementsByClassName('bannerad');
-  if(ads.length<1) return;
+//   var ads = document.getElementsByClassName('bannerad');
+//   if(ads.length<1) return;
 
-  var new_leader = '<iframe width="728" height="90" id="lb_ad_frame" style="visibility:hidden;"' +
-      'onload="this.style.visibility=' + "'visible'" +
-      '" class="ad_frame" scrolling="no" frameborder="no" src="' +
-      'http://www.bloomberg.com/graphics/assets/ad.html?url=/' + config.bb_slug + 
-      "&size=728x90|1x1&iu="+config.ad_code+"&correlator=" +
-      (config.correlator || new String(Math.random()).substring(2,11));
+//   var new_leader = '<iframe width="728" height="90" id="lb_ad_frame" style="visibility:hidden;"' +
+//       'onload="this.style.visibility=' + "'visible'" +
+//       '" class="ad_frame" scrolling="no" frameborder="no" src="' +
+//       'http://www.bloomberg.com/graphics/assets/ad.html?url=/' + config.bb_slug + 
+//       "&size=728x90|1x1&iu="+config.ad_code+"&correlator=" +
+//       (config.correlator || new String(Math.random()).substring(2,11));
 
-  for (var i=0; i< ads.length; i++){
-      ads[i].style.display = "block";
-      var randValue = new String(Math.random()).substring(2,11);
-      var n = i + 1;
-      ads[i].innerHTML = new_leader + '&position=leaderboard' + n + '&ord=' + randValue + '"></iframe>';
-  }
+//   for (var i=0; i< ads.length; i++){
+//       ads[i].style.display = "block";
+//       var randValue = new String(Math.random()).substring(2,11);
+//       var n = i + 1;
+//       ads[i].innerHTML = new_leader + '&position=leaderboard' + n + '&ord=' + randValue + '"></iframe>';
+//   }
 
 
-  //only add scrolling refesh adds 
-  if (!config.num_ad_scroll_refesh || config.num_ad_scroll_refesh < 2) return 
+//   //only add scrolling refesh adds 
+//   if (!config.num_ad_scroll_refesh || config.num_ad_scroll_refesh < 2) return 
   
-  //wait for content to load before adjusting window height
-  window.setTimeout(function(){
-    //current segment of the page; between 0 and config.num_ad_scroll_refesh - 1
-    var curI = 0
+//   //wait for content to load before adjusting window height
+//   window.setTimeout(function(){
+//     //current segment of the page; between 0 and config.num_ad_scroll_refesh - 1
+//     var curI = 0
 
-    //cache page and window sizes to avoid on scroll DOM reads
-    //TODO - update values on resize
-    var windowHeight = window.innerHeight
-    var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)
+//     //cache page and window sizes to avoid on scroll DOM reads
+//     //TODO - update values on resize
+//     var windowHeight = window.innerHeight
+//     var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)
 
-    d3.select(window).on('scroll.ad-refesh', _.throttle(function(){
-      //calculate current segment of page
-      var nextI = Math.floor(scrollY/((pageHeight - windowHeight)/config.num_ad_scroll_refesh))
-      //clamp segment values 
-      nextI = Math.min(config.num_ad_scroll_refesh - 1, Math.max(0, nextI))
+//     d3.select(window).on('scroll.ad-refesh', _.throttle(function(){
+//       //calculate current segment of page
+//       var nextI = Math.floor(scrollY/((pageHeight - windowHeight)/config.num_ad_scroll_refesh))
+//       //clamp segment values 
+//       nextI = Math.min(config.num_ad_scroll_refesh - 1, Math.max(0, nextI))
 
-      //only update ads if we've moved to different segment 
-      if (curI == nextI) return
-      curI = nextI
+//       //only update ads if we've moved to different segment 
+//       if (curI == nextI) return
+//       curI = nextI
 
-      //assumes we only have one fixed banner add
-      var ad = d3.select(ads[0]).style({overflow: 'hidden', height: '90px'})
+//       //assumes we only have one fixed banner add
+//       var ad = d3.select(ads[0]).style({overflow: 'hidden', height: '90px'})
 
-      var randValue = new String(Math.random()).substring(2,11);
-      var adStr = new_leader + '&position=leaderboard' + (curI + 1) + '&ord=' + randValue + '"></iframe>'
-      ad.append('div').html(adStr)
+//       var randValue = new String(Math.random()).substring(2,11);
+//       var adStr = new_leader + '&position=leaderboard' + (curI + 1) + '&ord=' + randValue + '"></iframe>'
+//       ad.append('div').html(adStr)
 
-      window.setTimeout(function(){
-        var numIframes = ad.selectAll('iframe').size()
-        ad.selectAll('iframe')
-            .filter(function(d, i){ return i < numIframes - 1 })
-            .remove()
+//       window.setTimeout(function(){
+//         var numIframes = ad.selectAll('iframe').size()
+//         ad.selectAll('iframe')
+//             .filter(function(d, i){ return i < numIframes - 1 })
+//             .remove()
 
-      }, 2000)
-    }, 500))
+//       }, 2000)
+//     }, 500))
 
-  }, 2000)
+//   }, 2000)
 
-})();
+// })();
 
 
 //inline ads for mobile and tablet
 !(function() {
-  if (isTerminal || window.innerWidth >= 1060) return
+  if (isTerminal) return
   var slug = config.bb_slug;
 
-  var ads = document.getElementsByClassName('bannerad-inline');
-  if(ads.length<1) return;
+  var ads = d3.selectAll('.bannerad');
 
-  var sizeStr  = window.innerWidth > 740 ? 'width="728" height="90' : 'width="300" height="250"'
-  var sizeParm = window.innerWidth > 740 ? '728x90|1x1' : '300x250'
-  var sizePos  = window.innerWidth > 740 ? 'leaderboard' : 'box'
+  var sizeStr  = innerWidth > 740 ? 'width="728" height="90' : 'width="300" height="250"'
+  var sizeParm = innerWidth > 740 ? '728x90|1x1' : '300x250'
+  var sizePos  = innerWidth > 740 ? 'leaderboard' : 'box'
 
   var new_leader = '<iframe ' + sizeStr + ' id="lb_ad_frame" style="visibility:hidden;"' +
       'onload="this.style.visibility=' + "'visible'" +
@@ -423,12 +422,19 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
       "&size=" + sizeParm + "&iu="+config.ad_code+"&correlator=" +
       (config.correlator || new String(Math.random()).substring(2,11));
 
-  for (var i=0; i< ads.length; i++){
-      ads[i].style.display = "block";
+    ads.each(function(__, i){
+      if (!i && innerWidth < 740) return
       var randValue = new String(Math.random()).substring(2,11);
       var n = i + 1;
-      ads[i].innerHTML = new_leader + '&position=' + sizePos + n + '&ord=' + randValue + '"></iframe>';
-  }
+      var innerHTML = new_leader + '&position=' + sizePos + n + '&ord=' + randValue + '"></iframe>';      
+      
+      d3.select(this)
+          .style('display', 'block')
+          .html(innerHTML)
+          .style('width', innerWidth > 740 ? '728px' : '300px')
+          .style('margin', '0px auto')
+    })  
+
 })()
 
 
