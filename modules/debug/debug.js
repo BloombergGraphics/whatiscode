@@ -90,7 +90,7 @@
 
 
     if (prev && prev.pos){
-      d.qcontainer.style('opacity', 0)
+      d.qcontainer.style('opacity', 0).style('pointer-events', 'none')
       d.imgEl.style('width', '0px')
         .transition().duration(800)
           .style('width', '100px')
@@ -98,7 +98,10 @@
         .transition().duration(1000).ease('cubic')
           .call(posAt, d.pos)
           .each('end', function(){
-            d.qcontainer.transition().style('opacity', 1)
+            d.qcontainer
+                .style('pointer-events', 'all')
+              .transition()
+                .style('opacity', 1)
           })
       //todo - hide questions, till pos is done, scale bug size
     } else{
