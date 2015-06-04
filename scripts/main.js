@@ -53,10 +53,13 @@ jQuery(document).ready(function($) {
 });
 
 function highlightTooltip(e) {
+  if (!(e.target === this)) return
+
   if(e.type=="mouseout") {
     d3.select("body").selectAll(".syntax-tooltip").remove();
     return;
   }
+
   var codeClass = this.getAttribute('class');
   var codeClasses = {
     "hljs-keyword": "Language keywords mean something special in the language.",

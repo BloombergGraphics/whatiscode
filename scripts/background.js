@@ -2,18 +2,22 @@
   var width = innerWidth,
       height = innerHeight;
 
-  var x = width / 2,
-      y = height / 2;
-
   var canvas = d3.select('#background-canvas').append("canvas")
-      .attr("width", width)
-      .attr("height", height)
+      .attr({width: width, height: height})
+
+  d3.select(window).on('resize.background', function(){
+    width  = innerWidth
+    height = innerHeight
+    canvas.attr({width: width, height: height})
+  })
+
 
   var ctx = canvas.node().getContext("2d");
 
   var shapes = [],
       curTime = 0,
-      l = 8
+      l = 12,
+      unload = function(){ shapes = shapes.filter(function(d){ d.start > curTime }) }
 
   d3.timer(function(t){
     curTime = t
@@ -44,7 +48,7 @@
 
   // wave squares
   !(function(){
-    var module = {sel: d3.select('#sec-2'), active: false}
+    var module = {sel: d3.select('#sec-2'), active: false, onunload: unload}
     addModule(module)
 
     var colors = colorArray.slice(1, 4)
@@ -79,7 +83,7 @@
 
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('#headerArt'), active: true}
+    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
     addModule(module)
 
     var colors = colorArray.slice(0, 3)
@@ -117,7 +121,7 @@
 
   //down wave
   !(function(){
-    var module = {sel: d3.select('#sec-3'), active: false}
+    var module = {sel: d3.select('#sec-3'), active: false, onunload: unload}
     addModule(module)
 
     var colors = colorArray.slice(2, 5)
@@ -195,7 +199,7 @@
 //       colors = colorArray.slice(0, 3)
 
 
-//   var module = {sel: d3.select('#headerArt'), active: true}
+//   var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
 //   addModule(module)
 
 

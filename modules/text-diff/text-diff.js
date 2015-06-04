@@ -7,21 +7,23 @@
   //update http://bl.ocks.org/1wheel/41b09ea34e825bcefb24
   var diffs = [[{"count":13,"value":"In my opinion, version control is "},{"count":3,"removed":true,"value":"very beautiful"},{"count":1,"added":true,"value":"awesome"},{"count":6,"value":". It is "},{"count":2,"removed":true,"value":"frankly "},{"count":8,"value":"one of the most "},{"count":1,"removed":true,"value":"beautiful"},{"count":1,"added":true,"value":"best"},{"count":49,"value":" thing about programming. It’s not like “track changes” in Microsoft Word. That is a shameful monstrosity that can make even a "},{"count":1,"removed":true,"value":"powerful"},{"count":1,"added":true,"value":"fast"},{"count":38,"value":" computer stutter. Version control is software about working, and it is a tool for understanding how ideas evolve"},{"count":4,"removed":true,"value":" over time"},{"count":25,"value":", how mistakes are made and fixed. It is a record of "},{"count":8,"removed":true,"value":"the imperfect nature of "},{"count":30,"value":"human effort that is simultaneously an expression of the human desire towards excellence and understanding."}],[{"count":20,"value":"In my opinion, version control is awesome. It is "},{"count":2,"added":true,"value":"frankly "},{"count":8,"value":"one of the most "},{"count":1,"removed":true,"value":"best"},{"count":1,"added":true,"value":"beautiful"},{"count":88,"value":" thing about programming. It’s not like “track changes” in Microsoft Word. That is a shameful monstrosity that can make even a fast computer stutter. Version control is software about working, and it is a tool for understanding how ideas evolve"},{"count":4,"added":true,"value":" over time"},{"count":55,"value":", how mistakes are made and fixed. It is a record of human effort that is simultaneously an expression of the human desire towards excellence and understanding."}],[{"count":80,"value":"In my opinion, version control is awesome. It is frankly one of the most beautiful thing about programming. It’s not like “track changes” in Microsoft Word. That is a shameful monstrosity that can make even a "},{"count":1,"removed":true,"value":"fast"},{"count":1,"added":true,"value":"powerful"},{"count":67,"value":" computer stutter. Version control is software about working, and it is a tool for understanding how ideas evolve over time, how mistakes are made and fixed. It is a record of "},{"count":6,"added":true,"value":"the nature of "},{"count":30,"value":"human effort that is simultaneously an expression of the human desire towards excellence and understanding."}],[{"count":13,"value":"In my opinion, version control is "},{"count":1,"removed":true,"value":"awesome"},{"count":3,"added":true,"value":"very beautiful"},{"count":136,"value":". It is frankly one of the most beautiful thing about programming. It’s not like “track changes” in Microsoft Word. That is a shameful monstrosity that can make even a powerful computer stutter. Version control is software about working, and it is a tool for understanding how ideas evolve over time, how mistakes are made and fixed. It is a record of the "},{"count":2,"added":true,"value":"imperfect "},{"count":34,"value":"nature of human effort that is simultaneously an expression of the human desire towards excellence and understanding."}]]
 
-
   //space 
   function diffToWords(diff){
     var rv = []
     diff.forEach(function(obj, i){
       obj.value.split(' ').forEach(function(chr, j, array){
         var lastChar = ' '
-        var nextChar = ''; j = 1
-        // TODO fix spacing
-        // if (obj.value == 'beautiful') debugger
-        while(diff[i + j] && (diff[i + j].removed || diff[i + j].added)){
-          j++
-          nextChar = diff[i + j].value[0]
+        var nextChar = ''; k = 1
+        // TODO fix spacing on evolve
+
+        if (j == array.length - 1){
+          nextChar = diff[i + k] ? diff[i + k].value[0] : ''
+          while(diff[i + k] && (diff[i + k].removed || diff[i + k].added)){
+            k++
+            nextChar = diff[i + k].value[0]
+          }          
         }
-        if (j >= array.length - 1 && nextChar){
+        if (nextChar){
           lastChar = nextChar == '.' || nextChar == '-' || nextChar == ',' ? '' : ' '
         }
         rv.push({

@@ -254,7 +254,7 @@ function bot() {
         rSel.enter()
           .append("div")
           .classed("response", true)
-          .text(function(d) { return (d.link ? "☛ " : "» ") + d.prompt; })
+          .text(function(d) { return (d.link ? "☛ " : "") + d.prompt; })
           .on("click", function(d) {
 
             d3.select(this).classed("clicked", true);

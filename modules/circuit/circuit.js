@@ -1,5 +1,5 @@
 !(function(){
-  var margin = {left: 20, right: 20, top: 40, bottom: 20}
+  var margin = {left: 25, right: 40, top: 30, bottom: 25}
       width  = 960 - margin.left - margin.right,
       height = 500 - margin.top  - margin.bottom,
       cols = 8,
@@ -97,18 +97,32 @@
 
   wires.forEach(function(d){
     d.pathStr = [
-      'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS/3 : -gS/5)],
+      'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS*.1 : gS*.1)],
       'h', d.vX,
-      'V', d.to.y + (d.toN ? gS/3 : gS/5),
-      'L', [d.to.x - gS/2, d.to.y + (d.toN ? gS/3 : gS/5)]
+      'V', d.to.y + (d.toN ? -gS*.4 : gS*.4),
+      'L', [d.to.x - gS/2, d.to.y + (d.toN ? -gS*.4 : gS*.4)]
     ].join('')
   })
 
 
   //add elements to the page
-  var svg = d3.select('#circuit').append('svg')
+  var svgBase = d3.select('#circuit').append('svg')
       .attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
-    .append('g').translate([margin.left, margin.right])
+  
+  svgBase.append('rect').attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
+      .style('fill', '#eee')
+
+  var svg = svgBase
+    .append('g').translate([margin.left, margin.top])
+
+
+
+
+
+  var wireBotEls = svg.dataAppend(wires, 'path.wire.bot').attr('d', ƒ('pathStr'))
+      .style('stroke', 'lightgrey')
+  var wireTopEls = svg.dataAppend(wires, 'path.wire.top').attr('d', ƒ('pathStr'))
+      .attr('stroke-dasharray', '100% 100%')
 
   var gateGs = svg.dataAppend(gates, 'g')
       .translate(function(d){ return [d.x, d.y] })
@@ -118,11 +132,13 @@
   //     .style({stroke: 'black', fill: 'darkgrey'})
   //     .attr({x: -gS/2, y: -gS/2, width: gS, height: gS})
 
-  gateGs.append('g.gate-icon').selectAll('path')
-    .data(function(d) { return d.type.paths; })
-    .enter()
-      .append('path')
-      .attr('d', function(d) { return d; })
+  gateGs.append('g.gate-icon')
+    .dataAppend(ƒ('type', 'paths'), 'path.background')
+      .attr('d', ƒ())
+
+  gateGs.append('g.gate-icon')
+    .dataAppend(ƒ('type', 'paths'), 'path.foreground')
+      .attr('d', ƒ())
 
   gateGs.append('text')
       .text(ƒ('type', 'str'))
@@ -130,10 +146,6 @@
       .style('font-size', '68%')
 
 
-  var wireBotEls = svg.dataAppend(wires, 'path.wire.bot').attr('d', ƒ('pathStr'))
-      .style('stroke', 'lightgrey')
-  var wireTopEls = svg.dataAppend(wires, 'path.wire.top').attr('d', ƒ('pathStr'))
-      .attr('stroke-dasharray', '100% 100%')
 
 
   //update logic
@@ -154,7 +166,7 @@
     var uuid = Math.random()
 
     gateGs.selectAll('g.gate-icon').filter(ƒ('changedOn'))
-      .transition(uuid).delay(function(d){ return (d.i - i)*300+ 100})
+      .transition(uuid).delay(function(d){ return (d.i - i)*300+ 200})
         .style('fill', color)
         .style('fill-opacity', 1)
       .transition(uuid).duration(300)
