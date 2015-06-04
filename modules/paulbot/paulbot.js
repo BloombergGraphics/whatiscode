@@ -15,7 +15,7 @@ var paulbot;
         (document.referrer ? " from " + document.referrer + " " : "") +
         "! You've visited " +
         localStorage.getItem('visitCount') + " times and spent " + (localStorage.getItem('timeOnPage')/1000/60).toFixed() +
-        " minutes here. Remember to look for me throughout the article for moments where you can play along.";
+        " minutes here.";
     } else {
       var message = "Hey, welcome" +
         (document.referrer ? " from " + document.referrer + " " : "") +
@@ -88,9 +88,7 @@ var paulbot;
     var dialogue = [
       {
         "emote": "jumps",
-        "speak": fastSass.pop()
-      },
-      {
+        "speak": fastSass.pop(),
         "wait": 5000
       },
       {
