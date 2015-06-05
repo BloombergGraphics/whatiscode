@@ -129,6 +129,13 @@
     var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
     addModule(module)
 
+    // Object.observe(module, function (changes){
+    //   console.log("Changes:");
+    //   console.log(changes.name);
+    //   if (!module.active) debugger
+    // })
+
+
     var colors = colorArray.slice(0, 3)
     var offset = 1
     setInterval(function(){
