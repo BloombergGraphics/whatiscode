@@ -87,8 +87,8 @@
 
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
-    addModule(module)
+    var module = {sel: d3.select('#headerArt'), active: false, onunload: unload}
+    // addModule(module)
 
     var colors = colorArray.slice(0, 3)
     var offset = 1
@@ -102,7 +102,7 @@
           if (Math.random() < .3) return
 
           var d = Math.random() < .5  //shape moves down
-          var r = Math.random() < .5  //shape moves up
+          var r = Math.random() < .5  //shape moves left
 
           var shape = 
             { x: x, 
@@ -121,6 +121,47 @@
       })
 
     }, 5/4*1000)
+  })()
+
+  //different sized squares
+  !(function(){
+    d3.select('.overlay').style('display', 'none')
+    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
+    addModule(module)
+
+    var colors = colorArray.slice(0, 3)
+    var offset = 1
+    setInterval(function(){
+      if (!module.active) return
+
+      offset++
+      var sizeI = Math.ceil(Math.random()*3.5)
+      // size = Math.floor((offset % 2) + Math.random()*2.5)
+      // size = offset % 5
+      var size = sizeI*sizeI*.8
+      d3.range(0, width + l, l*size).forEach(function(x, i){
+        d3.range(0, height + l, l*size).forEach(function(y, j){
+          if (!!((i + j + sizeI + (Math.random() < .1)) % 2)) return
+          if (Math.random() < .3) return
+
+          var shape = 
+            { x: x, 
+              y: y, 
+              i: i, 
+              j: j,
+              type: 'rect',
+              start: curTime + Math.random()*4,
+              sV: [x + l*size/2, y + l*size/2, 0, 0],
+              eV: [x, y, l*size, l*size],
+              fill: offset % 18 ? colors[offset % 3] : 'white'
+            }
+          if (size > 4) shape.fill = colors[Math.floor(Math.random()*3)]
+          shape.end = shape.start +800
+          shapes.push(shape)
+        })
+      })
+
+    }, 1/4*1000)
   })()
 
   //down wave
