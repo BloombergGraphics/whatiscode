@@ -518,14 +518,7 @@ img.infographic {
   #header-rule {
     display: none;
   }
-/*  #header-logo {
-    display: none;
-  }
-  #header-logo-mobile {
-    display: block;
-    width: 60%;
-  }
-*/  #infographic {
+  #infographic {
     display: none;
   }
   #infographic-tablet {

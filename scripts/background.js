@@ -28,7 +28,7 @@
 
     shapes.forEach(function(s){
       if (t < s.start) return
-      
+
       var u = (t - s.start)/(s.end - s.start)
 
       if (u > 1){
@@ -66,10 +66,10 @@
         d3.range(0, height + l, l).forEach(function(y, j){
           if (!!((i + j + offset) % 4)) return
           if (Math.random() < .3) return
-          var shape = 
-            { x: x, 
-              y: y, 
-              i: i, 
+          var shape =
+            { x: x,
+              y: y,
+              i: i,
               j: j,
               type: 'rect',
               start: curTime + (i + j)*40*speed + Math.random()*200,
@@ -77,7 +77,7 @@
               eV: [x, y, l, l],
               fill: offset % 10 ? colors[offset % 3] : 'white'
             }
-          shape.end = shape.start + 500 
+          shape.end = shape.start + 500
           shapes.push(shape)
         })
       })
@@ -87,8 +87,8 @@
 
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
-    addModule(module)
+    var module = {sel: d3.select('#headerArt'), active: false, onunload: unload}
+    // addModule(module)
 
     var colors = colorArray.slice(0, 3)
     var offset = 1
@@ -102,12 +102,12 @@
           if (Math.random() < .3) return
 
           var d = Math.random() < .5  //shape moves down
-          var r = Math.random() < .5  //shape moves up
+          var r = Math.random() < .5  //shape moves left
 
-          var shape = 
-            { x: x, 
-              y: y, 
-              i: i, 
+          var shape =
+            { x: x,
+              y: y,
+              i: i,
               j: j,
               type: 'rect',
               start: curTime + d*1000 + r*1000 + (d && !r)*1000*2 + Math.random()*400,
@@ -115,12 +115,60 @@
               eV: [x, y, l, l],
               fill: offset % 18 ? colors[offset % 3] : 'white'
             }
-          shape.end = shape.start + 500 
+          shape.end = shape.start + 500
           shapes.push(shape)
         })
       })
 
     }, 5/4*1000)
+  })()
+
+  //different sized squares
+  !(function(){
+    d3.select('.overlay').style('display', 'none')
+    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
+    addModule(module)
+
+    // Object.observe(module, function (changes){
+    //   console.log("Changes:");
+    //   console.log(changes.name);
+    //   if (!module.active) debugger
+    // })
+
+
+    var colors = colorArray.slice(0, 3)
+    var offset = 1
+    setInterval(function(){
+      if (!module.active) return
+
+      offset++
+      var sizeI = Math.ceil(Math.random()*3.5)
+      // size = Math.floor((offset % 2) + Math.random()*2.5)
+      // size = offset % 5
+      var size = sizeI*sizeI*.8
+      d3.range(0, width + l, l*size).forEach(function(x, i){
+        d3.range(0, height + l, l*size).forEach(function(y, j){
+          if (!!((i + j + sizeI + (Math.random() < .1)) % 2)) return
+          if (Math.random() < .3) return
+
+          var shape =
+            { x: x,
+              y: y,
+              i: i,
+              j: j,
+              type: 'rect',
+              start: curTime + Math.random()*4,
+              sV: [x + l*size/2, y + l*size/2, 0, 0],
+              eV: [x, y, l*size, l*size],
+              fill: offset % 18 ? colors[offset % 3] : 'white'
+            }
+          if (size > 4) shape.fill = colors[Math.floor(Math.random()*3)]
+          shape.end = shape.start +800
+          shapes.push(shape)
+        })
+      })
+
+    }, 1/4*1000)
   })()
 
   //down wave
@@ -159,10 +207,10 @@
             sV = [x, y, 0, l]
           }
 
-          var shape = 
-            { x: x, 
-              y: y, 
-              i: i, 
+          var shape =
+            { x: x,
+              y: y,
+              i: i,
               j: j,
               type: 'rect',
               start: start,
@@ -170,7 +218,7 @@
               eV: [x, y, l, l],
               fill: offset % 10 ? colors[offset % 3] : 'white'
             }
-          shape.end = shape.start + 200*Math.random() 
+          shape.end = shape.start + 200*Math.random()
           shapes.push(shape)
         })
       })
@@ -223,7 +271,7 @@
 //     d3.range(0, width + s, s).forEach(function(x, i){
 //       d3.range(0, height + s, s).forEach(function(y, j){
 //         if ((i + j + offset) % 4) return
-//         squares.push({x: x, y: y, i: i, j: j, 
+//         squares.push({x: x, y: y, i: i, j: j,
 //           isLeft: Math.random() < .5,
 //           isTop:  Math.random() < .5})
 //       })
@@ -315,4 +363,3 @@
 //     return colors[lastColorI]
 //   }
 // })()
-

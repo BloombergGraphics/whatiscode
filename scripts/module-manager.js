@@ -11,6 +11,9 @@ var addModule = (function(){
 
   d3.select(window).on('scroll.module', _.debounce(function(d){
     modules.forEach(function(d){
+      //exit early if calcPositions hasn't run yet
+      if (!d.startPos) return
+
       var wasActive = d.active;
       d.active = d.startPos < pageYOffset && pageYOffset < d.endPos
 
