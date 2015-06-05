@@ -11,7 +11,7 @@
       return v ? gcd(v, u % v) : u
     }
 
-    while (!stack.length || stack.length > 6){
+    while (!stack.length || stack.length > 6 || _.last(stack).u < 5){
       a = 960 - Math.floor(Math.random()*100)
       b = 400 + Math.floor(Math.random()*100)
       stack = []
@@ -20,7 +20,7 @@
 
 
     window.setTimeout(drawGCD, stack.length*700 + 1000)
-    if (!module.active) return
+    // if (!module.active) return
 
     var size = 960,
         s    = 960/Math.max(a, b),
@@ -49,8 +49,51 @@
     })
 
 
+    var numToColor = {}
+    stack.forEach(function(d){ numToColor[d.v] = d.color })
+    numToColor[a] = 'black'
+
     var svg = d3.select('#gcd').html('').append('svg')
         .attr({width: size, height: 500})
+
+    var text = d3.select('#gcd').append('div')
+
+    text.dataAppend(stack.concat('last'), 'div')
+      .dataAppend(function(d, i){
+        if (d == 'last'){
+          return [
+          'So ',
+          a,
+          ' and ', 
+          b,
+          ' have a greatest common divisor of ',
+          _.last(stack).u]
+        }
+        if (!d.v) return []
+        return [
+          'What is the largest number that divides ',
+          d.u, 
+          ' and ',
+          d.v,
+          ' evenly? <br>',
+          '<div style="display: inline-block; width: 20px;">',
+          d.u,
+          ' divided by ',
+          d.v,
+          ' is ',
+          Math.floor(d.u/d.v),
+          ' remainder ' ,
+          d.u % d.v
+        ]
+      }, 'span')
+        .html(ƒ())
+        .each(function(d){
+          if (numToColor[d]){
+            d3.select(this).style('color', numToColor[d])
+          } else{
+            d3.select(this).classed('chatter', true)
+          }
+        })
 
     svg.append('rect').attr({width: a, height: b})
 
