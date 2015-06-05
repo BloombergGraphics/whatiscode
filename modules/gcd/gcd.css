@@ -36,3 +36,8 @@
   text-shadow: 0 1px 0 #ccc, 1px 0 0 #ccc, 0 -1px 0 #ccc, -1px 0 0 #ccc;
 
 }
+
+.chatter{
+  color: darkgrey;
+  font-family: 'TiemposTextWeb-Regular', Georgia, serif;
+}
