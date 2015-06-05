@@ -1,5 +1,5 @@
 !(function(){
-
+  var stepDelay = 700
 
   function drawGCD(){
     var stack = []
@@ -19,7 +19,7 @@
     }
 
 
-    window.setTimeout(drawGCD, stack.length*700 + 1000)
+    window.setTimeout(drawGCD, (stack.length + 3)*stepDelay)
     // if (!module.active) return
 
     var size = 960,
@@ -52,14 +52,15 @@
     var numToColor = {}
     stack.forEach(function(d){ numToColor[d.v] = d.color })
     numToColor[a] = 'black'
+    numToColor[0] = 'lightgrey'
 
     var svg = d3.select('#gcd').html('').append('svg')
         .attr({width: size, height: 500})
 
-    var text = d3.select('#gcd').append('div')
+    var text = d3.select('#gcd').append('div.explanation')
 
-    text.dataAppend(stack.concat('last'), 'div')
-      .dataAppend(function(d, i){
+    var stepDivs = text.dataAppend(stack.concat('last'), 'div')
+    stepDivs.dataAppend(function(d, i){
         if (d == 'last'){
           return [
           'So ',
@@ -71,11 +72,11 @@
         }
         if (!d.v) return []
         return [
-          'What is the largest number that divides ',
+          'What is the largest number that evenly divides ',
           d.u, 
           ' and ',
           d.v,
-          ' evenly? <br>',
+          '? <br>',
           '<div style="display: inline-block; width: 20px;">',
           d.u,
           ' divided by ',
@@ -94,6 +95,11 @@
             d3.select(this).classed('chatter', true)
           }
         })
+      
+    stepDivs
+        .style('opacity', 0)
+      .transition().delay(function(d, i){ return (i + 1)*stepDelay })
+        .style('opacity', 1)
 
     svg.append('rect').attr({width: a, height: b})
 
@@ -112,7 +118,7 @@
 
 
     svg.selectAll('rect.step').style('opacity', 0)
-      .transition().delay(function(d, i){ return d ? (d.j + 1)*700 : 0 })
+      .transition().delay(function(d, i){ return d ? (d.j + 1)*stepDelay : 0 })
         .style('opacity', 1)
         .style('stroke-width', 10)
       .transition().duration(500)
@@ -126,7 +132,7 @@
         
         .style({fill: function(d, i){ return i ? d.prev.color : 'black' }})
         .style('opacity', 0)
-      .transition().delay(function(d){ return d.i*700 })
+      .transition().delay(function(d){ return d.i*stepDelay })
         .style('opacity', 1)
 
   }
