@@ -1,40 +1,54 @@
-.module-tree {
+[data-module="tree"] {
   position: relative;
 }
 
-.module-tree .node {
+[data-module="tree"] .svg-container {
+  position: relative;
+}
+
+[data-module="tree"] .node {
   cursor: pointer;
 }
 
-.module-tree .node circle {
+[data-module="tree"] .node circle {
   fill: #fff;
   stroke: steelblue;
   stroke-width: 1.5px;
 }
 
-.module-tree .node.expandable circle {
+[data-module="tree"] .node.expandable circle {
   fill: lightsteelblue;
 }
 
-.module-tree .node:hover circle {
+[data-module="tree"] .node:hover circle {
   fill: #0f0 !important;
 }
 
-.module-tree .node text {
-  font: 10px sans-serif;
+[data-module="tree"] .node text {
+  font-size: 10px;
+  font-weight: bold;
+  font-family: 'Roboto Mono', courier, monospace;
 }
 
-.module-tree .link {
+[data-module="tree"] .link {
   fill: none;
   stroke: #ccc;
   stroke-width: 1.5px;
 }
 
-.module-tree iframe {
+[data-module="tree"] .svg-container svg {
+  position: relative;
+  z-index: 1;
+}
+
+[data-module="tree"] .svg-container iframe {
   position: absolute;
   top: 0;
   left: 0;
   border: 1px solid black;
-  width: 300px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%,-50%) scale(.1);
+  pointer-events: none;
+  z-index: 2;
 }

@@ -11,7 +11,7 @@
       "emote": "explaining",
       "speak": "Even this very Web page, the page that you are reading, is a tree (and since this is an article about code, we filled this page with code). Here's a small piece of that for just this section of the article. Click around and see what happens: every paragraph is a branch; images and tables are branches, too. In a table, every row is a branch, and then every column is a branch off of that. And in a paragraph, anything with its own formatting is a branch. Even the tree visualization itself is a branch (try to find the branch labeled 'svg'). That’s right: The tree contains the tree. Computers are weird."
     },
-    { "emote": "chill" }
+    { "emote": "tree" }
   ];
 
   module.oninit = function() {
@@ -21,8 +21,6 @@
 
   // based on http://bl.ocks.org/mbostock/4339083
   function treeMe(sel, node) {
-
-    sel.classed("module-tree", true);
 
     var margin = {top: 20, right: 120, bottom: 20, left: 120},
         width = sel.node().offsetWidth - margin.right - margin.left,
@@ -35,14 +33,28 @@
     var tree = d3.layout.tree()
         .size([height, width]);
 
+    var fisheye = d3.fisheye.circular()
+        .radius(100)
+        .distortion(15);
+
     var diagonal = d3.svg.diagonal()
         .projection(function(d) { return [d.y, d.x]; });
 
-    var svg = sel.append("svg")
+    var svg = sel.append("div.svg-container").append("svg")
         .attr("width", width + margin.right + margin.left)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .on("mousemove", mousemove);
+
+    // invisible rect to capture mousemoves
+    svg.append("rect")
+      .attr("x", -margin.left)
+      .attr("y", -margin.top)
+      .attr("width", width + margin.right + margin.left)
+      .attr("height", height + margin.top + margin.bottom)
+      .style("visibility", "hidden")
+      .style("pointer-events", "all");
 
     root = getDomTree(node);
     root.x0 = height / 2;
@@ -98,9 +110,9 @@
           .attr("r", 1e-6);
 
       nodeEnter.append("text")
-          .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+          .attr("x", 0)
           .attr("dy", ".35em")
-          .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+          .attr("text-anchor", "middle")
           .text(function(d) { return d.name; })
           .style("fill-opacity", 1e-6);
 
@@ -116,7 +128,7 @@
           .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
       nodeUpdate.select("circle")
-          .attr("r", 4.5);
+          .attr("r", 10);
 
       nodeUpdate.select("text")
           .style("fill-opacity", 1);
@@ -178,8 +190,36 @@
       update(d);
     }
 
+    function mousemove(d) {
+      fisheye.focus(d3.mouse(this));
+
+      var node = svg.selectAll("g.node");
+
+      node.each(function(d) { d.fisheye = fisheye({x: d.y, y: d.x}); })
+          .attr("transform", function(d) { return "translate(" + d.fisheye.x + "," + d.fisheye.y + ")"; });
+
+      node.select("circle")
+          .attr("r", function(d) { return d.fisheye.z * 10; });
+
+      node.select("text")
+          .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
+
+      var link = svg.selectAll("path.link")
+          .attr("d", function(d) {
+            var source = {x: d.source.fisheye.y, y: d.source.fisheye.x};
+            var target = {x: d.target.fisheye.y, y: d.target.fisheye.x};
+            return diagonal({source: source, target: target});
+          })
+
+      sel.selectAll("iframe")
+        .style("left", function(d) { return d.source.fisheye.x + margin.left + 'px'; })
+        .style("top", function(d) { return d.source.fisheye.y + margin.top + 'px'; })
+        .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; })
+
+    }
+
     function mouseover(d) {
-      var iframe = sel.selectAll("iframe").data([d]);
+      var iframe = sel.select(".svg-container").selectAll("iframe").data([{source: d}]);
       iframe.enter().append("iframe");
       var iframeDocument = iframe.node().contentWindow.document;
 
