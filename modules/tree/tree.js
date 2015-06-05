@@ -27,7 +27,7 @@
         height = 800 - margin.top - margin.bottom;
 
     var i = 0,
-        duration = 750,
+        duration = 500,
         root;
 
     var tree = d3.layout.tree()
@@ -35,7 +35,8 @@
 
     var fisheye = d3.fisheye.circular()
         .radius(100)
-        .distortion(15);
+        .distortion(15)
+        .focus([-1000,-1000]);
 
     var diagonal = d3.svg.diagonal()
         .projection(function(d) { return [d.y, d.x]; });
@@ -94,27 +95,33 @@
 
       // Update the nodes…
       var node = svg.selectAll("g.node")
-          .data(nodes, function(d) { return d.id || (d.id = ++i); });
+          .data(nodes, function(d) { return d.id || (d.id = ++i); })
+          .each(function(d) { d.fisheye = fisheye({x: d.y, y: d.x}); });
 
       // Enter any new nodes at the parent's previous position.
       var nodeEnter = node.enter().append("g")
+          .each(function(d) { d.fisheye = fisheye({x: d.y, y: d.x}); })
           .classed("node", true)
           .classed("child", function(d) { return !d.children; })
           .classed("parent", function(d) { return d.children; })
           .classed("expandable", function(d) { return d._children && d._children.length; })
-          .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-          .on("click", click)
-          .on("mouseover", mouseover);
+          .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
+          .on("click", click);
 
-      nodeEnter.append("circle")
-          .attr("r", 1e-6);
+      nodeEnter.append("rect")
+          .attr("x", 1e-6)
+          .attr("y", 1e-6)
+          .attr("width", 1e-6)
+          .attr("height", 1e-6);
 
       nodeEnter.append("text")
-          .attr("x", 0)
           .attr("dy", ".35em")
           .attr("text-anchor", "middle")
           .text(function(d) { return d.name; })
-          .style("fill-opacity", 1e-6);
+          .style("fill-opacity", 1e-6)
+          .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
+
+      nodeEnter.each(appendIframe);
 
       // Update classes
       node
@@ -125,22 +132,43 @@
       // Transition nodes to their new position.
       var nodeUpdate = node.transition()
           .duration(duration)
-          .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+          .attr("transform", function(d) {
+            if(!d.fisheye) d.fisheye = fisheye({x: d.y, y: d.x});
+            return "translate(" + d.fisheye.x + "," + d.fisheye.y + ")";
+          });
 
-      nodeUpdate.select("circle")
-          .attr("r", 10);
+      nodeUpdate.select("rect")
+          .attr("x", function(d) { return d.fisheye.z * -10; })
+          .attr("y", function(d) { return d.fisheye.z * -10; })
+          .attr("width", function(d) { return d.fisheye.z * 20; })
+          .attr("height", function(d) { return d.fisheye.z * 20; });
 
       nodeUpdate.select("text")
-          .style("fill-opacity", 1);
+          .style("fill-opacity", 1)
+          .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
+
+      nodeUpdate.each(function(d) {
+          d.iframe
+            .transition()
+            .duration(duration)
+            .style("left", function(d) { return d.source.fisheye.x + margin.left + 'px'; })
+            .style("top", function(d) { return d.source.fisheye.y + margin.top + 'px'; })
+            .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; })
+        })
 
       // Transition exiting nodes to the parent's new position.
-      var nodeExit = node.exit().transition()
+      var nodeExit = node.exit()
+        .each(function(d) { d.iframe.remove(); })
+        .transition()
           .duration(duration)
-          .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+          .attr("transform", function(d) { return "translate(" + source.fisheye.x + "," + source.fisheye.y + ")"; })
           .remove();
 
-      nodeExit.select("circle")
-          .attr("r", 1e-6);
+      nodeExit.select("rect")
+          .attr("x", 1e-6)
+          .attr("y", 1e-6)
+          .attr("width", 1e-6)
+          .attr("height", 1e-6);
 
       nodeExit.select("text")
           .style("fill-opacity", 1e-6);
@@ -153,28 +181,32 @@
       link.enter().insert("path", "g")
           .attr("class", "link")
           .attr("d", function(d) {
-            var o = {x: source.x0, y: source.y0};
+            var o = {x: d.source.y0, y: d.source.x0};
             return diagonal({source: o, target: o});
           });
 
       // Transition links to their new position.
       link.transition()
           .duration(duration)
-          .attr("d", diagonal);
+          .attr("d", function(d) {
+            var source = {x: d.source.fisheye.y, y: d.source.fisheye.x};
+            var target = {x: d.target.fisheye.y, y: d.target.fisheye.x};
+            return diagonal({source: source, target: target});
+          });
 
       // Transition exiting nodes to the parent's new position.
       link.exit().transition()
           .duration(duration)
           .attr("d", function(d) {
-            var o = {x: source.x, y: source.y};
+            var o = {x: d.source.fisheye.y, y: d.source.fisheye.x};
             return diagonal({source: o, target: o});
           })
           .remove();
 
       // Stash the old positions for transition.
       nodes.forEach(function(d) {
-        d.x0 = d.x;
-        d.y0 = d.y;
+        d.x0 = d.fisheye.x;
+        d.y0 = d.fisheye.y;
       });
     }
 
@@ -198,8 +230,11 @@
       node.each(function(d) { d.fisheye = fisheye({x: d.y, y: d.x}); })
           .attr("transform", function(d) { return "translate(" + d.fisheye.x + "," + d.fisheye.y + ")"; });
 
-      node.select("circle")
-          .attr("r", function(d) { return d.fisheye.z * 10; });
+      node.select("rect")
+          .attr("x", function(d) { return d.fisheye.z * -10; })
+          .attr("y", function(d) { return d.fisheye.z * -10; })
+          .attr("width", function(d) { return d.fisheye.z * 20; })
+          .attr("height", function(d) { return d.fisheye.z * 20; });
 
       node.select("text")
           .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
@@ -211,18 +246,24 @@
             return diagonal({source: source, target: target});
           })
 
-      sel.selectAll("iframe")
-        .style("left", function(d) { return d.source.fisheye.x + margin.left + 'px'; })
-        .style("top", function(d) { return d.source.fisheye.y + margin.top + 'px'; })
-        .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; })
+      node.each(function(d) {
+        d.iframe
+          .style("left", function(d) { return d.source.fisheye.x + margin.left + 'px'; })
+          .style("top", function(d) { return d.source.fisheye.y + margin.top + 'px'; })
+          .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; })
+      });
 
     }
 
-    function mouseover(d) {
-      var iframe = sel.select(".svg-container").selectAll("iframe").data([{source: d}]);
-      iframe.enter().append("iframe");
-      var iframeDocument = iframe.node().contentWindow.document;
+    function appendIframe(d) {
+      d.iframe = sel.select(".svg-container")
+        .append("iframe")
+        .datum({source: d})
+        .style("left", function(d) { return d.source.x0 + margin.left + 'px'; })
+        .style("top", function(d) { return d.source.y0 + margin.top + 'px'; })
+        .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; });
 
+      var iframeDocument = d.iframe.node().contentWindow.document;
       iframeDocument.open();
       iframeDocument.write(d.ref.innerHTML);
       iframeDocument.close();

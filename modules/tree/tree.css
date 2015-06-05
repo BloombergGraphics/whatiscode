@@ -10,18 +10,18 @@
   cursor: pointer;
 }
 
-[data-module="tree"] .node circle {
-  fill: #fff;
+[data-module="tree"] .node rect {
+  fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
 }
 
-[data-module="tree"] .node.expandable circle {
-  fill: lightsteelblue;
+[data-module="tree"] .node.expandable rect {
+  stroke: lightsteelblue;
 }
 
-[data-module="tree"] .node:hover circle {
-  fill: #0f0 !important;
+[data-module="tree"] .node:hover rect {
+  stroke: #0f0 !important;
 }
 
 [data-module="tree"] .node text {
@@ -38,7 +38,7 @@
 
 [data-module="tree"] .svg-container svg {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 [data-module="tree"] .svg-container iframe {
@@ -50,5 +50,5 @@
   height: 200px;
   transform: translate(-50%,-50%) scale(.1);
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
 }
