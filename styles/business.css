@@ -518,14 +518,22 @@ img.infographic {
   #header-rule {
     display: none;
   }
+<<<<<<< HEAD
 /*  #header-logo {
+=======
+  #header-logo {
+>>>>>>> temp
     display: none;
   }
   #header-logo-mobile {
     display: block;
     width: 60%;
   }
+<<<<<<< HEAD
 */  #infographic {
+=======
+  #infographic {
+>>>>>>> temp
     display: none;
   }
   #infographic-tablet {
