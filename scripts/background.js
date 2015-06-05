@@ -87,7 +87,7 @@
 
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('#headerArt'), active: false, onunload: unload}
+    var module = {sel: d3.select('#sec-3'), active: false, onunload: unload}
     // addModule(module)
 
     var colors = colorArray.slice(0, 3)
