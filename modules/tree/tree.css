@@ -14,6 +14,7 @@
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
+  pointer-events: all;
 }
 
 [data-module="tree"] .node.expandable rect {
@@ -51,4 +52,5 @@
   transform: translate(-50%,-50%) scale(.1);
   pointer-events: none;
   z-index: 1;
+  background: white;
 }

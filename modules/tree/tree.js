@@ -75,7 +75,8 @@
       }));
     }
 
-    root.children.forEach(collapse);
+    // root.children.forEach(collapse);
+    collapse(root);
     update(root);
 
     d3.select(self.frameElement).style("height", "800px");
@@ -115,8 +116,9 @@
           .attr("height", 1e-6);
 
       nodeEnter.append("text")
+          .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
           .attr("dy", ".35em")
-          .attr("text-anchor", "middle")
+          .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
           .text(function(d) { return d.name; })
           .style("fill-opacity", 1e-6)
           .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
@@ -145,7 +147,8 @@
 
       nodeUpdate.select("text")
           .style("fill-opacity", 1)
-          .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
+          .attr("x", function(d) { return d.children || d._children ? -10*d.fisheye.z : 10*d.fisheye.z; })
+          // .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
 
       nodeUpdate.each(function(d) {
           d.iframe
@@ -237,7 +240,8 @@
           .attr("height", function(d) { return d.fisheye.z * 20; });
 
       node.select("text")
-          .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
+          .attr("x", function(d) { return d.children || d._children ? -10*d.fisheye.z : 10*d.fisheye.z; })
+          // .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
 
       var link = svg.selectAll("path.link")
           .attr("d", function(d) {
