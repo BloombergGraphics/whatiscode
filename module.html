@@ -2,11 +2,16 @@
   <meta charset="utf-8">
 
   <style>
+    #code{
+      max-width: 740px;
+      margin: 0px auto;
+      background-color: white;
+    }
     body{
-      margin-left: 200px;
+      background-color: #ccc;
     }
 
-    body > div{
+    #code > div{
       margin-top: 200px;
     }
   </style>
@@ -19,16 +24,17 @@
 
 <body>
 
-<div id='tree'></div>
-<div id='crapplets'></div>
-<div data-module="crapplets"></div>
+<div id='code'>
+  <div id='tree'></div>
+  <div id='crapplets'></div>
+  <div data-module="crapplets"></div>
 
-<div id='circuit'></div>
-<div id='gcd'></div>
-<div id='debug'></div>
-<div id='text-diff'></div>
-<p id='width-calc' style='width: 1000000px; position: absolute; top: -1000px'></p>
-
+  <div id='circuit'></div>
+  <div id='gcd'></div>
+  <div id='debug'></div>
+  <div id='text-diff'></div>
+  <p id='width-calc' style='width: 1000000px; position: absolute; top: -1000px'></p>
+</div>
 
 
 <script src="scripts/libs/d3.v3.min.js"></script>

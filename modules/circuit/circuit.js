@@ -1,17 +1,35 @@
 !(function(){
-  var margin = {left: 20, right: 20, top: 40, bottom: 20}
-      width  = 960 - margin.left - margin.right,
-      height = 500 - margin.top  - margin.bottom,
-      cols = 8,
-      rows = 8,
+  var margin = {left: 25, right: 40, top: 30, bottom: 25}
+      width  = Math.min(960, innerWidth) - margin.left - margin.right,
+      cols = Math.ceil(width/900*8),
+      rows = Math.ceil(width/900*8),
+      height = 500*rows/8 - margin.top  - margin.bottom,
       gS = 35   //gate size
 
   //set up gates
   var types = [
-    {str: 'AND',  fn: function(a, b){ return a && b} },
-    {str: 'OR',   fn: function(a, b){ return a || b} },
-    {str: 'XOR',  fn: function(a, b){ return a ^ b} },
-    {str: 'NAND', fn: function(a, b){ return !(a && b)} },
+    {
+      str: 'AND',
+      fn: function(a, b){ return a && b},
+      paths: ["m -45,-40 c 0,0 40.12951,0 60,0 20,0 40,19.4856 40,40.00002 0,20 -20,40 -40,40 -20.0296,0 -60,0 -60,0 l 0,-80.00002 z"]
+    },
+    {
+      str: 'OR',
+      fn: function(a, b){ return a || b},
+      paths: ["m -45,-40 c 0,0 10,20 10,40.00002 0,19.7683 -10,40 -10,40 0,0 -18.284101,0 30,0 50,0 70,-40 70,-40 0,0 -20,-40.00002 -70,-40.00002 -50.151253,0 -30,0 -30,0 z"]
+    },
+    {
+      str: 'XOR',
+      fn: function(a, b){ return a ^ b},
+      paths:["m -45,-40 c 0,0 10,20 10,40.00002 0,19.7683 -10,40 -10,40 0,0 -18.284101,0 30,0 50,0 70,-40 70,-40 0,0 -20,-40.00002 -70,-40.00002 -50.151253,0 -30,0 -30,0 z",
+        "m -55,-40 c 0,0 10,20 10,40.00002 0,19.7935 -10,40 -10,40"]
+    },
+    {
+      str: 'NAND',
+      fn: function(a, b){ return !(a && b)},
+      paths: ["m -45,-40 c 0,0 40.12951,0 60,0 20,0 40,19.4856 40,40.00002 0,20 -20,40 -40,40 -20.0296,0 -60,0 -60,0 l 0,-80.00002 z",
+        "m 75,0 a 10,10 0 1 1 -20,0 10,10 0 1 1 20,0 z"]
+    },
   ]
 
   var x = d3.scale.linear().domain([0, cols - 1]).range([0, width])
@@ -34,8 +52,8 @@
   })
 
   //first col of gates are off or on, not actual gates
-  var onType  = {str: 'ON',  fn: function(){ return true } }
-  var offType = {str: 'OFF', fn: function(){ return false } }
+  var onType  = {str: 'ON',  fn: function(){ return true },  paths: ["m -40,-40 h 80 v 80 h -80 z"] }
+  var offType = {str: 'OFF', fn: function(){ return false }, paths: ["m -40,-40 h 80 v 80 h -80 z"] }
   var gatesByCol = d3.nest().key(ƒ('i')).entries(gates).sort(d3.ascendingKey('key'))
   gatesByCol[0].values.forEach(function(d){
     d.type = Math.random() < .5 ? onType : offType
@@ -79,26 +97,50 @@
 
   wires.forEach(function(d){
     d.pathStr = [
-      'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS/3 : -gS/5)],
+      'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS*.1 : gS*.1)],
       'h', d.vX,
-      'V', d.to.y + (d.toN ? gS/3 : gS/5),
-      'L', [d.to.x - gS/2, d.to.y + (d.toN ? gS/3 : gS/5)]
+      'V', d.to.y + (d.toN ? -gS*.4 : gS*.4),
+      'L', [d.to.x - gS/2, d.to.y + (d.toN ? -gS*.4 : gS*.4)]
     ].join('')
   })
 
-
+  var actualWidth = width + margin.left + margin.right
   //add elements to the page
-  var svg = d3.select('#circuit').append('svg')
+  var svgBase = d3.select('#circuit')
+      .style('margin-left', Math.min(-20, 740 - actualWidth)/2 + 'px')
+    .append('svg')
       .attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
-    .append('g').translate([margin.left, margin.right])
+
+  svgBase.append('rect').attr({width: actualWidth, height: height + margin.top + margin.bottom})
+      .style('fill', '#fff')
+
+  var svg = svgBase
+    .append('g').translate([margin.left, margin.top])
+
+
+
+
+
+  var wireBotEls = svg.dataAppend(wires, 'path.wire.bot').attr('d', ƒ('pathStr'))
+      .style('stroke', 'lightgrey')
+  var wireTopEls = svg.dataAppend(wires, 'path.wire.top').attr('d', ƒ('pathStr'))
+      .attr('stroke-dasharray', '100% 100%')
 
   var gateGs = svg.dataAppend(gates, 'g')
       .translate(function(d){ return [d.x, d.y] })
       .each(function(d){ d.sel = d3.select(this) })
 
-  gateGs.append('rect')
-      .style({stroke: 'black', fill: 'darkgrey'})
-      .attr({x: -gS/2, y: -gS/2, width: gS, height: gS})
+  // gateGs.append('rect')
+  //     .style({stroke: 'black', fill: 'darkgrey'})
+  //     .attr({x: -gS/2, y: -gS/2, width: gS, height: gS})
+
+  gateGs.append('g.gate-icon')
+    .dataAppend(ƒ('type', 'paths'), 'path.background')
+      .attr('d', ƒ())
+
+  gateGs.append('g.gate-icon')
+    .dataAppend(ƒ('type', 'paths'), 'path.foreground')
+      .attr('d', ƒ())
 
   gateGs.append('text')
       .text(ƒ('type', 'str'))
@@ -106,10 +148,6 @@
       .style('font-size', '68%')
 
 
-  var wireBotEls = svg.dataAppend(wires, 'path.wire.bot').attr('d', ƒ('pathStr'))
-      .style('stroke', 'lightgrey')
-  var wireTopEls = svg.dataAppend(wires, 'path.wire.top').attr('d', ƒ('pathStr'))
-      .attr('stroke-dasharray', '100% 100%')
 
 
   //update logic
@@ -129,8 +167,8 @@
 
     var uuid = Math.random()
 
-    gateGs.selectAll('rect').filter(ƒ('changedOn'))
-      .transition(uuid).delay(function(d){ return (d.i - i)*300+ 100})
+    gateGs.selectAll('g.gate-icon').filter(ƒ('changedOn'))
+      .transition(uuid).delay(function(d){ return (d.i - i)*300+ 200})
         .style('fill', color)
         .style('fill-opacity', 1)
       .transition(uuid).duration(300)
@@ -149,7 +187,7 @@
         .style('stroke-width', 0)
 
 
-    function color(d){ return d.on ? 'yellow' : 'darkgrey' }
+    function color(d){ return d.on ? '#00c770' : '#f94600' }
   }
 
   update(0)

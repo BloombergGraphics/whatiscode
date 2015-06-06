@@ -15,12 +15,29 @@ html, body {
   background: red;
   -webkit-font-smoothing: antialiased;
 }
-
 #paulbot {display: none;}
 #toc-bug {display: none;}
 
 hr{width: 75%; border:none;height:4px;background-color:#3C3C3C;margin: 60px auto 60px auto;}
 
+#canvasL{position: fixed;width:36px;height:100%;left:0;top:0;z-index: 1;background: url(../images/test_pattern.gif);
+ -webkit-transition: width 0.8s ease;
+    -moz-transition: width 0.8s ease;
+      -o-transition: width 0.8s ease;
+     -ms-transition: width 0.8s ease;
+         transition: width 0.8s ease;
+       }
+
+#canvasL:hover{
+    width:220px;
+}
+
+#canvasR{position: fixed;width:36px;height:100%;right:0;top:0;z-index: 1;background: url(../images/test_pattern.gif);}
+#canvasB{position: fixed;height:36px;width:100%;bottom:0;left:0;z-index: 1;background: url(../images/test_pattern.gif);}
+#canvasT{position: fixed;height:36px;width:100%;top:0;left:0;z-index: 1;background: url(../images/test_pattern.gif);}
+
+
+#tableOfContents{width:30px;height:100%;opacity:1;overflow: hidden;float:right;}
 /* adam */
 
 #background-canvas{
@@ -120,7 +137,6 @@ article img {max-width: 100%;}
 #headerArt h2{text-shadow:none;}
 
 
-.kevin{width:100%;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 22px;margin:20px 0 20px 0;}
 .kevin img{width: 100%}
 .kevinleft{display: inline-block;width:30%;vertical-align: top;}
 .kevinright{display: inline-block;vertical-align: middle;}
@@ -155,6 +171,8 @@ article img {max-width: 100%;}
    margin: -25px;
 }
 
+.example{ font-family: 'Roboto Mono', courier, monospace;}
+.code{ font-family: 'Roboto Mono', courier, monospace;}
 
 h2{
     font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif;
@@ -223,6 +241,17 @@ a{color:#3c3c3c;text-decoration:none;border-bottom: 2px solid #3c3c3c;font-weigh
 a:hover{color: #f94600; border-bottom: 2px solid #f94600;}
 a:visited{color: #3c3c3c}
 
+.sideRight{
+  margin:0 -100px 0 0;
+  padding: 0 20px 10px 0;
+  float: right;
+}
+.caption{
+  width: 340px;
+  margin:0 -120px 0 0;
+  padding: 0 0 10px 20px;
+  float: right;
+}
 .caption{font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 14px;line-height: 16px;margin-top: 4px;}
 .photoCaption{text-transform: uppercase;font-size: 10px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;}
 
@@ -282,6 +311,27 @@ a:visited{color: #3c3c3c}
   }
 }
 
+/* TOC */
+
+#toc-bug {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  opacity: .1;
+  z-index: 2;
+  background-size: contain;
+  background-image: url('../images/toc.svg');
+  bottom: 10px;
+  top: 130px;
+}
+#toc-bug:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+#toc-bug[data-mode="on"] {
+  opacity: 1;
+  z-index: 5;
+}
 .certificate {margin: 40px -50px;}
 .certificate img{width: 100%}
 
@@ -298,9 +348,71 @@ a:visited{color: #3c3c3c}
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
+  background: #eee;
+  z-index: 3;
+  display: none;
+}
+#toc[data-mode="on"] { display: block; }
+
+
+.footwrapper {
+  position: relative;
+  display: inline-block;
 }
 
+.footref {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 2px 8px;
+  font-size: small;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  text-decoration: none;
+}
+.footref:hover {
+  cursor: pointer;
+  border: 1px solid #00f;
+}
+.footref::before {
+  content: "■ ";
+}
 
+.fn-popup {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  font-size:0.875em;
+  line-height: 1.3em;
+  width: 300px;
+  padding: 1em;
+  background: white;
+  border: 1px solid black;
+  margin-top: 0.5em;
+  transform: translate(-50%,0);
+  display: none;
+  z-index: 2;
+}
+.fn-popup p {
+  margin: 1em 0 0 0;
+}
+.fn-popup p:first-child {
+  margin: 0;
+}
+
+/* SYNTAX HIGHLIGHTING POPUPS */
+
+.syntax-tooltip {
+  position: absolute;
+  font-size:0.875em;
+  line-height: 1.3em;
+  width: 300px;
+  padding: 1em;
+  background: white;
+  border: 1px solid black;
+  margin-top: 0.5em;
+  transform: translate(-50%,0);
+}
 
 
 #interestingWrap{margin:0 -100px 0 -100px;}
@@ -435,3 +547,5 @@ a:visited{color: #3c3c3c}
 
 
 
+#interesting{width: 100%}
+.interestingInner{width:33%; display: inline-block;vertical-align: top}

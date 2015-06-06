@@ -15,7 +15,7 @@ var paulbot;
         (document.referrer ? " from " + document.referrer + " " : "") +
         "! You've visited " +
         localStorage.getItem('visitCount') + " times and spent " + (localStorage.getItem('timeOnPage')/1000/60).toFixed() +
-        " minutes here. Remember to look for me throughout the article for moments where you can play along.";
+        " minutes here.";
     } else {
       var message = "Hey, welcome" +
         (document.referrer ? " from " + document.referrer + " " : "") +
@@ -24,23 +24,24 @@ var paulbot;
 
     var dialogue = [
       {
-        "mode": "on",
         "speak": message
       }
     ];
-    if(localStorage.getItem('scrollTop') && false) {
-      dialogue.push({
-        "prompts": [
-          {"prompt": "Continue reading from last spot","dialogue": [{
-            "eval": "document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop'))"
-          }]},
-          {"prompt": "No thanks"}
-        ]
-      })
+    if(localStorage.getItem('scrollTop')) {
+      dialogue[0]["prompts"] =
+        [
+          {
+            "prompt": "Continue reading from last spot",
+            "do": function() { document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop')); }
+          },
+          {
+            "prompt": "Please go away."
+          }
+        ];
     } else {
       dialogue.push({
         "wait": 6000
-      })
+      });
     }
     dialogue.push({
       "mode": "off"
@@ -48,24 +49,7 @@ var paulbot;
 
     paulbot.dialogue(dialogue);
 
-  }, 500);
-
-  var hasTriggered = false;
-  $(window).on('scroll', function(e) {
-
-    // when you hit the bottom of the page
-    if($(window).scrollTop() + $(window).height() > $(document).height() - 100 && !hasTriggered) {
-
-      hasTriggered = true;
-
-      var bottomTime = new Date();
-      var timeDiff = (((bottomTime - loadTime) / 1000 / 60)*100).toFixed()/100;
-      paulbot.mode("on");
-      paulbot.emote('troll');
-      paulbot.speak(function() { return "So you read 38,000 words in " + timeDiff + " minutes." });
-      paulbot.wait(3000).then(function() { paulbot.mode("off"); });
-    }
-  })
+  }, 5000);
 
   var scrollLog = [];
 
@@ -80,17 +64,24 @@ var paulbot;
     "Excuse me, my words are up here."
   ]);
 
-  var throttler = $.throttle(6000, alertTooFast);
-
-  $(window).on("scroll", $.throttle(1000, logScroll));
+  $(window).on("scroll", _.throttle(logScroll, 1000));
   logScroll();
 
   function alertTooFast() {
-    paulbot.mode("on");
-    paulbot.emote('troll');
-    paulbot.speak(function() { return fastSass.pop(); });
-    paulbot.wait(3000).then(function() { paulbot.mode("off"); });
+    var dialogue = [
+      {
+        "emote": "jumps",
+        "speak": fastSass.pop(),
+        "wait": 5000
+      },
+      {
+        "mode": "off",
+        "emote": "chill"
+      }
+    ]
+    paulbot.dialogue(dialogue);
   }
+  var alertTooFastThrottled = _.throttle(alertTooFast, 10000);
 
   function logScroll() {
     var scrollTop = document.getElementsByTagName("body")[0].scrollTop;
@@ -106,20 +97,8 @@ var paulbot;
       (scrollLog[scrollLog.length-1].timestamp - scrollLog[scrollLog.length-2].timestamp)
 
     if(scrollSpeed > 4 && fastSass.length) {
-      throttler();
+      alertTooFastThrottled();
     }
-  }
-
-  window.onunload = window.onbeforeunload = function(event) {
-    localStorage.setItem('scrollTop', document.getElementsByTagName("body")[0].scrollTop);
-
-    var timeOnPage = (+new Date()) - scrollLog[0].timestamp;
-    if(localStorage.getItem('timeOnPage')) {
-      timeOnPage += parseInt(localStorage.getItem('timeOnPage'));
-    }
-    localStorage.setItem('timeOnPage', timeOnPage);
-
-    return;
   }
 
 })();

@@ -8,4 +8,5 @@
 
 #width-calc{
   top: -10000000px !important;
+  position: absolute;
 }

@@ -37,5 +37,16 @@
 
 }
 
+#gcd .chatter{
+  color: darkgrey;
+  font-family: 'TiemposTextWeb-Regular', Georgia, serif;
+}
 
+#gcd .explanation{
+  max-width: 500px;
+  margin: 0px auto;
+}
 
+#gcd .explanation div{
+  padding-bottom: 20px;
+}
