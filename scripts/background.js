@@ -125,7 +125,7 @@
 
   //different sized squares
   !(function(){
-    d3.select('.overlay').style('display', 'none')
+    // d3.select('.overlay').style('display', 'none')
     var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
     addModule(module)
 
