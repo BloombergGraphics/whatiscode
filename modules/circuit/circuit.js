@@ -110,9 +110,9 @@
       .style('margin-left', Math.min(-20, 740 - actualWidth)/2 + 'px')
     .append('svg')
       .attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
-  
+
   svgBase.append('rect').attr({width: actualWidth, height: height + margin.top + margin.bottom})
-      .style('fill', '#eee')
+      .style('fill', '#fff')
 
   var svg = svgBase
     .append('g').translate([margin.left, margin.top])
