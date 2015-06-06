@@ -1,0 +1,19 @@
+[data-module="certificate"] .cert {
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  color: #2800d7;
+  position: relative;
+}
+
+[data-module="certificate"] .cert p {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+
+[data-module="certificate"] .cert .cert-name {
+  display: inline-block;
+  min-width: 5em;
+  border-bottom: 2px dotted #2800d7;
+}

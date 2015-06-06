@@ -4,7 +4,10 @@
   addModule(module)
 
   var dialogue = [
-    {"speak": "In the process of building this page, we built Paulbot with a 'standard library' of his own. I can speak, run code, make sliders, test conditions, and give you options."},
+    {
+      "emote": "explaining",
+      "speak": "I am made of code and I have a standard library of functions of my own. I can speak, run code, make sliders, and give you options."
+    },
     {"prompts": [
       {"prompt": "Destroy the page", do: destroyPage },
       {"prompt": "Mess with styles", do: roulette },
@@ -13,21 +16,30 @@
   ]
 
   module.bot = bot();
-  module.sel.append("div.bot.aside").call(module.bot);
+  module.sel.append("div.bot").call(module.bot);
 
-  module.onload = function() {
+  module.oninit = function() {
     module.bot.mode("on").dialogue(dialogue);
   }
 
   function destroyPage() {
-    setInterval(function() {
-      var $el = $('body');
-      while($el.children().length > 0) {
-        $el = $el.children().eq(0);
-      }
-      $el.remove();
-    },100);
+    // setInterval(function() {
+    //   var $el = $('body');
+    //   while($el.children().length > 0) {
+    //     $el = $el.children().eq(0);
+    //   }
+    //   $el.remove();
+    // },100);
+
+    var firstDestroy = d3.select('#outline-container-sec-3-4').node()
+    d3.selectAll('#outline-container-sec-3-4').selectAll('h3, p, img, svg, table, .figureInline, .org-src-container, dl, .bot, .screen')
+        .transition().delay(function(d, i){ return i*50 })
+          .style('display', 'none')
+          .style('opacity', '0')
+
   }
+
+
 
   function roulette(time) {
     if (!time) time = 1;
