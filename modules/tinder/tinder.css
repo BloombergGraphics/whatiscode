@@ -1,0 +1,95 @@
+.screen {
+	border: 3px solid black;
+	padding: 10px;
+	max-width:400px;
+	margin:0 auto;
+	text-align: center;
+}
+
+pre {
+	text-align: left;
+	margin:0;
+	padding:0;
+	font-size: 10px;
+	line-height: 12px;
+}
+
+pre code {
+	height:365px;
+}
+
+.coder-logo {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.button {
+	width: 70px;
+	height:70px;
+	border-radius: 70px;
+	background: #FFF;
+	border: 5px solid #f0f0f0;
+	display: inline-block;
+	box-shadow: 1px 1px 1px 0px #e9e9e9;
+	cursor: pointer;
+}
+
+.button:hover {
+	border-color: #f0f;
+}
+
+.button.selected {
+	border-color: #0f0;
+}
+
+.dislike-holder,.like-holder {
+	top:560px;
+	position: absolute;
+}
+.dislike-holder {
+	left:10px;
+}
+.like-holder {
+	right:10px;
+}
+
+.button.dislike {
+	margin-left: 4px;
+	background: url(img/dislike.png);
+	background-size: 25px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+.button.like {
+	margin-left: -4px;
+	background: url(img/like.png);
+	background-size: 25px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+[data-module="tinder"] .bot .step:not(:last-child) {
+  display: none;
+}
+
+.footer {
+	text-align: left;
+}
+
+.footer h3 {
+	font-size: 22px;
+	color:black;
+	margin-top:10px;
+	margin-bottom: 0px;
+	font-family: arial,helvetica;
+	font-weight: bold;
+}
+
+.footer p {
+	font-family: arial,helvetica;
+	font-size: 22px;
+	color:black;
+	margin-top: 5px;
+}

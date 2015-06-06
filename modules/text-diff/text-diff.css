@@ -1,0 +1,12 @@
+.falling{
+  position: relative;
+  display: inline-block;
+}
+#text-diff div, #width-calc div{
+  float: left;
+}
+
+#width-calc{
+  top: -10000000px !important;
+  position: absolute;
+}

@@ -1,0 +1,40 @@
+#circuit {
+  height: 500px;
+  width: 960px;
+  font-family: "HaasTextBold",Arial,Helvetica;
+}
+
+#circuit g.gate-icon{
+  /* TODO: redo paths so you don't need to scale... */
+  transform: scale(.45);
+  fill: #f94600;
+  fill-opacity: .5;
+}
+#circuit text{
+  pointer-events: none;
+}
+
+#circuit svg{
+  overflow: visible;
+}
+
+
+#circuit .wire{
+  fill: none;
+  shape-rendering: crispEdges;
+}
+
+#circuit .wire.bot{
+  opacity: .5;
+}
+
+#circuit path.background{
+  fill-opacity: 1 !important;
+  fill: white !important;
+}
+
+#circuit path.foreground{
+  stroke: black;
+  cursor: pointer;
+  stroke-width: 2;
+}

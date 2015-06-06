@@ -14,16 +14,19 @@ function bot() {
         learninal,
         learninalSel,
       pendingDialogue,
+      dialogueStep,
       visible,
       attachment;
 
   function robot(selection) {
 
     sel = selection;
-    sel.classed("bot", true).attr("id", botName);
+    sel.classed("bot", true);
+    if(botName) sel.attr("id", botName);
     face = sel.append("div").classed("face", true);
     body = sel.append("div").classed("body", true);
     messages = body.append("div").classed("messages", true);
+    dialogueStep = messages.append("div.step");
     learninalSel = body.append("div").classed("learninal", true);
 
     learninal = new Sandbox.View({
@@ -35,7 +38,7 @@ function bot() {
     // Listen to dispatcher
     learninal.model.dispatcher.on("evaluate", function(item) {
 
-      var msg = messages.append("div").classed("message", true).classed("eval", true).classed(item._class, true);
+      var msg = dialogueStep.append("div").classed("message", true).classed("eval", true).classed(item._class, true);
       var input = msg.append("pre").append("code").classed("javascript", true).classed("input", true).html(learninal.toEscaped(item.command));
       var output = msg.append("pre").append("code").classed("javascript", true).classed("output", true).html(learninal.toEscaped(item.result));
       body.node().scrollTop = body.node().scrollHeight;
@@ -88,7 +91,7 @@ function bot() {
       "domain": [0,1]
     }, config);
 
-    var message = messages.append("div").classed("message", true).classed("slidey", true);
+    var message = dialogueStep.append("div").classed("message", true).classed("slidey", true);
 
     var margin = {top: 0, right: 25, bottom: 0, left: 25},
         width = message.node().offsetWidth - margin.left - margin.right,
@@ -188,7 +191,7 @@ function bot() {
     return new Promise(
       function(resolve,reject) {
 
-        var speech = messages.append("div").classed("message", true).classed("speech", true);
+        var speech = dialogueStep.append("div").classed("message", true).classed("speech", true);
         var delay = Math.min(minDelay, maxDuration / text.length);
         var speechTimer = setInterval(function() {
           if(speech.text().length == text.length) {
@@ -203,6 +206,11 @@ function bot() {
     )
   }
 
+  robot.do = function(fn) {
+    fn.call(robot);
+    return robot;
+  }
+
   robot.eval = function(text) {
 
     if(!text) text="";
@@ -214,7 +222,7 @@ function bot() {
         learninal.model.evaluate(text);
         resolve(true);
 
-        // var code = messages.append("div").classed("message", true).classed("code", true);
+        // var code = dialogueStep.append("div").classed("message", true).classed("code", true);
         // var delay = Math.min(minDelay, maxDuration / text.length);
         // var codeTimer = setInterval(function() {
         //   if(code.text().length == text.length) {
@@ -238,7 +246,7 @@ function bot() {
     return new Promise(
       function(resolve,reject) {
 
-        var responses = messages.append("div").classed("message", true).classed("responses", true);
+        var responses = dialogueStep.append("div").classed("message", true).classed("responses", true);
 
         var rSel = responses.selectAll(".response")
           .data(newPrompts, function(d) { return d.prompt; });
@@ -246,18 +254,19 @@ function bot() {
         rSel.enter()
           .append("div")
           .classed("response", true)
-          .text(function(d) { return (d.link ? "☛ " : "» ") + d.prompt; })
+          .text(function(d) { return (d.link ? "☛ " : "") + d.prompt; })
           .on("click", function(d) {
 
             d3.select(this).classed("clicked", true);
+
+            if(d.link) window.open(d.link, '_blank');
+
+            if(d.do) d.do.call(robot);
 
             if(d.dialogue) {
               robot.dialogue(d.dialogue).then(function(value) {
                 resolve(value);
               });
-            } else if(d.link) {
-              window.open(d.link, '_blank');
-              resolve(true);
             } else {
               resolve(true);
             }
@@ -360,6 +369,8 @@ function bot() {
     pending = d3.functor(pending).call(robot).slice(0);
     pendingDialogue = pending;
     robot.mode("on");
+
+    dialogueStep = messages.append("div.step");
 
     return new Promise(
       function(resolve,reject) {
