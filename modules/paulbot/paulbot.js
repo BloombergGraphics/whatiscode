@@ -27,6 +27,9 @@ var paulbot;
         "speak": message
       }
     ];
+
+    // if(localStorage.getItem('scrollTop')) {
+
     if(localStorage.getItem('scrollTop')) {
       dialogue[0]["prompts"] =
         [
@@ -51,18 +54,18 @@ var paulbot;
 
   }, 5000);
 
-  var scrollLog = [];
-
-  var fastSass = _.shuffle([
-    "You're scrolling too fast! Sloooowww dowwnnnn!",
-    "Wow you can read so quickly!",
-    "This is like a zillion wpm.",
-    "Are you reading my article or are you looking at my article.",
-    "Hey Barbecue, where's the fire?",
-    "Trying to skip to the bottom?",
-    "Are you just looking for fancy Snowfally things to jump out at you? Read more words. They're good.",
-    "Excuse me, my words are up here."
-  ]);
+  var scrollLog = [],
+      alertTooFastThrottled = _.throttle(alertTooFast, 10000),
+      fastSass = _.shuffle([
+        "You're scrolling too fast! Sloooowww dowwnnnn!",
+        "Wow you can read so quickly!",
+        "This is like a zillion wpm.",
+        "Are you reading my article or are you looking at my article.",
+        "Hey Barbecue, where's the fire?",
+        "Trying to skip to the bottom?",
+        "Are you just looking for fancy Snowfally things to jump out at you? Read more words. They're good.",
+        "Excuse me, my words are up here."
+      ]);
 
   $(window).on("scroll", _.throttle(logScroll, 1000));
   logScroll();
@@ -81,7 +84,6 @@ var paulbot;
     ]
     paulbot.dialogue(dialogue);
   }
-  var alertTooFastThrottled = _.throttle(alertTooFast, 10000);
 
   function logScroll() {
     var scrollTop = document.getElementsByTagName("body")[0].scrollTop;
