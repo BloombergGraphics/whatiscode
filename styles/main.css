@@ -24,8 +24,6 @@ html, body {
   color: #3C3C3C;
   -webkit-font-smoothing: antialiased;
 }
-#paulbot {display: none;}
-#toc-bug {display: none;}
 
 hr{width: 75%; border:none;height:4px;background-color:#3C3C3C;margin: 60px auto 60px auto;}
 

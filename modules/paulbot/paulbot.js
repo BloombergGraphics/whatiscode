@@ -19,12 +19,12 @@ var paulbot;
     } else {
       var message = "Hey, welcome" +
         (document.referrer ? " from " + document.referrer + " " : "") +
-        "! Look for me throughout the article for moments where you can play along.";
+        "! I’m Kevin and I’ll be your Clippy today. I’ll appear from time to time to distract you from how many words are here!";
     }
 
     var dialogue = [
-      { "speak": message },
-      { "wait": 6000 },
+      { "speak": message,
+        "wait": 10000 },
       { "mode": "off" }
     ];
 
@@ -86,5 +86,27 @@ var paulbot;
       document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop'));
     }
   }
+
+  // https://css-tricks.com/snippets/jquery/konomi-code/
+  var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+  $(document).keydown(function(e) {
+    kkeys.push( e.keyCode );
+    if ( kkeys.toString().indexOf( konami ) >= 0 ) {
+      $(document).unbind('keydown',arguments.callee);
+      // do something
+      var dialogue = [
+        {
+          "emote": "jumps",
+          "speak": "EASTER EGG",
+          "wait": 5000
+        },
+        {
+          "mode": "off",
+          "emote": "chill"
+        }
+      ]
+      paulbot.dialogue(dialogue);
+    }
+  });
 
 })();
