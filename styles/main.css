@@ -178,6 +178,8 @@ h2{
 }
 h3{font-size: 34px;line-height: 40px;font-weight: bold;margin-top:74px }
 
+h4{font-size: 22px;line-height: 24px;margin:0;}
+
 #headerArt {
     text-align: center;
     width: 100%;
@@ -207,6 +209,7 @@ h3{font-size: 34px;line-height: 40px;font-weight: bold;margin-top:74px }
 .aside p {padding:10px;}
 .aside img{float:left;width:200px;padding-right: 10px;}
 
+.indent{margin-left: 40px}
 
 .chat{width: 85%;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 16px;line-height: 20px;margin: 0 auto;}
 .chatterA, .chatterB, .chatterC{padding:10px 0 10px 0;}
@@ -224,42 +227,13 @@ h3{font-size: 34px;line-height: 40px;font-weight: bold;margin-top:74px }
 #postamble a{font-weight: bold}
 
 
-.sidebar{
-    margin: 10px 20px 10px -100px;
-    border: 4px solid #3C3C3C;
-    float:left;width: 300px;
-    font-size: 12px;
-    line-height: 16px;
-    padding: 10px;
-    font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
-  }
-.sidebar h3{margin-top: 0}
-
-.sidebarImg{
-    margin: 10px -100px 10px 10px;
-    float:right;
-    width: 140px;
-    padding: 10px;
-  }
-.sidebarImg img{width: 100%}
 
 
-.sideLeft{
-  width: 340px;
-  margin:0 0 0 -100px;
-  padding: 0 20px;
-  float: left;
-}
-
-.sideRight{
-  width: 340px;
-  margin:0 -120px 0 0;
-  padding: 0 0 10px 20px;
-  float: right;
-}
 .caption{font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 14px;line-height: 16px;margin-top: 4px;}
 .photoCaption{text-transform: uppercase;font-size: 10px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;}
 
+.icons {display: inline;}
+.icons img{height:50px;width: auto;}
 
 .blinking-cursor {
   -webkit-animation: 1s blink step-end infinite;
@@ -335,8 +309,106 @@ h3{font-size: 34px;line-height: 40px;font-weight: bold;margin-top:74px }
 
 
 
-
-
-
 #interesting{width: 100%}
 .interestingInner{width:33%; display: inline-block;vertical-align: top}
+
+
+.orange {color: #f94600}
+
+/* asides */
+
+.sidebarImg img{width: 100%}
+
+
+.sideLeft{
+  width: 340px;
+  margin:0 0 0 -100px;
+  padding: 0 20px;
+  float: left;
+}
+
+.sideRight{
+  width: 340px;
+  margin:0 -140px 0 0;
+  padding: 0 0 10px 20px;
+  float: right;
+}
+
+
+.sidebar{
+    margin: 10px 20px 10px -100px;
+    border: 4px solid #3C3C3C;
+    float:left;width: 300px;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 10px;
+    font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  }
+.sidebar h3{margin-top: 0}
+
+.sidebarImg{
+    margin: 10px -100px 10px 10px;
+    float:right;
+    width: 140px;
+    padding: 10px;
+  }
+
+
+.lilProfile{
+  color: #c63eff;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  width: 140px;
+  float:left;
+  margin-left: -140px;
+  padding-right: 24px;
+}
+.lilProfile img{width: 100%}
+
+
+.lilProfileR p{  border-bottom: 4px solid #c63eff;}
+.lilProfileR{
+  color: #c63eff;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  width: 220px;
+  float:right;
+  margin-right: -140px;
+  padding-left: 24px;
+}
+.lilProfileR img{width: 100%}
+.lilProfileR p{  border-bottom: 4px solid #c63eff;}
+
+
+#languages{
+  color:#f94600;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  width: 200px;
+  margin-right: -100px;
+  float: right;
+  padding: 0 0 0 20px;
+}
+.language{ border-bottom: 4px solid #f94600;margin: 20px auto; padding: 4px auto;}
+.language img{max-width: 80px;margin: 0 auto}
+
+
+#productivity{
+  color:#2800d7;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  width: 440px;
+  margin-right: -200px;
+  float: right;
+  padding: 0 0 0 20px;
+}
+.productive p{border-bottom: 4px solid #2800d7;}
+.productive{ margin: 5px;width: 200px;display: inline-block;vertical-align: top}
+.productive img{max-width: 100px;margin-left:25%;}
+
+
+
