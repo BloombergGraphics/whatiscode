@@ -23,32 +23,13 @@ var paulbot;
     }
 
     var dialogue = [
-      {
-        "speak": message
-      }
+      { "speak": message },
+      { "wait": 6000 },
+      { "mode": "off" }
     ];
 
     // if(localStorage.getItem('scrollTop')) {
-
-    if(localStorage.getItem('scrollTop')) {
-      dialogue[0]["prompts"] =
-        [
-          {
-            "prompt": "Continue reading from last spot",
-            "do": function() { document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop')); }
-          },
-          {
-            "prompt": "Please go away."
-          }
-        ];
-    } else {
-      dialogue.push({
-        "wait": 6000
-      });
-    }
-    dialogue.push({
-      "mode": "off"
-    });
+    // function() { document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop')); }
 
     paulbot.dialogue(dialogue);
 
