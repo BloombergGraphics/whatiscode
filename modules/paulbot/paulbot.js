@@ -28,9 +28,6 @@ var paulbot;
       { "mode": "off" }
     ];
 
-    // if(localStorage.getItem('scrollTop')) {
-    // function() { document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop')); }
-
     paulbot.dialogue(dialogue);
 
   }, 5000);
@@ -81,6 +78,12 @@ var paulbot;
 
     if(scrollSpeed > 4 && fastSass.length) {
       alertTooFastThrottled();
+    }
+  }
+
+  function scrollToSaved() {
+    if(localStorage.getItem('scrollTop')) {
+      document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop'));
     }
   }
 
