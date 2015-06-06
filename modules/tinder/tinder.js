@@ -4,17 +4,24 @@
   addModule(module)
 
 	module.bot = bot();
+
   module.sel.append("div.bot").call(module.bot);
 
+  var logoHolder = module.sel.append("div.coder-logo");
+	var logo = logoHolder.append("img").attr("src","images/coder_logo.jpg");
 	var screen = module.sel.append("div.screen");
 
-	var name = screen.append("h3");
-	var bio = screen.append("p");
 	var code = screen.append("pre").append("code");
 
 	var footer = screen.append("div.footer");
-	var buttonLike = footer.append("div.button.like");
-	var buttonDislike = footer.append("div.button.dislike");
+	var name = footer.append("h3");
+	var bio = footer.append("p");
+
+	var dislike = module.sel.append("div.dislike-holder");
+	var like = module.sel.append("div.like-holder");
+	var buttonDislike = dislike.append("div.button.dislike");
+	var buttonLike = like.append("div.button.like");
+	
 
 
 	var codeSamples = [
@@ -47,7 +54,7 @@
   ];
 
 	module.oninit = function() {
-		module.bot.dialogue(dialogue);
+		// module.bot.dialogue(dialogue);
 		codeSamples.length ? renderProfile(codeSamples.shift()) : null;
 	}
 
@@ -63,12 +70,17 @@
 
 		function like(d,i) {
 			d3.select(this).classed("selected", true);
-			module.bot.speak(profile.paulbot).then(function() {
-				return module.bot.prompts([{
-					"prompt": "Next",
-					"do": function() { codeSamples.length ? renderProfile(codeSamples.shift()) : null; }
-				}]);
-			});
+			
+			codeSamples.length ? renderProfile(codeSamples.shift()) : null
+
+
+			// module.bot.dialogue([{
+			// 	"speak": profile.paulbot,
+			// 	"prompts": [{
+			// 		"prompt": "Next",
+			// 		"do": function() { codeSamples.length ? renderProfile(codeSamples.shift()) : null; }
+			// 		}]
+			// 	}]);
 		}
 	}
 
