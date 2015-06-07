@@ -19,52 +19,33 @@ var paulbot;
     } else {
       var message = "Hey, welcome" +
         (document.referrer ? " from " + document.referrer + " " : "") +
-        "! Look for me throughout the article for moments where you can play along.";
+        "! I’m Kevin and I’ll be your Clippy today. I’ll appear from time to time to distract you from how many words are here!";
     }
 
     var dialogue = [
-      {
-        "speak": message
-      }
+      { "speak": message,
+        "wait": 10000 },
+      { "mode": "off" }
     ];
-    if(localStorage.getItem('scrollTop')) {
-      dialogue[0]["prompts"] =
-        [
-          {
-            "prompt": "Continue reading from last spot",
-            "do": function() { document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop')); }
-          },
-          {
-            "prompt": "Please go away."
-          }
-        ];
-    } else {
-      dialogue.push({
-        "wait": 6000
-      });
-    }
-    dialogue.push({
-      "mode": "off"
-    });
 
     paulbot.dialogue(dialogue);
 
   }, 5000);
 
-  var scrollLog = [];
+  var scrollLog = [],
+      alertTooFastThrottled = _.throttle(alertTooFast, 10000),
+      fastSass = _.shuffle([
+        "You're scrolling too fast! Sloooowww dowwnnnn!",
+        "Wow you can read so quickly!",
+        "This is like a zillion wpm.",
+        "Are you reading my article or are you looking at my article.",
+        "Hey Barbecue, where's the fire?",
+        "Trying to skip to the bottom?",
+        "Are you just looking for fancy Snowfally things to jump out at you? Read more words. They're good.",
+        "Excuse me, my words are up here."
+      ]);
 
-  var fastSass = _.shuffle([
-    "You're scrolling too fast! Sloooowww dowwnnnn!",
-    "Wow you can read so quickly!",
-    "This is like a zillion wpm.",
-    "Are you reading my article or are you looking at my article.",
-    "Hey Barbecue, where's the fire?",
-    "Trying to skip to the bottom?",
-    "Are you just looking for fancy Snowfally things to jump out at you? Read more words. They're good.",
-    "Excuse me, my words are up here."
-  ]);
-
-  $(window).on("scroll", _.throttle(logScroll, 1000));
+  d3.select(window).on("scroll.stickybot", _.throttle(logScroll, 1000));
   logScroll();
 
   function alertTooFast() {
@@ -81,7 +62,6 @@ var paulbot;
     ]
     paulbot.dialogue(dialogue);
   }
-  var alertTooFastThrottled = _.throttle(alertTooFast, 10000);
 
   function logScroll() {
     var scrollTop = document.getElementsByTagName("body")[0].scrollTop;
@@ -100,5 +80,27 @@ var paulbot;
       alertTooFastThrottled();
     }
   }
+
+  // https://css-tricks.com/snippets/jquery/konomi-code/
+  var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+  $(document).keydown(function(e) {
+    kkeys.push( e.keyCode );
+    if ( kkeys.toString().indexOf( konami ) >= 0 ) {
+      $(document).unbind('keydown',arguments.callee);
+      // do something
+      var dialogue = [
+        {
+          "emote": "jumps",
+          "speak": "EASTER EGG",
+          "wait": 5000
+        },
+        {
+          "mode": "off",
+          "emote": "chill"
+        }
+      ]
+      paulbot.dialogue(dialogue);
+    }
+  });
 
 })();

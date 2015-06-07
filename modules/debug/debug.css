@@ -1,4 +1,4 @@
-#debug{
+[data-module="debug"]{
   position: relative;
   height: 570px;
   margin-left: -200px;
@@ -6,32 +6,32 @@
   /*font-family: "HaasTextBold",Arial,Helvetica;*/
 }
 
-#debug .bugg{
+[data-module="debug"] .bugg{
   width: 300px;
   position: absolute;
 }
 
-#debug .bug-img{
+[data-module="debug"] .bug-img{
   width: 100px;
   display:block;
   margin:auto;
   height: 108px;
 }
 
-#debug .q-container div{
+[data-module="debug"] .q-container div{
   border: 1px solid black;
   padding: 5px;
   margin-top: 5px;
   cursor: pointer;
 }
-#debug .correct .q-container div{
+[data-module="debug"] .correct .q-container div{
   border: 1px solid lightgrey;
   color: lightgrey;
 }
 
-#debug .lazer{
+[data-module="debug"] .lazer{
 }
 
-#debug svg{
+[data-module="debug"] svg{
   pointer-events: none;
 }
