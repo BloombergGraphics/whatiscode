@@ -3,18 +3,9 @@
   var module = {sel: d3.select('[data-module="toc"]')}
   addModule(module)
 
-  var stats = {
-    scrollLog: [],
-    wordCount: 0,
-    timeOnPage: 0,
-    visits: 0,
-    histogram: {},
-    windows: {
-      "current": 0,
-      "previous": 0,
-      "hover": null
-    }
-  };
+  var stats;
+
+  var loadTime = new Date();
 
   var pixelsToWords = d3.scale.linear()
     .domain([0,d3.select("body").node().getBoundingClientRect().height])
@@ -47,8 +38,32 @@
     return new Date(+(new Date()) + (getWordCount() - latest().wordCount) / getWordsPerMs());
   }
 
-  function saveStats() { return; }
-  function loadStats() { return; }
+  function saveStats() { 
+    stats.windows.previous = stats.windows.current;
+    stats.timeOnPage += (+new Date()) - loadTime;
+    // stats.scrollLog = [];
+    localStorage.setItem('stats', JSON.stringify(stats));
+    return; 
+  }
+
+  function loadStats() { 
+    stats = JSON.parse(localStorage.getItem('stats'));
+    if(!stats) {
+      console.log("no stats!!!");
+      stats = {
+        scrollLog: [],
+        wordCount: getWordCount(),
+        timeOnPage: 0,
+        visits: 1,
+        histogram: {},
+        windows: {
+          "current": 0,
+          "previous": 0,
+          "hover": null
+        }
+      }
+    }
+  }
 
   function makeHistogram() {
     stats.histogram = histogram(stats.scrollLog)
@@ -153,5 +168,7 @@
   }, 1000);
 
   d3.select(window).on("scroll.toc", renderWindows);
+  window.onunload = window.onbeforeunload = saveStats;
+  loadStats();
 
 })();

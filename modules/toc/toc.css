@@ -6,6 +6,8 @@
 	left: 0;
 	background: #eee;
 	z-index: 3;
+
+	display: none;
 }
 
 .histogram {
