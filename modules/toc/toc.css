@@ -1,0 +1,9 @@
+[data-module="toc"] {
+	position: fixed;
+	width: 30%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #eee;
+	z-index: 3;
+}

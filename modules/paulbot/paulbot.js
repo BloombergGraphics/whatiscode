@@ -45,7 +45,7 @@ var paulbot;
         "Excuse me, my words are up here."
       ]);
 
-  $(window).on("scroll", _.throttle(logScroll, 1000));
+  d3.select(window).on("scroll.stickybot", _.throttle(logScroll, 1000));
   logScroll();
 
   function alertTooFast() {
@@ -64,6 +64,7 @@ var paulbot;
   }
 
   function logScroll() {
+    console.log("here scrolling");
     var scrollTop = document.getElementsByTagName("body")[0].scrollTop;
     scrollLog.push({
       "scrollTop": scrollTop,
@@ -78,12 +79,6 @@ var paulbot;
 
     if(scrollSpeed > 4 && fastSass.length) {
       alertTooFastThrottled();
-    }
-  }
-
-  function scrollToSaved() {
-    if(localStorage.getItem('scrollTop')) {
-      document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop'));
     }
   }
 
