@@ -54,10 +54,10 @@
     numToColor[a] = 'black'
     numToColor[0] = 'lightgrey'
 
-    var svg = d3.select('#gcd').html('').append('svg')
+    var svg = d3.select('[data-module="gcd"]').html('').append('svg')
         .attr({width: size, height: 500})
 
-    var text = d3.select('#gcd').append('div.explanation')
+    var text = d3.select('[data-module="gcd"]').append('div.explanation')
 
     var stepDivs = text.dataAppend(stack.concat('last'), 'div')
     stepDivs.dataAppend(function(d, i){
@@ -137,7 +137,7 @@
 
   }
 
-  var module = {sel: d3.select('#gcd')}
+  var module = {sel: d3.select('[data-module="gcd"]')}
   addModule(module)
 
   drawGCD()

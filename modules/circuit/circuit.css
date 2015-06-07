@@ -1,39 +1,39 @@
-#circuit {
+[data-module="circuit"] {
   height: 500px;
   width: 960px;
   font-family: "HaasTextBold",Arial,Helvetica;
 }
 
-#circuit g.gate-icon{
+[data-module="circuit"] g.gate-icon{
   /* TODO: redo paths so you don't need to scale... */
   transform: scale(.45);
   fill: #f94600;
   fill-opacity: .5;
 }
-#circuit text{
+[data-module="circuit"] text{
   pointer-events: none;
 }
 
-#circuit svg{
+[data-module="circuit"] svg{
   overflow: visible;
 }
 
 
-#circuit .wire{
+[data-module="circuit"] .wire{
   fill: none;
   shape-rendering: crispEdges;
 }
 
-#circuit .wire.bot{
+[data-module="circuit"] .wire.bot{
   opacity: .5;
 }
 
-#circuit path.background{
+[data-module="circuit"] path.background{
   fill-opacity: 1 !important;
   fill: white !important;
 }
 
-#circuit path.foreground{
+[data-module="circuit"] path.foreground{
   stroke: black;
   cursor: pointer;
   stroke-width: 2;

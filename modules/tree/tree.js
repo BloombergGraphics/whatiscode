@@ -15,7 +15,7 @@
   ];
 
   module.oninit = function() {
-    treeMe(module.sel, document.getElementById("text-2-8"));
+    treeMe(module.sel, d3.select("[data-section='2']").node());
     module.bot.dialogue(dialogue);
   }
 

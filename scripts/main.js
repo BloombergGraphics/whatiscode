@@ -23,6 +23,98 @@ var loadTime = new Date();
   }
 })();
 
+// insert modules
+(function() {
+  var modules = [
+    {
+      "name": "certificate",
+      "string": null
+    },
+    {
+      "name": "circuit",
+      "string": "A computer is a clock with benefits"
+    },
+    {
+      "name": "crapplets",
+      "string": "soon called “crapplets”"
+    },
+    {
+      "name": "debug",
+      "string": "figure out what broke"
+    },
+    {
+      "name": "gcd",
+      "string": "Euclid’s algorithm, for example"
+    },
+    {
+      "name": "grabbag",
+      "string": "The standard library is a set of pre-made software"
+    },
+    {
+      "name": "keyboard",
+      "string": "strike a key on your keyboard"
+    },
+    {
+      "name": "languages",
+      "string": null
+    },
+    {
+      "name": "learninal",
+      "string": "Programming as a career can lead to a rewarding"
+    },
+    {
+      "name": "livehtml",
+      "string": "To gather an e-mail address and a name"
+    },
+    {
+      "name": "maps",
+      "string": null
+    },
+    {
+      "name": "mouse",
+      "string": "A mouse moves"
+    },
+    {
+      "name": "paperclip",
+      "string": null
+    },
+    {
+      "name": "paulbot",
+      "string": null
+    },
+    {
+      "name": "recirc",
+      "string": null
+    },
+    {
+      "name": "shoppingcart",
+      "string": null
+    },
+    {
+      "name": "text-diff",
+      "string": "version control is one of the most beautiful"
+    },
+    {
+      "name": "tinder",
+      "string": "even if the code starts to look ugly"
+    },
+    {
+      "name": "toc",
+      "string": null
+    },
+    {
+      "name": "tree",
+      "string": "Arbor Day"
+    }
+  ];
+
+  modules.forEach(function(value, index) {
+    if(!value.string) return;
+    if($('[data-module="'+value.name+'"]').length !== 0) return;
+    $('p:contains("'+value.string+'")').after('<div data-module="'+value.name+'"></div>');
+  })
+})();
+
 jQuery(document).ready(function($) {
 
   // preprocess org-mode html and append events
@@ -167,5 +259,15 @@ function resetArticle() {
   d3.select("body").style("background-color", "inherit");
   d3.select("body").style("color", "inherit");
 }
+
+
+
+
+
+
+
+
+
+
 
 console.log("                    ___\n                _.-'   ```'--.._                 _____ ___ ___   ____  _____ __ __      ______  __ __    ___  \n              .'                `-._            / ___/|   |   | /    |/ ___/|  |  |    |      ||  |  |  /  _] \n             /                      `.         (   \\_ | _   _ ||  o  (   \\_ |  |  |    |      ||  |  | /  [_        \n            /                         `.        \\__  ||  \\_/  ||     |\\__  ||  _  |    |_|  |_||  _  ||    _]       \n           /                            `.      /  \\ ||   |   ||  _  |/  \\ ||  |  |      |  |  |  |  ||   [_        \n          :       (                       \\     \\    ||   |   ||  |  |\\    ||  |  |      |  |  |  |  ||     |       \n          |    (   \\_                  )   `.    \\___||___|___||__|__| \\___||__|__|      |__|  |__|__||_____|       \n          |     \\__/ '.               /  )  ;  \n          |   (___:    \\            _/__/   ;    ____   ____  ______  ____   ____   ____  ____      __  __ __  __ __ \n          :       | _  ;          .'   |__) :   |    \\ /    ||      ||    \\ |    | /    ||    \\    /  ]|  |  ||  |  |\n           :      |` \\ |         /     /   /    |  o  )  o  ||      ||  D  ) |  | |  o  ||  D  )  /  / |  |  ||  |  |\n            \\     |_  ;|        /`\\   /   /     |   _/|     ||_|  |_||    /  |  | |     ||    /  /  /  |  _  ||  ~  |\n             \\    ; ) :|       ;_  ; /   /      |  |  |  _  |  |  |  |    \\  |  | |  _  ||    \\ /   \\_ |  |  ||___, |\n              \\_  .-''-.       | ) :/   /       |  |  |  |  |  |  |  |  .  \\ |  | |  |  ||  .  \\\\     ||  |  ||     |\n             .-         `      .--.'   /        |__|  |__|__|  |__|  |__|\\_||____||__|__||__|\\_| \\____||__|__||____/ \n            :         _.----._     `  < \n            :       -'........'-       `.\n             `.        `''''`           ;\n               `'-.__                  ,'\n                     ``--.   :'-------'\n                         :   :\n                        .'   '.\n      \n      \n                                                                    ");

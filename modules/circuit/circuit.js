@@ -106,7 +106,7 @@
 
   var actualWidth = width + margin.left + margin.right
   //add elements to the page
-  var svgBase = d3.select('#circuit')
+  var svgBase = d3.select('[data-module="circuit"]')
       .style('margin-left', Math.min(-20, 740 - actualWidth)/2 + 'px')
     .append('svg')
       .attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
@@ -207,7 +207,7 @@
     update(d.i)
   })
 
-  var module = {sel: d3.select('#circuit')}
+  var module = {sel: d3.select('[data-module="circuit"]')}
   addModule(module)
 
   window.setInterval(function(){
