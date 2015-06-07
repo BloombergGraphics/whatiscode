@@ -64,7 +64,6 @@ var paulbot;
   }
 
   function logScroll() {
-    console.log("here scrolling");
     var scrollTop = document.getElementsByTagName("body")[0].scrollTop;
     scrollLog.push({
       "scrollTop": scrollTop,
