@@ -119,10 +119,10 @@
       {"key":"DELETE","make":"E0,71","break":"E0,F0,71","y":null,"x":null,"dx":null,"keycode":46},
       {"key":"END","make":"E0,69","break":"E0,F0,69","y":null,"x":null,"dx":null,"keycode":35},
       {"key":"PG DN","make":"E0,7A","break":"E0,F0,7A","y":null,"x":null,"dx":null,"keycode":34},
-      {"key":"U ARROW","make":"E0,75","break":"E0,F0,75","y":5,"x":6,"dx":1,"keycode":38},
-      {"key":"L ARROW","make":"E0,6B","break":"E0,F0,6B","y":5,"x":8,"dx":1,"keycode":37},
-      {"key":"D ARROW","make":"E0,72","break":"E0,F0,72","y":5,"x":7,"dx":1,"keycode":40},
-      {"key":"R ARROW","make":"E0,74","break":"E0,F0,74","y":5,"x":9,"dx":1,"keycode":39},
+      {"key":"↑","make":"E0,75","break":"E0,F0,75","y":5,"x":6,"dx":1,"keycode":38},
+      {"key":"←","make":"E0,6B","break":"E0,F0,6B","y":5,"x":8,"dx":1,"keycode":37},
+      {"key":"↓","make":"E0,72","break":"E0,F0,72","y":5,"x":7,"dx":1,"keycode":40},
+      {"key":"→","make":"E0,74","break":"E0,F0,74","y":5,"x":9,"dx":1,"keycode":39},
       {"key":"NUM","make":"77","break":"F0,77","y":null,"x":null,"dx":null,"keycode":144},
       {"key":"KP /","make":"E0,4A","break":"E0,F0,4A","y":null,"x":null,"dx":null},
       {"key":"KP *","make":"7C","break":"F0,7C","y":null,"x":null,"dx":null},
@@ -174,7 +174,7 @@
         .style("width", _.compose(xScale, ƒ('dx')))
         .style("height", xScale.range()[1])
         .append("div.key-inner")
-        // .text(ƒ('key'));
+        .text(ƒ('key'));
 
     var timeSinceLastKeyTimeout;
     function drawKey(e) {

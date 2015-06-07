@@ -2,12 +2,12 @@
   var width = 960,
       height = 500
 
-  var svg = d3.select('#debug').append('svg')
+  var svg = d3.select('[data-module="debug"]').append('svg')
       .attr({width: width, height: height})
       .style({position: 'absolute', top: '0px'})
 
 
-  var module = {sel: d3.select('#debug')}
+  var module = {sel: d3.select('[data-module="debug"]')}
   addModule(module)
 
   var dialogue = [
@@ -74,7 +74,7 @@
 
     d.visable = true
 
-    d.div = d3.select('#debug').append('div.bugg')
+    d.div = d3.select('[data-module="debug"]').append('div.bugg')
 
     d.imgEl = d.div.append('img.bug-img').attr('src', d.img)
 
