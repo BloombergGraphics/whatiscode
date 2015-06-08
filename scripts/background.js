@@ -94,11 +94,11 @@
 
     }, 800)
   })()
-
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('.sectionNum5'), active: false, onunload: unload}
-    // addModule(module)
+    var module = {sel: d3.select('#background-hook'), active: true, onunload: unload}
+
+    addModule(module)
 
     var colors = colorArray.slice(0, 3)
     var offset = 1
@@ -135,7 +135,7 @@
 
   //circles
   !(function(){
-    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
+    var module = {sel: d3.select('.sectionNum5'), active: false, onunload: unload}
     addModule(module)
 
     var colors = colorArray.slice(0, 3)

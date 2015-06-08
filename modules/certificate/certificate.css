@@ -17,3 +17,19 @@
   min-width: 5em;
   border-bottom: 2px dotted #2800d7;
 }
+
+
+#certificate-container {
+  position: relative;
+  height: 620px;
+  width: 800px;
+  margin: 0px auto;
+}
+
+#certificate {
+  position: absolute;
+}
+
+#monitor {
+  position: absolute;
+}
