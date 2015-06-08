@@ -170,9 +170,9 @@
     gateGs.selectAll('g.gate-icon').filter(ƒ('changedOn'))
       .transition(uuid).delay(function(d){ return (d.i - i)*300+ 200})
         .style('fill', color)
-        .style('fill-opacity', 1)
-      .transition(uuid).duration(300)
         .style('fill-opacity', .5)
+      .transition(uuid).duration(300)
+        .style('fill-opacity', 1)
 
     wireBotEls
       .transition(uuid).delay(function(d){ return (d.from.i - i)*300 + 600 })

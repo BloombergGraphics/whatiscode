@@ -5,12 +5,23 @@
 	top: 0;
 	left: -380px;
 	z-index: 3;
-	transition: left 1s;
-	background: #2800d7;
+	/*transition: left .5s;*/
+	/*background: #2800d7;*/
 }
 
-[data-module="toc"]:hover {
+[data-module="toc"].open {
 	left: 0;
+}
+
+[data-module="toc"] ::-webkit-scrollbar { 
+   display: none; 
+}
+
+article#code {
+	/*transition: transform .5s;*/
+}
+article#code.toc-open {
+	transform: translate(300px,0);
 }
 
 .histogram {
@@ -53,10 +64,11 @@
 	overflow-y: scroll;
 }
 
+
 .toc .toc-section {
 	background: white;
-	padding: 1em;
-	margin: 1em;
+	padding: 20px;
+	margin: 20px;
 }
 
 .toc .toc-head {
@@ -73,6 +85,11 @@
 }
 
 .toc .toc-head[data-level="H3"] {
+	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
+	font-size: 10pt;
+}
+
+.toc .toc-section.stats {
 	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
 	font-size: 10pt;
 }

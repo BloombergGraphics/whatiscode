@@ -1,8 +1,10 @@
 [data-module="gcd"]{
   width: 960px;
-  height: 500px;
-  margin-left: -150px;
+  height: 450px;
+  margin-left: -0px;
   font-family: "HaasTextBold",Arial,Helvetica;
+  padding-top: 30px;
+  padding-left: 35px;
 }
 
 [data-module="gcd"] text{
@@ -43,10 +45,24 @@
 }
 
 [data-module="gcd"] .explanation{
-  max-width: 500px;
+  max-width: 520px;
   margin: 0px auto;
+  float: left;
+  margin-right: 20px;
 }
+
+[data-module="gcd"] .svg{
+  float: left;
+}
+
 
 [data-module="gcd"] .explanation div{
   padding-bottom: 20px;
+}
+
+[data-module="gcd"] .btn{
+  padding-top: 21px;
+  color: white;
+  font-size: 43px;
+  cursor: pointer;
 }

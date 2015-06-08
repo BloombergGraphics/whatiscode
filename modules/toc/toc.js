@@ -22,6 +22,16 @@
     .value(ƒ('scrollTop'))
     .bins(pixelsToWords.ticks(100));
 
+  module.sel
+    .on("mouseover", function(d) {
+      module.sel.classed("open", true);
+      d3.select("article").classed("toc-open", true);
+    })
+    .on("mouseout", function(d) {
+      module.sel.classed("open", false);
+      d3.select("article").classed("toc-open", false);
+    })
+
   function getWordCount(sel) {
     if(!arguments.length) sel = d3.select("body");
     return sel.text().trim().replace(/\s+/gi, ' ').split(' ').length;
@@ -123,15 +133,6 @@
       .style("top", function(d) { return pixelsToPercentage(stats.windows[d]) + "%"; });
   }
 
-  function renderStats() {
-    var statSel = module.sel.selectAll("div.stats").data([stats]);
-    statSel.enter().append("div.stats");
-    statSel.text("You’re averaging " 
-      + (getWordsPerMs() * 1000 * 60).toFixed() 
-      + " words per minute; at this rate, you’ll finish by " 
-      + getEstimatedFinishTime());
-  }
-
   function renderTOC() {
     var tree = [];
     d3.selectAll("article section")
@@ -143,7 +144,7 @@
           });
         tree.push(subtree);
       });
-    console.log(tree);
+    // console.log(tree);
 
     module.sel.append("div.toc")
       .selectAll("div.toc-section")
@@ -162,6 +163,21 @@
       });
   }
   renderTOC();
+
+  function renderStats() {
+
+    console.log("heyyy");
+
+    var statSel = module.sel.select("div.toc-section.stats");
+    if(statSel.empty()) {
+      statSel = module.sel.select("div.toc").append("div.toc-section.stats");
+    }
+
+    statSel.text("You’re averaging " 
+      + (getWordsPerMs() * 1000 * 60).toFixed() 
+      + " words per minute; at this rate, you’ll finish by " 
+      + getEstimatedFinishTime());
+  }
 
   function latest() {
     return stats.scrollLog[stats.scrollLog.length-1];

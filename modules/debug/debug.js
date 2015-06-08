@@ -31,31 +31,31 @@
 
 
   var bugs = [
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth.gif',
       pos: [width*.01, height*.05],
       wrong: 'var salesPlusFour = "4" + sales;',
       right: 'var salesPlusFour = 4 + sales;'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth2.gif',
       pos: [width*.75, height*.05],
       wrong: 'for (var i = 0; i < 10 i++)',
       right: 'for (var i = 0; i < 10; i++)'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth.gif',
       pos: [width*.75, height*.75],
       wrong: 'if (newBug == oldBug)',
       right: 'if (newBug === oldBug)'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth2.gif',
       pos: [width*.02, height*.75],
       right: 'var total += currentValue',
       wrong: 'var total = +currentValue'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth.gif',
       pos: [width*.50, height*.50],
       wrong: 'isBetween = min < next < max',
       right: 'isBetween = min < next && next < max'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth2.gif',
       pos: [width*.0, height*.4],
       wrong: 'var x = Math.Sin(θ)',
       right: 'var x = Math.sin(θ)'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth.gif',
       pos: [width*.40, height*.10],
       wrong: 'obj.function()',
       right: 'obj && obj.function && obj.function'},
@@ -63,7 +63,7 @@
 
   bugs.forEach(function(d){
     d.correct = false
-    d.img = 'images/bug.svg'
+    d.img = _.sample(['images/emotes/pose_moth.gif','images/emotes/pose_moth2.gif'])
     d.t = Math.random()
     d.visable = false
     d.spawned = false
