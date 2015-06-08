@@ -161,12 +161,12 @@
               eV: [x, y, l*3 + Math.random()*l*5*size],
               fill: offset % 18 ? colors[offset % 3] : 'white'
             }
-          shape.end = shape.start + 1000
+          shape.end = shape.start + 1500
           shapes.push(shape)
         })
       })
 
-    }, 1000/3)
+    }, 1500/2.3)
   })()
 
 

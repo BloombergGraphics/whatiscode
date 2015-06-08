@@ -18,16 +18,13 @@
       gcd(a, b)
     }
 
-
-    window.setTimeout(drawGCD, (stack.length + 3)*stepDelay)
+    // window.setTimeout(drawGCD, (stack.length + 3)*stepDelay)
     // if (!module.active) return
 
     var size = 300,
         s    = 300/Math.max(a, b),
-        // s = 1
         colors = colorArray
 
-    console.log(s)
 
     stack[0].translate = [0, 0]
 
@@ -139,7 +136,12 @@
           }
         })
       
-    stepDivs
+
+    text.append('div.btn')
+        .on('click', drawGCD)
+        .text('Calculate Again!')
+
+    text.selectAll('div')
         .style('opacity', 0)
       .transition().delay(function(d, i){ return (i + 1)*stepDelay })
         .style('opacity', 1)
