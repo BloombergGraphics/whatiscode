@@ -123,7 +123,17 @@ jQuery(document).ready(function($) {
   // preprocess org-mode html
   preCode();
 
-  $("h1").addClass("shadowed");
+  // set up toc toggle
+  d3.select("#toc-bug")
+    .on("click", function(d,i) {
+      if(d3.select("#toc").attr("data-mode") === "on") {
+        d3.select(this).attr("data-mode", "off");
+        d3.select("#toc").attr("data-mode", "off");
+      } else {
+        d3.select(this).attr("data-mode", "on");
+        d3.select("#toc").attr("data-mode", "on");
+      }
+    });
 
   // syntax highlighting
   hljs.initHighlightingOnLoad();
