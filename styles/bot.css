@@ -136,10 +136,10 @@
   display: inline-block;
   vertical-align: middle; 
   -webkit-transition: background 0.4s;
-       -moz-transition: background 0.4s;
-        -ms-transition: background 0.4s;
-         -o-transition: background 0.4s;
-            transition: background 0.4s;
+     -moz-transition: background 0.4s;
+      -ms-transition: background 0.4s;
+       -o-transition: background 0.4s;
+          transition: background 0.4s;
 }
 .bot .body .messages .responses .response:hover {
   background: #6381ff;

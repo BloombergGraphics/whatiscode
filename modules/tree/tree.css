@@ -12,13 +12,8 @@
 
 [data-module="tree"] .node rect {
   fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
+  stroke: none;
   pointer-events: all;
-}
-
-[data-module="tree"] .node.expandable rect {
-  stroke: lightsteelblue;
 }
 
 [data-module="tree"] .node:hover rect {
@@ -29,28 +24,35 @@
   font-size: 10px;
   font-weight: bold;
   font-family: 'Roboto Mono', courier, monospace;
+
+  display:none;
 }
 
 [data-module="tree"] .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 1.5px;
+  stroke: #6381ff;
+  stroke-width: 2px;
 }
 
 [data-module="tree"] .svg-container svg {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 [data-module="tree"] .svg-container iframe {
   position: absolute;
   top: 0;
   left: 0;
-  border: 1px solid black;
+  border: 20px solid #2800d7;
   width: 200px;
   height: 200px;
   transform: translate(-50%,-50%) scale(.1);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
   background: white;
 }
+
+[data-module="tree"] .svg-container iframe.expandable {
+  border-color: #f94600;
+}
+
