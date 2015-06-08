@@ -37,6 +37,7 @@ var addModule = (function(){
   setInterval(calcPositions, 2000)
 
   return function(module){
+    if (!module.sel.node()) debugger
     modules.push(module)
     calcPositions()
   }
