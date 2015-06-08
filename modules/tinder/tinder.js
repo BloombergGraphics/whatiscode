@@ -16,6 +16,9 @@
 	var talkbubble = arrowBox.append("div.talkbubble").html("Some code is beautiful and you want to read it, reuse it, and take it into your program and your heart. Some code is annoying and pretentious, and some code looks good at first and turns out to be kind of mean. Estimating code quality is a big part of programming. Go on—judge.");
 	var ok = arrowBox.append("div.ok").html("[OK]");
 
+	var pbotHolder = appscreen.append("div.pbot-holder");
+	var pbotGif = pbotHolder.append("img").attr("src","images/emotes/chill.gif")
+
 	var footer = appscreen.append("div.footer");
 	var name = footer.append("h3");
 	var bio = footer.append("p");
@@ -75,6 +78,11 @@
 			.style("opacity",1);
 		choiceButtons
 			.style("opacity",0.3)
+			.classed("nohover", true)
+			.on("click", false);
+		pbotHolder
+			.transition().duration(300)
+			.style("opacity",1);
 	}
 
 	function paulTalk(txt) {
@@ -85,9 +93,8 @@
 		
 		talkbubble.html(txt);
 
-		arrowBox
-			.transition().duration(300)
-			.style("opacity",1);
+		arrowBox.transition().duration(300).style("opacity",1);
+		pbotHolder.transition().duration(300).style("opacity",1);
 
 		if (stepCount+1 == codeSamples.length) {
 			ok.text("")
@@ -102,6 +109,8 @@
 
 	// click ok and continue
 	ok.on("click",function(){
+		arrowBox.style("top","150px");
+
 		name.text(codeSamples[stepCount].name);
 		bio.text(codeSamples[stepCount].bio);
 		code.text(codeSamples[stepCount].code);
@@ -109,6 +118,7 @@
     hljs.highlightBlock(code.node());
 
 		arrowBox.transition().duration(300).style("opacity",0);
+		pbotHolder.transition().duration(300).style("opacity",0);
 		
 		choiceButtons
 			.style("opacity",1)

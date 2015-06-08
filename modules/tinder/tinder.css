@@ -106,7 +106,7 @@
 [data-module="tinder"] .arrow_box {
 	position: absolute;
 	width: 300px;
-  top: 220px;
+  top: 100px;
   left: 220px;
 	background: #ffffff;
 	border: 4px solid #6381ff;
@@ -149,4 +149,11 @@
 [data-module="tinder"] .ok:hover {
 	color:black;
 	cursor: pointer;
+}
+
+[data-module="tinder"] .pbot-holder {
+	position: absolute;
+  top: 295px;
+  left: 220px;
+  opacity: 0;
 }
