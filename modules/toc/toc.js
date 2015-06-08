@@ -22,6 +22,16 @@
     .value(ƒ('scrollTop'))
     .bins(pixelsToWords.ticks(100));
 
+  module.sel
+    .on("mouseover", function(d) {
+      module.sel.classed("open", true);
+      d3.select("article").classed("toc-open", true);
+    })
+    .on("mouseout", function(d) {
+      module.sel.classed("open", false);
+      d3.select("article").classed("toc-open", false);
+    })
+
   function getWordCount(sel) {
     if(!arguments.length) sel = d3.select("body");
     return sel.text().trim().replace(/\s+/gi, ' ').split(' ').length;
