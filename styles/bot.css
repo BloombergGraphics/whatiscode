@@ -123,21 +123,26 @@
 }
 
 .bot .body .messages .responses .response {
-  color: #f0f;
   display: inline-block;
   margin-bottom: 5px;
   margin-left: 5px;
 
-  border: 3px solid #2800d7;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  background: white;
+  background: #2800d7;
+  color: #fff;
+  padding: 8px;
+  font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif;
+  font-size: 14px;line-height: 16px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle; 
+  -webkit-transition: background 0.4s;
+     -moz-transition: background 0.4s;
+      -ms-transition: background 0.4s;
+       -o-transition: background 0.4s;
+          transition: background 0.4s;
 }
 .bot .body .messages .responses .response:hover {
-  background: #2800d7;
-  color: white;
+  background: #6381ff;
   cursor: pointer;
 }
 .bot .body .messages .responses .response.clicked {
