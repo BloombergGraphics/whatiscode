@@ -52,7 +52,7 @@
 
   // wave squares
   !(function(){
-    var module = {sel: d3.select('[data-section="1"]'), active: false, onunload: unload}
+    var module = {sel: d3.select('[data-section="4"]'), active: false, onunload: unload}
     addModule(module)
 
     var colors = colorArray.slice(1, 4)
@@ -87,7 +87,7 @@
 
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('[data-section="2"]'), active: false, onunload: unload}
+    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
     // addModule(module)
 
     var colors = colorArray.slice(0, 3)
@@ -126,7 +126,7 @@
   //different sized squares
   !(function(){
     // d3.select('.overlay').style('display', 'none')
-    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
+    var module = {sel: d3.select('[data-section="2"]'), active: false, onunload: unload}
     addModule(module)
 
     // Object.observe(module, function (changes){
