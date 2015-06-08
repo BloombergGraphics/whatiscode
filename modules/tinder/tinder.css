@@ -93,3 +93,7 @@ pre code {
 	color:black;
 	margin-top: 5px;
 }
+
+[data-module="tinder"]{
+	position: relative;
+}
