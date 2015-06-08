@@ -40,7 +40,7 @@ var loadTime = new Date();
     },
     {
       "name": "debug",
-      "string": "figure out what broke"
+      "string": "I felt that each time the program crashed"
     },
     {
       "name": "gcd",
