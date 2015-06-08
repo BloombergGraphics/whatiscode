@@ -13,6 +13,10 @@
 	left: 0;
 }
 
+[data-module="toc"] ::-webkit-scrollbar { 
+   display: none; 
+}
+
 article#code {
 	/*transition: transform .5s;*/
 }
@@ -60,6 +64,7 @@ article#code.toc-open {
 	overflow-y: scroll;
 }
 
+
 .toc .toc-section {
 	background: white;
 	padding: 20px;
@@ -80,6 +85,11 @@ article#code.toc-open {
 }
 
 .toc .toc-head[data-level="H3"] {
+	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
+	font-size: 10pt;
+}
+
+.toc .toc-section.stats {
 	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
 	font-size: 10pt;
 }
