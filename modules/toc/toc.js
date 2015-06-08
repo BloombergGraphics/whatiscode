@@ -153,7 +153,7 @@
           });
         tree.push(subtree);
       });
-    console.log(tree);
+    // console.log(tree);
 
     module.sel.append("div.toc")
       .selectAll("div.toc-section")
