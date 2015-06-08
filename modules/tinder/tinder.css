@@ -1,4 +1,8 @@
-.screen {
+[data-module="tinder"]{
+	position: relative;
+}
+
+[data-module="tinder"] .screen {
 	border: 3px solid black;
 	padding: 10px;
 	max-width:400px;
@@ -6,7 +10,7 @@
 	text-align: center;
 }
 
-pre {
+[data-module="tinder"] pre {
 	text-align: left;
 	margin:0;
 	padding:0;
@@ -14,19 +18,19 @@ pre {
 	line-height: 12px;
 }
 
-pre code {
+[data-module="tinder"] pre code {
 	height:365px;
 }
 
-.coder-logo {
+[data-module="tinder"] .coder-logo {
 	text-align: center;
 	margin-bottom: 20px;
 }
 
-.button {
-	width: 70px;
-	height:70px;
-	border-radius: 70px;
+[data-module="tinder"] .button {
+	width: 120px;
+	height:120px;
+	border-radius: 120px;
 	background: #FFF;
 	border: 5px solid #f0f0f0;
 	display: inline-block;
@@ -34,38 +38,43 @@ pre code {
 	cursor: pointer;
 }
 
-.button:hover {
+[data-module="tinder"] .button:hover {
 	border-color: #f0f;
 }
 
-.button.selected {
+[data-module="tinder"] .button.selected {
 	border-color: #0f0;
 }
 
-.dislike-holder,.like-holder {
-	top:560px;
+[data-module="tinder"] .button.nohover:hover {
+	border-color: #f0f0f0;
+	cursor:default;
+}
+
+[data-module="tinder"] .dislike-holder,.like-holder {
+	top:350px;
 	position: absolute;
 }
-.dislike-holder {
+[data-module="tinder"] .dislike-holder {
 	left:10px;
 }
-.like-holder {
+[data-module="tinder"] .like-holder {
 	right:10px;
 }
 
-.button.dislike {
+[data-module="tinder"] .button.dislike {
 	margin-left: 4px;
 	background: url(img/dislike.png);
-	background-size: 25px;
+	background-size: 70px;
 	background-position: center;
 	background-repeat: no-repeat;
 }
 
 
-.button.like {
+[data-module="tinder"] .button.like {
 	margin-left: -4px;
 	background: url(img/like.png);
-	background-size: 25px;
+	background-size: 70px;
 	background-position: center;
 	background-repeat: no-repeat;
 }
@@ -74,11 +83,11 @@ pre code {
   display: none;
 }
 
-.footer {
+[data-module="tinder"] .footer {
 	text-align: left;
 }
 
-.footer h3 {
+[data-module="tinder"] .footer h3 {
 	font-size: 22px;
 	color:black;
 	margin-top:10px;
@@ -87,13 +96,57 @@ pre code {
 	font-weight: bold;
 }
 
-.footer p {
+[data-module="tinder"] .footer p {
 	font-family: arial,helvetica;
 	font-size: 22px;
 	color:black;
 	margin-top: 5px;
 }
 
-[data-module="tinder"]{
-	position: relative;
+[data-module="tinder"] .arrow_box {
+	position: absolute;
+	width: 300px;
+  top: 220px;
+  left: 220px;
+	background: #ffffff;
+	border: 4px solid #6381ff;
+	border-radius: 10px;
+	font-family: 'BWHaasText-55Roman', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  color:#2800d7;
+  padding: 5px;
+  opacity: 0;
+}
+[data-module="tinder"] .arrow_box:after, .arrow_box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+[data-module="tinder"] .arrow_box:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-top-color: #ffffff;
+	border-width: 15px;
+	margin-left: -15px;
+}
+[data-module="tinder"] .arrow_box:before {
+	border-color: rgba(40, 0, 215, 0);
+	border-top-color: #6381ff;
+	border-width: 21px;
+	margin-left: -21px;
+}
+
+[data-module="tinder"] .talkbubble {
+	width:100%;
+}
+
+[data-module="tinder"] .ok:hover {
+	color:black;
+	cursor: pointer;
 }
