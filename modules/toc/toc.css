@@ -88,3 +88,8 @@ article#code.toc-open {
 	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
 	font-size: 10pt;
 }
+
+.toc .toc-section.stats {
+	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
+	font-size: 10pt;
+}
