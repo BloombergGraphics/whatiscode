@@ -1,7 +1,7 @@
 [data-module="gcd"]{
   width: 960px;
-  height: 500px;
-  margin-left: -150px;
+  height: 480px;
+  margin-left: -0px;
   font-family: "HaasTextBold",Arial,Helvetica;
 }
 
@@ -45,7 +45,14 @@
 [data-module="gcd"] .explanation{
   max-width: 500px;
   margin: 0px auto;
+  float: left;
+  margin-right: 20px;
 }
+
+[data-module="gcd"] .svg{
+  float: left;
+}
+
 
 [data-module="gcd"] .explanation div{
   padding-bottom: 20px;
