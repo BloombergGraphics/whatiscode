@@ -136,7 +136,7 @@
   //circles
   !(function(){
     var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
-    // addModule(module)
+    addModule(module)
 
     var colors = colorArray.slice(0, 3)
     var offset = 1
