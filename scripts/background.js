@@ -44,6 +44,16 @@
         var a3 = s.sV[3]*(1 - u) + s.eV[3]*u
         ctx.fillRect(a0, a1, a2, a3)
       }
+      if (s.type == 'circle'){
+        var a0 = s.sV[0]*(1 - u) + s.eV[0]*u
+        var a1 = s.sV[1]*(1 - u) + s.eV[1]*u
+        var a2 = s.sV[2]*(1 - u) + s.eV[2]*u
+
+        ctx.beginPath()
+        ctx.arc(a0, a1, a2, 0, Math.PI*2, true)
+        ctx.closePath()
+        ctx.fill()
+      }
     })
 
     shapes = shapes.filter(function(s){ return !s.done })
@@ -87,7 +97,7 @@
 
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
+    var module = {sel: d3.select('[data-section="5"]'), active: false, onunload: unload}
     // addModule(module)
 
     var colors = colorArray.slice(0, 3)
@@ -122,6 +132,44 @@
 
     }, 5/4*1000)
   })()
+
+  //circles
+  !(function(){
+    var module = {sel: d3.select('#headerArt'), active: true, onunload: unload}
+    // addModule(module)
+
+    var colors = colorArray.slice(0, 3)
+    var offset = 1
+    setInterval(function(){
+      if (!module.active) return
+
+      offset++
+      var size = Math.random()
+      d3.range(0, width + l, l*10).forEach(function(x, i){
+        d3.range(0, height + l, l*10).forEach(function(y, j){
+          // if (!!((i + j + offset) % 2)) return
+          // if (Math.random() < .3) return
+
+          var shape =
+            { x: x,
+              y: y,
+              i: i,
+              j: j,
+              type: 'circle',
+              start: curTime + Math.random()*4,
+              sV: [x, y, 0],
+              eV: [x, y, l*3 + Math.random()*l*5*size],
+              fill: offset % 18 ? colors[offset % 3] : 'white'
+            }
+          shape.end = shape.start + 1000
+          shapes.push(shape)
+        })
+      })
+
+    }, 1000/3)
+  })()
+
+
 
   //different sized squares
   !(function(){
