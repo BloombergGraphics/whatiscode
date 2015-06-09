@@ -1,8 +1,13 @@
 [data-module="debug"]{
   position: relative;
-  height: 570px;
+  /*height: 570px;*/
   margin-left: -200px;
   font-family: 'Roboto Mono', courier, monospace;
+  clear: both;
+}
+
+[data-module="debug"] .bugg-container {
+  position: relative;
 }
 
 [data-module="debug"] .bugg{
