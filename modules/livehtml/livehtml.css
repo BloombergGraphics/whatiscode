@@ -1,3 +1,21 @@
 [data-module="livehtml"] iframe {
   width: 100%;
+  display: inline-block;
+}
+
+
+.side-by-side{
+  width: 900px;
+  position: relative;
+}
+
+.side-by-side .left-side{
+  width: 520px;
+  display: inline-block;
+}
+.side-by-side .right-side{
+  width: 300px;
+  display: inline-block;
+  position: relative;
+  top: -128px;
 }
