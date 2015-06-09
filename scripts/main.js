@@ -66,10 +66,10 @@ var loadTime = new Date();
       "name": "livehtml",
       "string": "To gather an e-mail address and a name"
     },
-    {
-      "name": "maps",
-      "string": "By the time a language breaks through to the top 10 or 20"
-    },
+    // {
+    //   "name": "maps",
+    //   "string": "By the time a language breaks through to the top 10 or 20"
+    // },
     {
       "name": "mouse",
       "string": "A mouse moves"

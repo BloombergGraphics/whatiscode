@@ -1,0 +1,54 @@
+[data-module="maps"] .globies {
+	display:block;
+	width:100% !important;
+	width:960px;
+	height:552px;
+	position: relative;
+}
+
+[data-module="maps"] .globe-langs {
+	position: absolute;
+}
+
+[data-module="maps"] .g-artboard {
+	margin:0 auto;
+}
+[data-module="maps"] #g-map-Artboard_1{
+	position:relative;
+	overflow:hidden;
+	width:960px;
+}
+[data-module="maps"] .g-aiAbs{
+	position:absolute;
+}
+[data-module="maps"] .g-aiImg{
+	display:block;
+	width:100% !important;
+}
+[data-module="maps"] #g-map-Artboard_1 p{
+	font-family:'BWHaasText-55Roman',helvetica,sans-serif;
+	font-size:13px;
+	line-height:18px;
+	margin:0;
+}
+[data-module="maps"] #g-map-Artboard_1 .g-aiPstyle0 {
+	font-family:'BWHaasText-55Roman',helvetica,sans-serif;
+	font-size:18px;
+	line-height:22px;
+	font-weight:bold;
+	color:#3c3c3c;
+}
+[data-module="maps"] #g-map-Artboard_1 .g-aiPstyle1 {
+	font-family:'BWHaasText-55Roman',helvetica,sans-serif;
+	font-size:10px;
+	line-height:12px;
+	color:#404041;
+}
+[data-module="maps"] #g-map-Artboard_1 .g-aiPstyle2 {
+	font-family:'BWHaasText-55Roman',helvetica,sans-serif;
+	font-size:18px;
+	line-height:22px;
+	font-weight:bold;
+	letter-spacing:-0.04583333333333em;
+	color:#3c3c3c;
+}
