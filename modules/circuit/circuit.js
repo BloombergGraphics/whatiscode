@@ -202,7 +202,16 @@
       d.type = d.type == onType ? offType : onType
     }
 
-    d3.select(this).select('text').text(d.type.str)
+    d3.select(this)
+        .select('text').text(d.type.str)
+
+
+    d3.select(this).selectAll('.background')
+      .data(ƒ('type', 'paths'))
+        .attr('d', ƒ())
+    d3.select(this).selectAll('.foreground')
+      .data(ƒ('type', 'paths'))
+        .attr('d', ƒ())
 
     update(d.i)
   })
