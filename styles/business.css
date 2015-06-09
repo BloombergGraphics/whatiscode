@@ -628,3 +628,14 @@ img.infographic {
   height: 90px;
 }
 
+.banner-container{
+  width: 100%;
+  padding-top: 150px;
+  padding-bottom: 40px;
+}
+
+.bannerad{
+  margin: 0px auto;
+  width: 728px;
+}
+
