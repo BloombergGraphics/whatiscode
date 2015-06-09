@@ -9,7 +9,7 @@
   var dialogue = [
     {
       "emote": "tree",
-      "speak": "Even this very Web page, the page that you are reading, is a tree (and since this is an article about code, we filled this page with code). Here's a small piece of that for just this section of the article. Click around and see what happens: every paragraph is a branch; images and tables are branches, too. In a table, every row is a branch, and then every column is a branch off of that. And in a paragraph, anything with its own formatting is a branch. Even the tree visualization itself is a branch (try to find the branch labeled 'svg'). That’s right: The tree contains the tree. Computers are weird."
+      "speak": "Even this very Web page, the page that you are reading, is a tree. Here's a small piece of that for just this section of the article. Click around and see what happens: every paragraph is a branch; images and tables are branches, too. In a table, every row is a branch, and then every column is a branch off of that. And in a paragraph, anything with its own formatting is a branch. Even the tree visualization itself is a branch (try to find the branch labeled ‘scalable vector graphics’). That’s right: The tree contains the tree. Computers are weird."
     }
   ];
 
