@@ -8,7 +8,7 @@
       "emote": "explaining",
       "speak": "Try just mashing the keys on your keyboard and see what 'make' and 'break' codes come out and get sent to the computer. Every key makes a code. The computer interprets these codes. There are many steps between pressing the “a” key and seeing an “a” on the screen."
     },
-    { "emote": "chill" }
+    { "emote": "keyboardmash_rest" }
   ];
 
   module.bot = bot();
@@ -179,10 +179,10 @@
     var timeSinceLastKeyTimeout;
     function drawKey(e) {
 
-      module.bot.emote("keyboard");
+      module.bot.emote("keyboardmash");
       clearInterval(timeSinceLastKeyTimeout);
       timeSinceLastKeyTimeout = setTimeout(function () {
-        module.bot.emote("chill");
+        module.bot.emote("keyboardmash_rest");
       }, 500);
 
       // get the key
