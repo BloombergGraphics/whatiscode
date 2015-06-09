@@ -6,8 +6,9 @@
   module.bot = bot();
   module.sel.append("div.bot").call(module.bot);
 
-  var alertIntervals = [];
-  var container = module.sel.append("div").classed("crapplets", true);
+  var alertIntervals = [],
+      container = module.sel.append("div").classed("crapplets", true),
+      n = 0;
 
   var alerts = ["1.jpg", "14.png", "19.jpeg", "23.jpg", "28.jpg", "32.jpg", "37.jpg", "41.png", "7.png",
     "10.gif", "15.jpg", "2.png", "24.png", "29.jpg", "33.png", "38.png", "42.png", "8.jpg", "11.png",
@@ -25,7 +26,7 @@
   var dialogues = [
     [{
       "speak": "Oops, looks like you’ve gotta update something! Double-click to escape. Not that you’d want to.",
-      "prompts": [{"prompt": "Please make it all go away.", "dialogue": [{"do": cleanUp}] }]
+      "prompts": [{"prompt": "No thanks.", "dialogue": [{"do": cleanUp}] }]
     }],
     [{
       "speak": "Hope it doesn’t require a restart!",
@@ -33,7 +34,7 @@
     }],
     [{
       "speak": "Honestly let’s just forget this ever happened.",
-      "prompts": [{"prompt": "Please make it all go away.", "dialogue": [{"do": cleanUp}] }]
+      "prompts": [{"prompt": "Jesus Christ get rid of this!", "dialogue": [{"do": cleanUp}] }]
     }]
   ];
 
@@ -54,11 +55,7 @@
   }
 
   function makeItWorse() {
-    if(!this.n) {
-      this.n=1;
-    } else if(this.n < 4) {
-      this.n++;
-    }
+    n++;
     // add one immediately
     addAlert();
     // add timer to add more
@@ -66,10 +63,11 @@
     // narrate
     if(dialogues.length) module.bot.dialogue(dialogues.shift());
     // make escape hatch increasingly obvious
-    module.sel.selectAll(".bot .response").style("font-size", this.n+"em");
+    module.sel.selectAll(".bot .response").style("font-size", Math.min(n,3)+"em");
   }
 
   function cleanUp() {
+    if(!n) return;
     // remove all alerts
     container.selectAll('img').remove();
     // clear all intervals

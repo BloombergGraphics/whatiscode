@@ -40,7 +40,7 @@
        -o-transition: background 0.4s;
           transition: background 0.4s;
 }
-[data-module="debug"] .q-container:hover div {
+[data-module="debug"] .q-container div:hover {
   background: #6381ff;
   cursor: pointer;
 }

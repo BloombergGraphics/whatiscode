@@ -91,6 +91,10 @@
 /* /lil notch caret */
 
 .bot .body .messages .eval {
+  border: 3px solid #2800d7;
+  background: #23241f;
+  border-radius: 10px;
+  padding: 10px;
 }
 .bot .body .messages .eval pre {
   margin: 0;
