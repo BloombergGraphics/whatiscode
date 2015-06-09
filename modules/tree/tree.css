@@ -16,10 +16,6 @@
   pointer-events: all;
 }
 
-[data-module="tree"] .node:hover rect {
-  stroke: #0f0 !important;
-}
-
 [data-module="tree"] .node text {
   font-size: 10px;
   font-weight: bold;
@@ -39,20 +35,56 @@
   z-index: 1;
 }
 
-[data-module="tree"] .svg-container iframe {
+[data-module="tree"] .svg-container .iframe-container {
   position: absolute;
   top: 0;
   left: 0;
-  border: 20px solid #2800d7;
-  width: 200px;
-  height: 200px;
-  transform: translate(-50%,-50%) scale(.1);
+  border: 10px solid #2800d7;
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%,-50%) scale(.2);
   pointer-events: none;
   z-index: 2;
   background: white;
+  font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
+  transition: transform .5s, border .5s;
 }
 
-[data-module="tree"] .svg-container iframe.expandable {
+[data-module="tree"] .svg-container .iframe-container.expandable {
   border-color: #f94600;
 }
 
+[data-module="tree"] .svg-container .iframe-container .title {
+  position: absolute;
+  top: 0px;
+  height: 18px;
+  font-size: 12px;
+  line-height: 1em;
+  padding: 2px;
+  left: -2px;
+  color: white;
+  border: 2px solid #2800d7;
+  background: #2800d7;
+  transition: top .5s;
+  z-index: 1;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 4px 4px 0px 0px;
+  border-radius: 4px 4px 0px 0px; 
+}
+[data-module="tree"] .svg-container .iframe-container.expandable .title {
+  border-color: #f94600;
+  background: #f94600;
+}
+[data-module="tree"] .svg-container .iframe-container.hover .title {
+  top: -18px;
+}
+
+
+[data-module="tree"] .svg-container .iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: relative;
+  z-index: 2;
+  background: white;
+}

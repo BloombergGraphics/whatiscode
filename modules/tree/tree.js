@@ -27,6 +27,8 @@
 
     var i = 0,
         duration = 1000,
+        nodeSize = 30,
+        hoverCoef = 5,
         root;
 
     var tree = d3.layout.tree()
@@ -77,8 +79,9 @@
       }));
     }
 
+    root.children = root.children.slice(48,68);
+    // truncate(root);
     root.children.forEach(collapse);
-    truncate(root);
     // collapse(root);
     update(root);
 
@@ -119,12 +122,12 @@
           .attr("height", 1e-6);
 
       nodeEnter.append("text")
-          .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+          .attr("x", function(d) { return d.children || d._children ? -nodeSize/2 : nodeSize/2; })
           .attr("dy", ".35em")
           .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
           .text(function(d) { return d.name; })
           .style("fill-opacity", 1e-6)
-          .style("font-size", function(d) { return 10 + "px" });
+          .style("font-size", function(d) { return nodeSize/2 + "px" });
 
       nodeEnter.each(appendIframe);
 
@@ -142,14 +145,14 @@
           });
 
       nodeUpdate.select("rect")
-          .attr("x", function(d) { return -10; })
-          .attr("y", function(d) { return -10; })
-          .attr("width", function(d) { return 20; })
-          .attr("height", function(d) { return 20; });
+          .attr("x", function(d) { return -nodeSize/2; })
+          .attr("y", function(d) { return -nodeSize/2; })
+          .attr("width", function(d) { return nodeSize; })
+          .attr("height", function(d) { return nodeSize; });
 
       nodeUpdate.select("text")
           .style("fill-opacity", 1)
-          .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+          .attr("x", function(d) { return d.children || d._children ? -nodeSize/2 : nodeSize/2; })
 
       node.each(function(d) {
           d.iframe
@@ -227,50 +230,187 @@
 
     function mouseover(d) {
 
-      var coef = 5;
-
       d3.select(this).select("rect")
-          .attr("x", function(d) { return coef * -10; })
-          .attr("y", function(d) { return coef * -10; })
-          .attr("width", function(d) { return coef * 20; })
-          .attr("height", function(d) { return coef * 20; });
+          .attr("x", function(d) { return hoverCoef * -nodeSize/2; })
+          .attr("y", function(d) { return hoverCoef * -nodeSize/2; })
+          .attr("width", function(d) { return hoverCoef * nodeSize; })
+          .attr("height", function(d) { return hoverCoef * nodeSize; });
 
       d.iframe
+          .classed("hover", true)
           .style("z-index", 3)
-          .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (coef * .1) + ")"; })
+          .style("border-width", "2px")
+          .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (hoverCoef * .2) + ")"; })
     }
 
     function mouseout(d) {
 
       d3.select(this).select("rect")
-          .attr("x", function(d) { return -10; })
-          .attr("y", function(d) { return -10; })
-          .attr("width", function(d) { return 20; })
-          .attr("height", function(d) { return 20; });
+          .attr("x", function(d) { return -nodeSize/2; })
+          .attr("y", function(d) { return -nodeSize/2; })
+          .attr("width", function(d) { return nodeSize; })
+          .attr("height", function(d) { return nodeSize; });
 
       d.iframe
+          .classed("hover", false)
           .style("z-index", 2)
-          .style("transform", function(d) { return "translate(-50%,-50%) scale(.1)"; });
+          .style("border-width", "10px")
+          .style("transform", function(d) { return "translate(-50%,-50%) scale(.2)"; });
     }
 
     function appendIframe(d) {
       d.iframe = sel.select(".svg-container")
-        .append("iframe")
+        .append("div.iframe-container")
         .datum(d)
         .classed("expandable", function(d) { return d._children && d._children.length; })
         .style("left", function(d) { return d.parent ? d.parent.y0 + margin.left + 'px' : d.x0; })
-        .style("top", function(d) { return d.parent ? d.parent.x0 + margin.top + 'px' : d.y0; })
-        .style("transform", function(d) { return "translate(-50%,-50%) scale(.1)"; });
+        .style("top", function(d) { return d.parent ? d.parent.x0 + margin.top + 'px' : d.y0; });
+      
+      d.iframe.append("div.title").text(function(d) { return d.description ? d.description : d.name; });
 
-      var iframeDocument = d.iframe.node().contentWindow.document;
+      var iframeEl = d.iframe.append("iframe");
+      var iframeDocument = iframeEl.node().contentWindow.document;
       iframeDocument.open();
       iframeDocument.write(d.ref.innerHTML);
       iframeDocument.close();
     }
 
     function getDomTree(node) {
+      // from here http://www.w3.org/TR/html4/index/elements.html
+      // lightly edited, plus new html5 elements and a few relevant svg elements
+      // (goin' for clarity here, not namespace-spec-conformity...)
+      var htmlElements = [
+        {"name":"a","description":"anchor"},
+        {"name":"abbr","description":"abbreviated form"},
+        {"name":"acronym","description":"acronym"},
+        {"name":"address","description":"information on author"},
+        {"name":"applet","description":"Java applet"},
+        {"name":"area","description":"image map area"},
+        {"name":"article","description":"article"},
+        {"name":"aside","description":"aside"},
+        {"name":"audio","description":"sound or music"},
+        {"name":"b","description":"bold text style"},
+        {"name":"base","description":"document base URI"},
+        {"name":"basefont","description":"base font size"},
+        {"name":"bdi","description":""},
+        {"name":"bdo","description":"I18N BiDi over-ride"},
+        {"name":"big","description":"large text style"},
+        {"name":"blockquote","description":"long quotation"},
+        {"name":"body","description":"document body"},
+        {"name":"br","description":"forced line break"},
+        {"name":"button","description":"push button"},
+        {"name":"caption","description":"table caption"},
+        {"name":"center","description":"center-aligned"},
+        {"name":"cite","description":"citation"},
+        {"name":"code","description":"code fragment"},
+        {"name":"col","description":"table column"},
+        {"name":"colgroup","description":"table column group"},
+        {"name":"datalist","description":"datalist input"},
+        {"name":"dd","description":"definition description"},
+        {"name":"del","description":"deleted text"},
+        {"name":"details","description":"details"},
+        {"name":"dfn","description":"instance definition"},
+        {"name":"dialog","description":"dialog box"},
+        {"name":"dir","description":"directory list"},
+        {"name":"div","description":"generic block container"},
+        {"name":"dl","description":"definition list"},
+        {"name":"dt","description":"definition term"},
+        {"name":"em","description":"emphasis"},
+        {"name":"embed","description":"container for external applications"},
+        {"name":"fieldset","description":"form control group"},
+        {"name":"figcaption","description":"figure caption"},
+        {"name":"figure","description":"figure"},
+        {"name":"font","description":"local change to font"},
+        {"name":"footer","description":"footer"},
+        {"name":"form","description":"interactive form"},
+        {"name":"frame","description":"subwindow"},
+        {"name":"frameset","description":"window subdivision"},
+        {"name":"g","description":"group"},
+        {"name":"h1","description":"heading"},
+        {"name":"h2","description":"subheading"},
+        {"name":"h3","description":"subsubheading"},
+        {"name":"h4","description":"subsubsubheading"},
+        {"name":"h5","description":"subsubsubsubheading"},
+        {"name":"h6","description":"subsubsubsubsubheading"},
+        {"name":"head","description":"document head"},
+        {"name":"header","description":"header"},
+        {"name":"hr","description":"horizontal rule"},
+        {"name":"html","description":"document root element"},
+        {"name":"i","description":"italic text style"},
+        {"name":"iframe","description":"inline subwindow"},
+        {"name":"img","description":"Embedded image"},
+        {"name":"input","description":"form control"},
+        {"name":"ins","description":"inserted text"},
+        {"name":"isindex","description":"single line prompt"},
+        {"name":"kbd","description":"text to be entered by the user"},
+        {"name":"keygen","description":"key-pair generator field"},
+        {"name":"label","description":"form field label text"},
+        {"name":"legend","description":"fieldset legend"},
+        {"name":"li","description":"list item"},
+        {"name":"link","description":"a media-independent link"},
+        {"name":"main","description":"main content"},
+        {"name":"map","description":"client-side image map"},
+        {"name":"mark","description":"marked text"},
+        {"name":"menu","description":"menu list"},
+        {"name":"menuitem ","description":"menu item"},
+        {"name":"meta","description":"generic metainformation"},
+        {"name":"meter","description":"meter"},
+        {"name":"nav","description":"navigation"},
+        {"name":"noframes","description":"alternate content container for non frame-based rendering"},
+        {"name":"noscript","description":"alternate content container for non script-based rendering"},
+        {"name":"object","description":"generic embedded object"},
+        {"name":"ol","description":"ordered list"},
+        {"name":"optgroup","description":"option group"},
+        {"name":"option","description":"selectable choice"},
+        {"name":"output","description":"calculation output"},
+        {"name":"p","description":"paragraph"},
+        {"name":"param","description":"named property value"},
+        {"name":"pre","description":"preformatted text"},
+        {"name":"progress","description":"progress"},
+        {"name":"q","description":"short inline quotation"},
+        {"name":"rect","description":"rectangle"},
+        {"name":"rp","description":""},
+        {"name":"rt","description":"explanation/pronunciation"},
+        {"name":"ruby","description":"ruby annotation"},
+        {"name":"s","description":"strike-through text style"},
+        {"name":"samp","description":"sample program output, scripts, etc."},
+        {"name":"script","description":"script statements"},
+        {"name":"section","description":"section"},
+        {"name":"select","description":"option selector"},
+        {"name":"small","description":"small text style"},
+        {"name":"source","description":"audio/video source"},
+        {"name":"span","description":"generic inline container"},
+        {"name":"strike","description":"strike-through text"},
+        {"name":"strong","description":"strong emphasis"},
+        {"name":"style","description":"style info"},
+        {"name":"sub","description":"subscript"},
+        {"name":"summary","description":"summary of details"},
+        {"name":"sup","description":"superscript"},
+        {"name":"svg","description":"scalable vector graphics"},
+        {"name":"table","description":"table"},
+        {"name":"tbody","description":"table body"},
+        {"name":"td","description":"table data cell"},
+        {"name":"textarea","description":"multi-line text field"},
+        {"name":"tfoot","description":"table footer"},
+        {"name":"th","description":"table header cell"},
+        {"name":"thead","description":"table header"},
+        {"name":"time","description":"date/time"},
+        {"name":"title","description":"document title"},
+        {"name":"tr","description":"table row"},
+        {"name":"track","description":"audio/video track"},
+        {"name":"tt","description":"teletype"},
+        {"name":"u","description":"underlined text style"},
+        {"name":"ul","description":"unordered list"},
+        {"name":"var","description":"variable"},
+        {"name":"video","description":"video"},
+        {"name":"wbr","description":"possible line-break"}];
+
+      var nodeDescription = _.findWhere(htmlElements, {"name": node.nodeName.toLowerCase()});
+      nodeDescription = nodeDescription ? nodeDescription.description : nodeDescription;
+
       return {
-        "name": "<"+node.nodeName+">",
+        "name": node.nodeName,
+        "description": nodeDescription,
         "ref": node,
         "size": node.innerHTML.length,
         "children": Array.prototype.slice.call(node.children).map(getDomTree)
