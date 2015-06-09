@@ -26,7 +26,7 @@
         height = 800 - margin.top - margin.bottom;
 
     var i = 0,
-        duration = 500,
+        duration = 1000,
         root;
 
     var tree = d3.layout.tree()
@@ -160,13 +160,13 @@
           .attr("x", function(d) { return d.children || d._children ? -10*d.fisheye.z : 10*d.fisheye.z; })
           // .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
 
-      nodeUpdate.each(function(d) {
+      node.each(function(d) {
           d.iframe
             .transition()
             .duration(duration)
             .style("left", function(d) { return d.source.fisheye.x + margin.left + 'px'; })
             .style("top", function(d) { return d.source.fisheye.y + margin.top + 'px'; })
-            .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; })
+            // .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; })
         })
 
       // Transition exiting nodes to the parent's new position.
@@ -302,14 +302,35 @@
         .append("iframe")
         .datum({source: d})
         .classed("expandable", function(d) { return d.source._children && d.source._children.length; })
-        .style("left", function(d) { return d.source.x0 + margin.left + 'px'; })
-        .style("top", function(d) { return d.source.y0 + margin.top + 'px'; })
+        .style("left", function(d) { return d.source.parent ? d.source.parent.x0 + margin.left + 'px' : d.source.x0; })
+        .style("top", function(d) { return d.source.parent ? d.source.parent.y0 + margin.top + 'px' : d.source.y0; })
         .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; });
 
       var iframeDocument = d.iframe.node().contentWindow.document;
       iframeDocument.open();
       iframeDocument.write(d.ref.innerHTML);
       iframeDocument.close();
+
+      // d.iframe.on("click", iframeClick)
+    }
+
+    function iframeClick(d) {
+      console.log("clickedcdd");
+      if (d.source.children) {
+        d.source._children = d.source.children;
+        d.source.children = null;
+      } else {
+        d.source.children = d.source._children;
+        d.source._children = null;
+      }
+
+      d3.select(this)
+            .transition()
+            .duration(duration)
+            .style("left", function(d) { return d.source.fisheye.x + 'px'; })
+            .style("top", function(d) { return d.source.fisheye.y + 'px'; })
+            .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; });
+      
     }
 
     function getDomTree(node) {
