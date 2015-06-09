@@ -32,11 +32,6 @@
     var tree = d3.layout.tree()
         .size([height, width]);
 
-    var fisheye = d3.fisheye.circular()
-        .radius(0)
-        .distortion(0)
-        .focus([-1000,-1000]);
-
     var diagonal = d3.svg.diagonal()
         .projection(function(d) { return [d.y, d.x]; });
 
@@ -104,12 +99,10 @@
 
       // Update the nodes…
       var node = svg.selectAll("g.node")
-          .data(nodes, function(d) { return d.id || (d.id = ++i); })
-          .each(function(d) { d.fisheye = fisheye({x: d.y, y: d.x}); });
+          .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
       // Enter any new nodes at the parent's previous position.
       var nodeEnter = node.enter().append("g")
-          .each(function(d) { d.fisheye = fisheye({x: d.y, y: d.x}); })
           .classed("node", true)
           .classed("child", function(d) { return !d.children; })
           .classed("parent", function(d) { return d.children; })
@@ -131,7 +124,7 @@
           .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
           .text(function(d) { return d.name; })
           .style("fill-opacity", 1e-6)
-          .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
+          .style("font-size", function(d) { return 10 + "px" });
 
       nodeEnter.each(appendIframe);
 
@@ -145,28 +138,25 @@
       var nodeUpdate = node.transition()
           .duration(duration)
           .attr("transform", function(d) {
-            if(!d.fisheye) d.fisheye = fisheye({x: d.y, y: d.x});
-            return "translate(" + d.fisheye.x + "," + d.fisheye.y + ")";
+            return "translate(" + d.y + "," + d.x + ")";
           });
 
       nodeUpdate.select("rect")
-          .attr("x", function(d) { return d.fisheye.z * -10; })
-          .attr("y", function(d) { return d.fisheye.z * -10; })
-          .attr("width", function(d) { return d.fisheye.z * 20; })
-          .attr("height", function(d) { return d.fisheye.z * 20; });
+          .attr("x", function(d) { return -10; })
+          .attr("y", function(d) { return -10; })
+          .attr("width", function(d) { return 20; })
+          .attr("height", function(d) { return 20; });
 
       nodeUpdate.select("text")
           .style("fill-opacity", 1)
-          .attr("x", function(d) { return d.children || d._children ? -10*d.fisheye.z : 10*d.fisheye.z; })
-          // .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
+          .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
 
       node.each(function(d) {
           d.iframe
             .transition()
             .duration(duration)
-            .style("left", function(d) { return d.source.fisheye.x + margin.left + 'px'; })
-            .style("top", function(d) { return d.source.fisheye.y + margin.top + 'px'; })
-            // .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; })
+            .style("left", function(d) { return d.y + margin.left + 'px'; })
+            .style("top", function(d) { return d.x + margin.top + 'px'; })
         })
 
       // Transition exiting nodes to the parent's new position.
@@ -174,7 +164,7 @@
         .each(function(d) { d.iframe.remove(); })
         .transition()
           .duration(duration)
-          .attr("transform", function(d) { return "translate(" + source.fisheye.x + "," + source.fisheye.y + ")"; })
+          .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
           .remove();
 
       nodeExit.select("rect")
@@ -194,7 +184,7 @@
       link.enter().insert("path", "g")
           .attr("class", "link")
           .attr("d", function(d) {
-            var o = {x: d.source.y0, y: d.source.x0};
+            var o = {x: d.source.x0, y: d.source.y0};
             return diagonal({source: o, target: o});
           });
 
@@ -202,8 +192,8 @@
       link.transition()
           .duration(duration)
           .attr("d", function(d) {
-            var source = {x: d.source.fisheye.y, y: d.source.fisheye.x};
-            var target = {x: d.target.fisheye.y, y: d.target.fisheye.x};
+            var source = {x: d.source.x, y: d.source.y};
+            var target = {x: d.target.x, y: d.target.y};
             return diagonal({source: source, target: target});
           });
 
@@ -211,15 +201,15 @@
       link.exit().transition()
           .duration(duration)
           .attr("d", function(d) {
-            var o = {x: d.source.fisheye.y, y: d.source.fisheye.x};
+            var o = {x: source.x, y: source.y};
             return diagonal({source: o, target: o});
           })
           .remove();
 
       // Stash the old positions for transition.
       nodes.forEach(function(d) {
-        d.x0 = d.fisheye.x;
-        d.y0 = d.fisheye.y;
+        d.x0 = d.x;
+        d.y0 = d.y;
       });
     }
 
@@ -240,97 +230,42 @@
       var coef = 5;
 
       d3.select(this).select("rect")
-          .attr("x", function(d) { return coef * d.fisheye.z * -10; })
-          .attr("y", function(d) { return coef * d.fisheye.z * -10; })
-          .attr("width", function(d) { return coef * d.fisheye.z * 20; })
-          .attr("height", function(d) { return coef * d.fisheye.z * 20; });
+          .attr("x", function(d) { return coef * -10; })
+          .attr("y", function(d) { return coef * -10; })
+          .attr("width", function(d) { return coef * 20; })
+          .attr("height", function(d) { return coef * 20; });
 
       d.iframe
           .style("z-index", 3)
-          .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (coef * .1*d.source.fisheye.z) + ")"; })
+          .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (coef * .1) + ")"; })
     }
 
     function mouseout(d) {
 
       d3.select(this).select("rect")
-          .attr("x", function(d) { return d.fisheye.z * -10; })
-          .attr("y", function(d) { return d.fisheye.z * -10; })
-          .attr("width", function(d) { return d.fisheye.z * 20; })
-          .attr("height", function(d) { return d.fisheye.z * 20; });
+          .attr("x", function(d) { return -10; })
+          .attr("y", function(d) { return -10; })
+          .attr("width", function(d) { return 20; })
+          .attr("height", function(d) { return 20; });
 
       d.iframe
           .style("z-index", 2)
-          .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; });
-    }
-
-    function mousemove(d) {
-      fisheye.focus(d3.mouse(this));
-
-      var node = svg.selectAll("g.node");
-
-      node.each(function(d) { d.fisheye = fisheye({x: d.y, y: d.x}); })
-          .attr("transform", function(d) { return "translate(" + d.fisheye.x + "," + d.fisheye.y + ")"; });
-
-      node.select("rect")
-          .attr("x", function(d) { return d.fisheye.z * -10; })
-          .attr("y", function(d) { return d.fisheye.z * -10; })
-          .attr("width", function(d) { return d.fisheye.z * 20; })
-          .attr("height", function(d) { return d.fisheye.z * 20; });
-
-      node.select("text")
-          .attr("x", function(d) { return d.children || d._children ? -10*d.fisheye.z : 10*d.fisheye.z; })
-          // .style("font-size", function(d) { return 10*d.fisheye.z + "px" });
-
-      var link = svg.selectAll("path.link")
-          .attr("d", function(d) {
-            var source = {x: d.source.fisheye.y, y: d.source.fisheye.x};
-            var target = {x: d.target.fisheye.y, y: d.target.fisheye.x};
-            return diagonal({source: source, target: target});
-          })
-
-      node.each(function(d) {
-        d.iframe
-          .style("left", function(d) { return d.source.fisheye.x + margin.left + 'px'; })
-          .style("top", function(d) { return d.source.fisheye.y + margin.top + 'px'; })
-          .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; })
-      });
-
+          .style("transform", function(d) { return "translate(-50%,-50%) scale(.1)"; });
     }
 
     function appendIframe(d) {
       d.iframe = sel.select(".svg-container")
         .append("iframe")
-        .datum({source: d})
-        .classed("expandable", function(d) { return d.source._children && d.source._children.length; })
-        .style("left", function(d) { return d.source.parent ? d.source.parent.x0 + margin.left + 'px' : d.source.x0; })
-        .style("top", function(d) { return d.source.parent ? d.source.parent.y0 + margin.top + 'px' : d.source.y0; })
-        .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; });
+        .datum(d)
+        .classed("expandable", function(d) { return d._children && d._children.length; })
+        .style("left", function(d) { return d.parent ? d.parent.y0 + margin.left + 'px' : d.x0; })
+        .style("top", function(d) { return d.parent ? d.parent.x0 + margin.top + 'px' : d.y0; })
+        .style("transform", function(d) { return "translate(-50%,-50%) scale(.1)"; });
 
       var iframeDocument = d.iframe.node().contentWindow.document;
       iframeDocument.open();
       iframeDocument.write(d.ref.innerHTML);
       iframeDocument.close();
-
-      // d.iframe.on("click", iframeClick)
-    }
-
-    function iframeClick(d) {
-      console.log("clickedcdd");
-      if (d.source.children) {
-        d.source._children = d.source.children;
-        d.source.children = null;
-      } else {
-        d.source.children = d.source._children;
-        d.source._children = null;
-      }
-
-      d3.select(this)
-            .transition()
-            .duration(duration)
-            .style("left", function(d) { return d.source.fisheye.x + 'px'; })
-            .style("top", function(d) { return d.source.fisheye.y + 'px'; })
-            .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (.1*d.source.fisheye.z) + ")"; });
-      
     }
 
     function getDomTree(node) {
