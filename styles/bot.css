@@ -131,7 +131,8 @@
   color: #fff;
   padding: 8px;
   font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif;
-  font-size: 14px;line-height: 16px;
+  font-size: 14px;
+  line-height: 1em;
   width: auto;
   display: inline-block;
   vertical-align: middle; 
