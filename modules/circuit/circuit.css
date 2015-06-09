@@ -1,5 +1,4 @@
 [data-module="circuit"] {
-  height: 500px;
   width: 960px;
   font-family: "HaasTextBold",Arial,Helvetica;
 }
@@ -8,10 +7,12 @@
   /* TODO: redo paths so you don't need to scale... */
   transform: scale(.45);
   fill: #f94600;
-  fill-opacity: .5;
+  fill-opacity: 1;
+  stroke: 0;
 }
 [data-module="circuit"] text{
   pointer-events: none;
+  fill: white;
 }
 
 [data-module="circuit"] svg{
@@ -36,5 +37,5 @@
 [data-module="circuit"] path.foreground{
   stroke: black;
   cursor: pointer;
-  stroke-width: 2;
+  stroke-width: 0;
 }

@@ -8,7 +8,7 @@
       "emote": "explaining",
       "speak": "Try just mashing the keys on your keyboard and see what 'make' and 'break' codes come out and get sent to the computer. Every key makes a code. The computer interprets these codes. There are many steps between pressing the “a” key and seeing an “a” on the screen."
     },
-    { "emote": "chill" }
+    { "emote": "keyboardmash_rest" }
   ];
 
   module.bot = bot();
@@ -27,9 +27,9 @@
     }
 
     var eventHandlers = {
-      "keydown": drawKey,
-      "keypress": drawKey,
-      "keyup": drawKey,
+      "keydown": typeKey,
+      "keypress": typeKey,
+      "keyup": typeKey,
     };
 
     for(var eventName in eventHandlers) {
@@ -173,24 +173,41 @@
         .style("display", "inline-block")
         .style("width", _.compose(xScale, ƒ('dx')))
         .style("height", xScale.range()[1])
+        .on("mousedown", clickKey)
+        .on("mouseup", clickKey)
         .append("div.key-inner")
         .text(ƒ('key'));
 
-    var timeSinceLastKeyTimeout;
-    function drawKey(e) {
+    d3.select(window).on('resize.keyboard', redrawKeyboard)
+    function redrawKeyboard() {
+      xScale = d3.scale.linear().range(["0px", (module.sel.node().offsetWidth / keyboardWidth)+"px"]);
+      keyboard.selectAll(".key")
+        .style("width", _.compose(xScale, ƒ('dx')))
+        .style("height", xScale.range()[1]);
+    }
 
-      module.bot.emote("keyboard");
-      clearInterval(timeSinceLastKeyTimeout);
-      timeSinceLastKeyTimeout = setTimeout(function () {
-        module.bot.emote("chill");
-      }, 500);
-
+    function typeKey(e) {
       // get the key
       var key = event.keyCode || event.which;
-      var keychar = String.fromCharCode(key);
       var keySel = module.sel.selectAll(".key").filter(function(d) { return d.key === String.fromCharCode(key) });
       if(keySel.empty()) keySel = module.sel.selectAll(".key").filter(function(d) { return d.keycode === key });
       var scanType = (d3.event.type == "keydown" || d3.event.type == "keypress" ? "make" : "break");
+      drawKey(keySel, scanType);
+    }
+
+    function clickKey(e) {
+      var scanType = (d3.event.type == "mousedown" ? "make" : "break");
+      drawKey(d3.select(this), scanType);
+    }
+
+    var timeSinceLastKeyTimeout;
+    function drawKey(keySel, scanType) {
+
+      module.bot.emote("keyboardmash");
+      clearInterval(timeSinceLastKeyTimeout);
+      timeSinceLastKeyTimeout = setTimeout(function () {
+        module.bot.emote("keyboardmash_rest");
+      }, 500);
 
       // random path for scancode to spin out
       var driftX = (Math.random()*300).toFixed();

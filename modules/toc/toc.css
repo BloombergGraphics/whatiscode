@@ -1,24 +1,41 @@
 [data-module="toc"] {
 	position: fixed;
-	width: 30%;
+	width: 400px;
 	height: 100%;
 	top: 0;
-	left: 0;
-	background: #eee;
+	left: -380px;
 	z-index: 3;
+	/*transition: left .5s;*/
+	/*background: #2800d7;*/
+}
 
-	display: none;
+[data-module="toc"].open {
+	left: 0;
+}
+
+[data-module="toc"] ::-webkit-scrollbar { 
+   display: none; 
+}
+
+article#code {
+	/*transition: transform .5s;*/
+}
+article#code.toc-open {
+	transform: translate(300px,0);
 }
 
 .histogram {
 	position: absolute;
 	height: 100%;
 	width: 20px;
+	top: 0;
+	left: 0;
+	background: white;
 }
 
 .histogram .bar {
 	position: absolute;
-	background: #0f0;
+	background: #00c770;
 	width: 100%;
 	left: 0;
 	z-index: 1;
@@ -39,4 +56,40 @@
 
 .histogram .window[data-window="previous"] {
 	border: 1px dotted black;
+}
+
+.toc {
+	margin-left: 20px;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+
+.toc .toc-section {
+	background: white;
+	padding: 20px;
+	margin: 20px;
+}
+
+.toc .toc-head {
+	cursor: pointer;
+}
+
+.toc .toc-head:hover {
+	color: #2800d7;
+}
+
+.toc .toc-head[data-level="H2"] {
+	font-family: "BWHaasText-75Bold", Helvetica, Arial, sans-serif;
+	font-size: 14pt;
+}
+
+.toc .toc-head[data-level="H3"] {
+	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
+	font-size: 10pt;
+}
+
+.toc .toc-section.stats {
+	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
+	font-size: 10pt;
 }

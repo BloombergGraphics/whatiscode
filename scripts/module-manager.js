@@ -4,7 +4,7 @@ var addModule = (function(){
   calcPositions = _.throttle(function(){
     modules.forEach(function(d){
       d.bbox     = d.sel.node().getBoundingClientRect()
-      d.startPos = d.bbox.top    + pageYOffset - 1350
+      d.startPos = d.bbox.top    + pageYOffset - innerHeight
       d.endPos   = d.bbox.bottom + pageYOffset
     })
   }, 1000)
@@ -37,6 +37,7 @@ var addModule = (function(){
   setInterval(calcPositions, 2000)
 
   return function(module){
+    if (!module.sel.node()) debugger
     modules.push(module)
     calcPositions()
   }

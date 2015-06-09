@@ -23,7 +23,8 @@
 
     var eventHandlers = {
       "mousemove": drawMouse,
-      "click": drawMouse
+      "click": drawMouse,
+      "dblclick": drawMouse
     };
 
     for(var eventName in eventHandlers) {

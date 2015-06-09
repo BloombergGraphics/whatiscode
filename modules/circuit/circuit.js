@@ -170,9 +170,9 @@
     gateGs.selectAll('g.gate-icon').filter(ƒ('changedOn'))
       .transition(uuid).delay(function(d){ return (d.i - i)*300+ 200})
         .style('fill', color)
-        .style('fill-opacity', 1)
-      .transition(uuid).duration(300)
         .style('fill-opacity', .5)
+      .transition(uuid).duration(300)
+        .style('fill-opacity', 1)
 
     wireBotEls
       .transition(uuid).delay(function(d){ return (d.from.i - i)*300 + 600 })
@@ -202,7 +202,16 @@
       d.type = d.type == onType ? offType : onType
     }
 
-    d3.select(this).select('text').text(d.type.str)
+    d3.select(this)
+        .select('text').text(d.type.str)
+
+
+    d3.select(this).selectAll('.background')
+      .data(ƒ('type', 'paths'))
+        .attr('d', ƒ())
+    d3.select(this).selectAll('.foreground')
+      .data(ƒ('type', 'paths'))
+        .attr('d', ƒ())
 
     update(d.i)
   })
@@ -218,5 +227,25 @@
     d.sel.select('text').text(d.type.str)
     update(0)
   }, 3000)
+
+  // paulbot :-/
+  module.bot = bot();
+  module.sel.append("div.bot").call(module.bot);
+
+  var dialogue = [
+    {
+      "emote": "explaining",
+      "speak": "This is real circuitry. Well, it’s real, simulated circuitry that’s actually computing as you watch. Switches on the left turn on and off randomly—turning the “current” in the wires on and off. The other little boxes are “logic gates,” which perform a logical operation depending on how current flows into them. See if you can figure out what the different gates do."
+    },
+    {
+      "speak": "Click the on/off boxes to turn the signal on or off. Click the logic gates to change the logical operation they perform."
+    },
+    {
+      "speak": "Repeated enough times, these simple circuits can compute anything computable."
+    },
+    { "emote": "chill" }
+  ];
+
+  module.oninit = function() { module.bot.dialogue(dialogue); }
 
 })();

@@ -22,6 +22,16 @@
     .value(ƒ('scrollTop'))
     .bins(pixelsToWords.ticks(100));
 
+  module.sel
+    .on("mouseover", function(d) {
+      module.sel.classed("open", true);
+      d3.select("article").classed("toc-open", true);
+    })
+    .on("mouseout", function(d) {
+      module.sel.classed("open", false);
+      d3.select("article").classed("toc-open", false);
+    })
+
   function getWordCount(sel) {
     if(!arguments.length) sel = d3.select("body");
     return sel.text().trim().replace(/\s+/gi, ' ').split(' ').length;
@@ -123,13 +133,70 @@
       .style("top", function(d) { return pixelsToPercentage(stats.windows[d]) + "%"; });
   }
 
+  function renderTOC() {
+    var tree = [];
+    d3.selectAll("article section")
+      .each(function(d) {
+        var subtree = [];
+        d3.select(this).selectAll("h2,h3")
+          .each(function(dd) {
+            subtree.push(this);
+          });
+        tree.push(subtree);
+      });
+    // console.log(tree);
+
+    module.sel.append("div.toc")
+      .selectAll("div.toc-section")
+      .data(tree)
+      .enter()
+      .append("div.toc-section")
+      .selectAll("div.toc-head")
+      .data(function(d) { return d; })
+      .enter()
+      .append("div.toc-head")
+      .attr("data-level", ƒ('tagName'))
+      .html(ƒ('innerText'))
+      .on("click", function(d) {
+        d3.select("body").transition().duration(500)
+          .tween("tocscroll", scrollTopTween(d.getBoundingClientRect().top + document.getElementsByTagName("body")[0].scrollTop));
+      });
+  }
+  renderTOC();
+
+  function renderStats() {
+
+    var eta = getEstimatedFinishTime();
+
+    if ( isNaN( eta.getTime() ) ) { 
+      var etaStr = "the Second Coming, probably"
+    } else {
+      var dateFormat = d3.time.format.multi([
+        ["%H:%M", function(d) { return +d - +new Date() < 24*60*60*1000; }],
+        ["%H:%M on %B %e", function(d) { return +d - +new Date() < 24*60*60*1000*365; }],
+        ["%H:%M on %B %e, %Y", function(d) { return true; }]
+      ]);
+      var etaStr = dateFormat(eta);
+    }
+
+    var statSel = module.sel.select("div.toc-section.stats");
+    if(statSel.empty()) {
+      statSel = module.sel.select("div.toc").append("div.toc-section.stats");
+    }
+
+    statSel.text("You’re averaging " 
+      + (getWordsPerMs() * 1000 * 60).toFixed() 
+      + " words per minute; at this rate, you’ll finish by " 
+      + etaStr + ".");
+  }
+
   function latest() {
     return stats.scrollLog[stats.scrollLog.length-1];
   }
 
   function onResize() {
     // redo scales
-    var h = d3.select("body").node().getClientBoundingRect().height;
+    var h = d3.select("body").node().getBoundingClientRect().height;
     pixelsToWords.domain([0,h]);
     pixelsToPercentage.domain([0,h]);
   }
@@ -161,10 +228,7 @@
     logScroll();
     makeHistogram();
     renderHistogram();
-
-    // console.log((getWordsPerMs() * 1000 * 60) + " words per minute");
-    // console.log("eta " + getEstimatedFinishTime());
-    // console.log(stats.histogram);
+    renderStats();
   }, 1000);
 
   d3.select(window).on("scroll.toc", renderWindows);

@@ -1,9 +1,13 @@
 [data-module="debug"]{
   position: relative;
-  height: 570px;
+  /*height: 570px;*/
   margin-left: -200px;
-  font-family: monospace;
-  /*font-family: "HaasTextBold",Arial,Helvetica;*/
+  font-family: 'Roboto Mono', courier, monospace;
+  clear: both;
+}
+
+[data-module="debug"] .bugg-container {
+  position: relative;
 }
 
 [data-module="debug"] .bugg{
@@ -18,20 +22,34 @@
   height: 108px;
 }
 
-[data-module="debug"] .q-container div{
-  border: 1px solid black;
-  padding: 5px;
-  margin-top: 5px;
-  cursor: pointer;
-}
-[data-module="debug"] .correct .q-container div{
-  border: 1px solid lightgrey;
-  color: lightgrey;
-}
-
 [data-module="debug"] .lazer{
 }
 
 [data-module="debug"] svg{
   pointer-events: none;
+}
+
+[data-module="debug"] .q-container div {
+  margin-top: 5px;
+  background: #2800d7;
+  color: #fff;
+  padding: 8px;
+  font-family: 'Roboto Mono', courier, monospace;
+  font-size: 14px;line-height: 16px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle; 
+  -webkit-transition: background 0.4s;
+     -moz-transition: background 0.4s;
+      -ms-transition: background 0.4s;
+       -o-transition: background 0.4s;
+          transition: background 0.4s;
+}
+[data-module="debug"] .q-container div:hover {
+  background: #6381ff;
+  cursor: pointer;
+}
+[data-module="debug"] .correct .q-container div {
+  background: #6381ff;
+  cursor: default;
 }

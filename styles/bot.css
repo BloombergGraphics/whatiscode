@@ -15,8 +15,6 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top;
-  background-size: 100%;
-  /*float: left;*/
   width: 30%;
   height: 100%;
   min-height: 210px;
@@ -93,6 +91,10 @@
 /* /lil notch caret */
 
 .bot .body .messages .eval {
+  border: 3px solid #2800d7;
+  background: #23241f;
+  border-radius: 10px;
+  padding: 10px;
 }
 .bot .body .messages .eval pre {
   margin: 0;
@@ -123,21 +125,27 @@
 }
 
 .bot .body .messages .responses .response {
-  color: #f0f;
   display: inline-block;
   margin-bottom: 5px;
   margin-left: 5px;
 
-  border: 3px solid #2800d7;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  background: white;
+  background: #2800d7;
+  color: #fff;
+  padding: 8px;
+  font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1em;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle; 
+  -webkit-transition: background 0.4s;
+     -moz-transition: background 0.4s;
+      -ms-transition: background 0.4s;
+       -o-transition: background 0.4s;
+          transition: background 0.4s;
 }
 .bot .body .messages .responses .response:hover {
-  background: #2800d7;
-  color: white;
+  background: #6381ff;
   cursor: pointer;
 }
 .bot .body .messages .responses .response.clicked {

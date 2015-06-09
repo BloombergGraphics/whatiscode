@@ -290,8 +290,8 @@ top: 17px;
 #footnotes p{margin-left: 80px;}
 .footdef {margin-top: 54px}
 
-#postamble{margin:100px 0 100px 0;font-size: 20px}
-#postamble a{font-weight: bold}
+#postamble{margin:100px 0 100px 0;font-family: "BWHaasText-55Roman";font-size: 14px}
+#postamble a{ font-weight: normal; border-bottom: none; }
 
 a{
     color:#3c3c3c;

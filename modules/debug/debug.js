@@ -1,11 +1,4 @@
 !(function(){
-  var width = 960,
-      height = 500
-
-  var svg = d3.select('[data-module="debug"]').append('svg')
-      .attr({width: width, height: height})
-      .style({position: 'absolute', top: '0px'})
-
 
   var module = {sel: d3.select('[data-module="debug"]')}
   addModule(module)
@@ -23,39 +16,49 @@
   // announce itself
   if (typeof(bot) != 'undefined'){
     module.bot = bot();
-    module.sel.append("div.bot").call(module.bot);
+    module.sel.insert("div.bot", ":first-child").call(module.bot);
     module.oninit = function() {
       module.bot.dialogue(dialogue);
     }
   }
 
+  var width = 960,
+      height = 500
+
+  var buggContainer = module.sel.append("div.bugg-container")
+      .style("width", width+"px")
+      .style("height", height+"px");
+
+  var svg = buggContainer.append('svg')
+      .attr({width: width, height: height})
+      .style({position: 'absolute', top: '0px'})
 
   var bugs = [
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth.gif',
       pos: [width*.01, height*.05],
       wrong: 'var salesPlusFour = "4" + sales;',
       right: 'var salesPlusFour = 4 + sales;'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth2.gif',
       pos: [width*.75, height*.05],
       wrong: 'for (var i = 0; i < 10 i++)',
       right: 'for (var i = 0; i < 10; i++)'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth.gif',
       pos: [width*.75, height*.75],
       wrong: 'if (newBug == oldBug)',
       right: 'if (newBug === oldBug)'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth2.gif',
       pos: [width*.02, height*.75],
       right: 'var total += currentValue',
       wrong: 'var total = +currentValue'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth.gif',
       pos: [width*.50, height*.50],
       wrong: 'isBetween = min < next < max',
       right: 'isBetween = min < next && next < max'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth2.gif',
       pos: [width*.0, height*.4],
       wrong: 'var x = Math.Sin(θ)',
       right: 'var x = Math.sin(θ)'},
-    { img: 'bug.svg',
+    { img: 'emotes/pose_moth.gif',
       pos: [width*.40, height*.10],
       wrong: 'obj.function()',
       right: 'obj && obj.function && obj.function'},
@@ -63,7 +66,7 @@
 
   bugs.forEach(function(d){
     d.correct = false
-    d.img = 'images/bug.svg'
+    d.img = _.sample(['images/emotes/pose_moth.gif','images/emotes/pose_moth2.gif'])
     d.t = Math.random()
     d.visable = false
     d.spawned = false
@@ -74,7 +77,7 @@
 
     d.visable = true
 
-    d.div = d3.select('[data-module="debug"]').append('div.bugg')
+    d.div = buggContainer.append('div.bugg')
 
     d.imgEl = d.div.append('img.bug-img').attr('src', d.img)
 
@@ -87,7 +90,7 @@
 
           if (d.right == e){
             d.correct = true
-            d.imgEl.transition().delay(300).style('opacity', .3)
+            d.imgEl.transition().delay(300).style('opacity', 0)
             d3.select(this).style('color', green)
             d.div.classed('correct', true)
 
