@@ -4,7 +4,9 @@
   addModule(module)
 
   module.sel.classed("bigimgWrap", true);
-  module.sel.append("div.photoCaption").text("The most disproportionately popular language in various countries TK TK TK");
+  var intro = d3.select('[data-module="maps"] .maps-intro')
+    .html("<b>CODE ATLAS</b> Stack Overflow, a website for coders, asked users around the world to tell them which languages and technologies they’ve worked with over the past year. JavaScript was the most-selected language by far. Here we show which other technologies, including languages and operating systems, are used at an unusually high rate in each country.")
+    .style("opacity",0);
 
   var globes = [
     {
@@ -103,6 +105,14 @@
         return (d.position.y+offset)+"px" 
       });
 
+  var sources = d3.select('[data-module="maps"] .maps-sources')
+    .attr("class","maps-sources photoCaption")
+    .style("line-height","12px")
+    .html("Languages shown for each country are those with the highest percent difference between that country's selection rate and the average selection rate. Some ancillary technologies, like SQL Server, were left out.")
+    .style("opacity",0)
+
+
+
   //called when scrolled into view
   function oninit(){
     gimages.transition().duration(1000)
@@ -110,6 +120,8 @@
       .style("top",function(d,i){ return d.position.y+"px" });
 
     textlayer.transition().delay(1000).duration(500).style("opacity",1);
+    intro.transition().delay(1000).duration(500).style("opacity",1);
+    sources.transition().delay(1000).duration(500).style("opacity",1);
 
     // d3.xhr("modules/maps/map.svg", function(error, svg) {
 
