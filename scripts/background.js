@@ -103,6 +103,7 @@
     var colors = colorArray.slice(0, 3)
     var offset = 1
     setInterval(function(){
+      return
       if (!module.active) return
 
       offset++
@@ -132,6 +133,43 @@
 
     }, 5/4*1000)
   })()
+
+  !(function(){
+    var module = {sel: d3.select('#background-hook'), active: true, onunload: unload}
+
+    addModule(module)
+
+    var colors = colorArray.slice(0, 3)
+    var offset = 1
+    setInterval(function(){
+      if (!module.active) return
+
+      offset++
+      var size = Math.random()
+      d3.range(0, width + l, l*10).forEach(function(x, i){
+        d3.range(0, height + l, l*10).forEach(function(y, j){
+          // if (!!((i + j + offset) % 2)) return
+          if (Math.random() < .7) return
+
+          var shape =
+            { x: x,
+              y: y,
+              i: i,
+              j: j,
+              type: 'circle',
+              start: curTime + Math.random()*1500,
+              sV: [x, y - 200 , 0],
+              eV: [x, y, l*3 + size*l*5*size],
+              fill: offset % 18 ? colors[((Math.random() < .3) + offset) % 3] : 'white'
+            }
+          shape.end = shape.start + 1500 + size*400
+          shapes.push(shape)
+        })
+      })
+
+    }, 1500)
+  })()
+
 
   //circles
   !(function(){
