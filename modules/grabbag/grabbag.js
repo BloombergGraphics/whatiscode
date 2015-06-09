@@ -9,9 +9,7 @@
       "speak": "I am made of code and I have a standard library of functions of my own. I can speak, run code, make sliders, and give you options."
     },
     {"prompts": [
-      {"prompt": "Destroy the page", do: destroyPage },
-      {"prompt": "Mess with styles", do: roulette },
-      {"prompt": "Rewrite the article", do: rewrite },
+      {"prompt": "Mess", do: mess },
     ]}
   ]
 
@@ -39,7 +37,10 @@
 
   }
 
-
+  function mess() {
+    d3.select('article').transition().duration(15000).style("transform","scale(.01)");
+    d3.selectAll('article p').transition().duration(15000).style("transform",function(d) { return "rotate(" + (Math.random()*360).toFixed() + "deg"; })
+  }
 
   function roulette(time) {
     if (!time) time = 1;
