@@ -15,8 +15,6 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top;
-  background-size: 100%;
-  /*float: left;*/
   width: 30%;
   height: 100%;
   min-height: 210px;
@@ -93,6 +91,10 @@
 /* /lil notch caret */
 
 .bot .body .messages .eval {
+  border: 3px solid #2800d7;
+  background: #23241f;
+  border-radius: 10px;
+  padding: 10px;
 }
 .bot .body .messages .eval pre {
   margin: 0;
@@ -131,7 +133,8 @@
   color: #fff;
   padding: 8px;
   font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif;
-  font-size: 14px;line-height: 16px;
+  font-size: 14px;
+  line-height: 1em;
   width: auto;
   display: inline-block;
   vertical-align: middle; 

@@ -1,22 +1,24 @@
-[data-module="crapplets"] {
+[data-module="crapplets"] .bot {  
+  position: relative;
+  z-index: 2;
+}
+
+[data-module="crapplets"] .bot .step:not(:last-child) {
+  display: none;
+}
+
+[data-module="crapplets"] .crapplets {
+  position: relative;
   height: 300px;
   border: 1px solid gray;
   background-image: url('img/loading.gif');
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
-}
-
-.crapplets {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   cursor: pointer;
+  z-index: 1;
 }
 
-.crapplets img {
+[data-module="crapplets"] .crapplets img {
   position: absolute;
   transform: translate(-50%,-50%);
 }

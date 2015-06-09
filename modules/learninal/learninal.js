@@ -20,14 +20,16 @@
     ]};
   }
 
+  var badFaces = ["angry","angry2","angry3","angry4","no","no_2"];
+
   var dialogueTest = function(test, error) {
     return {
       "test": function(item) {
         if(test.call(this,item)) {
-          this.emote("jumps");
+          this.emote("love");
           return true;
         } else {
-          this.emote("notimpressed");
+          this.emote(_.sample(badFaces));
           this.speak(error);
           return false;
         }
@@ -37,34 +39,36 @@
 
   tutorialArrays = [
   {
+    "emote": "explaining",
     "speak": "We can’t teach you to code, but we can hold your hand through a live-fire exercise. It will be dry, because code is dry until it ‘clicks’, and often even then. Want to give it a shot?"
   },
   {
     "prompts": [{"prompt": "Yes, I want to see and write real live code."}]
   },
   {
-    "speak": "Excellent! We’ll start with lists. Many, many things in a computer are saved in a LIST form. Many of the tasks that a programmer does involve creating and modifying lists. Let’s create a list.",
+    "emote": "keyboardmash_rest", "speak": "Excellent! We’ll start with lists. Many, many things in a computer are saved in a LIST form. Many of the tasks that a programmer does involve creating and modifying lists. Let’s create a list of dogs.",
   },
   {
-    "speak": "THIS IS THE CODE TO MAKE A LIST OF DOGS.",
+    "emote": "keyboardmash", 
     "eval": "dogs = ['black lab', 'tabby', 'golden retriever', 'corgi', 'chihuahua'];",
     "prompts": [{"prompt": "OK..."}]
   },
   {
-    "speak": "First of all, one of these does not belong. So you should replace it with “boston terrier”.",
-  },
-  {
-    "speak": "In Javascript arrays start at 0 (zero) which is weird and confusing but you need to work with it, that’s life. So starting at 0 what number is ‘tabby’? Type your answer below and hit enter:",
+    "emote": "keyboardmash_rest", 
+    "speak": "One of those doesn’t belong. In Javascript arrays start at 0 (zero) which is weird and confusing but you need to work with it, that’s life. So starting at 0 what number is ‘tabby’? Type your answer below and hit enter:",
   },
   {
     "test": function(item) {
       if(item.result === 1) {
+        this.emote("love");
         return true;
       } else if((item.command+'').toLowerCase().trim() == "one") {
         this.speak("OK, true, but please just enter it in numerals, like 8 or 9 or 2345235.");
+        this.emote(_.sample(badFaces));
         return false;
       } else {
         this.speak("Nope. OK, starting at 0, so 'black lab' is 0, so 'tabby' is...");
+        this.emote(_.sample(badFaces));
         return false;
       }
     }
@@ -75,41 +79,46 @@
   {
     "test": function(item) {
       if(dogs[1]+''.toLowerCase().trim() == 'boston terrier') {
+        this.emote("love");
         return true;
       } else {
         this.speak("Nope. The element that should be 'boston terrier' is instead '"+ dogs[1] +"'. Try again.");
+        this.emote(_.sample(badFaces));
         return false;
       }
     }
   },
-  { "speak": "Now you have done it. You have replaced the dogs." },
-  { "speak": "Now get rid of chihuahuas. The way you do that is by calling the pop method: dogs.pop();", "emote": "chill" },
+  { "speak": "Now get rid of pugs. The way you do that is by calling the pop method: dogs.pop();" },
   {
     "test": function(item) {
       if(dogs.length == 4 && item.result=="pug" && item.command.indexOf("pop") !== -1) {
+        this.emote("love");
         return true;
       } else {
         dogs = ["black lab","boston terrier","golden retriever","corgi","pug"];
+        this.emote(_.sample(badFaces));
         this.speak("Welp, something went wrong. I've reset the dogs array; try again. Just type and hit enter: dogs.pop();");
         return false;
       }
     }
   },
-  { "speak": "Great. Notice how the pop method returns the value of the item you popped off. You can check the current value of the array by just typing 'dogs' and hitting enter, like this:" },
-  { "eval": "dogs" },
+  { "speak": "Great. Notice how the pop method returns the value of the item you popped off. You can check the current value of the array by just typing 'dogs' and hitting enter. Try:" },
+  dialogueTest(function(i) { return i.command === "dogs" || i.command === "dogs;" }, "Nope. Just type 'dogs', without the quotes, and hit enter."),
   { "speak": "Now add ‘mutt’ by PUSHING into the end of the array: dogs.push('mutt');" },
   {
     "test": function(item) {
       if(dogs.indexOf("mutt") !== -1 && dogs instanceof Array) {
+        this.emote("love");
         return true;
       } else {
         dogs = ["black lab","boston terrier","golden retriever","corgi"];
+        this.emote(_.sample(badFaces));
         this.speak("Welp, something went wrong. I've reset the dogs array; try again. Just type and hit enter: dogs.push('mutt');");
         return false;
       }
     }
   },
-  { "speak": "Great! RECAP: You’ve learned how to make a list. You can learn a hell of a lot more elsewhere:",
+  { "speak": "Great! RECAP: You’ve learned how to make and manipulate a list. You can learn a hell of a lot more elsewhere:",
     "prompts": [
       {"prompt": "Eloquent JavaScript, Chapter 4", "link": "http://eloquentjavascript.net/04_data.html"},
       {"prompt": "Or just Google it", "link": "https://www.google.com/#q=javascript%20array%20tutorial"},
@@ -192,7 +201,7 @@
   dialogueTest(function(i) { return paragraphs[0].style.background !== "black" && paragraphs[0].style.background !== "aqua"}, "Nope. Just type stripeify(\"p\", \"black\", \"aqua\") but with two colors other than black and aqua."),
   { "speak": "Great. But what if we do the same to our headlines?" },
   { "eval": 'stripeify("h2", "orange", "lightgreen");' },
-  { "speak": "Nice work.", "emote": "jumps" }
+  { "speak": "Nice work.", "emote": "love" }
   ];
 
 })();

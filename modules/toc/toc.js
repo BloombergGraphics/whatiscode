@@ -166,7 +166,18 @@
 
   function renderStats() {
 
-    console.log("heyyy");
+    var eta = getEstimatedFinishTime();
+
+    if ( isNaN( eta.getTime() ) ) { 
+      var etaStr = "the Second Coming, probably"
+    } else {
+      var dateFormat = d3.time.format.multi([
+        ["%H:%M", function(d) { return +d - +new Date() < 24*60*60*1000; }],
+        ["%H:%M on %B %e", function(d) { return +d - +new Date() < 24*60*60*1000*365; }],
+        ["%H:%M on %B %e, %Y", function(d) { return true; }]
+      ]);
+      var etaStr = dateFormat(eta);
+    }
 
     var statSel = module.sel.select("div.toc-section.stats");
     if(statSel.empty()) {
@@ -176,7 +187,7 @@
     statSel.text("You’re averaging " 
       + (getWordsPerMs() * 1000 * 60).toFixed() 
       + " words per minute; at this rate, you’ll finish by " 
-      + getEstimatedFinishTime());
+      + etaStr + ".");
   }
 
   function latest() {

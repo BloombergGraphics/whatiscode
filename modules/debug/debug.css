@@ -1,8 +1,13 @@
 [data-module="debug"]{
   position: relative;
-  height: 570px;
+  /*height: 570px;*/
   margin-left: -200px;
   font-family: 'Roboto Mono', courier, monospace;
+  clear: both;
+}
+
+[data-module="debug"] .bugg-container {
+  position: relative;
 }
 
 [data-module="debug"] .bugg{
@@ -40,7 +45,7 @@
        -o-transition: background 0.4s;
           transition: background 0.4s;
 }
-[data-module="debug"] .q-container:hover div {
+[data-module="debug"] .q-container div:hover {
   background: #6381ff;
   cursor: pointer;
 }

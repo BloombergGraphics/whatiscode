@@ -63,8 +63,9 @@
     var canvas = document.getElementById('photo');
     var certificate = document.getElementById('certificate');
     var output = document.getElementById('output');
-    var shutter = document.getElementById('shutter');
-    var shutter2 = document.getElementById('shutter2');
+    var download = document.getElementById('downloadCert');
+    var cameraErrorMessage = document.getElementById('cameraErrorMessage');
+
     var ctx = canvas.getContext('2d');
     var vidStream
     var portrait
@@ -85,8 +86,6 @@
         stream.stop();
       };
 
-      stream.onended = noStream;
-
       video.width = certificate.width;
       video.height = certificate.height;  
 
@@ -97,7 +96,6 @@
 
         portrait = video.videoWidth < video.videoHeight
         console.log('portrait', portrait)
-
 
         video.style.height = height + 'px'
         video.style.width = 'auto'
@@ -119,7 +117,8 @@
     }
 
     function noStream(e) {
-      console.log(e)
+      // JB: Safari and IE don't support webcam, so we could make a nicer back up maybe?
+      cameraErrorMessage.textContent = 'No camera available :('
     }
 
     function capture() {
@@ -134,24 +133,15 @@
       vidStream.stop();
       // video.parentElement.removeChild(video);
 
-      shutter2.href = canvas.toDataURL('image/png');
+      download.href = canvas.toDataURL('image/png');
+      download.click();
 
-
-      // setTimeout(function() {
-      //   var w=window.open('about:blank','image from canvas');
-      //   w.document.write("<img src='"+output.src+"' alt='from canvas'/>");
-      // }, 100)
     }
 
     d3.select('#photo').on('click', init)
 
     function init(){
-      console.log(navigator.getUserMedia)
-
-      if (!navigator.getUserMedia) return console.log('navigator.getUserMedia not available')
-      shutter.onclick = capture;
-      shutter2.onclick = capture;
-      shutter.textContent = 'Smile for the camera!';
+      if (!navigator.getUserMedia) return noStream()
       navigator.getUserMedia({video: true}, gotStream, noStream);
     }
 

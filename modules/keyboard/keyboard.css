@@ -5,11 +5,23 @@
 
 }
 [data-module="keyboard"] .keyRow {
-
+  white-space: nowrap;
 }
 [data-module="keyboard"] .key {
   padding: 3px;
   position: relative;
+  cursor: pointer;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+[data-module="keyboard"] .key:hover .key-inner{
+  border: 2px solid #2800d7;
+  color: #2800d7;
 }
 [data-module="keyboard"] .key-inner {
   border: 2px solid #3c3c3c;

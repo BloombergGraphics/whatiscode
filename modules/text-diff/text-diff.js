@@ -1,6 +1,6 @@
 !(function(){
 
-  var module = {sel: d3.select('#text-diff')}
+  var module = {sel: d3.select('[data-module="text-diff"]')}
   addModule(module)
 
   //cached diff object
@@ -53,9 +53,9 @@
     var wordDiffs = diffToWords(diffs[curDiffIndex])
 
     if (module.active){
-      d3.selectAll('#text-diff').html('')
+      d3.selectAll('[data-module="text-diff"]').html('')
 
-      d3.select('#text-diff').dataAppend(wordDiffs, 'div.falling')
+      d3.select('[data-module="text-diff"]').dataAppend(wordDiffs, 'div.falling')
           .text(ƒ('value'))
           .style('width', function(d){ return d.added ? '0.0px' : d.width })
           .style('left',   function(d){ return d.added ? '-2000px' : '0px' })

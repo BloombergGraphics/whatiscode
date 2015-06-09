@@ -1,0 +1,26 @@
+.event-log {
+  position: fixed;
+  width: 300px;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 10pt;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.event-log.mousemove {
+  z-index: 2;
+  color: #ccc;
+  font-size: 1em;
+}
+.event-log.click {
+  z-index: 3;
+  font-size: 3em;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
+}
+.event-log.dblclick {
+  z-index: 4;
+  font-size: 4em;
+  font-weight: bold;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 1);
+}
