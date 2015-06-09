@@ -92,7 +92,7 @@ var loadTime = new Date();
     },
     {
       "name": "text-diff",
-      "string": "version control is one of the most beautiful"
+      "string": "You should go to GitHub"
     },
     {
       "name": "tinder",

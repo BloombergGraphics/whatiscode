@@ -1,12 +1,12 @@
-.falling{
+[data-module="text-diff"] .falling{
   position: relative;
   display: inline-block;
 }
-#text-diff div, #width-calc div{
+[data-module="text-diff"] div, [data-module="text-diff"] #width-calc div{
   float: left;
 }
 
-#width-calc{
+[data-module="text-diff"] #width-calc{
   top: -10000000px !important;
   position: absolute;
 }
