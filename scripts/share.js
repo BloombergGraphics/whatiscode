@@ -1,7 +1,23 @@
-function initShare() {
+function initInnerShare() {
   if (isTerminal) return
 
   var fbInitialized = false;
+
+  var moduleid = "";
+  var codeurl = "http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/";
+  var codetext = "";
+
+  modules.forEach(function(module) {
+    if (module.tweet.length > 0) {
+      var codeShareDiv = d3.select("[data-module='"+module.name+"']").append("div.innsershare").attr("id","share-"+module.name);
+      var codeShareFb = codeShareDiv.append("div.facebook");
+      var codeShareTw = codeShareDiv.append("div.twitter");
+    }
+  });
+
+  var moduleByName = d3.nest()
+    .key(function(d){ return d.name })
+    .map(modules);
 
   function shareData() {
     var metaTags=document.getElementsByTagName("meta");
@@ -41,11 +57,11 @@ function initShare() {
   var that = {
 
     assignButtons: function() {
-      Array.prototype.forEach.call(document.querySelectorAll('.share.link.facebook, #header-icon-fb'), function(el){
+      Array.prototype.forEach.call(document.querySelectorAll('.innershare.link.facebook'), function(el){
         el.addEventListener('click', that.postToFacebook)
       });
 
-      Array.prototype.forEach.call(document.querySelectorAll('.share.link.twitter, #header-icon-twitter'), function(el){
+      Array.prototype.forEach.call(document.querySelectorAll('.innershare.link.twitter'), function(el){
         el.addEventListener('click', that.postToTwitter)
       });
 
@@ -67,7 +83,7 @@ function initShare() {
     postToFacebook: function() {
       event.preventDefault()
 
-      var data = shareData();
+      // var data = shareData();
       var link = (typeof purl=="string")? encodeURIComponent(purl) : encodeURIComponent(data.url);
       var width  = 570,
           height = 620,
@@ -95,7 +111,7 @@ function initShare() {
     postToTwitter: function() {
       event.preventDefault()
 
-      var data = shareData();
+      // var data = shareData();
       var tweetUrl = "https://twitter.com/share?url=" + encodeURIComponent(data.url) + "&text=" + encodeURIComponent(data.longTitle);
       var opts = that.centerPopup(820, 440) + "scrollbars=1";
       track("Twitter");

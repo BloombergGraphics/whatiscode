@@ -1,6 +1,7 @@
 var originalArticle;
 var loadTime = new Date();
 var baseUrl = "http://sites.localhost/code";
+var modules;
 
 // local storage stuff
 (function() {
@@ -26,94 +27,114 @@ var baseUrl = "http://sites.localhost/code";
 
 // insert modules
 (function() {
-  var modules = [
+  modules = [
     {
       "name": "certificate",
-      "string": null
+      "string": null,
+      "tweet": "Something something click this interactive"
     },
     {
       "name": "circuit",
-      "string": "A computer is a clock with benefits"
+      "string": "A computer is a clock with benefits",
+      "tweet": "Something something click this interactive"
     },
     {
       "name": "crapplets",
-      "string": "soon called “crapplets”"
+      "string": "soon called “crapplets”",
+      "tweet": ""
     },
     {
       "name": "debug",
-      "string": "I felt that each time the program crashed"
+      "string": "I felt that each time the program crashed",
+      "tweet": "Something something click this interactive"
     },
     {
       "name": "gcd",
-      "string": "Euclid’s algorithm, for example"
+      "string": "Euclid’s algorithm, for example",
+      "tweet": ""
     },
     {
       "name": "grabbag",
-      // "string": "standard library has functions"
+      "string": "standard library has functions",
+      "tweet": "Something something click this interactive"
     },
     {
       "name": "keyboard",
-      "string": "strike a key on your keyboard"
+      "string": "strike a key on your keyboard",
+      "tweet": "Something something click this interactive"
     },
     {
       "name": "languages",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "learninal",
-      "string": "Programming as a career can lead to a rewarding"
+      "string": "Programming as a career can lead to a rewarding",
+      "tweet": "Something something click this interactive"
     },
     {
       "name": "livehtml",
-      "string": "To gather an e-mail address and a name"
+      "string": "To gather an e-mail address and a name",
+      "tweet": "Something something click this interactive"
     },
-    // {
-    //   "name": "maps",
-    //   "string": "By the time a language breaks through to the top 10 or 20"
-    // },
+    {
+      "name": "maps",
+      "string": "By the time a language breaks through to the top 10 or 20",
+      "tweet": ""
+    },
     {
       "name": "mouse",
-      "string": "A mouse moves"
+      "string": "A mouse moves",
+      "tweet": ""
     },
     {
       "name": "paperclip",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "paulbot",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "recirc",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "shoppingcart",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "text-diff",
-      "string": "In my opinion, version control"
+      "string": "In my opinion, version control",
+      "tweet": ""
     },
     {
       "name": "tinder",
-      "string": "even if the code starts to look ugly"
+      "string": "even if the code starts to look ugly",
+      "tweet": "Something something click this interactive"
     },
     {
       "name": "toc",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "tree",
-      "string": "Arbor Day"
+      "string": "Arbor Day",
+      "tweet": "Something something click this interactive"
     }
   ];
 
-  modules.forEach(function(value, index) {
-    if(!value.string) return;
-    if($('[data-module="'+value.name+'"]').length !== 0) return;
-    $('p:contains("'+value.string+'")').after('<div data-module="'+value.name+'"></div>');
-  })
+  // modules.forEach(function(value, index) {
+  //   if(!value.string) return;
+  //   if($('[data-module="'+value.name+'"]').length !== 0) return;
+  //   $('p:contains("'+value.string+'")').after('<div data-module="'+value.name+'"></div>');
+  // })
 })();
 
 jQuery(document).ready(function($) {
