@@ -111,3 +111,11 @@
 	font-size: 13px;
 	line-height: 14px;
 }
+
+
+
+@media only screen and (max-width: 1020px)  {
+  #toc-toggle{
+    display: none;
+  }
+}
