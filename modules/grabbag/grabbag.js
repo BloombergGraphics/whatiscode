@@ -3,51 +3,22 @@
   var module = {sel: d3.select('[data-module="grabbag"]')}
   addModule(module)
 
+  var prompts = [
+        {"prompt": "Colors", do: colors },
+        {"prompt": "Emotions", do: emotions },
+        {"prompt": "Cowboys", do: cowboys },
+        {"prompt": "Old skeletons", do: spellcheck },
+        {"prompt": "Wreck it all", do: mess },
+        {"prompt": "Reset", do: resetArticle },
+      ];
+
   var dialogue = [
     {
       "emote": "explaining",
-      "speak": "I am made of code and I have a standard library of functions of my own. I can speak, run code, make sliders, and give you options."
-    },
-    {
-      "slider": {
-        "onbrush": function(value) {
-          d3.selectAll("section").style("background-color", d3.hsl(value, .8, .8));
-          return "article.style.backgroundColor = \"" + document.getElementsByTagName('body')[0].style.backgroundColor + "\"";
-        },
-        "domain": [0, 180]
-      }
-    },
-    {
-      "prompts": [{"prompt": "OK, how about font color?"}]
-    },
-    {
-      "slider": {
-        "onbrush": function(value) {
-          d3.select("article").style("color", d3.hsl(value, .8, .2));
-          return "article.style.backgroundColor = \"" + document.getElementsByTagName('body')[0].style.color + "\"";
-        },
-        "domain": [0,180]
-      }
-    },
-    // {
-    //   "prompts": [{"prompt": "OK, how about font size?"}]
-    // },
-    // {
-    //   "slider": {
-    //     "onbrush": function(value) {
-    //       d3.select("article").style("font-size", value+'px');
-    //       return value+"px";
-    //     },
-    //     "domain": [8,64]
-    //   }
-    // },
-    {
-      "prompts": [
-        {"prompt": "For God's sake, back to normal, please.", do: resetArticle },
-        {"prompt": "Mess", do: mess },
-      ]
+      "speak": "I am made of code and I have a standard library of functions of my own. Sliders and buttons and timers can get wired up to anything on the page, because the page and every object on it is code too.",
+      "prompts": prompts
     }
-  ]
+  ];
 
   module.bot = bot();
   module.sel.append("div.bot").call(module.bot);
@@ -56,24 +27,49 @@
     module.bot.mode("on").dialogue(dialogue);
   }
 
-  function destroyPage() {
-    // setInterval(function() {
-    //   var $el = $('body');
-    //   while($el.children().length > 0) {
-    //     $el = $el.children().eq(0);
-    //   }
-    //   $el.remove();
-    // },100);
+  function colors() {
+    module.bot.dialogue([
+      {
+        "speak": "Everything on the page has style attributes like background-color.",
+        "slider": {
+          "onbrush": function(value) {
+            d3.selectAll("section").style("background-color", d3.hsl(value, .8, .8));
+            return true;
+          },
+          "domain": [0, 180]
+        },
+        "prompts": prompts
+      }
+    ]);
+  }
 
-    var firstDestroy = d3.select('#outline-container-sec-3-4').node()
-    d3.selectAll('#outline-container-sec-3-4').selectAll('h3, p, img, svg, table, .figureInline, .org-src-container, dl, .bot, .screen')
-        .transition().delay(function(d, i){ return i*50 })
-          .style('display', 'none')
-          .style('opacity', '0')
-
+  function emotions() {
+    module.bot.dialogue([
+      {
+        "speak": "Even my emotions are variables!",
+        "slider": {
+          "onbrush": function(value) {
+            var scale = d3.scale.threshold()
+              .domain([1/8,2/8,3/8,4/8,5/8,6/8,7/8])
+              .range(['love', 'jumps', 'waving', 'chill', 'angry', 'angry2', 'angry3', 'angry4']); 
+            module.bot.emote(scale(value));
+            return true;
+          },
+          "domain": [0, 1]
+        },
+        "prompts": prompts
+      }
+    ]);
   }
 
   function mess() {
+
+    module.bot.dialogue([
+      {
+        "speak": "Now you’ve done it...",
+      }
+    ]);
+
     d3.select('article')
       .style("transform","scale(1)")
       .transition()
@@ -95,6 +91,107 @@
       .duration(15000)
       .style("transform",function(d) { return "scale(10)"; })
       .style("opacity",0);
+    setTimeout(function() {
+      window.location.hash = "#grabbag";
+      location.reload();
+    },10000)
+  }
+
+  function cowboys() {
+    d3.selectAll("img").attr("src", "images/cowboy_on_computer.gif");
+    module.bot.dialogue([
+      {
+        "speak": "Images are objects with source attributes. They’re code, and there’s code to change that! All of it.",
+        "prompts": prompts
+      }
+    ]);
+  }
+
+  function spellcheck() {
+
+    walk(document.body);
+    module.bot.dialogue([
+      {
+        "speak": "Text is variable, too! Hmm, something’s different in here...",
+        "prompts": prompts
+      }
+    ]);
+
+    // I stole this function from here:
+    // https://github.com/ericwbailey/millennials-to-snake-people/blob/master/Source/content_script.js
+    function walk(node)
+    {
+      // I stole this function from here:
+      // http://is.gd/mwZp7E
+
+      var child, next;
+
+      switch ( node.nodeType )
+      {
+        case 1:  // Element
+        case 9:  // Document
+        case 11: // Document fragment
+          child = node.firstChild;
+          while ( child )
+          {
+            next = child.nextSibling;
+            walk(child);
+            child = next;
+          }
+          break;
+
+        case 3: // Text node
+          handleText(node);
+          break;
+      }
+    }
+
+    function handleText(textNode) {
+      textNode.nodeValue = replaceText(textNode.nodeValue);
+    }
+
+    function replaceText(v)
+    {
+      // A programmer -> An old...
+      v = v.replace(/\bA\sprogrammer\b/g, "An programmer");
+      v = v.replace(/\ba\sprogrammer\b/g, "an programmer");
+
+      // Programmer
+      v = v.replace(/\bProgrammer\b/g, "Old Skeleton");
+      v = v.replace(/\bprogrammer\b/g, "old skeleton");
+      v = v.replace(/\bProgrammers\b/g, "Old Skeletons");
+      v = v.replace(/\bprogrammers\b/g, "old skeletons");
+      v = v.replace(/\bProgrammers'\b/g, "Old Skeleton's");
+      v = v.replace(/\bprogrammers'\b/g, "old skeleton's");
+
+      // Coder
+      v = v.replace(/\bCoder\b/g, "Bag of bones");
+      v = v.replace(/\bcoder\b/g, "bag of bones");
+      v = v.replace(/\bCoders\b/g, "Bags of Bones");
+      v = v.replace(/\bcoders\b/g, "bags of bones");
+      v = v.replace(/\bCoders'\b/g, "Bags of Bones's");
+      v = v.replace(/\bcoders'\b/g, "bags of bones's");
+
+      return v;
+    }
+
+  }
+
+  function destroyPage() {
+    // setInterval(function() {
+    //   var $el = $('body');
+    //   while($el.children().length > 0) {
+    //     $el = $el.children().eq(0);
+    //   }
+    //   $el.remove();
+    // },100);
+
+    var firstDestroy = d3.select('#outline-container-sec-3-4').node()
+    d3.selectAll('#outline-container-sec-3-4').selectAll('h3, p, img, svg, table, .figureInline, .org-src-container, dl, .bot, .screen')
+        .transition().delay(function(d, i){ return i*50 })
+          .style('display', 'none')
+          .style('opacity', '0')
+
   }
 
   function roulette(time) {

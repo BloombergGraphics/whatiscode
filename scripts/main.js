@@ -1,5 +1,6 @@
 var originalArticle;
 var loadTime = new Date();
+var baseUrl = "http://sites.localhost/code";
 
 // local storage stuff
 (function() {
