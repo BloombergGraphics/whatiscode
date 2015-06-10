@@ -5,7 +5,7 @@
 
   module.sel.classed("bigimgWrap", true);
   var intro = d3.select('[data-module="maps"] .maps-intro')
-    .html("<b>CODE ATLAS</b> Stack Overflow, a website for coders, asked users around the world to tell them which languages and technologies they’ve worked with over the past year. JavaScript was the most-selected language by far. Here we show which other technologies, including languages and operating systems, are used at an unusually high rate in each country.")
+    .html("<b>CODE ATLAS</b> Stack Overflow, a website for coders, asked users around the world to tell them which languages and technologies they’ve worked with over the past year. JavaScript was the most-selected language by far. Here, we show which technologies are used at an unusually high rate in each country.")
     .style("opacity",0);
 
   var globes = [
