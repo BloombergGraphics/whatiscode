@@ -14,7 +14,19 @@
 }
 
 [data-module="toc"] ::-webkit-scrollbar { 
-   display: none; 
+  display: none; 
+}
+
+#toc-toggle {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	width: 30px;
+	height: 30px;
+	background-image: url(../../images/toc_icon.gif);
+	background-size: contain;
+	cursor: pointer;
+	z-index: 4;
 }
 
 article#code {

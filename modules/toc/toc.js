@@ -5,6 +5,7 @@
 
   var stats = loadStats();
   var loadTime = new Date();
+  var mode = false;
 
   var pixelsToWords = d3.scale.linear()
     .domain([0,d3.select("body").node().getBoundingClientRect().height])
@@ -21,16 +22,6 @@
     .value(ƒ('scrollTop'))
     .bins(pixelsToWords.ticks(100));
 
-  module.sel
-    .on("mouseover", function(d) {
-      module.sel.classed("open", true);
-      d3.select("article").classed("toc-open", true);
-    })
-    .on("mouseout", function(d) {
-      module.sel.classed("open", false);
-      d3.select("article").classed("toc-open", false);
-    })
-
   setInterval(function() {
     logScroll();
     makeHistogram();
@@ -41,6 +32,12 @@
   d3.select(window).on("scroll.toc", renderWindows);
   window.onunload = window.onbeforeunload = saveStats;
   renderTOC();
+
+  d3.select("#toc-toggle").on("click", function() {
+    mode = !mode;
+    module.sel.classed("open", mode);
+    d3.select("article").classed("toc-open", mode);
+  });
 
   function getWordCount(sel) {
     if(!arguments.length) sel = d3.select("body");
