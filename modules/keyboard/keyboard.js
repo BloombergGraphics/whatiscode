@@ -19,7 +19,6 @@
   module.onunload = function() { keyboardEvents(false); };
 
   function keyboardEvents(bool) {
-
     if(this.state === bool) {
       return;
     } else {

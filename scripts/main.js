@@ -1,5 +1,6 @@
 var originalArticle;
 var loadTime = new Date();
+var baseUrl = "http://sites.localhost/code";
 
 // local storage stuff
 (function() {
@@ -253,13 +254,6 @@ function preCode() {
     }
   })
 }
-
-function resetArticle() {
-  $("article").html(originalArticle);
-  d3.select("body").style("background-color", "inherit");
-  d3.select("body").style("color", "inherit");
-}
-
 
 
 

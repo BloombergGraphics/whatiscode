@@ -1,4 +1,5 @@
 [data-module="keyboard"] {
+  height: 516px;
 }
 
 [data-module="keyboard"] .keyboard {
@@ -47,4 +48,88 @@
   line-height: 1em;
   padding: 0;
   transform: rotate(0deg) translate(-50%, -50%);
+}
+
+
+
+
+
+
+@media only screen and (max-width: 1020px)  {
+  [data-module="certificate"]{
+    display: none;
+  }
+
+  [data-module="circuit"]{
+    display: none;
+  }
+
+  [data-module="crapplets"]{
+    display: none;
+  }
+
+  [data-module="debug"]{
+    display: none;
+  }
+
+  [data-module="gcd"]{
+    display: none;
+  }
+
+  [data-module="grabbag"]{
+    display: none;
+  }
+
+  [data-module="keyboard"]{
+    display: none;
+  }
+
+  [data-module="languages"]{
+    display: none;
+  }
+
+  [data-module="learninal"]{
+    display: none;
+  }
+
+  [data-module="livehtml"]{
+    display: none;
+  }
+
+  [data-module="maps"]{
+    display: none;
+  }
+
+  [data-module="mouse"]{
+    display: none;
+  }
+
+  [data-module="paperclip"]{
+    display: none;
+  }
+
+  [data-module="paulbot"]{
+    display: none;
+  }
+
+  [data-module="recirc"]{
+    display: none;
+  }
+
+  [data-module="shoppingcart"]{
+    display: none;
+  }
+
+  [data-module="text-diff"]{
+    display: none;
+  }
+
+  [data-module="toc"]{
+    display: none;
+  }
+
+  [data-module="tree"]{
+    display: none;
+  }
+
 }

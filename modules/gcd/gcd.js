@@ -149,9 +149,7 @@
 
   }
 
-  var module = {sel: d3.select('[data-module="gcd"]')}
+  var module = {sel: d3.select('[data-module="gcd"]'), oninit: drawGCD}
   addModule(module)
-
-  drawGCD()
   
 })();
