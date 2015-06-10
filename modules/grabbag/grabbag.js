@@ -8,9 +8,45 @@
       "emote": "explaining",
       "speak": "I am made of code and I have a standard library of functions of my own. I can speak, run code, make sliders, and give you options."
     },
-    {"prompts": [
-      {"prompt": "Mess", do: mess },
-    ]}
+    {
+      "slider": {
+        "onbrush": function(value) {
+          d3.selectAll("section").style("background-color", d3.hsl(value, .8, .8));
+          return "article.style.backgroundColor = \"" + document.getElementsByTagName('body')[0].style.backgroundColor + "\"";
+        },
+        "domain": [0, 180]
+      }
+    },
+    {
+      "prompts": [{"prompt": "OK, how about font color?"}]
+    },
+    {
+      "slider": {
+        "onbrush": function(value) {
+          d3.select("article").style("color", d3.hsl(value, .8, .2));
+          return "article.style.backgroundColor = \"" + document.getElementsByTagName('body')[0].style.color + "\"";
+        },
+        "domain": [0,180]
+      }
+    },
+    // {
+    //   "prompts": [{"prompt": "OK, how about font size?"}]
+    // },
+    // {
+    //   "slider": {
+    //     "onbrush": function(value) {
+    //       d3.select("article").style("font-size", value+'px');
+    //       return value+"px";
+    //     },
+    //     "domain": [8,64]
+    //   }
+    // },
+    {
+      "prompts": [
+        {"prompt": "For God's sake, back to normal, please.", do: resetArticle },
+        {"prompt": "Mess", do: mess },
+      ]
+    }
   ]
 
   module.bot = bot();
@@ -38,8 +74,27 @@
   }
 
   function mess() {
-    d3.select('article').transition().duration(15000).style("transform","scale(.01)");
-    d3.selectAll('article p').transition().duration(15000).style("transform",function(d) { return "rotate(" + (Math.random()*360).toFixed() + "deg"; })
+    d3.select('article')
+      .style("transform","scale(1)")
+      .transition()
+      .duration(20000)
+      .style("transform","scale(.01)");
+    d3.selectAll('article p')
+      .style("transform","rotate(0deg)")
+      .transition()
+      .duration(15000)
+      .style("transform",function(d) { return "rotate(" + (Math.random()*360).toFixed() + "deg)"; });
+    d3.selectAll('article img')
+      .style("transform","rotate(0deg)")
+      .transition()
+      .duration(15000)
+      .style("transform",function(d) { return "rotate(" + (Math.random()* -360).toFixed() + "deg)"; });
+    d3.selectAll('article h2, article h3')
+      .style("transform","scale(1)")
+      .transition()
+      .duration(15000)
+      .style("transform",function(d) { return "scale(10)"; })
+      .style("opacity",0);
   }
 
   function roulette(time) {
