@@ -603,6 +603,13 @@ img.infographic {
 }
 
 
+/*Stop top line wrap on mobile*/
+@media only screen and (max-width: 740px){
+  #top-ad{
+    display: none;
+  }
+}
+
 
 
 

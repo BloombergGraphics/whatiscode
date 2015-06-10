@@ -3,20 +3,19 @@
   var module = {sel: d3.select('[data-module="toc"]')}
   addModule(module)
 
-  var stats;
-
+  var stats = loadStats();
   var loadTime = new Date();
 
   var pixelsToWords = d3.scale.linear()
     .domain([0,d3.select("body").node().getBoundingClientRect().height])
-    .range([0,getWordCount(d3.select("body"))]);
+    .range([0,stats.wordCount]);
   
   var pixelsToPercentage = d3.scale.linear()
     .domain([0,d3.select("body").node().getBoundingClientRect().height])
     .range([0,100]);
 
   var wordsToPercentage = d3.scale.linear()
-    .domain([0,getWordCount(d3.select("body"))]);
+    .domain([0,stats.wordCount]);
 
   var histogram = d3.layout.histogram()
     .value(ƒ('scrollTop'))
@@ -32,6 +31,17 @@
       d3.select("article").classed("toc-open", false);
     })
 
+  setInterval(function() {
+    logScroll();
+    makeHistogram();
+    renderHistogram();
+    renderStats();
+  }, 1000);
+
+  d3.select(window).on("scroll.toc", renderWindows);
+  window.onunload = window.onbeforeunload = saveStats;
+  renderTOC();
+
   function getWordCount(sel) {
     if(!arguments.length) sel = d3.select("body");
     return sel.text().trim().replace(/\s+/gi, ' ').split(' ').length;
@@ -45,7 +55,7 @@
   }
 
   function getEstimatedFinishTime() {
-    return new Date(+(new Date()) + (getWordCount() - latest().wordCount) / getWordsPerMs());
+    return new Date(+(new Date()) + (stats.wordCount - latest().wordCount) / getWordsPerMs());
   }
 
   function saveStats() { 
@@ -57,9 +67,8 @@
   }
 
   function loadStats() { 
-    stats = JSON.parse(localStorage.getItem('stats'));
+    var stats = JSON.parse(localStorage.getItem('stats'));
     if(!stats) {
-      console.log("no stats!!!");
       stats = {
         scrollLog: [],
         wordCount: getWordCount(),
@@ -73,6 +82,7 @@
         }
       }
     }
+    return stats;
   }
 
   function makeHistogram() {
@@ -162,7 +172,6 @@
           .tween("tocscroll", scrollTopTween(d.getBoundingClientRect().top + document.getElementsByTagName("body")[0].scrollTop));
       });
   }
-  renderTOC();
 
   function renderStats() {
 
@@ -223,16 +232,5 @@
       return function(t) { this.scrollTop = i(t); }; 
     }; 
   } 
-
-  setInterval(function() {
-    logScroll();
-    makeHistogram();
-    renderHistogram();
-    renderStats();
-  }, 1000);
-
-  d3.select(window).on("scroll.toc", renderWindows);
-  window.onunload = window.onbeforeunload = saveStats;
-  loadStats();
 
 })();

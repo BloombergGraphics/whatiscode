@@ -22,9 +22,13 @@ var paulbot;
         "! I’m Kevin and I’ll be your Clippy today. I’ll appear from time to time to distract you from how many words are here!";
     }
 
-    var prompts = [];
+    var dialogue = [
+      { "speak": message },
+      { "mode": "off" }
+    ];
+
     if(localStorage.getItem('scrollTop')) {
-      prompts = [
+      dialogue[0].prompts = [
         {
           "prompt": "Continue reading from last spot",
           "do": function() { document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop')); }
@@ -33,14 +37,9 @@ var paulbot;
           "prompt": "Go away"
         }
       ]      
+    } else {
+      dialogue[0].wait = 10000;
     }
-
-    var dialogue = [
-      { "speak": message,
-        "prompts": prompts,
-        "wait": 10000 },
-      { "mode": "off" }
-    ];
 
     paulbot.dialogue(dialogue);
 
