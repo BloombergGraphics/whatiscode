@@ -1,5 +1,6 @@
 var originalArticle;
 var loadTime = new Date();
+var baseUrl = "http://sites.localhost/code";
 
 // local storage stuff
 (function() {
@@ -48,7 +49,7 @@ var loadTime = new Date();
     },
     {
       "name": "grabbag",
-      "string": "The standard library is a set of pre-made software"
+      // "string": "standard library has functions"
     },
     {
       "name": "keyboard",
@@ -253,13 +254,6 @@ function preCode() {
     }
   })
 }
-
-function resetArticle() {
-  $("article").html(originalArticle);
-  d3.select("body").style("background-color", "inherit");
-  d3.select("body").style("color", "inherit");
-}
-
 
 
 
