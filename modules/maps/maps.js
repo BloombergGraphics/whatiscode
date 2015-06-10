@@ -1,6 +1,6 @@
 !(function(){
 
-  var module = {sel: d3.select('[data-module="maps"]'), oninit: oninit}
+  var module = {sel: d3.select('[data-module="maps"]'), oninit: oninit, minWidth: 1270}
   addModule(module)
 
   module.sel.classed("bigimgWrap", true);

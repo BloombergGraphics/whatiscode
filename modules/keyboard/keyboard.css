@@ -51,8 +51,11 @@
 }
 
 
-
-
+@media only screen and (max-width: 1270px)  {
+  [data-module="maps"]{
+    display: none;
+  }
+}
 
 
 @media only screen and (max-width: 1020px)  {
@@ -93,10 +96,6 @@
   }
 
   [data-module="livehtml"]{
-    display: none;
-  }
-
-  [data-module="maps"]{
     display: none;
   }
 
