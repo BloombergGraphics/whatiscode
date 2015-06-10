@@ -27,7 +27,7 @@
     curTime = t
 
     shapes.forEach(function(s, i){
-      if (t < s.start || i > 4000) return
+      if (t < s.start || i > 8000) return
 
       var u = (t - s.start)/(s.end - s.start)
 
@@ -111,8 +111,7 @@
   })()
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('#background-hook'), active: true, onunload: unload}
-
+    var module = {sel: d3.select('.sectionNum2'), active: false, onunload: unload}
     addModule(module)
 
     var colors = colorArray.slice(0, 3)
@@ -292,8 +291,13 @@
 
   //different sized squares
   !(function(){
-    // d3.select('.overlay').style('display', 'none')
-    var module = {sel: d3.select('.sectionNum2'), active: false, onunload: unload}
+    var module = {sel: d3.select('#background-hook'), active: false, onunload: unload}
+
+    //wait 2 sec to auto play, looks v. laggey otherwise
+    setTimeout(function(){
+      module.active = true
+    }, 2800)
+
     addModule(module)
 
     // Object.observe(module, function (changes){
@@ -309,7 +313,7 @@
       if (!module.active) return
 
       offset++
-      var sizeI = Math.ceil(Math.random()*3.5)
+      var sizeI = Math.ceil(Math.random()*3.5 + .5)
       // size = Math.floor((offset % 2) + Math.random()*2.5)
       // size = offset % 5
       var size = sizeI*sizeI*.8
