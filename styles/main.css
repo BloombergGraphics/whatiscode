@@ -674,6 +674,7 @@ li {margin-left: 40px}
 
 .interactive-feature {
   position: relative;
+  clear:both;
 }
 
 .innershare {
