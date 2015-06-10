@@ -56,3 +56,7 @@
 	letter-spacing:-0.04583333333333em;
 	color:#3c3c3c;
 }
+
+[data-module="maps"] .maps-text-layer{
+	overflow: hidden;
+}
