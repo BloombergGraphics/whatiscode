@@ -1,11 +1,11 @@
 !(function(){
 
-  var module = {sel: d3.select('[data-module="maps"]'), oninit: oninit}
+  var module = {sel: d3.select('[data-module="maps"]'), oninit: oninit, minWidth: 1270}
   addModule(module)
 
   module.sel.classed("bigimgWrap", true);
   var intro = d3.select('[data-module="maps"] .maps-intro')
-    .html("<b>CODE ATLAS</b> Stack Overflow, a website for coders, asked users around the world to tell them which languages and technologies they’ve worked with over the past year. JavaScript was the most-selected language by far. Here we show which other technologies, including languages and operating systems, are used at an unusually high rate in each country.")
+    .html("<b>CODE ATLAS</b> Stack Overflow, a website for coders, asked users around the world to tell them which languages and technologies they’ve worked with over the past year. JavaScript was the most-selected language by far. Here, we show which technologies are used at an unusually high rate in each country.")
     .style("opacity",0);
 
   var globes = [
@@ -88,7 +88,7 @@
     }
   ];
 
-  var textlayer = d3.select('[data-module="maps"] .maps-text-layer').style("opacity",0);
+  var textlayer = d3.select('[data-module="maps"] .maps-text-layer').style("opacity",0).style('display', 'block')
 
   var gimages = d3.select('[data-module="maps"] .globies')
     .selectAll(".globe-langs")

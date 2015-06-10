@@ -51,12 +51,21 @@
 }
 
 
+@media only screen and (max-width: 1270px)  {
+  [data-module="maps"]{
+    display: none;
+  }
+}
 
-
+@media only screen and (max-width: 840px)  {
+  [data-module="tinder"]{
+    display: none;
+  }
+}
 
 
 @media only screen and (max-width: 1020px)  {
-  [data-module="certificate"]{
+  #certificate, #certificate-container{
     display: none;
   }
 
@@ -93,10 +102,6 @@
   }
 
   [data-module="livehtml"]{
-    display: none;
-  }
-
-  [data-module="maps"]{
     display: none;
   }
 

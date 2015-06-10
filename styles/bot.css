@@ -38,6 +38,15 @@
   vertical-align: top;
 }
 
+.bot .body ::-webkit-scrollbar { 
+   display: none; 
+}
+
+.bot ::-webkit-scrollbar { 
+   display: none; 
+}
+
+
 .bot .body .messages {
 }
 

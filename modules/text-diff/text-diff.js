@@ -79,6 +79,6 @@
     window.setTimeout(function(){ updateFalling(curDiffIndex) }, 5500)
   }
 
-  updateFalling(1)
+  updateFalling(3)
 
 })();

@@ -1,6 +1,8 @@
+
+
 [data-module="debug"]{
   position: relative;
-  /*height: 570px;*/
+  height: 790px;
   margin-left: -110px;
   font-family: 'Roboto Mono', courier, monospace;
   clear: both;

@@ -1,6 +1,7 @@
 var originalArticle;
 var loadTime = new Date();
 var baseUrl = "http://sites.localhost/code";
+var modules;
 
 // local storage stuff
 (function() {
@@ -26,94 +27,114 @@ var baseUrl = "http://sites.localhost/code";
 
 // insert modules
 (function() {
-  var modules = [
+  modules = [
     {
       "name": "certificate",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "circuit",
-      "string": "A computer is a clock with benefits"
+      "string": "A computer is a clock with benefits",
+      "tweet": "What *is* a computer? It's just clock with benefits! Try playing with this circuitry simulator:"
     },
     {
       "name": "crapplets",
-      "string": "soon called “crapplets”"
+      "string": "",
+      "tweet": ""
     },
     {
       "name": "debug",
-      "string": "I felt that each time the program crashed"
+      "string": "I felt that each time the program crashed",
+      "tweet": "De-bugging code is totally fun! Why would anyone complain about de-bugging code?"
     },
     {
       "name": "gcd",
-      "string": "Euclid’s algorithm, for example"
+      "string": "Euclid’s algorithm, for example",
+      "tweet": ""
     },
     {
       "name": "grabbag",
-      // "string": "standard library has functions"
+      "string": "standard library has functions",
+      "tweet": "Have you ever wanted to destroy a web page? This is your chance. Go crazy:"
     },
     {
       "name": "keyboard",
-      "string": "strike a key on your keyboard"
+      "string": "strike a key on your keyboard",
+      "tweet": "How do you type an 'A' ? For a computer, it's more complicated than you'd think:"
     },
     {
       "name": "languages",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "learninal",
-      "string": "Programming as a career can lead to a rewarding"
+      "string": "Programming as a career can lead to a rewarding",
+      "tweet": "This is the least-boring code tutorial of all time:"
     },
     {
       "name": "livehtml",
-      "string": "To gather an e-mail address and a name"
+      "string": "To gather an e-mail address and a name",
+      "tweet": "This crazy @business article about code let me mess with HTML and break stuff:"
     },
-    // {
-    //   "name": "maps",
-    //   "string": "By the time a language breaks through to the top 10 or 20"
-    // },
+    {
+      "name": "maps",
+      "string": "By the time a language breaks through to the top 10 or 20",
+      "tweet": ""
+    },
     {
       "name": "mouse",
-      "string": "A mouse moves"
+      "string": "A mouse moves",
+      "tweet": ""
     },
     {
       "name": "paperclip",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "paulbot",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "recirc",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "shoppingcart",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "text-diff",
-      "string": "In my opinion, version control"
+      // "string": "In my opinion, version control",
+      "tweet": ""
     },
     {
       "name": "tinder",
-      "string": "even if the code starts to look ugly"
+      "string": "even if the code starts to look ugly",
+      "tweet": "There's sexy code and there's ugly code. Play Tinder for code to see if you can tell the difference."
     },
     {
       "name": "toc",
-      "string": null
+      "string": null,
+      "tweet": ""
     },
     {
       "name": "tree",
-      "string": "Arbor Day"
+      "string": "Arbor Day",
+      "tweet": "Coders think in trees. Anything made with software is secretly a tree. It makes sense if you check this out:"
     }
   ];
 
-  modules.forEach(function(value, index) {
-    if(!value.string) return;
-    if($('[data-module="'+value.name+'"]').length !== 0) return;
-    $('p:contains("'+value.string+'")').after('<div data-module="'+value.name+'"></div>');
-  })
+  // modules.forEach(function(value, index) {
+  //   if(!value.string) return;
+  //   if($('[data-module="'+value.name+'"]').length !== 0) return;
+  //   $('p:contains("'+value.string+'")').after('<div data-module="'+value.name+'"></div>');
+  // })
 })();
 
 jQuery(document).ready(function($) {
@@ -196,7 +217,7 @@ function footnotes() {
       footref.attr("data-fn-id", fnId);
       footref.parent().attr("data-fn-id", fnId);
 
-      var fnContent = $(fn).html().split("</sup> ")[1];
+      var fnContent = $(fn).html().split("</sup>")[1];
       footref.parent().append("<div class='fn-popup'>" + fnContent + "</div>");
     });
   })();
@@ -255,14 +276,17 @@ function preCode() {
   })
 }
 
-
-
-
-
-
-
-
-
-//sry - ARP
-//// no i'm sry - TT
-// console.log("                    ___\n                _.-'   ```'--.._                 _____ ___ ___   ____  _____ __ __      ______  __ __    ___  \n              .'                `-._            / ___/|   |   | /    |/ ___/|  |  |    |      ||  |  |  /  _] \n             /                      `.         (   \\_ | _   _ ||  o  (   \\_ |  |  |    |      ||  |  | /  [_        \n            /                         `.        \\__  ||  \\_/  ||     |\\__  ||  _  |    |_|  |_||  _  ||    _]       \n           /                            `.      /  \\ ||   |   ||  _  |/  \\ ||  |  |      |  |  |  |  ||   [_        \n          :       (                       \\     \\    ||   |   ||  |  |\\    ||  |  |      |  |  |  |  ||     |       \n          |    (   \\_                  )   `.    \\___||___|___||__|__| \\___||__|__|      |__|  |__|__||_____|       \n          |     \\__/ '.               /  )  ;  \n          |   (___:    \\            _/__/   ;    ____   ____  ______  ____   ____   ____  ____      __  __ __  __ __ \n          :       | _  ;          .'   |__) :   |    \\ /    ||      ||    \\ |    | /    ||    \\    /  ]|  |  ||  |  |\n           :      |` \\ |         /     /   /    |  o  )  o  ||      ||  D  ) |  | |  o  ||  D  )  /  / |  |  ||  |  |\n            \\     |_  ;|        /`\\   /   /     |   _/|     ||_|  |_||    /  |  | |     ||    /  /  /  |  _  ||  ~  |\n             \\    ; ) :|       ;_  ; /   /      |  |  |  _  |  |  |  |    \\  |  | |  _  ||    \\ /   \\_ |  |  ||___, |\n              \\_  .-''-.       | ) :/   /       |  |  |  |  |  |  |  |  .  \\ |  | |  |  ||  .  \\\\     ||  |  ||     |\n             .-         `      .--.'   /        |__|  |__|__|  |__|  |__|\\_||____||__|__||__|\\_| \\____||__|__||____/ \n            :         _.----._     `  < \n            :       -'........'-       `.\n             `.        `''''`           ;\n               `'-.__                  ,'\n                     ``--.   :'-------'\n                         :   :\n                        .'   '.\n      \n      \n                                                                    ");
+// ----------------------------------------------------------------------------
+// Copyright (C) 2015 Bloomberg Finance L.P.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// http://www.apache.org/licenses/LICENSE-2.0
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// ----------------------------- END-OF-FILE ----------------------------------
