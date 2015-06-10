@@ -523,7 +523,6 @@ li {margin-left: 40px}
 .ephemeraL a{border-bottom: 0px solid white; color:#f94600;font-weight: bold;}
 
 .ephemeraL{
-  color:#f94600;
   font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 16px;
@@ -532,12 +531,10 @@ li {margin-left: 40px}
   float: left;
   padding: 0 20px 0 0;
 }
-.ephemeraL p{ border-bottom: 4px solid #f94600;}
 .ephemeraL img{max-width: 120px;display: block;margin: 0}
 
 
 .ephemeraR{
-  color:#2800d7;
   font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 16px;
@@ -546,7 +543,6 @@ li {margin-left: 40px}
   float: right;
   padding: 0 0 0 20px;
 }
-.ephemeraR p{ border-bottom: 4px solid #2800d7;}
 .ephemeraR img{max-width: 120px;display: block;margin: 0}
 
 
@@ -579,7 +575,7 @@ li {margin-left: 40px}
 
 
 .listL{
-  color:#2800d7;
+  color:#f94600;
   font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 18px;
@@ -588,11 +584,11 @@ li {margin-left: 40px}
   padding: 0 24px 0 0;
   width:240px;
 }
-.listLinner {padding: 8px;  border:4px solid #2800d7;}
+.listLinner {padding: 8px;  border:4px solid #f94600;}
 .listLinner li{margin-left: 0}
 
 .listR{
-  color:#2800d7;
+  color:#f94600;
   font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 18px;
@@ -601,7 +597,7 @@ li {margin-left: 40px}
   padding: 0 0 0 24px;
   width:240px;
 }
-.listRinner {padding: 8px;  border:4px solid #2800d7;}
+.listRinner {padding: 8px;  border:4px solid #f94600;}
 
 
 .videoRight{
