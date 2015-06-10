@@ -1,11 +1,11 @@
 [data-module="toc"] {
 	position: fixed;
-	width: 400px;
+	width: 360px;
 	height: 100%;
 	top: 0;
-	left: -380px;
+	left: -340px;
 	z-index: 3;
-	/*transition: left .5s;*/
+	transition: left .3s;
 	/*background: #2800d7;*/
 }
 
@@ -27,7 +27,7 @@ article#code.toc-open {
 .histogram {
 	position: absolute;
 	height: 100%;
-	width: 20px;
+	width: 16px;
 	top: 0;
 	left: 0;
 	background: white;
@@ -59,7 +59,7 @@ article#code.toc-open {
 }
 
 .toc {
-	margin-left: 20px;
+	margin-left: 8px;
 	height: 100%;
 	overflow-y: scroll;
 }
@@ -67,7 +67,7 @@ article#code.toc-open {
 
 .toc .toc-section {
 	background: white;
-	padding: 20px;
+	padding: 10px;
 	margin: 20px;
 }
 
@@ -81,15 +81,19 @@ article#code.toc-open {
 
 .toc .toc-head[data-level="H2"] {
 	font-family: "BWHaasText-75Bold", Helvetica, Arial, sans-serif;
-	font-size: 14pt;
+	font-size: 16px;
+	line-height: 18px;
 }
 
 .toc .toc-head[data-level="H3"] {
 	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
-	font-size: 10pt;
+	font-size: 13px;
+	line-height: 14px;
+	margin-left: 10px;
 }
 
 .toc .toc-section.stats {
 	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
-	font-size: 10pt;
+	font-size: 13px;
+	line-height: 14px;
 }
