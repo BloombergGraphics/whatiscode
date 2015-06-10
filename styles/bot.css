@@ -1,6 +1,7 @@
 .bot {
   font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
   color: #2800d7;
+  transition: opacity .5s;
 }
 
 .bot[data-mode="off"] {

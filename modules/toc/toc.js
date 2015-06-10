@@ -1,11 +1,13 @@
+var stats;
+
 !(function(){
 
   var module = {sel: d3.select('[data-module="toc"]')}
   addModule(module)
 
-  var stats = loadStats();
+  stats = loadStats();
   var loadTime = new Date();
-  var mode = false;
+  var open = false;
 
   var pixelsToWords = d3.scale.linear()
     .domain([0,d3.select("body").node().getBoundingClientRect().height])
@@ -22,11 +24,13 @@
     .value(ƒ('scrollTop'))
     .bins(pixelsToWords.ticks(100));
 
-  setInterval(function() {
+  var logInterval = setInterval(function() {
     logScroll();
-    makeHistogram();
-    renderHistogram();
-    renderStats();
+    if(open) {
+      makeHistogram();
+      renderHistogram();
+      renderStats();
+    }
   }, 1000);
 
   d3.select(window).on("scroll.toc", renderWindows);
@@ -34,9 +38,9 @@
   renderTOC();
 
   d3.select("#toc-toggle").on("click", function() {
-    mode = !mode;
-    module.sel.classed("open", mode);
-    d3.select("article").classed("toc-open", mode);
+    open = !open;
+    module.sel.classed("open", open);
+    d3.select("article").classed("toc-open", open);
   });
 
   function getWordCount(sel) {
@@ -78,6 +82,8 @@
           "hover": null
         }
       }
+    } else {
+      stats.visits++;
     }
     return stats;
   }
@@ -166,7 +172,7 @@
       .html(ƒ('innerHTML'))
       .on("click", function(d) {
         d3.select("body").transition().duration(500)
-          .tween("tocscroll", scrollTopTween(d.getBoundingClientRect().top + document.getElementsByTagName("body")[0].scrollTop));
+          .tween("tocscroll", scrollTopTween(d.getBoundingClientRect().top + pageYOffset));
       });
   }
 
@@ -208,7 +214,7 @@
   }
 
   function logScroll() {
-    var px = document.getElementsByTagName("body")[0].scrollTop;
+    var px = pageYOffset;
     return stats.scrollLog.push({
       "scrollTop": px,
       "wordCount": pixelsToWords(px),
