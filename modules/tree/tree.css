@@ -1,8 +1,6 @@
-
-
 [data-module="tree"] {
   position: relative;
-  height: 1110px;
+  height: 1140px;
 }
 
 [data-module="tree"] .svg-container {
