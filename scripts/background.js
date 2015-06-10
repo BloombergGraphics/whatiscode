@@ -77,7 +77,7 @@
 
   // wave squares
   !(function(){
-    var module = {sel: d3.select('.sectionNum4'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum4'), active: false, minWidth: 800, onunload: unload}
     addModule(module)
 
     var colors = [green, Lblue, purple]
@@ -111,7 +111,7 @@
   })()
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('.sectionNum2'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum2'), active: false, minWidth: 800, onunload: unload}
     addModule(module)
 
     var colors = [blue, green, Lpurple]
@@ -150,7 +150,7 @@
 
   //triangles
   !(function(){
-    var module = {sel: d3.select('.sectionNum7'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum7'), active: false, minWidth: 800, onunload: unload}
 
     addModule(module)
 
@@ -216,7 +216,7 @@
 
   //tears
   !(function(){
-    var module = {sel: d3.select('.sectionNum6'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum6'), active: false, minWidth: 800, onunload: unload}
 
     addModule(module)
 
@@ -254,7 +254,7 @@
 
   //circles
   !(function(){
-    var module = {sel: d3.select('.sectionNum5'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum5'), active: false, minWidth: 800, onunload: unload}
     addModule(module)
 
     var colors = [red, purple, orange]
@@ -292,7 +292,7 @@
 
   //different sized squares
   !(function(){
-    var module = {sel: d3.select('#background-hook'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('#background-hook'), active: false, minWidth: 800, onunload: unload}
 
     //wait 2 sec to auto play, looks v. laggey otherwise
     setTimeout(function(){
@@ -342,7 +342,7 @@
 
   //down wave
   !(function(){
-    var module = {sel: d3.select('.sectionNum3'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum3'), active: false, minWidth: 800, onunload: unload}
     addModule(module)
 
     var colors = [orange, red]
