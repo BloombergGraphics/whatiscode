@@ -31,22 +31,22 @@ var modules;
     {
       "name": "certificate",
       "string": null,
-      "tweet": "Something something click this interactive"
+      "tweet": ""
     },
     {
       "name": "circuit",
       "string": "A computer is a clock with benefits",
-      "tweet": "Something something click this interactive"
+      "tweet": "What *is* a computer? It's just clock with benefits! Try playing with this circuitry simulator:"
     },
     {
       "name": "crapplets",
-      "string": "soon called “crapplets”",
+      "string": "",
       "tweet": ""
     },
     {
       "name": "debug",
       "string": "I felt that each time the program crashed",
-      "tweet": "Something something click this interactive"
+      "tweet": "De-bugging code is totally fun! Why would anyone complain about de-bugging code?"
     },
     {
       "name": "gcd",
@@ -56,12 +56,12 @@ var modules;
     {
       "name": "grabbag",
       "string": "standard library has functions",
-      "tweet": "Something something click this interactive"
+      "tweet": "Have you ever wanted to destroy a web page? This is your chance. Go crazy:"
     },
     {
       "name": "keyboard",
       "string": "strike a key on your keyboard",
-      "tweet": "Something something click this interactive"
+      "tweet": "How do you type an 'A' ? For a computer, it's more complicated than you'd think:"
     },
     {
       "name": "languages",
@@ -71,12 +71,12 @@ var modules;
     {
       "name": "learninal",
       "string": "Programming as a career can lead to a rewarding",
-      "tweet": "Something something click this interactive"
+      "tweet": "This is the least-boring code tutorial of all time:"
     },
     {
       "name": "livehtml",
       "string": "To gather an e-mail address and a name",
-      "tweet": "Something something click this interactive"
+      "tweet": "This crazy @business article about code let me mess with HTML and break stuff:"
     },
     {
       "name": "maps",
@@ -116,7 +116,7 @@ var modules;
     {
       "name": "tinder",
       "string": "even if the code starts to look ugly",
-      "tweet": "Something something click this interactive"
+      "tweet": "There's sexy code and there's ugly code. Play Tinder for code to see if you can tell the difference."
     },
     {
       "name": "toc",
@@ -126,7 +126,7 @@ var modules;
     {
       "name": "tree",
       "string": "Arbor Day",
-      "tweet": "Something something click this interactive"
+      "tweet": "Coders think in trees. Anything made with software is secretly a tree. It makes sense if you check this out:"
     }
   ];
 
