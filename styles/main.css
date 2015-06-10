@@ -42,7 +42,11 @@ article img {max-width: 100%;}
 
 .centered {margin: 0 auto; display: block;}
 
-#headerArt{ background: rgba(0,0,0,0);max-height: 1000px}
+#headerArt{
+  background: rgba(0,0,0,0);
+  max-height: 1000px;
+  height: 100vh;
+}
 
 
 .introText {font-size: 26px; line-height: 30px;}
@@ -112,7 +116,7 @@ h4{font-size: 22px;line-height: 24px;margin:0;}
 #headerArt {
     text-align: center;
     width: 100%;
-    height:500px;
+    height: 100vh;
     display: table;
 }
 
