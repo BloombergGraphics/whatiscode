@@ -1,0 +1,3 @@
+[data-module="grabbag"] .bot .step:not(:last-child) {
+  display: none;
+}
