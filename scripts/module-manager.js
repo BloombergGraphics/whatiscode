@@ -58,4 +58,6 @@ var green = '#00c770'
 var Lgreen = '#91f29b'
 var red = '#f94600'
 
+var orange = 'rgb(252, 192, 73)'
+
 var colorArray = [blue, purple, green, red, Lblue, Lpurple, Lgreen]
