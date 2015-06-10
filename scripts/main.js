@@ -196,7 +196,7 @@ function footnotes() {
       footref.attr("data-fn-id", fnId);
       footref.parent().attr("data-fn-id", fnId);
 
-      var fnContent = $(fn).html().split("</sup> ")[1];
+      var fnContent = $(fn).html().split("</sup>")[1];
       footref.parent().append("<div class='fn-popup'>" + fnContent + "</div>");
     });
   })();
