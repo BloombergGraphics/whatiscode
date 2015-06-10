@@ -506,8 +506,8 @@ li {margin-left: 40px}
 .bigimg {margin: 0 auto;}
 .bigimg img{width: 100%;}
 
-.imageLeft{margin-left: -140px;float:left;width: 400px;padding-right: 24px;}
-.imageRight{margin-right: -140px;float:right;width: 400px;padding-left: 24px;}
+.imageLeft{margin-left: -140px;float:left;width: 500px;padding-right: 24px;}
+.imageRight{margin-right: -140px;float:right;width: 500px;padding-left: 24px;}
 .imageLeft img, .imageRight img{width: 100%}
 
 .inlineImg {display: inline;height:40px;}
