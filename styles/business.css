@@ -605,7 +605,7 @@ img.infographic {
 
 /*Stop top line wrap on mobile*/
 @media only screen and (max-width: 740px){
-  #top-ad{
+  #top-ad, #top-ad-space{
     display: none;
   }
 }
