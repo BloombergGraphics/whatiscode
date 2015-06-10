@@ -4,6 +4,10 @@
  * http://josscrowcroft.github.com/javascript-sandbox-console/
  */
 
+ #learninal{
+ 	min-height: 250px;
+ }
+
 .bot .learninal {
 	display: none;
 	border: 2px solid #00c770;
