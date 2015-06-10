@@ -500,8 +500,8 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 .tokens tr:nth-child(odd){  background: #fff; }
 .tokens tr:nth-child(even){ background: #f94600;color:#fff;}
 
-ol{overflow: visible;}
-li {margin-left: 40px}
+ol{overflow: visible;padding-left:0; list-style-position:inside;margin-left: 20px;}
+li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 
 
 
