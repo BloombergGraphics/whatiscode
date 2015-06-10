@@ -49,7 +49,7 @@ var baseUrl = "http://sites.localhost/code";
     },
     {
       "name": "grabbag",
-      "string": "The standard library is a set of pre-made software"
+      // "string": "standard library has functions"
     },
     {
       "name": "keyboard",
