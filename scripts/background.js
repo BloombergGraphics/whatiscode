@@ -80,7 +80,7 @@
     var module = {sel: d3.select('.sectionNum4'), active: false, minWidth: 300, onunload: unload}
     addModule(module)
 
-    var colors = colorArray.slice(1, 4)
+    var colors = [green, Lblue, purple]
     var offset = 1
 
     setInterval(function(){
@@ -114,19 +114,20 @@
     var module = {sel: d3.select('.sectionNum2'), active: false, minWidth: 300, onunload: unload}
     addModule(module)
 
-    var colors = colorArray.slice(0, 3)
+    var colors = [blue, green, Lpurple]
     var offset = 1
+    var l2 = l*1.3
     setInterval(function(){
       if (!module.active) return
 
       offset++
-      d3.range(0, width + l, l).forEach(function(x, i){
-        d3.range(0, height + l, l).forEach(function(y, j){
+      d3.range(0, width + l, l2).forEach(function(x, i){
+        d3.range(0, height + l2, l2).forEach(function(y, j){
           if (!!((i + j + offset) % 2)) return
           if (Math.random() < .3) return
 
           var d = Math.random() < .5  //shape moves down
-          var r = Math.random() < .5  //shape moves left
+          var r = Math.random() < .5  //shape moves l2eft
 
           var shape =
             { x: x,
@@ -135,8 +136,8 @@
               j: j,
               type: 'rect',
               start: curTime + d*1000 + r*1000 + (d && !r)*1000*2 + Math.random()*400,
-              sV: [r ? x : x + l, d ? y : y + l, 0, 0],
-              eV: [x, y, l, l],
+              sV: [r ? x : x + l2, d ? y : y + l2, 0, 0],
+              eV: [x, y, l2, l2],
               fill: offset % 1800 ? colors[offset % 3] : 'white'
             }
           shape.end = shape.start + 500
@@ -153,7 +154,7 @@
 
     addModule(module)
 
-    var colors = colorArray.slice(0, 3)
+    var colors = [orange, Lpurple]
     var offset = 1
     setInterval(function(){
       if (!module.active) return
@@ -181,7 +182,7 @@
               start: curTime + 1000 - j*30,
               sV: [x, y, x, y, x, y],
               eV: [x + x0, y + y0, x + x1, y + y1, x + x2, y + y2],
-              fill: offset % 1800 ? colors[offset % 3] : 'white'
+              fill: offset % 1800 ? colors[offset % 2] : 'white'
             }
 
           if (offset % 3 == 0){
@@ -219,7 +220,7 @@
 
     addModule(module)
 
-    var colors = colorArray.slice(0, 3)
+    var colors = [green, blue, purple]
     var offset = 1
     setInterval(function(){
       if (!module.active) return
@@ -256,7 +257,7 @@
     var module = {sel: d3.select('.sectionNum5'), active: false, minWidth: 300, onunload: unload}
     addModule(module)
 
-    var colors = colorArray.slice(0, 3)
+    var colors = [red, purple, orange]
     var offset = 1
     setInterval(function(){
       if (!module.active) return
@@ -344,7 +345,7 @@
     var module = {sel: d3.select('.sectionNum3'), active: false, minWidth: 300, onunload: unload}
     addModule(module)
 
-    var colors = colorArray.slice(2, 5)
+    var colors = [orange, red]
     var offset = 1
     setInterval(function(){
       if (!module.active) return
@@ -384,7 +385,7 @@
               start: start,
               sV: sV,
               eV: [x, y, l, l],
-              fill: offset % 1000 ? colors[offset % 3] : 'white'
+              fill: offset % 1000 ? colors[offset % 2] : 'white'
             }
           shape.end = shape.start + 200*Math.random()
           shapes.push(shape)
