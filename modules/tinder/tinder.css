@@ -1,5 +1,6 @@
 [data-module="tinder"]{
 	position: relative;
+	height: 740px;
 }
 
 [data-module="tinder"] .screen {

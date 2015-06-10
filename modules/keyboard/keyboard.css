@@ -57,6 +57,12 @@
   }
 }
 
+@media only screen and (max-width: 840px)  {
+  [data-module="tinder"]{
+    display: none;
+  }
+}
+
 
 @media only screen and (max-width: 1020px)  {
   [data-module="certificate"]{
