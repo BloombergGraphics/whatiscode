@@ -26,8 +26,8 @@
   d3.timer(function(t){
     curTime = t
 
-    shapes.forEach(function(s){
-      if (t < s.start) return
+    shapes.forEach(function(s, i){
+      if (t < s.start || i > 8000) return
 
       var u = (t - s.start)/(s.end - s.start)
 
@@ -51,6 +51,21 @@
 
         ctx.beginPath()
         ctx.arc(a0, a1, a2, 0, Math.PI*2, true)
+        ctx.closePath()
+        ctx.fill()
+      }
+      if (s.type == 'triangle'){
+        var x0 = s.sV[0]*(1 - u) + s.eV[0]*u
+        var y0 = s.sV[1]*(1 - u) + s.eV[1]*u
+        var x1 = s.sV[2]*(1 - u) + s.eV[2]*u
+        var y1 = s.sV[3]*(1 - u) + s.eV[3]*u
+        var x2 = s.sV[4]*(1 - u) + s.eV[4]*u
+        var y2 = s.sV[5]*(1 - u) + s.eV[5]*u
+
+        ctx.beginPath()
+        ctx.moveTo(x0, y0)
+        ctx.lineTo(x1, y1)
+        ctx.lineTo(x2, y2)
         ctx.closePath()
         ctx.fill()
       }
@@ -96,8 +111,7 @@
   })()
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('#background-hook'), active: true, onunload: unload}
-
+    var module = {sel: d3.select('.sectionNum2'), active: false, onunload: unload}
     addModule(module)
 
     var colors = colorArray.slice(0, 3)
@@ -132,6 +146,110 @@
 
     }, 5/4*1000)
   })()
+
+  //triangles
+  !(function(){
+    var module = {sel: d3.select('.sectionNum7'), active: false, onunload: unload}
+
+    addModule(module)
+
+    var colors = colorArray.slice(0, 3)
+    var offset = 1
+    setInterval(function(){
+      if (!module.active) return
+
+
+      var x0 = Math.cos(Math.PI/6 + Math.PI*6/3)*l*3
+      var y0 = Math.sin(Math.PI/6 + Math.PI*6/3)*l*3
+      var x1 = Math.cos(Math.PI/6 + Math.PI*2/3)*l*3
+      var y1 = Math.sin(Math.PI/6 + Math.PI*2/3)*l*3
+      var x2 = Math.cos(Math.PI/6 + Math.PI*4/3)*l*3
+      var y2 = Math.sin(Math.PI/6 + Math.PI*4/3)*l*3
+
+      offset++
+      d3.range(0, width + l, l*3).forEach(function(x, i){
+        d3.range(0, height + l, l*3).forEach(function(y, j){
+          // if (!!((i + j + offset) % 2)) return
+          if (Math.random() < .9) return
+
+          var shape =
+            { x: x,
+              y: y,
+              i: i,
+              j: j,
+              type: 'triangle',
+              start: curTime + 1000 - j*30,
+              sV: [x, y, x, y, x, y],
+              eV: [x + x0, y + y0, x + x1, y + y1, x + x2, y + y2],
+              fill: offset % 18 ? colors[offset % 3] : 'white'
+            }
+
+          if (offset % 3 == 0){
+            shape.sV[0] += x0
+            shape.sV[1] += y0
+            shape.sV[2] += x1
+            shape.sV[3] += y1
+          }
+          if (offset % 3 == 1){
+            shape.sV[2] += x1
+            shape.sV[3] += y1
+            shape.sV[4] += x2
+            shape.sV[5] += y2
+
+          }
+          if (offset % 3 == 2){
+            shape.sV[0] += x0
+            shape.sV[1] += y0
+
+            shape.sV[4] += x2
+            shape.sV[5] += y2
+          }
+          shape.end = shape.start + 500
+          shapes.push(shape)
+        })
+      })
+
+    }, 1*1000)
+  })()
+
+
+  //tears
+  !(function(){
+    var module = {sel: d3.select('.sectionNum6'), active: false, onunload: unload}
+
+    addModule(module)
+
+    var colors = colorArray.slice(0, 3)
+    var offset = 1
+    setInterval(function(){
+      if (!module.active) return
+
+      offset++
+      var size = Math.random()
+      d3.range(0, width + l, l*10).forEach(function(x, i){
+        d3.range(0, height + l, l*10).forEach(function(y, j){
+          // if (!!((i + j + offset) % 2)) return
+          if (Math.random() < .7) return
+
+          var shape =
+            { x: x,
+              y: y,
+              i: i,
+              j: j,
+              type: 'circle',
+              start: curTime + Math.random()*1500,
+              sV: [x, y - 200 , 0],
+              eV: [x, y, l*3 + size*l*5*size],
+              fill: offset % 18 ? colors[((Math.random() < .3) + offset) % 3] : 'white'
+            }
+          shape.end = shape.start + 1500 + size*400
+          shapes.push(shape)
+        })
+      })
+
+    }, 1500)
+  })()
+
 
   //circles
   !(function(){
@@ -173,8 +291,13 @@
 
   //different sized squares
   !(function(){
-    // d3.select('.overlay').style('display', 'none')
-    var module = {sel: d3.select('.sectionNum2'), active: false, onunload: unload}
+    var module = {sel: d3.select('#background-hook'), active: false, onunload: unload}
+
+    //wait 2 sec to auto play, looks v. laggey otherwise
+    setTimeout(function(){
+      module.active = true
+    }, 2800)
+
     addModule(module)
 
     // Object.observe(module, function (changes){
@@ -190,7 +313,7 @@
       if (!module.active) return
 
       offset++
-      var sizeI = Math.ceil(Math.random()*3.5)
+      var sizeI = Math.ceil(Math.random()*3.5 + .5)
       // size = Math.floor((offset % 2) + Math.random()*2.5)
       // size = offset % 5
       var size = sizeI*sizeI*.8
