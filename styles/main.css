@@ -748,3 +748,15 @@ li {margin-left: 40px}
   h2{color: yellow}
 }
 
+/* footnotes only appear if you're printing. interactives don't. */
+#text-footnotes {
+  display:none;
+}
+@media print {
+  #text-footnotes {
+    display:block;
+  }
+  [data-module] {
+    display: none;
+  }
+}
