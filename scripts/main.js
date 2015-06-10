@@ -3,28 +3,6 @@ var loadTime = new Date();
 var baseUrl = "http://sites.localhost/code";
 var modules;
 
-// local storage stuff
-(function() {
-
-  // increment visit count
-  localStorage.setItem('visitCount',
-    localStorage.getItem('visitCount')
-    ? parseInt(localStorage.getItem('visitCount')) + 1 : 1);
-
-  // remember time on page and last read position
-  window.onunload = window.onbeforeunload = function(event) {
-    localStorage.setItem('scrollTop', document.getElementsByTagName("body")[0].scrollTop);
-
-    var timeOnPage = (+new Date()) - loadTime;
-    if(localStorage.getItem('timeOnPage')) {
-      timeOnPage += parseInt(localStorage.getItem('timeOnPage'));
-    }
-    localStorage.setItem('timeOnPage', timeOnPage);
-
-    return;
-  }
-})();
-
 // insert modules
 (function() {
   modules = [
