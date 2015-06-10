@@ -19,7 +19,8 @@
   module.onunload = function() { keyboardEvents(false); };
 
   function keyboardEvents(bool) {
-
+    // debugger
+    console.log('keyboard events?')
     if(this.state === bool) {
       return;
     } else {
