@@ -7,9 +7,9 @@
         {"prompt": "Colors", do: colors },
         {"prompt": "Emotions", do: emotions },
         {"prompt": "Cowboys", do: cowboys },
-        {"prompt": "Old skeletons", do: spellcheck },
+        {"prompt": "Old skeletons", do: skeletons },
         {"prompt": "Wreck it all", do: mess },
-        {"prompt": "Reset", do: resetArticle },
+        {"prompt": "Reset", do: reset },
       ];
 
   var dialogue = [
@@ -27,7 +27,15 @@
     module.bot.mode("on").dialogue(dialogue);
   }
 
-  function colors() {
+  function colors(direction) {
+
+    if(!arguments.length) direction = true;
+    // for undo
+    if(!direction) {
+      d3.selectAll("section").style("background-color", "#fff");
+      return;
+    }
+
     module.bot.dialogue([
       {
         "speak": "Everything on the page has style attributes like background-color.",
@@ -97,8 +105,19 @@
     },10000)
   }
 
-  function cowboys() {
-    d3.selectAll("img").attr("src", "images/cowboy_on_computer.gif");
+  function cowboys(direction) {
+    if(!arguments.length) direction = true;
+    // for undo
+    if(!direction) {
+      d3.selectAll("img")
+        .attr("src", function(d) { return this.getAttribute('data-src'); });
+      return;
+    }
+
+    d3.selectAll("img")
+      .attr("data-src", function(d) { return this.getAttribute('src'); })
+      .attr("src", "images/cowboy_on_computer.gif");
+
     module.bot.dialogue([
       {
         "speak": "Images are objects with source attributes. They’re code, and there’s code to change that! All of it.",
@@ -107,19 +126,24 @@
     ]);
   }
 
-  function spellcheck() {
+  function skeletons(direction) {
 
-    walk(document.body);
-    module.bot.dialogue([
-      {
-        "speak": "Text is variable, too! Hmm, something’s different in here...",
-        "prompts": prompts
-      }
-    ]);
+    if(!arguments.length) direction = true;
+
+    walk(document.body, direction);
+
+    if(direction) {
+      module.bot.dialogue([
+        {
+          "speak": "Text is variable, too! Hmm, something’s different in here...",
+          "prompts": prompts
+        }
+      ]);
+    }
 
     // I stole this function from here:
     // https://github.com/ericwbailey/millennials-to-snake-people/blob/master/Source/content_script.js
-    function walk(node)
+    function walk(node, direction)
     {
       // I stole this function from here:
       // http://is.gd/mwZp7E
@@ -135,7 +159,7 @@
           while ( child )
           {
             next = child.nextSibling;
-            walk(child);
+            walk(child, direction);
             child = next;
           }
           break;
@@ -147,7 +171,12 @@
     }
 
     function handleText(textNode) {
-      textNode.nodeValue = replaceText(textNode.nodeValue);
+      if(direction) {
+        textNode.nodeValue = replaceText(textNode.nodeValue);
+      } else {
+        textNode.nodeValue = fixText(textNode.nodeValue);
+      }
+      
     }
 
     function replaceText(v)
@@ -175,7 +204,45 @@
       return v;
     }
 
+    function fixText(v) {
+      // Programmer
+      v = v.replace(/\bOld\sSkeleton\b/g, "Programmer");
+      v = v.replace(/\bold\sskeleton\b/g, "programmer");
+      v = v.replace(/\bOld\sSkeletons\b/g, "Programmers");
+      v = v.replace(/\bold\sskeletons\b/g, "programmers");
+      v = v.replace(/\bOld\sSkeleton's'\b/g, "Programmers");
+      v = v.replace(/\bold\sskeleton's\b/g, "programmers'");
+
+      // Coder
+      v = v.replace(/\bBag\sof\sbones\b/g, "Coder");
+      v = v.replace(/\bbag\sof\sbones\b/g, "coder");
+      v = v.replace(/\bBags\sof\sBones\b/g, "Coders");
+      v = v.replace(/\bbags\sof\sbones\b/g, "coders");
+      v = v.replace(/\bBags\sof\sBones's\b/g, "Coders'");
+      v = v.replace(/\bbags\sof\sbones's\b/g, "coders'");
+
+      // An old... -> A programmer
+      v = v.replace(/\bAn\sprogrammer\b/g, "A programmer");
+      v = v.replace(/\ban\sprogrammer\b/g, "a programmer");
+
+      return v;
+    }
+
   }
+
+  function reset() {
+    skeletons(false);
+    cowboys(false);
+    colors(false);
+
+    module.bot.dialogue([
+      {
+        "speak": "As you were.",
+        "prompts": prompts
+      }
+    ]);
+  }
+
 
   function destroyPage() {
     // setInterval(function() {
