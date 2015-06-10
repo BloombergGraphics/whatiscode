@@ -10,3 +10,7 @@
   top: -10000000px !important;
   position: absolute;
 }
+
+[data-module="text-diff"] {
+  min-height: 150px;
+}
