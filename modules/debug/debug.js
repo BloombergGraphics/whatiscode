@@ -16,7 +16,7 @@
   // announce itself
   if (typeof(bot) != 'undefined'){
     module.bot = bot();
-    module.sel.insert("div.bot", ":first-child").call(module.bot);
+    module.sel.insert("div.bot", ".bugg-container").call(module.bot);
     module.oninit = function() {
       module.bot.dialogue(dialogue);
     }
