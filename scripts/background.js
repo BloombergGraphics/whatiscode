@@ -100,7 +100,7 @@
               start: curTime + (i + j)*40*speed + Math.random()*200,
               sV: [x, y, 0, 0],
               eV: [x, y, l, l],
-              fill: offset % 10 ? colors[offset % 3] : 'white'
+              fill: offset % 1000 ? colors[offset % 3] : 'white'
             }
           shape.end = shape.start + 500
           shapes.push(shape)
@@ -137,7 +137,7 @@
               start: curTime + d*1000 + r*1000 + (d && !r)*1000*2 + Math.random()*400,
               sV: [r ? x : x + l, d ? y : y + l, 0, 0],
               eV: [x, y, l, l],
-              fill: offset % 18 ? colors[offset % 3] : 'white'
+              fill: offset % 1800 ? colors[offset % 3] : 'white'
             }
           shape.end = shape.start + 500
           shapes.push(shape)
@@ -181,7 +181,7 @@
               start: curTime + 1000 - j*30,
               sV: [x, y, x, y, x, y],
               eV: [x + x0, y + y0, x + x1, y + y1, x + x2, y + y2],
-              fill: offset % 18 ? colors[offset % 3] : 'white'
+              fill: offset % 1800 ? colors[offset % 3] : 'white'
             }
 
           if (offset % 3 == 0){
@@ -240,7 +240,7 @@
               start: curTime + Math.random()*1500,
               sV: [x, y - 200 , 0],
               eV: [x, y, l*3 + size*l*5*size],
-              fill: offset % 18 ? colors[((Math.random() < .3) + offset) % 3] : 'white'
+              fill: offset % 1800 ? colors[((Math.random() < .3) + offset) % 3] : 'white'
             }
           shape.end = shape.start + 1500 + size*400
           shapes.push(shape)
@@ -277,7 +277,7 @@
               start: curTime + Math.random()*4,
               sV: [x, y, 0],
               eV: [x, y, l*3 + Math.random()*l*5*size],
-              fill: offset % 18 ? colors[offset % 3] : 'white'
+              fill: offset % 1800 ? colors[offset % 3] : 'white'
             }
           shape.end = shape.start + 1500
           shapes.push(shape)
@@ -297,17 +297,14 @@
     setTimeout(function(){
       module.active = true
     }, 2800)
+    //pause after 5
+    setTimeout(function(){
+      module.active = false
+    }, 10800)
 
     addModule(module)
-
-    // Object.observe(module, function (changes){
-    //   console.log("Changes:");
-    //   console.log(changes.name);
-    //   if (!module.active) debugger
-    // })
-
-
-    var colors = colorArray.slice(0, 3)
+ 
+    var colors = [red, purple]
     var offset = 1
     setInterval(function(){
       if (!module.active) return
@@ -331,9 +328,9 @@
               start: curTime + Math.random()*4,
               sV: [x + l*size/2, y + l*size/2, 0, 0],
               eV: [x, y, l*size, l*size],
-              fill: offset % 18 ? colors[offset % 3] : 'white'
+              fill: offset % 1800 ? colors[offset % 2] : 'white'
             }
-          if (size > 4) shape.fill = colors[Math.floor(Math.random()*3)]
+          if (size > 4) shape.fill = colors[Math.floor(Math.random()*2)]
           shape.end = shape.start +800
           shapes.push(shape)
         })
@@ -387,7 +384,7 @@
               start: start,
               sV: sV,
               eV: [x, y, l, l],
-              fill: offset % 10 ? colors[offset % 3] : 'white'
+              fill: offset % 1000 ? colors[offset % 3] : 'white'
             }
           shape.end = shape.start + 200*Math.random()
           shapes.push(shape)
