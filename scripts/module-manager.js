@@ -16,6 +16,7 @@ var addModule = (function(){
 
       var wasActive = d.active;
       d.active = d.startPos < pageYOffset && pageYOffset < d.endPos
+      d.active = d.active && innerWidth > d.minWidth
 
       // if module hasn't yet been initiated, call init function
       if(d.active && !d.initiated) {
@@ -36,9 +37,10 @@ var addModule = (function(){
   //content on page moves without trigging any resizing...?
   setInterval(calcPositions, 2000)
 
-  return function(module){
-    if (!module.sel.node()) debugger
-    modules.push(module)
+  return function(d){
+    if (!d.sel.node()) debugger
+    d.minWidth = d.minWidth || 1020
+    modules.push(d)
     calcPositions()
   }
 })()
