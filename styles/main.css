@@ -338,7 +338,7 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 }
 
 .caption{font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 14px;line-height: 16px;margin-top: 4px;}
-.photoCaption{text-transform: uppercase;font-size: 10px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;}
+.photoCaption{text-transform: uppercase;font-size: 10px;line-height:12px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;color:#999;}
 
 
 .icons {display: inline;}
