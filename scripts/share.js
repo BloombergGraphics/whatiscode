@@ -4,15 +4,10 @@ function initInnerShare() {
   var fbInitialized = false;
 
   var moduleid = "";
-  var codeurl = "http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/";
+  var codeurl = "";
   var codetext = "";
 
   modules.forEach(function(module) {
-    if (module.tweet.length > 0) {
-      var codeShareDiv = d3.select("[data-module='"+module.name+"']").append("div.innsershare").attr("id","share-"+module.name);
-      var codeShareFb = codeShareDiv.append("div.facebook");
-      var codeShareTw = codeShareDiv.append("div.twitter");
-    }
   });
 
   var moduleByName = d3.nest()
