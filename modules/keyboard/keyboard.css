@@ -65,7 +65,7 @@
 
 
 @media only screen and (max-width: 1020px)  {
-  [data-module="certificate"]{
+  #certificate, #certificate-container{
     display: none;
   }
 

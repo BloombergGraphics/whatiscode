@@ -110,7 +110,7 @@ var modules;
     },
     {
       "name": "text-diff",
-      "string": "In my opinion, version control",
+      // "string": "In my opinion, version control",
       "tweet": ""
     },
     {
