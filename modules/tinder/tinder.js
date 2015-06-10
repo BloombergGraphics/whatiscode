@@ -1,6 +1,6 @@
 !(function(){
 
-  var module = { sel: d3.select('[data-module="tinder"]') }
+  var module = { sel: d3.select('[data-module="tinder"]'), minWidth: 840 }
   addModule(module)
 
 	// module.bot = bot();
