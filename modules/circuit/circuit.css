@@ -2,6 +2,7 @@
   width: 960px;
   height: 855px;
   font-family: "HaasTextBold",Arial,Helvetica;
+  opacity: 0;
 }
 
 [data-module="circuit"] g.gate-icon{

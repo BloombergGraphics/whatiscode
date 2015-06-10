@@ -32,201 +32,211 @@
     },
   ]
 
-  var x = d3.scale.linear().domain([0, cols - 1]).range([0, width])
-  var y = d3.scale.linear().domain([0, rows - 1]).range([0, height])
-
-  var gates = d3.range(cols*rows).map(function(n){
-    var rv = {
-      i:    n % cols,
-      j:    Math.floor(n / rows),
-      n:    n,
-      type: types[Math.floor(Math.random()*types.length)],
-      on: false
-    }
-    rv.x = x(rv.i)
-    rv.y = y(rv.j)
-    rv.inputs = [{to: rv}, {to: rv}]
-    rv.outputs = []
-
-    return rv
-  })
-
-  //first col of gates are off or on, not actual gates
-  var onType  = {str: 'ON',  fn: function(){ return true },  paths: ["m -40,-40 h 80 v 80 h -80 z"] }
-  var offType = {str: 'OFF', fn: function(){ return false }, paths: ["m -40,-40 h 80 v 80 h -80 z"] }
-  var gatesByCol = d3.nest().key(ƒ('i')).entries(gates).sort(d3.ascendingKey('key'))
-  gatesByCol[0].values.forEach(function(d){
-    d.type = Math.random() < .5 ? onType : offType
-  })
+  function initDraw(){
 
 
-  //set up wires
-  var wires = _.flatten(gates.map(ƒ('inputs'))).filter(ƒ('to', 'i'))
+    var x = d3.scale.linear().domain([0, cols - 1]).range([0, width])
+    var y = d3.scale.linear().domain([0, rows - 1]).range([0, height])
 
-  var wireByCol  = d3.nest().key(ƒ('to', 'i')).entries(wires)
-  wireByCol.forEach(function(wireCol){
-    wireCol.key = +wireCol.key
+    var gates = d3.range(cols*rows).map(function(n){
+      var rv = {
+        i:    n % cols,
+        j:    Math.floor(n / rows),
+        n:    n,
+        type: types[Math.floor(Math.random()*types.length)],
+        on: false
+      }
+      rv.x = x(rv.i)
+      rv.y = y(rv.j)
+      rv.inputs = [{to: rv}, {to: rv}]
+      rv.outputs = []
 
-    var prevGateCol = gatesByCol[wireCol.key - 1]
-
-    var gateSpace = x(1) - x(0) - gS
-    var vXscale = d3.scale.linear().domain([0, wireCol.values.length]).range([10, gateSpace - 10])
-
-    _.shuffle(wireCol.values).forEach(function(wire, i){
-      wire.colI = i
+      return rv
     })
 
-    _.shuffle(wireCol.values).forEach(function(wire, i){
-      var gate = prevGateCol.values[Math.floor(i/2)]
-
-      wire.from = gate
-      gate.outputs.push(wire)
-
-      wire.vX = vXscale(i)
+    //first col of gates are off or on, not actual gates
+    var onType  = {str: 'ON',  fn: function(){ return true },  paths: ["m -40,-40 h 80 v 80 h -80 z"] }
+    var offType = {str: 'OFF', fn: function(){ return false }, paths: ["m -40,-40 h 80 v 80 h -80 z"] }
+    var gatesByCol = d3.nest().key(ƒ('i')).entries(gates).sort(d3.ascendingKey('key'))
+    gatesByCol[0].values.forEach(function(d){
+      d.type = Math.random() < .5 ? onType : offType
     })
-  })
-
-  gates.forEach(function(gate){
-    gate.outputs.forEach(function(d, i){
-      d.fromN = i
-    })
-    gate.inputs.forEach(function(d, i){
-      d.toN = i
-    })
-  })
-
-  wires.forEach(function(d){
-    d.pathStr = [
-      'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS*.1 : gS*.1)],
-      'h', d.vX,
-      'V', d.to.y + (d.toN ? -gS*.4 : gS*.4),
-      'L', [d.to.x - gS/2, d.to.y + (d.toN ? -gS*.4 : gS*.4)]
-    ].join('')
-  })
-
-  var actualWidth = width + margin.left + margin.right
-  //add elements to the page
-  var svgBase = d3.select('[data-module="circuit"]')
-      .style('margin-left', Math.min(-20, 740 - actualWidth)/2 + 'px')
-    .append('svg')
-      .attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
-
-  svgBase.append('rect').attr({width: actualWidth, height: height + margin.top + margin.bottom})
-      .style('fill', '#fff')
-
-  var svg = svgBase
-    .append('g').translate([margin.left, margin.top])
 
 
+    //set up wires
+    var wires = _.flatten(gates.map(ƒ('inputs'))).filter(ƒ('to', 'i'))
 
+    var wireByCol  = d3.nest().key(ƒ('to', 'i')).entries(wires)
+    wireByCol.forEach(function(wireCol){
+      wireCol.key = +wireCol.key
 
+      var prevGateCol = gatesByCol[wireCol.key - 1]
 
-  var wireBotEls = svg.dataAppend(wires, 'path.wire.bot').attr('d', ƒ('pathStr'))
-      .style('stroke', 'lightgrey')
-  var wireTopEls = svg.dataAppend(wires, 'path.wire.top').attr('d', ƒ('pathStr'))
-      .attr('stroke-dasharray', '100% 100%')
+      var gateSpace = x(1) - x(0) - gS
+      var vXscale = d3.scale.linear().domain([0, wireCol.values.length]).range([10, gateSpace - 10])
 
-  var gateGs = svg.dataAppend(gates, 'g')
-      .translate(function(d){ return [d.x, d.y] })
-      .each(function(d){ d.sel = d3.select(this) })
+      _.shuffle(wireCol.values).forEach(function(wire, i){
+        wire.colI = i
+      })
 
-  // gateGs.append('rect')
-  //     .style({stroke: 'black', fill: 'darkgrey'})
-  //     .attr({x: -gS/2, y: -gS/2, width: gS, height: gS})
+      _.shuffle(wireCol.values).forEach(function(wire, i){
+        var gate = prevGateCol.values[Math.floor(i/2)]
 
-  gateGs.append('g.gate-icon')
-    .dataAppend(ƒ('type', 'paths'), 'path.background')
-      .attr('d', ƒ())
+        wire.from = gate
+        gate.outputs.push(wire)
 
-  gateGs.append('g.gate-icon')
-    .dataAppend(ƒ('type', 'paths'), 'path.foreground')
-      .attr('d', ƒ())
-
-  gateGs.append('text')
-      .text(ƒ('type', 'str'))
-      .attr({'text-anchor': 'middle', dy: '.33em'})
-      .style('font-size', '68%')
-
-
-
-
-  //update logic
-  function update(i){
-    gatesByCol.forEach(function(gateCol){
-      gateCol.values.forEach(function(gate){
-        gate.lastOn = gate.on
-        gate.on = gate.type.fn.apply(null, gate.inputs.map(ƒ('on')))
-        gate.changedOn = gate.lastOn != gate.on
-
-        gate.outputs.forEach(function(d){
-          d.on = gate.on
-          d.changedOn = gate.changedOn
-        })
+        wire.vX = vXscale(i)
       })
     })
 
-    var uuid = Math.random()
+    gates.forEach(function(gate){
+      gate.outputs.forEach(function(d, i){
+        d.fromN = i
+      })
+      gate.inputs.forEach(function(d, i){
+        d.toN = i
+      })
+    })
 
-    gateGs.selectAll('g.gate-icon').filter(ƒ('changedOn'))
-      .transition(uuid).delay(function(d){ return (d.i - i)*300+ 200})
-        .style('fill', color)
-        .style('fill-opacity', .5)
-      .transition(uuid).duration(300)
-        .style('fill-opacity', 1)
+    wires.forEach(function(d){
+      d.pathStr = [
+        'M', [d.from.x + gS/2, d.from.y + (d.fromN ? -gS*.1 : gS*.1)],
+        'h', d.vX,
+        'V', d.to.y + (d.toN ? -gS*.4 : gS*.4),
+        'L', [d.to.x - gS/2, d.to.y + (d.toN ? -gS*.4 : gS*.4)]
+      ].join('')
+    })
 
-    wireBotEls
-      .transition(uuid).delay(function(d){ return (d.from.i - i)*300 + 600 })
-        .style('stroke', color)
+    var actualWidth = width + margin.left + margin.right
+    //add elements to the page
+    var svgBase = d3.select('[data-module="circuit"]')
+        .style('margin-left', Math.min(-20, 740 - actualWidth)/2 + 'px')
+        .style('opacity', 1)
+      .insert('svg', ".bot")
+        .attr({width: width + margin.left + margin.right, height: height + margin.top + margin.bottom})
 
-    wireTopEls.filter(ƒ('changedOn'))
-        .attr({stroke: color, 'stroke-width': 3, 'stroke-dashoffset': '100%'})
-      .transition(uuid).delay(function(d){ return (d.from.i - i)*300 + 100 }).duration(1000)
-        .each('start', function(){ d3.select(this).style('stroke-width', 3) })
-        .attr('stroke-dashoffset', '0%')
-      .transition(uuid)
-        .style('stroke-width', 0)
+    svgBase.append('rect').attr({width: actualWidth, height: height + margin.top + margin.bottom})
+        .style('fill', '#fff')
+
+    var svg = svgBase
+      .append('g').translate([margin.left, margin.top])
 
 
-    function color(d){ return d.on ? '#00c770' : '#f94600' }
-  }
 
-  update(0)
 
-  gateGs.on('click', function(d){
-    //toggle type
-    if (d.i){
-      var oldType = d.type
-      while (oldType == d.type) d.type = types[Math.floor(Math.random()*types.length)]
 
-    } else{
-      d.type = d.type == onType ? offType : onType
+    var wireBotEls = svg.dataAppend(wires, 'path.wire.bot').attr('d', ƒ('pathStr'))
+        .style('stroke', 'lightgrey')
+    var wireTopEls = svg.dataAppend(wires, 'path.wire.top').attr('d', ƒ('pathStr'))
+        .attr('stroke-dasharray', '100% 100%')
+
+    var gateGs = svg.dataAppend(gates, 'g')
+        .translate(function(d){ return [d.x, d.y] })
+        .each(function(d){ d.sel = d3.select(this) })
+
+    // gateGs.append('rect')
+    //     .style({stroke: 'black', fill: 'darkgrey'})
+    //     .attr({x: -gS/2, y: -gS/2, width: gS, height: gS})
+
+    gateGs.append('g.gate-icon')
+      .dataAppend(ƒ('type', 'paths'), 'path.background')
+        .attr('d', ƒ())
+
+    gateGs.append('g.gate-icon')
+      .dataAppend(ƒ('type', 'paths'), 'path.foreground')
+        .attr('d', ƒ())
+
+    gateGs.append('text')
+        .text(ƒ('type', 'str'))
+        .attr({'text-anchor': 'middle', dy: '.33em'})
+        .style('font-size', '68%')
+
+
+
+
+    //update logic
+    function update(i){
+      gatesByCol.forEach(function(gateCol){
+        gateCol.values.forEach(function(gate){
+          gate.lastOn = gate.on
+          gate.on = gate.type.fn.apply(null, gate.inputs.map(ƒ('on')))
+          gate.changedOn = gate.lastOn != gate.on
+
+          gate.outputs.forEach(function(d){
+            d.on = gate.on
+            d.changedOn = gate.changedOn
+          })
+        })
+      })
+
+      var uuid = Math.random()
+
+      gateGs.selectAll('g.gate-icon').filter(ƒ('changedOn'))
+        .transition(uuid).delay(function(d){ return (d.i - i)*300+ 200})
+          .style('fill', color)
+          .style('fill-opacity', .5)
+        .transition(uuid).duration(300)
+          .style('fill-opacity', 1)
+
+      wireBotEls
+        .transition(uuid).delay(function(d){ return (d.from.i - i)*300 + 600 })
+          .style('stroke', color)
+
+      wireTopEls.filter(ƒ('changedOn'))
+          .attr({stroke: color, 'stroke-width': 3, 'stroke-dashoffset': '100%'})
+        .transition(uuid).delay(function(d){ return (d.from.i - i)*300 + 100 }).duration(1000)
+          .each('start', function(){ d3.select(this).style('stroke-width', 3) })
+          .attr('stroke-dashoffset', '0%')
+        .transition(uuid)
+          .style('stroke-width', 0)
+
+
+      function color(d){ return d.on ? '#00c770' : '#f94600' }
     }
 
-    d3.select(this)
-        .select('text').text(d.type.str)
+    update(0)
+
+    gateGs.on('click', function(d){
+      //toggle type
+      if (d.i){
+        var oldType = d.type
+        while (oldType == d.type) d.type = types[Math.floor(Math.random()*types.length)]
+
+      } else{
+        d.type = d.type == onType ? offType : onType
+      }
+
+      d3.select(this)
+          .select('text').text(d.type.str)
 
 
-    d3.select(this).selectAll('.background')
-      .data(ƒ('type', 'paths'))
-        .attr('d', ƒ())
-    d3.select(this).selectAll('.foreground')
-      .data(ƒ('type', 'paths'))
-        .attr('d', ƒ())
+      d3.select(this).selectAll('.background')
+        .data(ƒ('type', 'paths'))
+          .attr('d', ƒ())
+      d3.select(this).selectAll('.foreground')
+        .data(ƒ('type', 'paths'))
+          .attr('d', ƒ())
 
-    update(d.i)
-  })
+      update(d.i)
+    })
+
+
+    window.setInterval(function(){
+      if (!module.active) return
+
+      var d = gatesByCol[0].values[Math.floor(Math.random()*8)]
+      d.type = d.type == onType ? offType : onType
+      d.sel.select('text').text(d.type.str)
+      update(0)
+    }, 3000)
+
+  }
+
 
   var module = {sel: d3.select('[data-module="circuit"]')}
   addModule(module)
 
-  window.setInterval(function(){
-    if (!module.active) return
 
-    var d = gatesByCol[0].values[Math.floor(Math.random()*8)]
-    d.type = d.type == onType ? offType : onType
-    d.sel.select('text').text(d.type.str)
-    update(0)
-  }, 3000)
 
   // paulbot :-/
   module.bot = bot();
@@ -246,6 +256,9 @@
     { "emote": "chill" }
   ];
 
-  module.oninit = function() { module.bot.dialogue(dialogue); }
+  module.oninit = function(){
+    initDraw()
+    module.bot.dialogue(dialogue)
+  }
 
 })();
