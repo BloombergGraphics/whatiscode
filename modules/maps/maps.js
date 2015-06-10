@@ -1,6 +1,6 @@
 !(function(){
 
-  var module = {sel: d3.select('[data-module="maps"]'), oninit: oninit}
+  var module = {sel: d3.select('[data-module="maps"]'), oninit: oninit, minWidth: 1270}
   addModule(module)
 
   module.sel.classed("bigimgWrap", true);
@@ -88,7 +88,7 @@
     }
   ];
 
-  var textlayer = d3.select('[data-module="maps"] .maps-text-layer').style("opacity",0);
+  var textlayer = d3.select('[data-module="maps"] .maps-text-layer').style("opacity",0).style('display', 'block')
 
   var gimages = d3.select('[data-module="maps"] .globies')
     .selectAll(".globe-langs")

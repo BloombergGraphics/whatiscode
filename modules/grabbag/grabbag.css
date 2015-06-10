@@ -1,3 +1,7 @@
 [data-module="grabbag"] .bot .step:not(:last-child) {
   display: none;
 }
+
+[data-module="grabbag"] {
+  height: 225px;
+}
