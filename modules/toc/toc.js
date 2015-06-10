@@ -163,7 +163,7 @@
       .enter()
       .append("div.toc-head")
       .attr("data-level", ƒ('tagName'))
-      .html(ƒ('innerText'))
+      .html(ƒ('innerHTML'))
       .on("click", function(d) {
         d3.select("body").transition().duration(500)
           .tween("tocscroll", scrollTopTween(d.getBoundingClientRect().top + document.getElementsByTagName("body")[0].scrollTop));

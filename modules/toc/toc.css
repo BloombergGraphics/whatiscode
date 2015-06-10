@@ -3,10 +3,10 @@
 	width: 360px;
 	height: 100%;
 	top: 0;
-	left: -340px;
+	left: -360px;
 	z-index: 3;
 	transition: left .3s;
-	/*background: #2800d7;*/
+	background: #2800d7;
 }
 
 [data-module="toc"].open {
@@ -18,9 +18,9 @@
 }
 
 #toc-toggle {
-	position: fixed;
-	top: 10px;
-	left: 10px;
+	position: absolute;
+	left: 100%;
+	margin: 10px;
 	width: 30px;
 	height: 30px;
 	background-image: url(../../images/toc_icon.gif);
@@ -28,12 +28,9 @@
 	cursor: pointer;
 	z-index: 4;
 }
-
-article#code {
-	/*transition: transform .5s;*/
-}
-article#code.toc-open {
-	transform: translate(300px,0);
+.open #toc-toggle {
+  -webkit-filter: invert(1);
+  filter: invert(1);
 }
 
 .histogram {
@@ -71,7 +68,7 @@ article#code.toc-open {
 }
 
 .toc {
-	margin-left: 8px;
+	margin-left: 16px;
 	height: 100%;
 	overflow-y: scroll;
 }
@@ -101,7 +98,12 @@ article#code.toc-open {
 	font-family: "BWHaasText-55Roman", Helvetica, Arial, sans-serif;
 	font-size: 13px;
 	line-height: 14px;
-	margin-left: 10px;
+	/*margin-left: 10px;*/
+}
+
+.toc .toc-head[data-level="H3"] .section {
+	font-size: 13px;
+	font-weight: bold;
 }
 
 .toc .toc-section.stats {
