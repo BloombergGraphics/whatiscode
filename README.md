@@ -1,9 +1,10 @@
 ### Build
-`npm install`
-`npm install -g grunt-cli`
+```sh
+npm install
+npm install -g grunt-cli
+```
 
-
-So basically we have this bot object, which is a closure, like a degenerate bastardized http://bost.ocks.org/mike/chart/. It has a bunch of actions: show, goTo, speak, eval, emote, prompts, dialogue. Each of those returns a promise that's resolved when the action is finished or the user supplies some input. 
+So basically we have this bot object, which is a closure. It has a bunch of actions: show, goTo, speak, eval, emote, prompts, dialogue. Each of those returns a promise that's resolved when the action is finished or the user supplies some input. 
 
 You can call those methods directly, but typically you'll pass a "dialogue" to the robot.dialogue method, which is an array of steps to follow. Each element of the array is an object specifying actions to be taken concurrently; each successive element is performed serially. This is not JSON — it's a JS object, and thus can contain real functions. It looks like this:
 

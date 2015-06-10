@@ -1,3 +1,7 @@
+[data-module="livehtml"] {
+  height: 570px;
+}
+
 [data-module="livehtml"] iframe {
   width: 100%;
   display: inline-block;
