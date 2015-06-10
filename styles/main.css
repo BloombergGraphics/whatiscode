@@ -694,6 +694,10 @@ li {margin-left: 40px}
   margin-right:175px;
 }
 
+#share-circuit .innertw {
+  margin-right:-110px;
+}
+
 .innertw:hover {
   opacity: 0.5;
 }
@@ -702,8 +706,13 @@ li {margin-left: 40px}
 
 /* queries */
 
+@media (max-width: 1040px) {
+  .innershare {display: none}
+}
+
 @media (max-width: 1280px) {
   .bigimgWrap{margin: 0 -80px;}
+  .innershare {display: none}
 }
 
 @media (max-width: 1280px) {
