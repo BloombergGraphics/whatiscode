@@ -672,7 +672,15 @@ li {margin-left: 40px}
 
 .conference{display: inline-block;width: 33%;margin:0;vertical-align:top;}
 
+.innershare {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  height:0;
+}
 
+.innertw {
+  text-align: right;
+}
 
 /* queries */
 
