@@ -14,7 +14,7 @@ var addModule = (function(){
       //exit early if calcPositions hasn't run yet
       if (!d.startPos) return
 
-      var wasActive = d.active;
+      var wasActive = !!d.active;
       d.active = d.startPos < pageYOffset && pageYOffset < d.endPos
       d.active = d.active && innerWidth > d.minWidth
 
@@ -25,7 +25,7 @@ var addModule = (function(){
       }
 
       // if active changed, call load / unload function
-      if (d.active !== wasActive) {
+      if (d.active != wasActive) {
         d.active && d.onload ? d.onload() : null;
         !d.active && d.onunload ? d.onunload() : null;
       }
