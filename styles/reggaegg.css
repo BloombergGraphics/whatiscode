@@ -1,3 +1,26 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#music {
+  display: none;
+}
+
+#cool-egg {
+  position: relative;
+  z-index: 3;
+}
+
+.acc {
+  position: absolute;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  z-index: 2;
+}
+
 /* Stars 
 ------------------------------------- */
 
@@ -21,29 +44,75 @@
     radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
   background-repeat: repeat;
   background-size: 200px 200px;
+  -webkit-animation: zoom 5s infinite;
+  -moz-animation: zoom 5s infinite;
   animation: zoom 5s infinite;
   opacity: 0;
 }
 
 .stars:nth-child(1) {
   background-position: 50% 50%;
+  -webkit-animation-delay: 0s;
+  -moz-animation-delay: 0s;
   animation-delay: 0s;
 }
 .stars:nth-child(2) {
   background-position: 20% 60%;
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
   animation-delay: 1s;
 }
 .stars:nth-child(3) {
   background-position: -20% -30%;
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
   animation-delay: 2s;
 }
 .stars:nth-child(4) {
   background-position: 40% -80%;
+  -webkit-animation-delay: 3s;
+  -moz-animation-delay: 3s;
   animation-delay: 3s;
 }
 .stars:nth-child(5) {
   background-position: -20% 30%;
+  -webkit-animation-delay: 4s;
+  -moz-animation-delay: 4s;
   animation-delay: 4s;
+}
+
+@-webkit-keyframes zoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    animation-timing-function: ease-in;
+  } 
+  85% {
+    opacity: 1;
+    transform: scale(2.8);
+    animation-timing-function: linear;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.5);
+  }
+}
+
+@-moz-keyframes zoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    animation-timing-function: ease-in;
+  } 
+  85% {
+    opacity: 1;
+    transform: scale(2.8);
+    animation-timing-function: linear;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.5);
+  }
 }
 
 @keyframes zoom {
@@ -90,4 +159,80 @@ body {
   height:450px;
 }
 
-#hashtag{color:#fff;font-family:'BWHaasHead-95Black';text-align: center;font-style: italic;position: absolute;z-index: 666;}
+#hashtag{
+  color:#fff;
+  font-family:'BWHaasHead-95Black';
+  text-align: center;
+  font-style: italic;
+  position: fixed;
+  top:10px;
+  left:50%;
+  transform: translate(-50%,0);
+  -webkit-transform: translate(-50%,0);
+  -moz-transform: translate(-50%,0);
+  z-index: 666;
+  font-size: 100px;
+}
+
+    .blink {
+      animation: blink 1s steps(5, start) infinite;
+      -webkit-animation: blink 1s steps(5, start) infinite;
+    }
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+    @-webkit-keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+
+
+body {
+  cursor: url('../images/paulmouse.png'), default;
+}
+  
+/* @group WordArt */
+
+.wordart {
+    color: #333; /* This is for non-webkit browsers */
+    -webkit-text-fill-color: transparent;
+
+    position: relative;
+    display: inline-block;
+    
+    font: bold 48px "Arial Narrow", sans-serif;
+}
+    .wordart:before {
+        content: attr(title);
+        
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        
+        background: -webkit-linear-gradient(left, rgb(176,9,151) 0%, rgb(227,33,107) 10%, rgb(249,96,30) 25%, rgb(255,180,18) 40%, rgb(255,216,45) 50%, rgb(185,221,23) 61%, rgb(65,160,60) 75%, rgb(19,54,180) 90%, rgb(116,27,157) 100%);
+        
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .wordart:after {
+        content: attr(title);
+
+        position: absolute;
+        z-index: 199;
+        left: -6px;
+        bottom: -10px;
+        
+        z-index: 1;
+        
+        
+        -webkit-text-fill-color: #000;
+        -webkit-transform: skew(40deg, 0deg) scaleY(.5);
+        
+        opacity: .3;
+    }
+    
+/* @end */

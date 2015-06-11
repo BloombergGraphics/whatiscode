@@ -2,7 +2,7 @@
 
 [data-module="tree"] {
   position: relative;
-  height: 1110px;
+  height: 1035px;
 }
 
 [data-module="tree"] .svg-container {
@@ -100,4 +100,8 @@
   display: none !important
 }
 
+[data-mname="tree"]{
+  top: -36px;
+  position: relative;
+}
 

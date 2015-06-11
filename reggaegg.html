@@ -9,7 +9,7 @@
 
 <body>
 
-<iframe width="20" height="15" src="https://www.youtube.com/embed/0T3tg6Xwt7A?autoplay=1&amp;rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+<iframe id="music" width="20" height="15" src="https://www.youtube.com/embed/0T3tg6Xwt7A?autoplay=1&amp;rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 
 <div id="space">
   <div class="stars"></div>
@@ -19,24 +19,52 @@
   <div class="stars"></div>
 </div>
 
-
-<div id="hashtag">#CODE</div>
+<div id="hashtag" class="blink">#CODEISSUE</div>
 
 <div class="centerVert">
 	<div class="centerVertInner">
-		<img src="images/reggaegg1.gif">
+		<img id="cool-egg" src="images/reggaegg1.gif">
 	</div>
 </div>
 
+<script src="scripts/libs/d3.v3.min.js"></script>
+<script type="text/javascript">
 
+d3.select("#cool-egg")
+	.on("mouseover", function() {
+		d3.select(this).attr("src", "images/reggaegg2.gif")
+	})
+	.on("mouseout", function() {
+		d3.select(this).attr("src", "images/reggaegg1.gif")
+	})
+	.on("click", function() {
+		if(d3.select(this).attr("src") == "images/reggaegg3.gif") {
+			d3.select(this).attr("src", "images/reggaegg1.gif")
+		} else {
+			d3.select(this).attr("src", "images/reggaegg3.gif")
+		}
+	})
 
-<script src="scripts/libs/jquery.min.js"></script>
-<script src="scripts/jquery.fittext.js"></script>
-<script type="Text/Javascript">
-	jQuery("#hashtag").fitText(0.45);
-	//jQuery("#fit").fitText();
+var accessories = ["reggaegg_burg", "reggaegg_stereo", "reggaegg_pineapple"];
+
+setInterval(function() {
+	var acc = accessories[Math.floor(Math.random()*accessories.length)];
+	d3.select("body").append("img")
+		.attr("src", "images/"+acc+".gif")
+		.classed("acc", true)
+		.style("left", (Math.random()*100).toFixed()+"%")
+		.style("top", (Math.random()*100).toFixed()+"%")
+		.style("opacity", 1)
+		.transition()
+		.duration(5000)
+		.style("opacity", 0)
+		.remove();
+
+},1000)
+
+console.log("\n                                                                                \n _______ _______ _______ _______     _______ _______ _______ _______ _______    \n|\\     /|\\     /|\\     /|\\     /|   |\\     /|\\     /|\\     /|\\     /|\\     /|   \n| +---+ | +---+ | +---+ | +---+ |   | +---+ | +---+ | +---+ | +---+ | +---+ |   \n| |   | | |   | | |   | | |   | |   | |   | | |   | | |   | | |   | | |   | |   \n| |L  | | |O  | | |V  | | |E  | |   | |S  | | |T  | | |E  | | |P  | | |H  | |   \n| +---+ | +---+ | +---+ | +---+ |   | +---+ | +---+ | +---+ | +---+ | +---+ |   \n|/_____\\|/_____\\|/_____\\|/_____\\|   |/_____\\|/_____\\|/_____\\|/_____\\|/_____\\|   \n                                                                                \n                                                                                \n _______ _______ _______     _______ _______ _______ _______                    \n|\\     /|\\     /|\\     /|   |\\     /|\\     /|\\     /|\\     /|                   \n| +---+ | +---+ | +---+ |   | +---+ | +---+ | +---+ | +---+ |                   \n| |   | | |   | | |   | |   | |   | | |   | | |   | | |   | |                   \n| |A  | | |N  | | |D  | |   | |T  | | |O  | | |P  | | |H  | |                   \n| +---+ | +---+ | +---+ |   | +---+ | +---+ | +---+ | +---+ |                   \n|/_____\\|/_____\\|/_____\\|   |/_____\\|/_____\\|/_____\\|/_____\\|                   \n                                                                                \n                                                                                \n _______ _______ _______     _______ _______ _______ _______                    \n|\\     /|\\     /|\\     /|   |\\     /|\\     /|\\     /|\\     /|                   \n| +---+ | +---+ | +---+ |   | +---+ | +---+ | +---+ | +---+ |                   \n| |   | | |   | | |   | |   | |   | | |   | | |   | | |   | |                   \n| |A  | | |N  | | |D  | |   | |A  | | |D  | | |A  | | |M  | |                   \n| +---+ | +---+ | +---+ |   | +---+ | +---+ | +---+ | +---+ |                   \n|/_____\\|/_____\\|/_____\\|   |/_____\\|/_____\\|/_____\\|/_____\\|                   \n                                                                                ")
+
 </script>
-
 
 </body>
 </html>

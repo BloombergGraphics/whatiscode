@@ -140,6 +140,7 @@
     text.append('div.btn')
         .on('click', drawGCD)
         .text('Calculate again!')
+        .style('margin-left', '225px')
 
     text.selectAll('div')
         .style('opacity', 0)

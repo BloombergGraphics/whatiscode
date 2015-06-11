@@ -18,7 +18,7 @@ var paulbot;
   }
 
   var dialogue = [
-    { "speak": message },
+    { "emote": "waving", "speak": message },
     { "mode": "off" }
   ];
 
@@ -64,7 +64,7 @@ var paulbot;
   function alertTooFast() {
     var dialogue = [
       {
-        "emote": "jumps",
+        "emote": "dizzy",
         "speak": fastSass.pop(),
         "wait": 7000
       },
@@ -135,19 +135,16 @@ var paulbot;
   $(document).keydown(function(e) {
     kkeys.push( e.keyCode );
     if ( kkeys.toString().indexOf( konami ) >= 0 ) {
-      $(document).unbind('keydown',arguments.callee);
-      // do something
-      var dialogue = [
-        {
-          "emote": "jumps",
-          "speak": "EASTER EGG",
-          "wait": 5000
-        },
-        {
-          "mode": "off"
+      
+      kkeys = [];
+
+      if(d3.select("#reggaegg").empty()) {
+        d3.select("body").append("iframe")
+          .attr("id", "reggaegg")
+          .attr("src", "reggaegg.html");
+        } else {
+          d3.select("#reggaegg").remove();
         }
-      ]
-      paulbot.dialogue(dialogue);
     }
   });
 
