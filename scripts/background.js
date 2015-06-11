@@ -24,7 +24,7 @@
       unload = function(){ shapes = shapes.filter(function(d){ d.start > curTime }) }
 
   function load(module){
-    console.log('loading')
+    // console.log('loading')
     setTimeout(function(){ module.active = false }, 7000)
   }
 
