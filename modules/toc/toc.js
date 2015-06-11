@@ -43,6 +43,14 @@ var stats;
     d3.select("article").classed("toc-open", open);
   });
 
+  d3.selectAll(".code-section,.banner-container").on("click", function() {
+    if (open == true) {
+      open = false;
+      module.sel.classed("open", open);
+      d3.select("article").classed("toc-open", open);
+    }
+  });
+
   function getWordCount(sel) {
     if(!arguments.length) sel = d3.select("body");
     return sel.text().trim().replace(/\s+/gi, ' ').split(' ').length;
@@ -157,7 +165,6 @@ var stats;
           });
         tree.push(subtree);
       });
-    // console.log(tree);
 
     module.sel.append("div.toc")
       .selectAll("div.toc-section")

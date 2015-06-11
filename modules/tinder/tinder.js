@@ -36,6 +36,7 @@
 			"code": "remotedb.allDocs({\n  include_docs: true,\n  attachments: true\n}).then(function (result) {\n  var docs = result.rows;\n  docs.forEach(function(element) {\n    localdb.put(element.doc).then(function(response) {\n      alert(\"Pulled doc with id \" + element.doc._id + \" and added to local db.\");\n    }).catch(function (err) {\n      if (err.status == 409) {\n        localdb.get(element.doc._id).then(function (resp) {\n          localdb.remove(resp._id, resp._rev).then(function (resp) {",
 			"bio": "Hey girl, I asynchronously fetch records from a remote database and store them locally, while handling errors with aplomb.",
 			"name": "fetchFromServer",
+			"link": "https://github.com/blackberry/BB10-WebWorks-Community-Samples/blob/d6ee75fe23a10d2d3a036013b6b1a0c07a542099/pdbtest/www/js/index.js#L190",
 			"paulbot": "This function manages to keep a lot of promises that ultimately aren't worth much; at that rate, he could've just called me back.",
 			"correctAnswer": 0,
 			"top":180
@@ -43,7 +44,8 @@
 		{
 			"code": "remotedb.allDocs(...).then(function (resultOfAllDocs) {\n  return localdb.put(...);\n}).then(function (resultOfPut) {\n  return localdb.get(...);\n}).then(function (resultOfGet) {\n  return localdb.put(...);\n}).catch(function (err) {\n  console.log(err);\n});",
 			"bio": "My tidily composed promises are entirely without side effects, and I'll be honest about any errors.",
-			"name": "[Name TK]",
+			"name": "Local DB Hottie",
+			"link": "http://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html",
 			"paulbot": "This is so much better-proportioned than the last one.",
 			"correctAnswer": 1,
 			"top":230
@@ -52,23 +54,26 @@
 			"code": "function d3_formatPrefix(d, i) {\n  var k = Math.pow(10, abs(8 - i) * 3);\n  return {\n    scale: i > 8 ? function(d) {\n      return d / k;\n    } : function(d) {\n      return d * k;\n    },\n    symbol: d\n  };\n}",
 			"bio": "Worlds collide! I take primitive numbers the way I understand them and help adapt them to your historical conventions of thousands-grouping and Greek prefixes.",
 			"name": "d3_formatPrefix",
-			"paulbot": "A little enigmatic, but a compact li’l function.",
+			"link": "https://github.com/mbostock/d3/blob/a40a611d6b9fc4ff3815ca830d86b6c00d130995/d3.js#L2195",
+			"paulbot": "A little enigmatic, but an elegant and compact function.",
 			"correctAnswer": 1,
 			"top":230
 		},
 		{
 			"code": "String::getStatements = ->\n  # ... stuff\n  while chars.length > 0\n    # ... stuff\n    if (char in QUOTES and closing in QUOTES) \\n    or (char in PUNCTUATION and closing in PUNCTUATION) \\n    or (chars.length is 0)\n      # ... stuff\n      if chars.length is 0 or doBreak\n        if current.length > 0\n          # ... stuff\n          lastCap = null\n      else\n        closing = \".\"\n    else if (char in QUOTES)\n      closing = char\n  statements\n  \nSECTION = 'run.coffee'",
 			"bio": "I’m spontaneous. I like to make plans and throw things together at the last minute. Let’s get messy and see what happens!",
-			"name": "[Name TK]",
-			"paulbot": "See that HTML embedded in the source code? Sure, it gets the job done, but it leaves the door wide open for other things to go wrong.",
+			"name": "Save Publishing",
+			"link": "https://github.com/ftrain/savepublishing/blob/master/htdocs/coffee/src/string.coffee#L112",
+			"paulbot": "Too much indenting is a bad sign. Sloppy.",
 			"correctAnswer": 0,
 			"top":190
 		},
 		{
 			"code": "# Invokes interceptor with the obj, and then returns obj.\n# The primary purpose of this method is to \"tap into\" a method chain, in order to perform operations on intermediate results within the chain.\n_.tap = (obj, interceptor) ->\n  interceptor obj\n  obj",
 			"bio": "What you see is what you get. I’m upfront and honest about what I bring to the table.",
-			"name": "[Name TK]",
-			"paulbot": "Ooh! Look at all that clearly documented code! Sexy.",
+			"name": "TapThat69",
+			"link": "https://github.com/jashkenas/underscore/blob/4be6a194cdc039c7a1cbcef8812027289f997b20/underscore.js#L431",
+			"paulbot": "Ooh! Look at all that clearly documented code! Sexy. Thanks for playing!",
 			"correctAnswer": 1,
 			"top":250
 		}
@@ -130,7 +135,12 @@
 	// click ok and continue
 	ok.on("click",function(){
 
-		name.text(codeSamples[stepCount].name);
+		// why have this here? 
+		// bc otherwise the click behavior below changes when the step changes, which is too soon. 
+		// ugly code, swipe left.
+		var url = codeSamples[stepCount].link;
+
+		name.text(codeSamples[stepCount].name).on("click", function() { window.open(url) });
 		bio.text(codeSamples[stepCount].bio);
 		code.text(codeSamples[stepCount].code);
 

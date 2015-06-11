@@ -422,8 +422,9 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
       "&size=" + sizeParm + "&iu="+config.ad_code+"&correlator=" +
       (config.correlator || new String(Math.random()).substring(2,11));
 
-    ads.each(function(__, i){
-      if (!i && innerWidth < 1140) return
+    ads
+    .filter(function(__, i){ return i || innerWidth >= 1140 })
+    .each(function(__, i){
       var randValue = new String(Math.random()).substring(2,11);
       var n = i + 1;
       var innerHTML = new_leader + '&position=' + sizePos + n + '&ord=' + randValue + '"></iframe>';      

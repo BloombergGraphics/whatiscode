@@ -206,16 +206,21 @@
         d.type = d.type == onType ? offType : onType
       }
 
-      d3.select(this)
-          .select('text').text(d.type.str)
+      var sel = d3.select(this)
 
+      sel.selectAll('.gate-icon').remove()
+      sel.append('g.gate-icon')
+        .dataAppend(ƒ('type', 'paths'), 'path.background')
+          .attr('d', ƒ())
 
-      d3.select(this).selectAll('.background')
-        .data(ƒ('type', 'paths'))
+      sel.append('g.gate-icon')
+        .dataAppend(ƒ('type', 'paths'), 'path.foreground')
           .attr('d', ƒ())
-      d3.select(this).selectAll('.foreground')
-        .data(ƒ('type', 'paths'))
-          .attr('d', ƒ())
+
+      sel
+        .select('text').text(d.type.str)
+
+      this.appendChild(sel.select('text').node())        
 
       update(d.i)
     })
