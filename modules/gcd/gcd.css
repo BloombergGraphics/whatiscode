@@ -1,6 +1,6 @@
 [data-module="gcd"]{
   width: 960px;
-  height: 450px;
+  height: 375px;
   margin-left: -0px;
   font-family: "HaasTextBold",Arial,Helvetica;
   padding-top: 30px;
@@ -61,8 +61,8 @@
 }
 
 [data-module="gcd"] .btn{
-  padding-top: 21px;
   color: white;
-  font-size: 43px;
+  font-size: 20px;
   cursor: pointer;
+  padding: 8px !important;
 }
