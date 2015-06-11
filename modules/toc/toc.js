@@ -165,7 +165,6 @@ var stats;
           });
         tree.push(subtree);
       });
-    // console.log(tree);
 
     module.sel.append("div.toc")
       .selectAll("div.toc-section")

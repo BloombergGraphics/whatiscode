@@ -107,6 +107,11 @@
 	font-weight: bold;
 }
 
+[data-module="tinder"] .footer h3:hover {
+	cursor: pointer;
+	color: #2800d7;
+}
+
 [data-module="tinder"] .footer p {
 	font-family: arial,helvetica;
 	font-size: 22px;
