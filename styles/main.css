@@ -804,7 +804,7 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
   .code-section { width: 100%; margin: 40px auto 0 auto;padding:10px 0;}
   .sectionNum{margin-top: 40px}
 
-  .josh { margin-left: -10px; margin-right: -10px; }
+  .josh { margin-left: -15px; margin-right: -15px; }
 }
 
 @media (max-width: 325px) {
