@@ -423,13 +423,13 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
       (config.correlator || new String(Math.random()).substring(2,11));
 
     ads.each(function(__, i){
-      if (!i && innerWidth < 740) return
+      if (!i && innerWidth < 1140) return
       var randValue = new String(Math.random()).substring(2,11);
       var n = i + 1;
       var innerHTML = new_leader + '&position=' + sizePos + n + '&ord=' + randValue + '"></iframe>';      
       
       d3.select(this)
-          .style('display', 'block')
+          // .style('display', 'block')
           .html(innerHTML)
           .style('width', innerWidth > 740 ? '728px' : '300px')
           .style('margin', '0px auto')

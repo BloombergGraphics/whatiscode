@@ -245,13 +245,7 @@
   var dialogue = [
     {
       "emote": "explaining",
-      "speak": "This is real circuitry. Well, it’s real, simulated circuitry that’s actually computing as you watch. Switches on the left turn on and off randomly—turning the “current” in the wires on and off. The other little boxes are “logic gates,” which perform a logical operation depending on how current flows into them. See if you can figure out what the different gates do."
-    },
-    {
-      "speak": "Click the on/off boxes to turn the signal on or off. Click the logic gates to change the logical operation they perform."
-    },
-    {
-      "speak": "Repeated enough times, these simple circuits can compute anything computable."
+      "speak": "This is simulated circuitry that’s computing as you watch. The switches on the left turn the current on and off at random, and the logic gates direct the flow of the current. Click the boxes to change the circuits. Enough of these can compute anything computable."
     },
     { "emote": "chill" }
   ];

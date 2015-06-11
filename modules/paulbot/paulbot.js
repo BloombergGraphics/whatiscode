@@ -9,54 +9,53 @@ var paulbot;
   paulbot = module.bot = bot();
   module.sel.call(paulbot);
 
-  setTimeout(function() {
-    if(localStorage.getItem('visitCount') && parseInt(localStorage.getItem('visitCount')) > 1) {
-      var message = "Hey, welcome back" +
-        (document.referrer ? " from " + document.referrer + " " : "") +
-        "! You've visited " +
-        localStorage.getItem('visitCount') + " times and spent " + (localStorage.getItem('timeOnPage')/1000/60).toFixed() +
-        " minutes here.";
-    } else {
-      var message = "Hey, welcome" +
-        (document.referrer ? " from " + document.referrer + " " : "") +
-        "! I’m Kevin and I’ll be your Clippy today. I’ll appear from time to time to distract you from how many words are here!";
-    }
+  if(stats && stats.visits > 1) {
+    var message = "Welcome back! You’ve visited " +
+      stats.visits + " times and spent " + 
+      (stats.timeOnPage/1000/60).toFixed() + " minutes here.";
+  } else {
+    var message = "Hi! I am the bot! I am here to help you learn about CODE. I will dance for you. You cannot stop me from dancing. I will see you again in some words.";
+  }
 
-    var dialogue = [
-      { "speak": message },
-      { "mode": "off" }
-    ];
+  var dialogue = [
+    { "speak": message },
+    { "mode": "off" }
+  ];
 
-    if(localStorage.getItem('scrollTop')) {
-      dialogue[0].prompts = [
-        {
-          "prompt": "Continue reading from last spot",
-          "do": function() { document.getElementsByTagName('body')[0].scrollTop = parseInt(localStorage.getItem('scrollTop')); }
-        },
-        {
-          "prompt": "Go away"
-        }
-      ]      
-    } else {
-      dialogue[0].wait = 10000;
-    }
+  if(stats && stats.windows.previous) {
+    dialogue[0].prompts = [
+      {
+        "prompt": "Continue reading from last spot",
+        "do": function() { document.getElementsByTagName('body')[0].scrollTop = stats.windows.previous; }
+      },
+      {
+        "prompt": "Go away"
+      }
+    ]
+    setTimeout(function() {
+      paulbot.mode("off");
+    }, 15000)
+  } else {
+    dialogue[0].wait = 15000;
+  }
 
-    paulbot.dialogue(dialogue);
-
-  }, 5000);
+  paulbot.dialogue(dialogue);
 
   var scrollLog = [],
-      alertTooFastThrottled = _.throttle(alertTooFast, 10000),
-      fastSass = _.shuffle([
-        "You're scrolling too fast! Sloooowww dowwnnnn!",
-        "Wow you can read so quickly!",
-        "This is like a zillion wpm.",
-        "Are you reading my article or are you looking at my article.",
-        "Hey Barbecue, where's the fire?",
-        "Trying to skip to the bottom?",
-        "Are you just looking for fancy Snowfally things to jump out at you? Read more words. They're good.",
-        "Excuse me, my words are up here."
-      ]);
+  alertTooFastThrottled = _.throttle(alertTooFast, 10000),
+  fastSass = _.shuffle([
+    "You're scrolling too fast! Sloooowww dowwnnnn!",
+    "Wow you can read so quickly!",
+    "This is like a zillion wpm.",
+    "Are you reading my article or are you looking at my article?",
+    "Hey Barbecue, where's the fire?",
+    "Trying to skip to the bottom?",
+    "Are you just looking for fancy Snowfally things to jump out at you? Read more words. They're good.",
+    "Excuse me, my words are up here.",
+    "Speed demon, huh?",
+    "Wow, don’t burn your mouse finger.",
+    "You are the fastest reader I’ve ever seen."
+  ]);
 
   d3.select(window).on("scroll.stickybot", _.throttle(logScroll, 1000));
   logScroll();

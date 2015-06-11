@@ -6,10 +6,7 @@
   var dialogue = [
     {
       "emote": "explaining",
-      "speak": "There are bugs in your code! Click the line of code that looks like they are BUG-FREE. And to make it extra-realistic, we made it so that every time you don’t fix a bug, a new bug is born. This is the true experience of programming!"
-    },
-    {
-      "emote": "chill"
+      "speak": "There are bugs in your code! Click the line of code that looks like it’s bug-free. But be careful: Any time you don’t fix a bug, a new one is born."
     }
   ];
 
@@ -102,7 +99,7 @@
                   .style({'stroke-width': 1, stroke: 'yellow'})
                 .transition().duration(400)
                   .attr('d', function(e){ return ['M', e, 'L', [d.pos[0] + 150, d.pos[1] + 50]].join('') })
-                  .style({'stroke-width': 8, stroke: red})
+                  .style({'stroke-width': 8, stroke: green})
                 .transition()
                   .style('opacity', 0)
                   .style('stroke-width', 50)
