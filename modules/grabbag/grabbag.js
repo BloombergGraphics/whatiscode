@@ -119,7 +119,10 @@
     // for undo
     if(!direction) {
       d3.selectAll("img")
-        .attr("src", function(d) { return this.getAttribute('data-src'); });
+        .attr("src", function(d){
+          return this.getAttribute('data-src') || this.getAttribute('src') 
+        })
+
       return;
     }
 
