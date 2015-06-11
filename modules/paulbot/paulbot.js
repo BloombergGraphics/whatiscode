@@ -51,11 +51,14 @@ var paulbot;
     "You're scrolling too fast! Sloooowww dowwnnnn!",
     "Wow you can read so quickly!",
     "This is like a zillion wpm.",
-    "Are you reading my article or are you looking at my article.",
+    "Are you reading my article or are you looking at my article?",
     "Hey Barbecue, where's the fire?",
     "Trying to skip to the bottom?",
     "Are you just looking for fancy Snowfally things to jump out at you? Read more words. They're good.",
-    "Excuse me, my words are up here."
+    "Excuse me, my words are up here.",
+    "Speed demon, huh?",
+    "Wow, don’t burn your mouse finger.",
+    "You are the fastest reader I’ve ever seen."
   ]);
 
   d3.select(window).on("scroll.stickybot", _.throttle(logScroll, 1000));

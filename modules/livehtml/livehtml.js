@@ -25,7 +25,7 @@
   var dialogue = [
     {
       "emote": "explaining",
-      "speak": "Go ahead and change the HTML and see what happens. You can’t break anything. Haha, actually, you can break everything. But you can’t hurt anything."
+      "speak": "Go ahead and make changes to the HTML to see what happens—or doesn’t happen. You can’t break anything. Haha, actually, you can break everything. But you can’t hurt anything."
     },
     {
       "emote": "chill"
