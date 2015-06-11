@@ -228,6 +228,10 @@ function footnotes() {
        popup
            .style('top', bb.top + scrollY + 'px')
            .style('left', innerWidth/2 + 150/4 + 'px')
+     } else{
+      popup
+          .style('top', '')
+          .style('left', '')
      }
 
 
