@@ -32,6 +32,8 @@ var addModule = (function(){
     })
   }, 300))
 
+  setTimeout(d3.select(window).on('scroll.module'), 1000)
+
   d3.select(window).on('resize.module', calcPositions)
 
   //content on page moves without trigging any resizing...?
