@@ -19,6 +19,7 @@
   }
 
   // based on http://bl.ocks.org/mbostock/4339083
+  // https://twitter.com/bizweekgraphics/status/608467609416298496
   function treeMe(sel, node) {
 
     var margin = {top: 20, right: 120, bottom: 20, left: 120},

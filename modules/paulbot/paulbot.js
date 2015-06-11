@@ -10,15 +10,11 @@ var paulbot;
   module.sel.call(paulbot);
 
   if(stats && stats.visits > 1) {
-    var message = "Hey, welcome back" +
-      (document.referrer ? " from " + document.referrer + " " : "") +
-      "! You've visited " +
-      stats.visits + " times and spent " + (stats.timeOnPage/1000/60).toFixed() +
-      " minutes here.";
+    var message = "Welcome back! You’ve visited " +
+      stats.visits + " times and spent " + 
+      (stats.timeOnPage/1000/60).toFixed() + " minutes here.";
   } else {
-    var message = "Hey, welcome" +
-      (document.referrer ? " from " + document.referrer + " " : "") +
-      "! I’m Kevin and I’ll be your Clippy today. I’ll appear from time to time to distract you from how many words are here!";
+    var message = "Hi! I am the bot! I am here to help you learn about CODE. I will dance for you. You cannot stop me from dancing. I will see you again in some words.";
   }
 
   var dialogue = [

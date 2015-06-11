@@ -7,9 +7,6 @@
     {
       "emote": "explaining",
       "speak": "There are bugs in your code! Click the line of code that looks like it’s bug-free. But be careful: Any time you don’t fix a bug, a new one is born."
-    },
-    {
-      "emote": "chill"
     }
   ];
 
