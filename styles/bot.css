@@ -134,6 +134,11 @@
   text-align: right;
 }
 
+.b-ie .bot .body .messages{
+  display: none !important;
+  opacity: 0 !important;
+}
+
 .bot .body .messages .responses .response {
   display: inline-block;
   margin-bottom: 5px;
