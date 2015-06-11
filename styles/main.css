@@ -33,6 +33,10 @@ hr{width: 75%; border:none;height:4px;background-color:#3C3C3C;margin: 60px auto
   padding: 40px 0;
 }
 
+.code-section:first-child {
+  margin-top: 0;
+}
+
 .code-content{
   margin: 0 auto;
   max-width: 740px;
@@ -42,11 +46,6 @@ article img {max-width: 100%;}
 
 .centered {margin: 0 auto; display: block;}
 
-#headerArt{
-  background: rgba(0,0,0,0);
-  max-height: 1000px;
-  height: 100vh;
-}
 #background-canvas{
   background-color: #f94600;
 }
@@ -91,16 +90,6 @@ article img {max-width: 100%;}
 
 .codeblock{color:#fff;background-color:#3c3c3c;font-family: 'Roboto Mono', courier, monospace;width:80%;display: block;margin: 0 auto;}
 
-
-#headerArt h1,#headerArt h3{margin: 0;color: #fff;}
-#headerArt h1{
-  font-family: 'Roboto Mono', courier, monospace;
-  font-weight: 700;
-  margin: 0;
-  padding-top: 100px;
-  /* font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif; */
-}
-
 .example{ font-family: 'Roboto Mono', courier, monospace;}
 .code{ font-family: 'Roboto Mono', courier, monospace;}
 
@@ -116,26 +105,34 @@ h3{font-size: 34px;line-height: 34px;font-weight: bold;margin-top:74px;}
 h4{font-size: 22px;line-height: 24px;margin:0;}
 
 #headerArt {
-    text-align: center;
-    width: 100%;
-    height: 100vh;
-    display: table;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  display: table;
+  font-family: 'Roboto Mono', courier, monospace;
+  line-height: 1em;
+  color: #fff;
 }
-
-#headerArt h2 {font-size: 40px; line-height:40px; margin-bottom: 0;margin-top:0;font-family: 'Roboto Mono', courier, monospace;color: #fff}
-.byline{height:40px;margin: 150px 0;}
-.bylinePaul {float:right;margin-right:70px;display: block;}
-.bylineDate {float:left;margin-left:70px}
 
 #headerArt h1{
-      font-family: 'Roboto Mono', courier, monospace;
-      font-weight: 700;
-      margin: 0;padding: 0;
-      /* font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif; */
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+  clear: both;
 }
 
+#headerArt h2 {
+  font-size: 40px; 
+  line-height:1em; 
+  margin-bottom: 0;
+  margin-top:0;
+  font-family: 'Roboto Mono', courier, monospace;
+}
+#headerArt .byline{height:40px;}
+#headerArt .bylinePaul {float:right;margin-right:70px;display: block;}
+#headerArt .bylineDate {float:left;margin-left:70px}
 
-.vertCenter{
+#headerArt .vertCenter{
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -782,6 +779,7 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 @media (max-width: 600px) {
   #headerArt h2 {font-size: 22px;line-height: 22px;}
   #headerArt {padding: 0;}
+  #headerArt{background: url('../images/mobileBG.gif');}
   #background-canvas{display:none;}
   body{font-size: 16px; line-height: 20px;}
   h2{font-size: 55px;line-height: 55px;}
@@ -793,7 +791,6 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 }
 
 @media (max-width: 400px) {
-  #headerArt{background: url('../images/mobileBG.gif');}
   .byline{height:200px;}
   .bylinePaul, .bylineDate {float: none;width: 100%; margin: 0}
   .introText {font-size: 20px; line-height: 22px;}
@@ -802,7 +799,7 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
   #productivity{display: none;}
   .chat{font-size: 14px;line-height: 16px;}
   .chatBig{font-size: 20px;line-height: 22px}
-  .byline{height:46px;margin: 30px 0;}
+  .byline{height:46px;}
   .code-section { width: 100%; margin: 40px auto 0 auto;padding:10px 0;}
   .sectionNum{margin-top: 40px}
 }
