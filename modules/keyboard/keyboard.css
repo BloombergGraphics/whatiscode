@@ -139,6 +139,6 @@
 
 }
 
-.b-ie #circuit, .b-ie #crapplets, .b-ie #debug, .b-ie #gcd, .b-ie #grabbag, .b-ie #keyboard, .b-ie #languages, .b-ie #learninal, .b-ie #livehtml,  .b-ie #mouse,  .b-ie #paperclip,  .b-ie #paulbot,  .b-ie #recirc,  .b-ie #text-diff,  .b-ie #tree,  .b-ie #tinder, .b-ie #code-atlas, .b-ie #certificate-container, .b-ie #paulbot{
+.b-ie #circuit, .b-ie #crapplets, .b-ie #debug, .b-ie #gcd, .b-ie #grabbag, .b-ie #keyboard, .b-ie #languages, .b-ie #learninal, .b-ie #livehtml,  .b-ie #mouse,  .b-ie #paperclip,  .b-ie #paulbot,  .b-ie #recirc,  .b-ie #text-diff,  .b-ie #tree,  .b-ie #tinder, .b-ie #code-atlas, .b-ie #certificate-container, .b-ie #paulbot, .b-ie .innershare{
   display: none !important;
 }
