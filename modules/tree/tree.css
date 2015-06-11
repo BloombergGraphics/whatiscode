@@ -94,3 +94,10 @@
   z-index: 2;
   background: white;
 }
+
+
+.safari [data-module="tree"], .safari [data-mname="tree"], .safari .learninal{
+  display: none !important
+}
+
+
