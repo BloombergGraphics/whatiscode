@@ -102,7 +102,7 @@
                   .style({'stroke-width': 1, stroke: 'yellow'})
                 .transition().duration(400)
                   .attr('d', function(e){ return ['M', e, 'L', [d.pos[0] + 150, d.pos[1] + 50]].join('') })
-                  .style({'stroke-width': 8, stroke: red})
+                  .style({'stroke-width': 8, stroke: green})
                 .transition()
                   .style('opacity', 0)
                   .style('stroke-width', 50)
