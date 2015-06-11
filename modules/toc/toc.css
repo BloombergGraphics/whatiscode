@@ -119,3 +119,7 @@
     display: none;
   }
 }
+
+#toc{
+	display: block !important;
+}
