@@ -48,6 +48,9 @@
   line-height: 1em;
   padding: 0;
   transform: rotate(0deg) translate(-50%, -50%);
+  -webkit-transform: rotate(0deg) translate(-50%, -50%);
+  -moz-transform: rotate(0deg) translate(-50%, -50%);
+  -ms-transform: rotate(0deg) translate(-50%, -50%);
 }
 
 

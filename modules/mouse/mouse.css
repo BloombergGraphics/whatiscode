@@ -9,6 +9,9 @@
   font-size: 10pt;
   pointer-events: none;
   transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
   text-align: center;
 }
 .event-log.mousemove {

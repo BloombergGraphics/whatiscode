@@ -206,6 +206,9 @@ function footnotes() {
     .on("mouseout", hideFootnote)
     .on("click touchend", toggleFootnote)
 
+  d3.selectAll('fn-popup')
+    .on('touchend', toggleFootnote)
+
   function showFootnote(d,i) {
     var popup = d3.select(this.parentElement).select(".fn-popup");
     if(!popup.classed("stick")) {
@@ -215,10 +218,18 @@ function footnotes() {
         .transition()
         .duration(300)
         .style("opacity", 1);
-      return;
-    } else {
-      return;
     }
+
+     d3.select(this.parentElement)
+         .style('position', innerWidth < 800 ? 'static' : 'relative')
+
+     var bb = this.getBoundingClientRect()
+     if (innerWidth < 800){
+       popup
+           .style('top', bb.top + scrollY + 'px')
+           .style('left', innerWidth/2 + 150/4 + 'px')
+     }
+
 
   }
 

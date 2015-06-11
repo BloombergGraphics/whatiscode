@@ -28,9 +28,13 @@ hr{width: 75%; border:none;height:4px;background-color:#3C3C3C;margin: 60px auto
 .code-section {
   width: 90%;
   margin: 100px auto 0 auto;
-  position: relative;
+  /*position: relative;*/
   background-color: #fff;
   padding: 40px 0;
+}
+
+.code-section:first-child {
+  margin-top: 0;
 }
 
 .code-content{
@@ -42,11 +46,6 @@ article img {max-width: 100%;}
 
 .centered {margin: 0 auto; display: block;}
 
-#headerArt{
-  background: rgba(0,0,0,0);
-  max-height: 1000px;
-  height: 100vh;
-}
 #background-canvas{
   background-color: #f94600;
 }
@@ -91,16 +90,6 @@ article img {max-width: 100%;}
 
 .codeblock{color:#fff;background-color:#3c3c3c;font-family: 'Roboto Mono', courier, monospace;width:80%;display: block;margin: 0 auto;}
 
-
-#headerArt h1,#headerArt h3{margin: 0;color: #fff;}
-#headerArt h1{
-  font-family: 'Roboto Mono', courier, monospace;
-  font-weight: 700;
-  margin: 0;
-  padding-top: 100px;
-  /* font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif; */
-}
-
 .example{ font-family: 'Roboto Mono', courier, monospace;}
 .code{ font-family: 'Roboto Mono', courier, monospace;}
 
@@ -116,26 +105,34 @@ h3{font-size: 34px;line-height: 34px;font-weight: bold;margin-top:74px;}
 h4{font-size: 22px;line-height: 24px;margin:0;}
 
 #headerArt {
-    text-align: center;
-    width: 100%;
-    height: 100vh;
-    display: table;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  display: table;
+  font-family: 'Roboto Mono', courier, monospace;
+  line-height: 1em;
+  color: #fff;
 }
-
-#headerArt h2 {font-size: 40px; line-height:40px; margin-bottom: 0;margin-top:0;font-family: 'Roboto Mono', courier, monospace;color: #fff}
-.byline{height:40px;margin: 150px 0;}
-.bylinePaul {float:right;margin-right:70px;display: block;}
-.bylineDate {float:left;margin-left:70px}
 
 #headerArt h1{
-      font-family: 'Roboto Mono', courier, monospace;
-      font-weight: 700;
-      margin: 0;padding: 0;
-      /* font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif; */
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+  clear: both;
 }
 
+#headerArt h2 {
+  font-size: 40px; 
+  line-height:1em; 
+  margin-bottom: 0;
+  margin-top:0;
+  font-family: 'Roboto Mono', courier, monospace;
+}
+#headerArt .byline{height:40px;}
+#headerArt .bylinePaul {float:right;margin-right:70px;display: block;}
+#headerArt .bylineDate {float:left;margin-left:70px}
 
-.vertCenter{
+#headerArt .vertCenter{
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -461,6 +458,9 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
   border: 1px solid black;
   margin-top: 0.5em;
   transform: translate(-50%,0);
+  -webkit-transform: translate(-50%,0);
+  -moz-transform: translate(-50%,0);
+  -ms-transform: translate(-50%,0);
   display: none;
   z-index: 2;
 }
@@ -483,6 +483,9 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
   border: 1px solid black;
   margin-top: 0.5em;
   transform: translate(-50%,0);
+  -webkit-transform: translate(-50%,0);
+  -moz-transform: translate(-50%,0);
+  -ms-transform: translate(-50%,0);
 }
 
 
@@ -649,7 +652,8 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 .language{ border-bottom: 4px solid #f94600;margin: 20px auto; padding: 4px auto;}
 .language img{max-width: 60px;margin: 0 auto}
 
-
+.thirty{width: 33%;display: inline-block;vertical-align: middle;}
+.thirty img{max-width: 100%}
 
 #productivity{
   color:#f94600;
@@ -665,20 +669,23 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 .productive{ margin: 5px;width: 200px;display: inline-block;vertical-align: top}
 .productive img{max-width: 100px;margin-left:25%;}
 
-#paulL{display: inline-block;width: 20%;vertical-align: top;margin-top: 40px}
+#paulL{display: inline-block;width: 20%;vertical-align: top;margin-top: 60px}
 #paulL img{width: 100%;}
-#paulR{margin-top: 40px;display: inline-block;width: 80%;font-size: 18px;line-height: 22px;vertical-align: top;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;}
+#paulR{margin-top: 60px;display: inline-block;width: 80%;font-size: 18px;line-height: 22px;vertical-align: top;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;}
 #paulR p{padding: 0 10px;margin:0;}
 .conference{display: inline-block;width: 33%;margin:0;vertical-align:top;}
 
 .josh {
-    background-color: #ccc;
-    margin: 5px 0;
-    padding: 5px 10px;
+    border: 4px solid #3c3c3c;
+    margin: -80px 0 40px 0;
+    padding: 15px;
+    padding-top: 60px;
     width: auto;
 }
+.josh p{margin: 0 0 10px 0 }
+.josh p:last-child {margin:0;}
 
-.letter{margin: 0 auto 40px auto;width: 400px;text-align: center;}
+.letter{margin: 0 auto 40px auto;width: 290px;height:20px;text-align: center;}
 .letter a{border-bottom: 0;}
 
 .interactive-feature {
@@ -773,6 +780,7 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 @media (max-width: 600px) {
   #headerArt h2 {font-size: 22px;line-height: 22px;}
   #headerArt {padding: 0;}
+  #headerArt{background: url('../images/mobileBG.gif');}
   #background-canvas{display:none;}
   body{font-size: 16px; line-height: 20px;}
   h2{font-size: 55px;line-height: 55px;}
@@ -784,7 +792,6 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 }
 
 @media (max-width: 400px) {
-  #headerArt{background: url('../images/mobileBG.gif');}
   .byline{height:200px;}
   .bylinePaul, .bylineDate {float: none;width: 100%; margin: 0}
   .introText {font-size: 20px; line-height: 22px;}
@@ -793,14 +800,15 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
   #productivity{display: none;}
   .chat{font-size: 14px;line-height: 16px;}
   .chatBig{font-size: 20px;line-height: 22px}
-  .byline{height:46px;margin: 30px 0;}
+  .byline{height:46px;}
   .code-section { width: 100%; margin: 40px auto 0 auto;padding:10px 0;}
   .sectionNum{margin-top: 40px}
 }
 
 @media (max-width: 325px) {
-  h2{color: yellow}
 }
+
+
 
 /* footnotes only appear if you're printing. interactives don't. */
 #text-footnotes {
@@ -813,4 +821,13 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
   [data-module] {
     display: none;
   }
+}
+
+/* code highlighting without syntax highlighting */
+pre code {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #23241f;
+  color: #f8f8f2;
 }
