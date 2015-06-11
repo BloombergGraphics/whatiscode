@@ -15,7 +15,7 @@
   var dialogue = [
     {
       "emote": "explaining",
-      "speak": "I am made of code and I have a standard library of functions of my own. Sliders and buttons and timers can get wired up to anything on the page, because the page and every object on it is code too.",
+      "speak": "I am made of code and I have a standard library of functions of my own. Sliders and buttons and timers can get wired up to anything on the page, because the page and every object on it is code too. Here, mess with the page:",
       "prompts": prompts
     }
   ];
@@ -135,7 +135,7 @@
     if(direction) {
       module.bot.dialogue([
         {
-          "speak": "Text is variable, too! Hmm, something’s different in here...",
+          "speak": "Text is variable, too! Hmm, something’s subtly different in here...",
           "prompts": prompts
         }
       ]);
