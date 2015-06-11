@@ -204,7 +204,7 @@ function footnotes() {
   d3.selectAll(".footref")
     .on("mouseover", showFootnote)
     .on("mouseout", hideFootnote)
-    .on("click", toggleFootnote)
+    .on("click touchend", toggleFootnote)
 
   function showFootnote(d,i) {
     var popup = d3.select(this.parentElement).select(".fn-popup");
