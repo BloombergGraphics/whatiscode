@@ -695,7 +695,13 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 }
 
 #share-circuit .innertw {
-  margin-right:-110px;
+  /*margin-right:-110px;*/
+  height: 0px;
+}
+
+#share-circuit .innertw img{
+  position: relative;
+  top: -75px;
 }
 
 .innertw:hover {
