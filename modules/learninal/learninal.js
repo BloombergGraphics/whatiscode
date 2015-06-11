@@ -91,7 +91,7 @@
   { "speak": "Now get rid of pugs. The way you do that is by calling the pop method: dogs.pop();" },
   {
     "test": function(item) {
-      if(dogs.length == 4 && item.result=="pug" && item.command.indexOf("pop") !== -1) {
+      if(dogs.length == 4 && item.result=="pug") {
         this.emote("love");
         return true;
       } else {
