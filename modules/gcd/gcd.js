@@ -139,7 +139,7 @@
 
     text.append('div.btn')
         .on('click', drawGCD)
-        .text('Calculate Again!')
+        .text('Calculate again!')
 
     text.selectAll('div')
         .style('opacity', 0)

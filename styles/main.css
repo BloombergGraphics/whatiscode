@@ -818,3 +818,12 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
     display: none;
   }
 }
+
+/* code highlighting without syntax highlighting */
+pre code {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #23241f;
+  color: #f8f8f2;
+}
