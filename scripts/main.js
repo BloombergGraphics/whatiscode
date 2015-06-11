@@ -1,6 +1,6 @@
 var originalArticle;
 var loadTime = new Date();
-var baseUrl = "http://sites.localhost/code";
+var baseUrl = "http://bloomberg.com/graphics/2015-paul-ford-what-is-code/";
 
 var modules = [
     {
