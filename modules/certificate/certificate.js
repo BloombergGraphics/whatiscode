@@ -15,7 +15,7 @@
     window.URL = window.URL || window.webkitURL;
 
     var width = 221, height = 221
-    var offsetX = 291, offsetY = 314
+    var offsetX = 291, offsetY = 300
 
     var video = document.getElementById('monitor');
     var canvas = document.getElementById('photo');
@@ -77,7 +77,7 @@
     function noStream(e) {
       // JB: Safari and IE don't support webcam, so we could make a nicer back up maybe?
       // cameraErrorMessage.textContent = 'No camera available :('
-      d3.select('#certificate').attr('src', 'images/certificatedemo.png')
+      d3.select('#certificate').attr('src', 'images/certificatedemo_800_nocamera.png')
 
     }
 

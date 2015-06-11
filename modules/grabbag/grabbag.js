@@ -79,11 +79,20 @@
     ]);
 
     d3.select('article')
+      .style("-ms-transform","scale(1)")
+      .style("-moz-transform","scale(1)")
+      .style("-webkit-transform","scale(1)")
       .style("transform","scale(1)")
       .transition()
       .duration(20000)
+      .style("-ms-transform","scale(.01)")
+      .style("-moz-transform","scale(.01)")
+      .style("-webkit-transform","scale(.01)")
       .style("transform","scale(.01)");
     d3.selectAll('article p')
+      .style("-ms-transform","rotate(0deg)")
+      .style("-moz-transform","rotate(0deg)")
+      .style("-webkit-transform","rotate(0deg)")
       .style("transform","rotate(0deg)")
       .transition()
       .duration(15000)

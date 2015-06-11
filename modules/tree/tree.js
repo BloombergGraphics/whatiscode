@@ -43,7 +43,9 @@
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        // .on("mousemove", mousemove);
+        .attr("-webkit-transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("-moz-transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("-ms-transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // invisible rect to capture mousemoves
     svg.append("rect")
@@ -112,6 +114,9 @@
           .classed("parent", function(d) { return d.children; })
           .classed("expandable", function(d) { return d._children && d._children.length; })
           .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
+          .attr("-webkit-transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
+          .attr("-moz-transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
+          .attr("-ms-transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
           .on("click", click)
           .on("mouseover", mouseover)
           .on("mouseout", mouseout);

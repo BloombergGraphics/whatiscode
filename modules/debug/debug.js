@@ -141,6 +141,8 @@
       bugs.forEach(function(d){
         if (d.correct || !d.visable) return
         d.imgEl
+          .style('-ms-transform', 'rotate(' + Math.sin(t/500 + d.t*500)*30 + 'deg)')
+          .style('-moz-transform', 'rotate(' + Math.sin(t/500 + d.t*500)*30 + 'deg)')
           .style('-webkit-transform', 'rotate(' + Math.sin(t/500 + d.t*500)*30 + 'deg)')
           .style('padding-left', Math.sin(t/743 + d.t*500)*60 + 'px')
           .style('padding-top', Math.sin(t/343 + d.t*700)*20 + 'px')

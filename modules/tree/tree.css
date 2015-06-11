@@ -45,6 +45,9 @@
   border: 10px solid #2800d7;
   width: 150px;
   height: 150px;
+  -webkit-transform: translate(-50%,-50%) scale(.2);
+  -moz-transform: translate(-50%,-50%) scale(.2);
+  -ms-transform: translate(-50%,-50%) scale(.2);
   transform: translate(-50%,-50%) scale(.2);
   pointer-events: none;
   z-index: 2;
