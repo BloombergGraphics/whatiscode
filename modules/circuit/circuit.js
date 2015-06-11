@@ -246,8 +246,7 @@
     {
       "emote": "explaining",
       "speak": "This is simulated circuitry that’s computing as you watch. The switches on the left turn the current on and off at random, and the logic gates direct the flow of the current. Click the boxes to change the circuits. Enough of these can compute anything computable."
-    },
-    { "emote": "chill" }
+    }
   ];
 
   module.oninit = function(){
