@@ -26,11 +26,13 @@ var addModule = (function(){
 
       // if active changed, call load / unload function
       if (d.active != wasActive) {
-        d.active && d.onload ? d.onload() : null;
-        !d.active && d.onunload ? d.onunload() : null;
+        d.active && d.onload ? d.onload(d) : null;
+        !d.active && d.onunload ? d.onunload(d) : null;
       }
     })
   }, 300))
+
+  setTimeout(d3.select(window).on('scroll.module'), 1000)
 
   d3.select(window).on('resize.module', calcPositions)
 

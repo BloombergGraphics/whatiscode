@@ -22,21 +22,4 @@
     iframe.node().contentWindow.document.close();
   }
 
-  var dialogue = [
-    {
-      "emote": "explaining",
-      "speak": "Go ahead and change the HTML and see what happens. You can’t break anything. Haha, actually, you can break everything. But you can’t hurt anything."
-    },
-    {
-      "emote": "chill"
-    }
-  ];
-
-  // announce itself
-  module.bot = bot();
-  module.sel.insert("div.bot", ":first-child").call(module.bot);
-  module.oninit = function() {
-    module.bot.dialogue(dialogue);
-  }
-
 })();

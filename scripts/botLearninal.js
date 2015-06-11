@@ -285,45 +285,6 @@ var Sandbox = {
 			return false;
 		},
 
-		buildGUI : function() {
-
-			//create
-			this.gui = new dat.GUI({
-				autoPlace: false,
-				supressHotKeys: true
-			});
-
-			//position
-			$(this.gui.domElement).css({
-				position:"absolute",
-				top:0,
-				right:0
-			}).appendTo(this.$el);
-
-			//add commands to populate textarea with each snippet
-			//(i don't love how dat.gui makes you do this)
-			var snippetCommands = {};
-			this.snippets.forEach(function(button) {
-				var snippetContext = this;
-				snippetCommands[button.name] = function() {
-					snippetContext.currentHistory = button.code;
-					snippetContext.update();
-					snippetContext.textarea.focus();
-				};
-				this.gui.add(snippetCommands, button.name).name(button.name);
-			}, this);
-
-			var variables = this.model.get('variables');
-			_.each(variables, function(value, key) {
-				var isColor = /^#[0-9A-F]{6}$/i.test(value);
-				if(isColor) {
-					this.gui.addColor(variables, key);
-				} else {
-					this.gui.add(variables, key);
-				}
-			}, this);
-
-		},
 
 		// Returns the index of the cursor inside the textarea
 		getCaret : function() {

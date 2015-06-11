@@ -668,12 +668,51 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 
 .conference{display: inline-block;width: 33%;margin:0;vertical-align:top;}
 
+.interactive-feature {
+  position: relative;
+  clear:both;
+}
+
+.innershare {
+/*  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;*/
+}
+
+.innertw {
+  text-align: right;
+  -webkit-transition: all 0.5s; /* Safari */
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+#share-tinder .innertw {
+  margin-right:175px;
+}
+
+#share-circuit .innertw {
+  margin-right:-110px;
+}
+
+.innertw:hover {
+  opacity: 0.5;
+}
+
 
 
 /* queries */
 
+@media (max-width: 1040px) {
+  .innershare {display: none}
+}
+
 @media (max-width: 1280px) {
   .bigimgWrap{margin: 0 -80px;}
+  .innershare {display: none}
 }
 
 @media (max-width: 1280px) {

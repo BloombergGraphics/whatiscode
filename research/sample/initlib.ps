@@ -1,0 +1,231 @@
+%!PS
+% This is the code you need to make Rosetta Code PS stuff work
+
+% conventions: parameter names with let begins with .
+ 
+% basic definition, makes the definitions less verbose.
+/. {bind def} bind def
+/' {load} bind def
+/reverse {{} exch {exch [3 1 roll aload pop]} forall}.
+/let {dup length dict begin reverse {exch def} forall}.
+/let* {reverse {exch def} forall}.
+ 
+% some predicates.
+/eq? {eq}.
+/list? {dup type /arraytype eq?}.
+/leaf? {list? not}.
+/empty? {dup length 0 eq?}.
+/zero? {dup 0 eq?}.
+% stack invariant, execute any predicate and leave stack untouched
+% except for answer.
+/? {
+4 dict begin
+    [/.pred] let*
+    count array astore /.stack exch def
+    /_restore {clear .stack aload pop}.
+    .stack aload pop .pred /.top exch def
+    _restore .top
+end}.
+ 
+ 
+% stacky functions
+/rup {3 1 roll}.
+/rdown {3 -1 roll}.
+/# {exch dup rdown .makeoperator bind def} bind def
+ 
+/getname {dup 0 get exch}.
+/getbody {dup length 1 sub 1 exch getinterval}.
+ 
+% convenience arithmetic
+/+ {add}.
+/- {sub}.
+/* {mul}.
+/\ {div}.
+ 
+% lispy functions
+/first {0 get}.
+/car {first}.
+/!first {dup first}.
+/rest {dup length 1 sub 1 exch getinterval}.
+/cdr {rest}.
+/!rest {dup rest}.
+/head  {dup length 1 sub 0 exch getinterval}.
+/!head {dup head}.
+/tail  {dup length 1 sub get}.
+/!tail {dup tail}.
+/cons  {[rup aload pop]}.
+/tadd  {[rup aload length 1 add -1 roll] }.
+/uncons {getname getbody}.
+/concat {exch [ rup aload pop counttomark -1 roll aload pop ] }.
+% make a unit list.
+/unit {1 array astore cvx}.
+/succ {1 add}.
+/pred {1 sub}.
+/range {[rup exch aload pop rup exch rdown {} for]}.
+ 
+% higher order thingies.
+/map { [ rup forall ] }.
+% [1 2 3 4] {1 add} map
+/fold {rup exch rdown forall}.
+%/reverse {{} {exch cons} fold}.
+% {} [1 2 3 4 5] {exch cons} forall
+ 
+% [1 2 3 4] 0 {+} fold
+% name - filter is taken so we are left with..
+/find {
+4 dict begin
+    /aif {0 /get /if}.
+    /atox { [ exch cvx {cvx} forall ] cvx}.
+    [ rup [ /dup rdown /exec /not [{pop}] aif ] atox forall ]
+end}.
+ 
+/transpose {
+    [ exch {
+        { {empty? exch pop} map all?} {pop exit} ift
+        [ exch {} {uncons {exch cons} dip exch} fold counttomark 1 roll] uncons
+    } loop ] {reverse} map
+}.
+/zip {[rup] transpose}.
+ 
+% [[1 2 3 4 ] [5 6 7 8] [9 10 11 12]]  transpose
+/all? {
+    {
+        {empty?} ? {pop true exit} if
+        uncons {?} dip exch not {pop false exit} if
+    } loop
+}.
+% 1 {{10 gt} {5 gt} {0 gt}} any?
+/any? {
+    {
+        {empty?} ? {pop false exit} if
+        uncons {?} dip exch {pop true exit} if
+    } loop
+}.
+/pipe {
+    {
+        {empty?} ? {pop exit} if
+        uncons {i} dip
+    } loop
+}.
+%  1 {{2 *} {3 *} {5 *}} pipe
+/collect {
+    {
+        {empty?} ? {pop exit} if
+        uncons {?} dip
+    } loop
+}.
+%  1 {{2 *} {3 *} {5 *}} collect
+ 
+% do on all elements of a tree.
+/treemap {
+[/.tree /.rec] let
+    /.tree '
+    {leaf?} /.rec '
+        {{empty?} {}
+            {dup
+                {first /.rec ' treemap} dip
+                {rest /.rec ' treemap} i cons}
+        ifte}
+    ifte
+end}.
+ 
+% control structures
+% ift - allow stack invariant if condition
+/ift {
+[/.if /.then] let
+    /.if ' ?  /.then ' if
+end}.
+% ift - allow stack invariant ifelse condition
+/ifte {
+[/.if /.then /.else] let
+    /.if ' ?  /.then ' /.else ' ifelse
+end}.
+% switch statement.
+/is? {{exit} concat cvx ift}.
+/cond {{exit} concat cvx loop}.
+ 
+% combinators
+/dip {
+[/.v /.q] let
+    .q /.v '
+end}.
+/apply {exec}.
+/i {cvx exec}.
+ 
+/linrec {
+[/.if /.then /.rec1 /.rec2] let
+    /.if ' /.then '
+        {.rec1
+            {/.if ' /.then ' /.rec1 ' /.rec2 ' linrec} i
+        .rec2}
+    ifte
+end}.
+ 
+/binrec {
+[/.if /.then /.rec1 /.rec2] let
+    /.if ' /.then '
+        { .rec1
+            {/.if ' /.then ' /.rec1 ' /.rec2 ' binrec} dip
+            {/.if ' /.then ' /.rec1 ' /.rec2 ' binrec} i
+          .rec2 }
+    ifte
+end}.
+ 
+/genrec {
+[/.if /.then /.rec1 /.rec2] let
+    /.if ' /.then '
+        {.rec1
+            {/.if ' /.then ' /.rec1 ' /.rec2 ' genrec}
+         .rec2}
+    ifte
+end}.
+ 
+/tailrec {{} linrec}.
+ 
+/primrec {
+5 dict begin
+    /lzero? {
+        {list?} {empty?}
+                {zero?}
+        ifte}.
+    /lnext {
+        {list?} {rest}
+                {pred}
+        ifte}.
+[/.param /.then /.rec] let*
+    {/.param ' lzero?} /.then '
+        {.param
+            {/.param ' lnext /.then ' /.rec ' primrec} i
+        .rec}
+    ifte
+end}.
+ 
+/cvstr {
+    4 dict begin
+        /elements exch def
+        /len elements length def
+        /str len string def
+        /i 0 def
+        {
+        i len ge { exit } if
+        str i
+        %The element of the array, as a hexadecimal string.
+        %If it exceeds 16#FF, this will fail with a rangecheck.
+        elements i get cvi
+        put
+        /i i 1 add def
+    } loop
+    str
+end
+} def
+ 
+ 
+% debug
+/puts {= (\n) print flush}.
+/, {(=============\n)
+    print pstack
+    (=============\n) print}.
+ 
+% set the prompt to something else so that we know initlib is loaded.
+/prompt {(>| ) print flush} bind def
+ 

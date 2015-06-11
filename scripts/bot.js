@@ -3,7 +3,8 @@
 function bot() {
 
   var minDelay = 100,
-      maxDuration = 300;
+      maxDuration = 300,
+      msgDuration = 500;
 
   var sel,
       botName = "",
@@ -83,6 +84,8 @@ function bot() {
     return true;
   }
 
+  // from http://bl.ocks.org/mbostock/6452972
+  // https://twitter.com/bizweekgraphics/status/608467609416298496
   robot.slider = function(config) {
 
     config = _.extend({
@@ -142,12 +145,7 @@ function bot() {
         .attr("transform", "translate(0," + height / 2 + ")")
         .attr("r", 9);
 
-    slider
-        .call(brush.event)
-      // .transition() // gratuitous intro!
-      //   .duration(750)
-      //   .call(brush.extent([70, 70]))
-      //   .call(brush.event);
+    slider.call(brush.event);
 
     if(config.onscroll !== null) {
       d3.select(window).on('scroll.'+botName, function() {
@@ -158,8 +156,6 @@ function bot() {
         var scrollScale = d3.scale.linear()
           .domain([window.innerHeight, 0])
           .range(x.domain());
-
-          // debugger
 
         slider.call(brush.extent([scrollScale(top), scrollScale(top)]))
           .call(brush.event);
@@ -190,18 +186,14 @@ function bot() {
 
     return new Promise(
       function(resolve,reject) {
+        var speech = dialogueStep.append("div")
+          .classed("message", true)
+          .classed("speech", true)
+          .text(text);
 
-        var speech = dialogueStep.append("div").classed("message", true).classed("speech", true);
-        var delay = Math.min(minDelay, maxDuration / text.length);
-        var speechTimer = setInterval(function() {
-          if(speech.text().length == text.length) {
-            clearInterval(speechTimer);
-            resolve(speech);
-          }
-          speech.text(text.substr(0,speech.text().length+1));
-          body.node().scrollTop = body.node().scrollHeight;
-        },delay);
-
+        speech.transition().duration(500)
+          .attrTween('msgExpand', function(){ return function(t){ speech.style("transform", "scaleY(" + (.001 + t) + ")") } })
+          .each("end", function() { resolve(speech); });
       }
     )
   }
@@ -221,18 +213,6 @@ function bot() {
 
         learninal.model.evaluate(text);
         resolve(true);
-
-        // var code = dialogueStep.append("div").classed("message", true).classed("code", true);
-        // var delay = Math.min(minDelay, maxDuration / text.length);
-        // var codeTimer = setInterval(function() {
-        //   if(code.text().length == text.length) {
-        //     clearInterval(codeTimer);
-        //     eval(text);
-        //     resolve(code);
-        //   }
-        //   code.text(text.substr(0,code.text().length+1));
-        //   body.node().scrollTop = body.node().scrollHeight;
-        // },delay);
 
       }
     );

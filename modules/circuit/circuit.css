@@ -1,6 +1,8 @@
 [data-module="circuit"] {
   width: 960px;
+  height: 825px;
   font-family: "HaasTextBold",Arial,Helvetica;
+  opacity: 0;
 }
 
 [data-module="circuit"] g.gate-icon{

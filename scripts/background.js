@@ -23,6 +23,11 @@
       l = 14,
       unload = function(){ shapes = shapes.filter(function(d){ d.start > curTime }) }
 
+  function load(module){
+    console.log('loading')
+    setTimeout(function(){ module.active = false }, 7000)
+  }
+
   d3.timer(function(t){
     curTime = t
 
@@ -77,7 +82,7 @@
 
   // wave squares
   !(function(){
-    var module = {sel: d3.select('.sectionNum4'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum4'), active: false, minWidth: 600, onunload: unload, onload: load}
     addModule(module)
 
     var colors = [green, Lblue, purple]
@@ -111,12 +116,20 @@
   })()
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('.sectionNum2'), active: false, minWidth: 300, onunload: unload}
-    addModule(module)
+    var module = {sel: d3.select('#background-hook'), active: false, minWidth: 600, onunload: unload, onload: load}
 
-    var colors = [blue, green, Lpurple]
+    //wait 2 sec to auto play, looks v. laggey otherwise
+    setTimeout(function(){
+      module.active = true
+    }, 2800)
+    //pause after 5
+    setTimeout(function(){
+      module.active = false
+    }, 10800)
+
+    var colors = [orange, purple, red]
     var offset = 1
-    var l2 = l*1.3
+    var l2 = l*2
     setInterval(function(){
       if (!module.active) return
 
@@ -150,7 +163,7 @@
 
   //triangles
   !(function(){
-    var module = {sel: d3.select('.sectionNum7'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum7'), active: false, minWidth: 600, onunload: unload, onload: load}
 
     addModule(module)
 
@@ -216,7 +229,7 @@
 
   //tears
   !(function(){
-    var module = {sel: d3.select('.sectionNum6'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum6'), active: false, minWidth: 600, onunload: unload, onload: load}
 
     addModule(module)
 
@@ -254,7 +267,7 @@
 
   //circles
   !(function(){
-    var module = {sel: d3.select('.sectionNum5'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum5'), active: false, minWidth: 600, onunload: unload, onload: load}
     addModule(module)
 
     var colors = [red, purple, orange]
@@ -292,20 +305,10 @@
 
   //different sized squares
   !(function(){
-    var module = {sel: d3.select('#background-hook'), active: false, minWidth: 300, onunload: unload}
-
-    //wait 2 sec to auto play, looks v. laggey otherwise
-    setTimeout(function(){
-      module.active = true
-    }, 2800)
-    //pause after 5
-    setTimeout(function(){
-      module.active = false
-    }, 10800)
-
+    var module = {sel: d3.select('.sectionNum2'), active: false, minWidth: 600, onunload: unload, onload: load}
     addModule(module)
- 
-    var colors = [red, purple]
+
+    var colors = [blue, green]
     var offset = 1
     setInterval(function(){
       if (!module.active) return
@@ -342,7 +345,7 @@
 
   //down wave
   !(function(){
-    var module = {sel: d3.select('.sectionNum3'), active: false, minWidth: 300, onunload: unload}
+    var module = {sel: d3.select('.sectionNum3'), active: false, minWidth: 600, onunload: unload, onload: load}
     addModule(module)
 
     var colors = [orange, red]
