@@ -17,6 +17,7 @@ var addModule = (function(){
       var wasActive = !!d.active;
       d.active = d.startPos < pageYOffset && pageYOffset < d.endPos
       d.active = d.active && innerWidth > d.minWidth
+      d.active = d.active && !isBrokenIE
 
       // if module hasn't yet been initiated, call init function
       if(d.active && !d.initiated) {
@@ -30,7 +31,7 @@ var addModule = (function(){
         !d.active && d.onunload ? d.onunload(d) : null;
       }
     })
-  }, 300))
+  }, 50))
 
   setTimeout(d3.select(window).on('scroll.module'), 1000)
 
@@ -40,7 +41,7 @@ var addModule = (function(){
   setInterval(calcPositions, 2000)
 
   return function(d){
-    if (!d.sel.node()) debugger
+    // if (!d.sel.node()) debugger
     d.minWidth = d.minWidth || 1020
     modules.push(d)
     calcPositions()
