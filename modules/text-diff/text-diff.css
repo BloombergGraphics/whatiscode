@@ -2,15 +2,22 @@
   position: relative;
   display: inline-block;
 }
-[data-module="text-diff"] div, [data-module="text-diff"] #width-calc div{
+[data-module="text-diff"] div, #width-calc div div{
   float: left;
 }
 
-[data-module="text-diff"] #width-calc{
+#width-calc{
   top: -10000000px !important;
   position: absolute;
 }
 
 [data-module="text-diff"] {
   min-height: 150px;
+}
+
+
+#width-calc{
+  max-width: 600px;
+  padding-left: 100px;
+  height: 300px;
 }
