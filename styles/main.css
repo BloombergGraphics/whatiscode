@@ -28,7 +28,7 @@ hr{width: 75%; border:none;height:4px;background-color:#3C3C3C;margin: 60px auto
 .code-section {
   width: 90%;
   margin: 100px auto 0 auto;
-  position: relative;
+  /*position: relative;*/
   background-color: #fff;
   padding: 40px 0;
 }
