@@ -116,12 +116,20 @@
   })()
   //sprial squares
   !(function(){
-    var module = {sel: d3.select('.sectionNum2'), active: false, minWidth: 600, onunload: unload, onload: load}
-    addModule(module)
+    var module = {sel: d3.select('#background-hook'), active: false, minWidth: 600, onunload: unload, onload: load}
 
-    var colors = [blue, green, Lpurple]
+    //wait 2 sec to auto play, looks v. laggey otherwise
+    setTimeout(function(){
+      module.active = true
+    }, 2800)
+    //pause after 5
+    setTimeout(function(){
+      module.active = false
+    }, 10800)
+
+    var colors = [orange, purple, red]
     var offset = 1
-    var l2 = l*1.3
+    var l2 = l*2
     setInterval(function(){
       if (!module.active) return
 
@@ -297,20 +305,10 @@
 
   //different sized squares
   !(function(){
-    var module = {sel: d3.select('#background-hook'), active: false, minWidth: 600, onunload: unload, onload: load}
-
-    //wait 2 sec to auto play, looks v. laggey otherwise
-    setTimeout(function(){
-      module.active = true
-    }, 2800)
-    //pause after 5
-    setTimeout(function(){
-      module.active = false
-    }, 10800)
-
+    var module = {sel: d3.select('.sectionNum2'), active: false, minWidth: 600, onunload: unload, onload: load}
     addModule(module)
- 
-    var colors = [red, purple]
+
+    var colors = [blue, green]
     var offset = 1
     setInterval(function(){
       if (!module.active) return
