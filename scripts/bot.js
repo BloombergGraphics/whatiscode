@@ -2,9 +2,7 @@
 
 function bot() {
 
-  var minDelay = 100,
-      maxDuration = 300,
-      msgDuration = 500;
+  var msgDuration = 500;
 
   var sel,
       botName = "",
@@ -46,6 +44,9 @@ function bot() {
 
       hljs.highlightBlock(input.node());
       hljs.highlightBlock(output.node());
+
+      msg.transition().duration(msgDuration)
+          .attrTween('evalExpand', function(){ return function(t){ msg.style("transform", "scaleY(" + (.001 + t) + ")") } });
     })
 
     return robot;
@@ -191,7 +192,9 @@ function bot() {
           .classed("speech", true)
           .text(text);
 
-        speech.transition().duration(500)
+        body.node().scrollTop = body.node().scrollHeight;
+
+        speech.transition().duration(msgDuration)
           .attrTween('msgExpand', function(){ return function(t){ speech.style("transform", "scaleY(" + (.001 + t) + ")") } })
           .each("end", function() { resolve(speech); });
       }
