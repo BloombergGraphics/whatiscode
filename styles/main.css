@@ -677,12 +677,13 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 
 .josh {
     border: 4px solid #3c3c3c;
-    margin: 5px 0 20px 0;
-    padding: 10px;
+    margin: -80px 0 40px 0;
+    padding: 15px;
+    padding-top: 60px;
     width: auto;
 }
-
 .josh p{margin: 0 0 10px 0 }
+.josh p:last-child {margin:0;}
 
 .letter{margin: 0 auto 40px auto;width: 290px;height:20px;text-align: center;}
 .letter a{border-bottom: 0;}
