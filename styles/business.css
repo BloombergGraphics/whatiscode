@@ -15,13 +15,6 @@ a img, img {
   height:0;
 }
 
-.container {
-  max-width:1410px;
-  margin:0 auto;
-  overflow: hidden;
-  position: relative;
-}
-
 #inner-content {
   font-family: "TiemposTextWeb-Regular","Georgia";
   font-size:14px;
@@ -605,7 +598,7 @@ img.infographic {
 
 /*Stop top line wrap on mobile*/
 @media only screen and (max-width: 740px){
-  #top-ad, #top-ad-space{
+  #top-ad, #top-space{
     display: none;
   }
 }
@@ -626,13 +619,13 @@ img.infographic {
   height: 90px;
 }
 
-#top-ad.stuck{
+#full-header.stuck{
   position: fixed;
   top: 0px;
 }
 
-#top-ad-space.stuck{
-  height: 90px;
+#top-space.stuck{
+  height: 31px;
 }
 
 .banner-container{
@@ -644,5 +637,17 @@ img.infographic {
 .bannerad{
   margin: 0px auto;
   width: 728px;
+}
+
+
+#top-ad-container{
+  margin-left: calc(50% - 364px) !important;
+}
+
+
+@media only screen and (max-width: 1040px){
+  #hidden-banner-ad, #top-ad-container{
+    display: none !important;
+  }
 }
 
