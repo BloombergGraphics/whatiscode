@@ -1,10 +1,9 @@
 !(function(){
 
   //check on load to see if you need to be dragged back after wrecking
-  if (location.href.indexOf('grabbag')){
+  if (location.pathname.indexOf('grabbag') >= 0){
     setTimeout(function(){
-      scrollTo(0, d3.select('#grabbag').node().getBoundingClientRect().top + pageYOffset - 100)    
-      console.log("asdfasdfasdf")
+      scrollTo(0, d3.select('#grabbag').node().getBoundingClientRect().top + pageYOffset - 100)
     }, 1500)
   }
 
