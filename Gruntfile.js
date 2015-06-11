@@ -31,6 +31,7 @@ module.exports = function (grunt) {
         files: [
           { expand: true, src: 'media/*.*', dest: 'public/' },
           { expand: true, src: 'images/*.*', dest: 'public/' },
+          { expand: true, src: 'images/emotes/*.*', dest: 'public/' },
         ]
       },
       misc: {
@@ -53,7 +54,7 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concat',
     'cssmin',
-    'uglify',
+    // 'uglify',
     'copy',
     'usemin',
   ]);
