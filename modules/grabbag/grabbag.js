@@ -1,5 +1,13 @@
 !(function(){
 
+  //check on load to see if you need to be dragged back after wrecking
+  if (location.href.indexOf('grabbag')){
+    setTimeout(function(){
+      scrollTo(0, d3.select('#grabbag').node().getBoundingClientRect().top + pageYOffset - 100)    
+      console.log("asdfasdfasdf")
+    }, 1500)
+  }
+
   var module = {sel: d3.select('[data-module="grabbag"]')}
   addModule(module)
 
@@ -264,6 +272,8 @@
     //   }
     //   $el.remove();
     // },100);
+
+    d3.select('body').style('overflow', 'hidden')
 
     var firstDestroy = d3.select('#outline-container-sec-3-4').node()
     d3.selectAll('#outline-container-sec-3-4').selectAll('h3, p, img, svg, table, .figureInline, .org-src-container, dl, .bot, .screen')
