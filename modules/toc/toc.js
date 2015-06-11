@@ -1,4 +1,5 @@
-var stats;
+var stats,
+    loadTime = new Date();
 
 !(function(){
 
@@ -6,7 +7,6 @@ var stats;
   addModule(module)
 
   stats = loadStats();
-  var loadTime = new Date();
   var open = false;
 
   var pixelsToWords = d3.scale.linear()
