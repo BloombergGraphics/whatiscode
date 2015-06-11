@@ -37,6 +37,7 @@ module.exports = function (grunt) {
       misc: {
         files: [
           { expand: true, src: 'scripts/tracker.js', dest: 'public/' },
+          { expand: true, cwd: '.tmp/concat/', src: 'app.js', dest: 'public/' },
         ]
       }
     }
