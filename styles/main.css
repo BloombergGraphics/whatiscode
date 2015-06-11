@@ -649,7 +649,8 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 .language{ border-bottom: 4px solid #f94600;margin: 20px auto; padding: 4px auto;}
 .language img{max-width: 60px;margin: 0 auto}
 
-
+.thirty{width: 33%;display: inline-block;vertical-align: middle;}
+.thirty img{max-width: 100%}
 
 #productivity{
   color:#f94600;
