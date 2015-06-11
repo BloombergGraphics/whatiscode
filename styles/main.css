@@ -665,20 +665,22 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 .productive{ margin: 5px;width: 200px;display: inline-block;vertical-align: top}
 .productive img{max-width: 100px;margin-left:25%;}
 
-#paulL{display: inline-block;width: 20%;vertical-align: top;margin-top: 40px}
+#paulL{display: inline-block;width: 20%;vertical-align: top;margin-top: 60px}
 #paulL img{width: 100%;}
-#paulR{margin-top: 40px;display: inline-block;width: 80%;font-size: 18px;line-height: 22px;vertical-align: top;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;}
+#paulR{margin-top: 60px;display: inline-block;width: 80%;font-size: 18px;line-height: 22px;vertical-align: top;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;}
 #paulR p{padding: 0 10px;margin:0;}
 .conference{display: inline-block;width: 33%;margin:0;vertical-align:top;}
 
 .josh {
-    background-color: #ccc;
-    margin: 5px 0;
-    padding: 5px 10px;
+    border: 4px solid #3c3c3c;
+    margin: 5px 0 20px 0;
+    padding: 10px;
     width: auto;
 }
 
-.letter{margin: 0 auto 40px auto;width: 400px;text-align: center;}
+.josh p{margin: 0 0 10px 0 }
+
+.letter{margin: 0 auto 40px auto;width: 290px;height:20px;text-align: center;}
 .letter a{border-bottom: 0;}
 
 .interactive-feature {
@@ -799,8 +801,9 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 }
 
 @media (max-width: 325px) {
-  h2{color: yellow}
 }
+
+
 
 /* footnotes only appear if you're printing. interactives don't. */
 #text-footnotes {
