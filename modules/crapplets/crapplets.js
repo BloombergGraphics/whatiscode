@@ -26,7 +26,7 @@
   var dialogues = [
     [{
       "speak": "Oops, looks like you gotta update something! Double-click to escape. Not that you’d want to.",
-      "prompts": [{"prompt": "No thanks.", "dialogue": [{"do": cleanUp}] }]
+      "prompts": [{"prompt": "Make it stop please.", "dialogue": [{"do": cleanUp}] }]
     }],
     [{
       "speak": "Hope it doesn’t require a restart!",
