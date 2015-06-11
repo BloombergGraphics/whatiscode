@@ -334,7 +334,7 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 .btn:hover {background: #6381ff}
 
 
-
+#stockCreds{font-size: 14px;line-height: 16px;font-family: "BWHaasText-55Roman";color:#848484 }
 
 
 .sideRight{
@@ -344,7 +344,7 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 }
 
 .caption{font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 14px;line-height: 16px;margin-top: 4px;}
-.photoCaption{text-transform: uppercase;font-size: 10px;line-height:12px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;color:#999;}
+.photoCaption{text-transform: uppercase;font-size: 10px;line-height:12px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;color:#848484;}
 
 
 .icons {display: inline;}
@@ -487,9 +487,9 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 
 
 #interestingWrap{margin:0 -100px 0 -100px;}
-  .interesting1, .interesting2, .interesting3{width: 320px;text-align: center;position: relative;}
-  .interesting2{margin:-40px 0 0 290px}
-  .interesting3{margin:-40px 0 0 580px}
+.interesting1, .interesting2, .interesting3{width: 320px;text-align: center;position: relative;}
+.interesting2{margin:-40px 0 0 290px}
+.interesting3{margin:-40px 0 0 580px}
 
 
 .orange {color: #f94600}
@@ -694,6 +694,10 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
   margin-right:175px;
 }
 
+#share-circuit .innertw {
+  margin-right:-110px;
+}
+
 .innertw:hover {
   opacity: 0.5;
 }
@@ -702,8 +706,13 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 
 /* queries */
 
+@media (max-width: 1040px) {
+  .innershare {display: none}
+}
+
 @media (max-width: 1280px) {
   .bigimgWrap{margin: 0 -80px;}
+  .innershare {display: none}
 }
 
 @media (max-width: 1280px) {

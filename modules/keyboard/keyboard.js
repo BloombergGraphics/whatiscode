@@ -5,10 +5,9 @@
 
   var dialogue = [
     {
-      "emote": "explaining",
-      "speak": "Try just mashing the keys on your keyboard and see what 'make' and 'break' codes come out and get sent to the computer. Every key makes a code. The computer interprets these codes. There are many steps between pressing the “a” key and seeing an “a” on the screen."
-    },
-    { "emote": "keyboardmash_rest" }
+      "emote": "keyboardmash_rest",
+      "speak": "Try mashing the keys on your keyboard and see what “make” and “break” codes emerge. Every key makes a code. The computer interprets these codes. There are many steps between pressing the “a” key and seeing an “a” on the screen."
+    }
   ];
 
   module.bot = bot();

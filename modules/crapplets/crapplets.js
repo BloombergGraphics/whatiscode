@@ -19,13 +19,13 @@
   var introDialogue = [
     {
       "emote": "explaining",
-      "speak": "Welcome to our Java crapplet simulator, powered by the JVMVM — all the fun with none of the genuine security risks! Click the loading screen to begin."
+      "speak": "Welcome to our Java simulator, or JVMVM—all the fun with none of the genuine security risks! Click the loading screen to begin."
     }
   ];
 
   var dialogues = [
     [{
-      "speak": "Oops, looks like you’ve gotta update something! Double-click to escape. Not that you’d want to.",
+      "speak": "Oops, looks like you gotta update something! Double-click to escape. Not that you’d want to.",
       "prompts": [{"prompt": "No thanks.", "dialogue": [{"do": cleanUp}] }]
     }],
     [{
@@ -34,7 +34,7 @@
     }],
     [{
       "speak": "Honestly let’s just forget this ever happened.",
-      "prompts": [{"prompt": "Jesus Christ get rid of this!", "dialogue": [{"do": cleanUp}] }]
+      "prompts": [{"prompt": "Jeepers, get rid of this!", "dialogue": [{"do": cleanUp}] }]
     }]
   ];
 

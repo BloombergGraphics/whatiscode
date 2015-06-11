@@ -118,7 +118,9 @@
 
     function noStream(e) {
       // JB: Safari and IE don't support webcam, so we could make a nicer back up maybe?
-      cameraErrorMessage.textContent = 'No camera available :('
+      // cameraErrorMessage.textContent = 'No camera available :('
+      d3.select('#certificate').attr('src', 'images/certificatedemo.png')
+
     }
 
     function capture() {
