@@ -1,139 +1,78 @@
 var originalArticle;
 var loadTime = new Date();
 var baseUrl = "http://sites.localhost/code";
-var modules;
 
-// insert modules
-(function() {
-  modules = [
+var modules = [
     {
       "name": "certificate",
-      "string": null,
       "tweet": ""
     },
     {
       "name": "circuit",
-      "string": "A computer is a clock with benefits",
       "tweet": "What *is* a computer? It's just clock with benefits! Try playing with this circuitry simulator:"
     },
     {
       "name": "crapplets",
-      "string": "",
       "tweet": ""
     },
     {
       "name": "debug",
-      "string": "I felt that each time the program crashed",
       "tweet": "De-bugging code is totally fun! Why would anyone complain about de-bugging code?"
     },
     {
       "name": "gcd",
-      "string": "Euclid’s algorithm, for example",
       "tweet": ""
     },
     {
       "name": "grabbag",
-      "string": "standard library has functions",
       "tweet": "Have you ever wanted to destroy a web page? This is your chance. Go crazy:"
     },
     {
       "name": "keyboard",
-      "string": "strike a key on your keyboard",
       "tweet": "How do you type an 'A' ? For a computer, it's more complicated than you'd think:"
     },
     {
-      "name": "languages",
-      "string": null,
-      "tweet": ""
-    },
-    {
       "name": "learninal",
-      "string": "Programming as a career can lead to a rewarding",
       "tweet": "This is the least-boring code tutorial of all time:"
     },
     {
       "name": "livehtml",
-      "string": "To gather an e-mail address and a name",
       "tweet": "This crazy @business article about code let me mess with HTML and break stuff:"
     },
     {
       "name": "maps",
-      "string": "By the time a language breaks through to the top 10 or 20",
       "tweet": ""
     },
     {
       "name": "mouse",
-      "string": "A mouse moves",
-      "tweet": ""
-    },
-    {
-      "name": "paperclip",
-      "string": null,
       "tweet": ""
     },
     {
       "name": "paulbot",
-      "string": null,
-      "tweet": ""
-    },
-    {
-      "name": "recirc",
-      "string": null,
-      "tweet": ""
-    },
-    {
-      "name": "shoppingcart",
-      "string": null,
       "tweet": ""
     },
     {
       "name": "text-diff",
-      // "string": "In my opinion, version control",
       "tweet": ""
     },
     {
       "name": "tinder",
-      "string": "even if the code starts to look ugly",
       "tweet": "There's sexy code and there's ugly code. Play Tinder for code to see if you can tell the difference."
     },
     {
       "name": "toc",
-      "string": null,
       "tweet": ""
     },
     {
       "name": "tree",
-      "string": "Arbor Day",
       "tweet": "Coders think in trees. Anything made with software is secretly a tree. It makes sense if you check this out:"
     }
   ];
-
-  // modules.forEach(function(value, index) {
-  //   if(!value.string) return;
-  //   if($('[data-module="'+value.name+'"]').length !== 0) return;
-  //   $('p:contains("'+value.string+'")').after('<div data-module="'+value.name+'"></div>');
-  // })
-})();
 
 jQuery(document).ready(function($) {
 
   // preprocess org-mode html and append events
   footnotes();
-
-  // preprocess org-mode html
-  preCode();
-
-  // set up toc toggle
-  d3.select("#toc-bug")
-    .on("click", function(d,i) {
-      if(d3.select("#toc").attr("data-mode") === "on") {
-        d3.select(this).attr("data-mode", "off");
-        d3.select("#toc").attr("data-mode", "off");
-      } else {
-        d3.select(this).attr("data-mode", "on");
-        d3.select("#toc").attr("data-mode", "on");
-      }
-    });
 
   // syntax highlighting
   hljs.initHighlightingOnLoad();
@@ -259,14 +198,6 @@ function footnotes() {
     popup.classed("stick", !popup.classed("stick"));
   }
 
-}
-
-function preCode() {
-  $("pre").each(function(i, pre) {
-    if($(pre).find("code").length === 0) {
-      $(pre).html("<code>"+$(pre).html()+"</code>");
-    }
-  })
 }
 
 // console.log("                    ___\n                _.-'   ```'--.._                 _____ ___ ___   ____  _____ __ __      ______  __ __    ___  \n              .'                `-._            / ___/|   |   | /    |/ ___/|  |  |    |      ||  |  |  /  _] \n             /                      `.         (   \\_ | _   _ ||  o  (   \\_ |  |  |    |      ||  |  | /  [_        \n            /                         `.        \\__  ||  \\_/  ||     |\\__  ||  _  |    |_|  |_||  _  ||    _]       \n           /                            `.      /  \\ ||   |   ||  _  |/  \\ ||  |  |      |  |  |  |  ||   [_        \n          :       (                       \\     \\    ||   |   ||  |  |\\    ||  |  |      |  |  |  |  ||     |       \n          |    (   \\_                  )   `.    \\___||___|___||__|__| \\___||__|__|      |__|  |__|__||_____|       \n          |     \\__/ '.               /  )  ;  \n          |   (___:    \\            _/__/   ;    ____   ____  ______  ____   ____   ____  ____      __  __ __  __ __ \n          :       | _  ;          .'   |__) :   |    \\ /    ||      ||    \\ |    | /    ||    \\    /  ]|  |  ||  |  |\n           :      |` \\ |         /     /   /    |  o  )  o  ||      ||  D  ) |  | |  o  ||  D  )  /  / |  |  ||  |  |\n            \\     |_  ;|        /`\\   /   /     |   _/|     ||_|  |_||    /  |  | |     ||    /  /  /  |  _  ||  ~  |\n             \\    ; ) :|       ;_  ; /   /      |  |  |  _  |  |  |  |    \\  |  | |  _  ||    \\ /   \\_ |  |  ||___, |\n              \\_  .-''-.       | ) :/   /       |  |  |  |  |  |  |  |  .  \\ |  | |  |  ||  .  \\\\     ||  |  ||     |\n             .-         `      .--.'   /        |__|  |__|__|  |__|  |__|\\_||____||__|__||__|\\_| \\____||__|__||____/ \n            :         _.----._     `  < \n            :       -'........'-       `.\n             `.        `''''`           ;\n               `'-.__                  ,'\n                     ``--.   :'-------'\n                         :   :\n                        .'   '.\n      \n      \n                                                                    ");

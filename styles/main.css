@@ -801,6 +801,7 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
 }
 
 @media (max-width: 400px) {
+  .hide-mobile {display:none;}
   .josh { margin-left: -15px; margin-right: -15px; }
   .introText {font-size: 20px; line-height: 22px;}
   .listL, .listR,.ephemeraR,.ephemeraL,.profileL,.profileR{display: none;}

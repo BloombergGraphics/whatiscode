@@ -42,7 +42,7 @@
         .attr("width", width + margin.right + margin.left)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // invisible rect to capture mousemoves
     svg.append("rect")
@@ -241,6 +241,8 @@
           .style("z-index", 3)
           .style("border-width", "2px")
           .style("transform", function(d) { return "translate(-50%,-50%) scale(" + (hoverCoef * .2) + ")"; })
+          .style("-webkit-transform", function(d) { return "translate(-50%,-50%) scale(" + (hoverCoef * .2) + ")"; })
+          .style("-moz-transform", function(d) { return "translate(-50%,-50%) scale(" + (hoverCoef * .2) + ")"; });
     }
 
     function mouseout(d) {
@@ -255,7 +257,9 @@
           .classed("hover", false)
           .style("z-index", 2)
           .style("border-width", "10px")
-          .style("transform", function(d) { return "translate(-50%,-50%) scale(.2)"; });
+          .style("transform", function(d) { return "translate(-50%,-50%) scale(.2)"; })
+          .style("-webkit-transform", function(d) { return "translate(-50%,-50%) scale(.2)"; })
+          .style("-moz-transform", function(d) { return "translate(-50%,-50%) scale(.2)"; });
     }
 
     function appendIframe(d) {
