@@ -7,6 +7,9 @@
 
 [data-module="circuit"] g.gate-icon{
   /* TODO: redo paths so you don't need to scale... */
+  -webkit-transform: scale(.45);
+  -moz-transform: scale(.45);
+  -ms-transform: scale(.45);
   transform: scale(.45);
   fill: #f94600;
   fill-opacity: 1;
