@@ -111,6 +111,8 @@ function highlightTooltip(e) {
     "hljs-variable": "A variable"
   }
 
+  if(typeof codeClasses[codeClass] === 'undefined') return;
+
   var popup = d3.select("body").selectAll(".syntax-tooltip").data([codeClass]);
   popup.enter().append("div").classed("syntax-tooltip", true);
   popup.text(codeClasses[codeClass])
