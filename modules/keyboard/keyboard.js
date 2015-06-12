@@ -186,7 +186,7 @@
 
     function typeKey(e) {
       // get the key
-      var key = event.keyCode || event.which;
+      var key = d3.event.keyCode || d3.event.which;
       var keySel = module.sel.selectAll(".key").filter(function(d) { return d.key === String.fromCharCode(key) });
       if(keySel.empty()) keySel = module.sel.selectAll(".key").filter(function(d) { return d.keycode === key });
       var scanType = (d3.event.type == "keydown" || d3.event.type == "keypress" ? "make" : "break");
