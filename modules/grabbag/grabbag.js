@@ -1,10 +1,9 @@
 !(function(){
 
   //check on load to see if you need to be dragged back after wrecking
-  if (location.href.indexOf('grabbag')){
+  if (location.hash.indexOf('grabbag') > 0){
     setTimeout(function(){
-      scrollTo(0, d3.select('#grabbag').node().getBoundingClientRect().top + pageYOffset - 100)    
-      console.log("asdfasdfasdf")
+      scrollTo(0, d3.select('#grabbag').node().getBoundingClientRect().top + pageYOffset - 100)
     }, 1500)
   }
 
@@ -67,7 +66,7 @@
           "onbrush": function(value) {
             var scale = d3.scale.threshold()
               .domain([1/8,2/8,3/8,4/8,5/8,6/8,7/8])
-              .range(['love', 'jumps', 'waving', 'chill', 'angry', 'angry2', 'angry3', 'angry4']); 
+              .range(['love', 'jumps', 'waving', 'chill', 'angry', 'angry2', 'angry3', 'angry4']);
             module.bot.emote(scale(value));
             return true;
           },
@@ -128,7 +127,7 @@
     if(!direction) {
       d3.selectAll("img")
         .attr("src", function(d){
-          return this.getAttribute('data-src') || this.getAttribute('src') 
+          return this.getAttribute('data-src') || this.getAttribute('src')
         })
 
       return;
@@ -196,7 +195,7 @@
       } else {
         textNode.nodeValue = fixText(textNode.nodeValue);
       }
-      
+
     }
 
     function replaceText(v)
