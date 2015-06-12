@@ -40,7 +40,7 @@
   tutorialArrays = [
   {
     "emote": "explaining",
-    "speak": "We can’t teach you to code, but we can hold your hand through a live-fire exercise. It will be dry, because code is dry until it ‘clicks’, and often even then. Want to give it a shot?"
+    "speak": "We can’t teach you to code, but we can hold your hand through a live-fire exercise. It will be dry, because code is dry until it “clicks,” and often even then. Want to give it a shot?"
   },
   {
     "prompts": [{"prompt": "Yes, I want to see and write real live code."}]
@@ -55,7 +55,7 @@
   },
   {
     "emote": "keyboardmash_rest", 
-    "speak": "One of those doesn’t belong. In Javascript arrays start at 0 (zero) which is weird and confusing but you need to work with it, that’s life. So starting at 0 what number is ‘tabby’? Type your answer below and hit enter:",
+    "speak": "One of those doesn’t belong. In JavaScript arrays start at 0 (zero), which is weird and confusing, but you need to work with it. That’s life. So starting at 0, what number is ‘tabby’? Type your answer below and hit Enter:",
   },
   {
     "test": function(item) {

@@ -26,14 +26,14 @@
   var dialogues = [
     [{
       "speak": "Oops, looks like you gotta update something! Double-click to escape. Not that you’d want to.",
-      "prompts": [{"prompt": "Make it stop please.", "dialogue": [{"do": cleanUp}] }]
+      "prompts": [{"prompt": "Make it stop, please.", "dialogue": [{"do": cleanUp}] }]
     }],
     [{
       "speak": "Hope it doesn’t require a restart!",
-      "prompts": [{"prompt": "Please make it all go away.", "dialogue": [{"do": cleanUp}] }]
+      "prompts": [{"prompt": "Please, make it all go away.", "dialogue": [{"do": cleanUp}] }]
     }],
     [{
-      "speak": "Honestly let’s just forget this ever happened.",
+      "speak": "Honestly, let’s just forget this ever happened.",
       "prompts": [{"prompt": "Jeepers, get rid of this!", "dialogue": [{"do": cleanUp}] }]
     }]
   ];

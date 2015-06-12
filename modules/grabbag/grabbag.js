@@ -22,7 +22,7 @@
   var dialogue = [
     {
       "emote": "explaining",
-      "speak": "I am made of code and I have a standard library of functions of my own. Sliders and buttons and timers can get wired up to anything on the page, because the page and every object on it is code too. Here, mess with the page:",
+      "speak": "I am made of code, and I have a standard library of functions of my own. Sliders and buttons and timers can get wired up to anything on the page, because the page and every object on it is code, too. Here, mess with the page:",
       "prompts": prompts
     }
   ];
@@ -45,7 +45,7 @@
 
     module.bot.dialogue([
       {
-        "speak": "Everything on the page has style attributes like background-color.",
+        "speak": "Everything on the page has style attributes, like background-color.",
         "slider": {
           "onbrush": function(value) {
             d3.selectAll("section").style("background-color", d3.hsl(value, .8, .8));

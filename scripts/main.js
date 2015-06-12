@@ -95,11 +95,11 @@ function highlightTooltip(e) {
   var codeClasses = {
     "hljs-keyword": "Language keywords mean something special in the language.",
     "hljs-number": "A number",
-    "hljs-title": "A title names something, like a function in C or element in XML",
+    "hljs-title": "A title names something, like a function in C or an element in XML",
     "hljs-params": "The parameters that get passed to the function",
     "hljs-function": "A function declaration",
     "hljs-built_in": "A built-in function",
-    "hljs-string": "This is a string; it may mean something to you, but to the computer it's pretty much just an arbitrary sequence of letters.",
+    "hljs-string": "This is a string; it may mean something to you, but to the computer it’s pretty much just an arbitrary sequence of letters.",
     "hljs-list": "A list",
     "hljs-tag": "A tag",
     "hljs-attribute": "The name of an attribute",

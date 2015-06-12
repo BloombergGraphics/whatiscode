@@ -37,13 +37,13 @@
 			"bio": "Hey girl, I asynchronously fetch records from a remote database and store them locally, while handling errors with aplomb.",
 			"name": "fetchFromServer",
 			"link": "https://github.com/blackberry/BB10-WebWorks-Community-Samples/blob/d6ee75fe23a10d2d3a036013b6b1a0c07a542099/pdbtest/www/js/index.js#L190",
-			"paulbot": "This function manages to keep a lot of promises that ultimately aren't worth much; at that rate, he could've just called me back.",
+			"paulbot": "This function manages to keep a lot of promises that ultimately aren’t worth much; at that rate, he could’ve just called me back.",
 			"correctAnswer": 0,
 			"top":180
 		},
 		{
 			"code": "remotedb.allDocs(...).then(function (resultOfAllDocs) {\n  return localdb.put(...);\n}).then(function (resultOfPut) {\n  return localdb.get(...);\n}).then(function (resultOfGet) {\n  return localdb.put(...);\n}).catch(function (err) {\n  console.log(err);\n});",
-			"bio": "My tidily composed promises are entirely without side effects, and I'll be honest about any errors.",
+			"bio": "My tidily composed promises are entirely without side effects, and I’ll be honest about any errors.",
 			"name": "Local DB Hottie",
 			"link": "http://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html",
 			"paulbot": "This is so much better-proportioned than the last one.",
