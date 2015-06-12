@@ -121,10 +121,11 @@ function highlightTooltip(e) {
 }
 
 
-function footnotes() {
+function footnotes() { 
+  var isMobile = innerWidth < 800
 
   // read footnotes out of footer and stick into hidden popup divs
-  (function() {
+  !(function() {
     var footrefs = $(".footref").unwrap();
     var footnotes = $(".footdef");
     footnotes.each(function(i, fn) {
@@ -153,7 +154,7 @@ function footnotes() {
 
   function showFootnote(d,i) {
     var popup = d3.select(this.parentElement).select(".fn-popup");
-    if(!popup.classed("stick")) {
+    if(!popup.classed("stick") || isMobile) {
       popup
         .style("opacity", 0)
         .style("display", "block")
@@ -162,12 +163,12 @@ function footnotes() {
     }
 
      d3.select(this.parentElement)
-         .style('position', innerWidth < 800 ? 'static' : 'relative')
+         .style('position', isMobile ? 'static' : 'relative')
 
      var bb = this.getBoundingClientRect()
-     if (innerWidth < 800){
+     if (isMobile){
        popup
-           .style('top', bb.top + scrollY + 'px')
+           .style('top', bb.top + scrollY + 20 + 'px')
            .style('left', innerWidth/2 + 150/4 + 'px')
      } else{
       popup
@@ -186,10 +187,7 @@ function footnotes() {
         .style("opacity", 0)
         .transition().duration(0)
         .style("display", "none");
-      return;
-    } else {
-      return;
-    }
+    } 
   }
 
   // toggle stickiness
@@ -198,7 +196,7 @@ function footnotes() {
     d3.event.preventDefault();
     var popup = d3.select(this.parentElement).select(".fn-popup")
     popup.classed("stick", !popup.classed("stick"));
-    if (!popup.classed("stick")) hideFootnote.call(this);
+    popup.classed("stick") ? showFootnote.call(this) : hideFootnote.call(this)
   }
 
 }
