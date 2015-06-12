@@ -169,7 +169,7 @@ function footnotes() {
      if (isMobile){
        popup
            .style('top', bb.top + scrollY + 20 + 'px')
-           .style('left', innerWidth/2 + 150/4 + 'px')
+           .style('left', 160 + 'px')
      } else{
       popup
           .style('top', '')
