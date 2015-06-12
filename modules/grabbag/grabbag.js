@@ -128,13 +128,13 @@
       d3.selectAll("img")
         .attr("src", function(d){
           return this.getAttribute('data-src') || this.getAttribute('src')
-        })
+        }).attr("data-src", null);
 
       return;
     }
 
     d3.selectAll("img")
-      .attr("data-src", function(d) { return this.getAttribute('src'); })
+      .attr("data-src", function(d) {return this.getAttribute('data-src') || this.getAttribute('src'); })
       .attr("src", "images/cowboy_on_computer.gif");
 
     module.bot.dialogue([
