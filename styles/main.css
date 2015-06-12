@@ -403,6 +403,9 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 .certificate {margin: 40px -50px;}
 .certificate img{width: 100%}
 
+.terminal .videoWrapper {
+  display: none;
+}
 
 .videoWrapper {
   position: relative;
@@ -701,6 +704,10 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
   bottom: 0;
   left: 0;
   width: 100%;*/
+}
+
+.terminal .innershare {
+  display: none;
 }
 
 .innertw {
