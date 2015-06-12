@@ -818,6 +818,7 @@ li {margin:0 0 0 40px;padding:0;list-style: decimal;}
   .chatBig{font-size: 20px;line-height: 22px}
   .code-section { width: 100%; margin: 40px auto 0 auto;padding:10px 0;}
   .sectionNum{margin-top: 40px}
+  h2{font-size: 40px;line-height: 40px;}
 }
 
 @media (max-width: 325px) {
