@@ -126,7 +126,7 @@ function footnotes() {
 
   // read footnotes out of footer and stick into hidden popup divs
   !(function() {
-    var footrefs = $(".footref").unwrap();
+    var footrefs = $(".footref:not(.correx)").unwrap();
     var footnotes = $(".footdef");
     footnotes.each(function(i, fn) {
       var fnId = $(fn).find("a").eq(0).attr("id").split(".")[1];
@@ -192,10 +192,11 @@ function footnotes() {
 
   // toggle stickiness
   function toggleFootnote(d,i) {
-    console.log("toggleFootnote")
     d3.event.preventDefault();
     var popup = d3.select(this.parentElement).select(".fn-popup")
-    popup.classed("stick", !popup.classed("stick"));
+    var isStuck = !popup.classed("stick");
+    d3.select(this).classed("stick", isStuck);
+    popup.classed("stick", isStuck);
     popup.classed("stick") ? showFootnote.call(this) : hideFootnote.call(this)
   }
 

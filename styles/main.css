@@ -331,7 +331,13 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 .btn:hover {background: #6381ff}
 
 
-#stockCreds{font-size: 14px;line-height: 16px;font-family: "BWHaasText-55Roman";color:#848484 }
+#stockCreds, #changelog{
+  margin-top: 1em;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "BWHaasText-55Roman";
+  color:#848484 
+}
 
 
 .sideRight{
@@ -434,18 +440,32 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 
 .footref {
   border-radius: 10px;
-  border: 1px solid #eee;
+  border: 1px solid #848484;
+  color: #848484;
   padding: 2px 8px;
   font-size: small;
   font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
   text-decoration: none;
 }
+.footref:not(.correx)::before {
+  content: "■ ";
+}
 .footref:hover {
   cursor: pointer;
-  border: 1px solid #00f;
+  color: #2800d7;
+  border: 1px solid #2800d7;
 }
-.footref::before {
-  content: "■ ";
+.footref.correx:hover {
+  border: 1px solid #f94600;
+  color: #f94600;
+}
+.footref.stick {
+  background: #6381ff;
+  color: #2800d7;
+}
+.footref.correx.stick {
+  background: rgba(249,70,0,.5);
+  color: rgba(249,70,0,1);
 }
 
 .fn-popup {
