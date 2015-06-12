@@ -26,7 +26,6 @@
 
     var eventHandlers = {
       "keydown": typeKey,
-      "keypress": typeKey,
       "keyup": typeKey,
     };
 
@@ -39,46 +38,46 @@
     }
 
     var scanCodes = [
-      {"key":"A","make":"1C","break":"F0,1C","y":3,"x":1,"dx":1},
-      {"key":"B","make":"32","break":"F0,32","y":4,"x":5,"dx":1},
-      {"key":"C","make":"21","break":"F0,21","y":4,"x":3,"dx":1},
-      {"key":"D","make":"23","break":"F0,23","y":3,"x":3,"dx":1},
-      {"key":"E","make":"24","break":"F0,24","y":2,"x":3,"dx":1},
-      {"key":"F","make":"2B","break":"F0,2B","y":3,"x":4,"dx":1},
-      {"key":"G","make":"34","break":"F0,34","y":3,"x":5,"dx":1},
-      {"key":"H","make":"33","break":"F0,33","y":3,"x":6,"dx":1},
-      {"key":"I","make":"43","break":"F0,43","y":2,"x":8,"dx":1},
-      {"key":"J","make":"3B","break":"F0,3B","y":3,"x":7,"dx":1},
-      {"key":"K","make":"42","break":"F0,42","y":3,"x":8,"dx":1},
-      {"key":"L","make":"4B","break":"F0,4B","y":3,"x":9,"dx":1},
-      {"key":"M","make":"3A","break":"F0,3A","y":4,"x":7,"dx":1},
-      {"key":"N","make":"31","break":"F0,31","y":4,"x":6,"dx":1},
-      {"key":"O","make":"44","break":"F0,44","y":2,"x":9,"dx":1},
-      {"key":"P","make":"4D","break":"F0,4D","y":2,"x":10,"dx":1},
-      {"key":"Q","make":"15","break":"F0,15","y":2,"x":1,"dx":1},
-      {"key":"R","make":"2D","break":"F0,2D","y":2,"x":4,"dx":1},
-      {"key":"S","make":"1B","break":"F0,1B","y":3,"x":2,"dx":1},
-      {"key":"T","make":"2C","break":"F0,2C","y":2,"x":5,"dx":1},
-      {"key":"U","make":"3C","break":"F0,3C","y":2,"x":7,"dx":1},
-      {"key":"V","make":"2A","break":"F0,2A","y":4,"x":4,"dx":1},
-      {"key":"W","make":"1D","break":"F0,1D","y":2,"x":2,"dx":1},
-      {"key":"X","make":"22","break":"F0,22","y":4,"x":2,"dx":1},
-      {"key":"Y","make":"35","break":"F0,35","y":2,"x":6,"dx":1},
-      {"key":"Z","make":"1A","break":"F0,1A","y":4,"x":1,"dx":1},
-      {"key":"0","make":"45","break":"F0,45","y":1,"x":10,"dx":1},
-      {"key":"1","make":"16","break":"F0,16","y":1,"x":1,"dx":1},
-      {"key":"2","make":"1E","break":"F0,1E","y":1,"x":2,"dx":1},
-      {"key":"3","make":"26","break":"F0,26","y":1,"x":3,"dx":1},
-      {"key":"4","make":"25","break":"F0,25","y":1,"x":4,"dx":1},
-      {"key":"5","make":"2E","break":"F0,2E","y":1,"x":5,"dx":1},
-      {"key":"6","make":"36","break":"F0,36","y":1,"x":6,"dx":1},
-      {"key":"7","make":"3D","break":"F0,3D","y":1,"x":7,"dx":1},
-      {"key":"8","make":"3E","break":"F0,3E","y":1,"x":8,"dx":1},
-      {"key":"9","make":"46","break":"F0,46","y":1,"x":9,"dx":1},
-      {"key":"`","make":"0E","break":"F0,0E","y":1,"x":0,"dx":1},
-      {"key":"-","make":"4E","break":"F0,4E","y":1,"x":11,"dx":1},
-      {"key":"=","make":"55","break":"FO,55","y":1,"x":12,"dx":1},
-      {"key":"\\","make":"5D","break":"F0,5D","y":2,"x":13,"dx":1},
+      {"key":"A","make":"1C","break":"F0,1C","y":3,"x":1,"dx":1, "keycode":65},
+      {"key":"B","make":"32","break":"F0,32","y":4,"x":5,"dx":1, "keycode":66},
+      {"key":"C","make":"21","break":"F0,21","y":4,"x":3,"dx":1, "keycode":67},
+      {"key":"D","make":"23","break":"F0,23","y":3,"x":3,"dx":1, "keycode":68},
+      {"key":"E","make":"24","break":"F0,24","y":2,"x":3,"dx":1, "keycode":69},
+      {"key":"F","make":"2B","break":"F0,2B","y":3,"x":4,"dx":1, "keycode":70},
+      {"key":"G","make":"34","break":"F0,34","y":3,"x":5,"dx":1, "keycode":71},
+      {"key":"H","make":"33","break":"F0,33","y":3,"x":6,"dx":1, "keycode":72},
+      {"key":"I","make":"43","break":"F0,43","y":2,"x":8,"dx":1, "keycode":73},
+      {"key":"J","make":"3B","break":"F0,3B","y":3,"x":7,"dx":1, "keycode":74},
+      {"key":"K","make":"42","break":"F0,42","y":3,"x":8,"dx":1, "keycode":75},
+      {"key":"L","make":"4B","break":"F0,4B","y":3,"x":9,"dx":1, "keycode":76},
+      {"key":"M","make":"3A","break":"F0,3A","y":4,"x":7,"dx":1, "keycode":77},
+      {"key":"N","make":"31","break":"F0,31","y":4,"x":6,"dx":1, "keycode":78},
+      {"key":"O","make":"44","break":"F0,44","y":2,"x":9,"dx":1, "keycode":79},
+      {"key":"P","make":"4D","break":"F0,4D","y":2,"x":10,"dx":1, "keycode":80},
+      {"key":"Q","make":"15","break":"F0,15","y":2,"x":1,"dx":1, "keycode":81},
+      {"key":"R","make":"2D","break":"F0,2D","y":2,"x":4,"dx":1, "keycode":82},
+      {"key":"S","make":"1B","break":"F0,1B","y":3,"x":2,"dx":1, "keycode":83},
+      {"key":"T","make":"2C","break":"F0,2C","y":2,"x":5,"dx":1, "keycode":84},
+      {"key":"U","make":"3C","break":"F0,3C","y":2,"x":7,"dx":1, "keycode":85},
+      {"key":"V","make":"2A","break":"F0,2A","y":4,"x":4,"dx":1, "keycode":86},
+      {"key":"W","make":"1D","break":"F0,1D","y":2,"x":2,"dx":1, "keycode":87},
+      {"key":"X","make":"22","break":"F0,22","y":4,"x":2,"dx":1, "keycode":88},
+      {"key":"Y","make":"35","break":"F0,35","y":2,"x":6,"dx":1, "keycode":89},
+      {"key":"Z","make":"1A","break":"F0,1A","y":4,"x":1,"dx":1, "keycode":90},
+      {"key":"0","make":"45","break":"F0,45","y":1,"x":10,"dx":1, "keycode":48},
+      {"key":"1","make":"16","break":"F0,16","y":1,"x":1,"dx":1, "keycode":49},
+      {"key":"2","make":"1E","break":"F0,1E","y":1,"x":2,"dx":1, "keycode":50},
+      {"key":"3","make":"26","break":"F0,26","y":1,"x":3,"dx":1, "keycode":51},
+      {"key":"4","make":"25","break":"F0,25","y":1,"x":4,"dx":1, "keycode":52},
+      {"key":"5","make":"2E","break":"F0,2E","y":1,"x":5,"dx":1, "keycode":53},
+      {"key":"6","make":"36","break":"F0,36","y":1,"x":6,"dx":1, "keycode":54},
+      {"key":"7","make":"3D","break":"F0,3D","y":1,"x":7,"dx":1, "keycode":55},
+      {"key":"8","make":"3E","break":"F0,3E","y":1,"x":8,"dx":1, "keycode":56},
+      {"key":"9","make":"46","break":"F0,46","y":1,"x":9,"dx":1, "keycode":57},
+      {"key":"`","make":"0E","break":"F0,0E","y":1,"x":0,"dx":1, "keycode":192},
+      {"key":"-","make":"4E","break":"F0,4E","y":1,"x":11,"dx":1, "keycode":189},
+      {"key":"=","make":"55","break":"FO,55","y":1,"x":12,"dx":1, "keycode":187},
+      {"key":"\\","make":"5D","break":"F0,5D","y":2,"x":13,"dx":1, "keycode":220},
       {"key":"BKSP","make":"66","break":"F0,66","y":1,"x":13,"dx":1.5,"keycode":8},
       {"key":"SPACE","make":"29","break":"F0,29","y":5,"x":3,"dx":5,"keycode":32},
       {"key":"TAB","make":"0D","break":"F0,0D","y":2,"x":0,"dx":1.5,"keycode":9},
@@ -110,7 +109,7 @@
       {"key":"SCRN","make":"E0,7C ","break":"7C,E0, F0,12 ","y":null,"x":null,"dx":null},
       {"key":"SCROLL","make":"7E","break":"F0,7E","y":null,"x":null,"dx":null,"keycode":145},
       {"key":"PAUSE","make":"E1,14,77, E1,F0,14, F0,77","break":"","y":null,"x":null,"dx":null,"keycode":19},
-      {"key":"[","make":"54","break":"FO,54","y":2,"x":11,"dx":1},
+      {"key":"[","make":"54","break":"FO,54","y":2,"x":11,"dx":1, "keycode":219},
       {"key":"INSERT","make":"E0,70","break":"E0,F0,70","y":null,"x":null,"dx":null,"keycode":45},
       {"key":"HOME","make":"E0,6C","break":"E0,F0,6C","y":null,"x":null,"dx":null,"keycode":36},
       {"key":"PG UP","make":"E0,7D","break":"E0,F0,7D","y":null,"x":null,"dx":null,"keycode":33},
@@ -138,12 +137,12 @@
       {"key":"KP 7","make":"6C","break":"F0,6C","y":null,"x":null,"dx":null},
       {"key":"KP 8","make":"75","break":"F0,75","y":null,"x":null,"dx":null},
       {"key":"KP 9","make":"7D","break":"F0,7D","y":null,"x":null,"dx":null},
-      {"key":"]","make":"5B","break":"F0,5B","y":2,"x":12,"dx":1},
-      {"key":";","make":"4C","break":"F0,4C","y":3,"x":10,"dx":1},
-      {"key":"'","make":"52","break":"F0,52","y":3,"x":11,"dx":1},
-      {"key":",","make":"41","break":"F0,41","y":4,"x":8,"dx":1},
-      {"key":".","make":"49","break":"F0,49","y":4,"x":9,"dx":1},
-      {"key":"/","make":"4A","break":"F0,4A","y":4,"x":10,"dx":1}];
+      {"key":"]","make":"5B","break":"F0,5B","y":2,"x":12,"dx":1, "keycode":221},
+      {"key":";","make":"4C","break":"F0,4C","y":3,"x":10,"dx":1, "keycode":186},
+      {"key":"'","make":"52","break":"F0,52","y":3,"x":11,"dx":1, "keycode":222},
+      {"key":",","make":"41","break":"F0,41","y":4,"x":8,"dx":1, "keycode":188},
+      {"key":".","make":"49","break":"F0,49","y":4,"x":9,"dx":1, "keycode":190},
+      {"key":"/","make":"4A","break":"F0,4A","y":4,"x":10,"dx":1, "keycode":191}];
 
 
     var keyboardKeys = scanCodes.filter(function(d) { return d.x !== null && d.y !== null });
@@ -185,11 +184,16 @@
     }
 
     function typeKey(e) {
-      // get the key
+      // Get the key code
       var key = d3.event.keyCode || d3.event.which;
-      var keySel = module.sel.selectAll(".key").filter(function(d) { return d.key === String.fromCharCode(key) });
-      if(keySel.empty()) keySel = module.sel.selectAll(".key").filter(function(d) { return d.keycode === key });
-      var scanType = (d3.event.type == "keydown" || d3.event.type == "keypress" ? "make" : "break");
+      
+      //Overriding Firefox key codes and setting them to those of other browsers.
+      if (key === 59) key = 186;
+      else if (key === 61) key = 187;
+      else if (key === 173) key = 189;
+
+      var keySel = module.sel.selectAll(".key").filter(function(d) { return d.keycode === key });
+      var scanType = d3.event.type == "keydown" ? "make" : "break";
       drawKey(keySel, scanType);
     }
 
