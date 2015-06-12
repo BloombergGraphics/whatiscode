@@ -157,8 +157,7 @@ function footnotes() {
       popup
         .style("opacity", 0)
         .style("display", "block")
-        .transition()
-        .duration(300)
+        .transition().duration(300)
         .style("opacity", 1);
     }
 
@@ -183,10 +182,9 @@ function footnotes() {
     var popup = d3.select(this.parentElement).select(".fn-popup");
     if(!popup.classed("stick")) {
       popup
-        .transition()
-        .duration(300)
+        .transition().duration(300)
         .style("opacity", 0)
-        .transition()
+        .transition().duration(0)
         .style("display", "none");
       return;
     } else {
@@ -196,9 +194,11 @@ function footnotes() {
 
   // toggle stickiness
   function toggleFootnote(d,i) {
+    console.log("toggleFootnote")
     d3.event.preventDefault();
     var popup = d3.select(this.parentElement).select(".fn-popup")
     popup.classed("stick", !popup.classed("stick"));
+    if (!popup.classed("stick")) hideFootnote.call(this);
   }
 
 }
