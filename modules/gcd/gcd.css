@@ -55,14 +55,27 @@
   float: left;
 }
 
-
 [data-module="gcd"] .explanation div{
   padding-bottom: 20px;
 }
 
 [data-module="gcd"] .btn{
+  background: #2800d7;
   color: white;
-  font-size: 20px;
-  cursor: pointer;
   padding: 8px !important;
+  font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 16px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle; 
+  -webkit-transition: background 0.4s;
+       -moz-transition: background 0.4s;
+        -ms-transition: background 0.4s;
+         -o-transition: background 0.4s;
+            transition: background 0.4s;
+}
+[data-module="gcd"] .btn:hover { 
+  background: #6381ff; 
+  cursor: pointer;
 }

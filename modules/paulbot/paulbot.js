@@ -142,9 +142,9 @@ var paulbot;
         d3.select("body").append("iframe")
           .attr("id", "reggaegg")
           .attr("src", "reggaegg.html");
-        } else {
-          d3.select("#reggaegg").remove();
-        }
+      } else {
+        d3.select("#reggaegg").remove();
+      }
     }
   });
 
