@@ -528,6 +528,7 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 
 ol{overflow: visible;padding-left:0; list-style-position:inside;margin-left: 20px;}
 li {margin:0 0 0 40px;padding:0;list-style: decimal;}
+ol ol li {list-style-type:lower-alpha;}
 
 
 
