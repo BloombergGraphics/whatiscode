@@ -2355,18 +2355,18 @@ class Book(models.Model):
          </sup> They chat about data. They chat about requirements and interesting approaches. And they chat constantly about deployment. Which makes sense, because that&rsquo;s the goal of their work&mdash;getting their code from their brain through testing and out to the world, in Web, app, or other form. Programmers, good ones, want to ship and move on to the next nail-biting problem. So there are lots of policies, tons of them, for deploying fresh code. For example:</p>
 
          <ol>
-                               <li> All programming work must happen in a branch.</p>
-                               <li> When work is done, we will merge it back into the main branch; and  </li>
-                                                                           <ol>
-                                                                                                    <li>Run tests; </li>
-                                                                                                    <li>Then &ldquo;push&rdquo; the code over to GitHub.</li>
-                                                                           </ol>
-                               <li> At which point an automated service will run; and </li>
-                               <li> A service running on each of the 50 computers will &ldquo;check out&rdquo; the code; and </li>
-                               <li> Install it, overwriting the old version; </li>
-                               <li> Then stop the computer&rsquo;s Web servers; </li>
-                               <li> Then restart them, so the new code can load and get to work.</li>
-                         </ol>
+             <li>All programming work must happen in a branch.</li>
+             <li>When work is done, we will merge it back into the main branch; and </li>
+             <ol>
+                 <li>Run tests;</li>
+                 <li>Then &ldquo;push&rdquo; the code over to GitHub.</li>
+             </ol>
+             <li>At which point an automated service will run; and</li>
+             <li>A service running on each of the 50 computers will &ldquo;check out&rdquo; the code; and</li>
+             <li>Install it, overwriting the old version;</li>
+             <li>Then stop the computer&rsquo;s Web servers;</li>
+             <li>Then restart them, so the new code can load and get to work.</li>
+          </ol>
 
       <p>See, tests and version control are now the trigger for actually shipping code. If you can follow a process like this, you can release software several times a day&mdash;which in the days of shrink-wrapped software would have been folly. (Often builds were done nightly, by big &ldquo;build servers,&rdquo; and one would come in the next morning to get the score.) But now that software can be released via the Web or an app store, why wait? Why not continually release software, every day, whenever you have something that&rsquo;s ready to go?</p>
 
