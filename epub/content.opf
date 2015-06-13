@@ -1,0 +1,170 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+  <metadata xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/">
+    <dc:title>What is Code?</dc:title>
+    <dc:creator opf:role="aut" opf:file-as="Ford, Paul">Paul Ford</dc:creator>
+    <dc:date>2015-06-11T04:00:00+00:00</dc:date>
+    <dc:publisher>Bloomberg Media</dc:publisher>
+    <dc:identifier id="uuid_id" opf:scheme="uuid">6bfd37a6-03ca-4fe7-9916-07e04a2d5ed8</dc:identifier>
+    <dc:contributor opf:role="bkp">calibre (2.28.0) [http://calibre-ebook.com]</dc:contributor>
+    <dc:contributor opf:role="bkp">unglue.it [https://unglue.it]</dc:contributor>
+    <dc:language>en</dc:language>
+    <dc:identifier opf:scheme="calibre">6bfd37a6-03ca-4fe7-9916-07e04a2d5ed8</dc:identifier>
+    <dc:identifier opf:scheme="HTTP">//www.bloomberg.com/graphics/2015-paul-ford-what-is-code/</dc:identifier>
+    <meta name="calibre:title_sort" content="What is Code?"/>
+    <meta name="calibre:timestamp" content="2015-06-13T05:24:05.241346+00:00"/>
+    <meta name="cover" content="cover"/>
+    <meta name="calibre:author_link_map" content="{&quot;Paul Ford&quot;: &quot;&quot;}"/>
+  </metadata>
+  <manifest>
+    <item href="titlepage.xhtml" id="titlepage" media-type="application/xhtml+xml"/>
+    <item href="index_split_000.html" id="html11" media-type="application/xhtml+xml"/>
+    <item href="index_split_001.html" id="html10" media-type="application/xhtml+xml"/>
+    <item href="index_split_002.html" id="html9" media-type="application/xhtml+xml"/>
+    <item href="index_split_003.html" id="html8" media-type="application/xhtml+xml"/>
+    <item href="index_split_004.html" id="html7" media-type="application/xhtml+xml"/>
+    <item href="index_split_005.html" id="html6" media-type="application/xhtml+xml"/>
+    <item href="index_split_006.html" id="html5" media-type="application/xhtml+xml"/>
+    <item href="index_split_007.html" id="html4" media-type="application/xhtml+xml"/>
+    <item href="index_split_008.html" id="html3" media-type="application/xhtml+xml"/>
+    <item href="index_split_009.html" id="html2" media-type="application/xhtml+xml"/>
+    <item href="index_split_010.html" id="html1" media-type="application/xhtml+xml"/>
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+    <item href="page_styles.css" id="page_css" media-type="text/css"/>
+    <item href="stylesheet.css" id="css" media-type="text/css"/>
+    <item href="angry.gif" id="added46" media-type="image/gif"/>
+    <item href="angry2.gif" id="added47" media-type="image/gif"/>
+    <item href="angry3.gif" id="added45" media-type="image/gif"/>
+    <item href="angry4.gif" id="added48" media-type="image/gif"/>
+    <item href="ballmer.gif" id="added10" media-type="image/gif"/>
+    <item href="certificatedemo_800.png" id="added82" media-type="image/png"/>
+    <item href="chatter_blue.gif" id="added58" media-type="image/gif"/>
+    <item href="chatter_green.gif" id="added59" media-type="image/gif"/>
+    <item href="chatter_orange.gif" id="added57" media-type="image/gif"/>
+    <item href="conferencebot.gif" id="added33" media-type="image/gif"/>
+    <item href="cover.jpeg" id="cover" media-type="image/jpeg"/>
+    <item href="drinkbot.gif" id="added34" media-type="image/gif"/>
+    <item href="letter.jpg" id="added3" media-type="image/jpeg"/>
+    <item href="pizza.gif" id="added61" media-type="image/gif"/>
+    <item href="sec1_conference01.jpg" id="added30" media-type="image/jpeg"/>
+    <item href="sec1_conference02.jpg" id="added21" media-type="image/jpeg"/>
+    <item href="sec1_conference03.jpg" id="added25" media-type="image/jpeg"/>
+    <item href="sec1_conference04.jpg" id="added20" media-type="image/jpeg"/>
+    <item href="sec1_conference05.jpg" id="added28" media-type="image/jpeg"/>
+    <item href="sec1_conference06.jpg" id="added22" media-type="image/jpeg"/>
+    <item href="sec1_conference07.jpg" id="added26" media-type="image/jpeg"/>
+    <item href="sec1_conference08.jpg" id="added27" media-type="image/jpeg"/>
+    <item href="sec1_conference09.jpg" id="added24" media-type="image/jpeg"/>
+    <item href="sec1_conference10.jpg" id="added29" media-type="image/jpeg"/>
+    <item href="sec1_conference11.jpg" id="added23" media-type="image/jpeg"/>
+    <item href="sec1_conference12.jpg" id="added31" media-type="image/jpeg"/>
+    <item href="sec1_demographics.jpg" id="added37" media-type="image/jpeg"/>
+    <item href="sec1_edward.jpg" id="added19" media-type="image/jpeg"/>
+    <item href="sec1_excel.jpg" id="added12" media-type="image/jpeg"/>
+    <item href="sec1_excel2.jpg" id="added13" media-type="image/jpeg"/>
+    <item href="sec1_graph1.jpg" id="added17" media-type="image/jpeg"/>
+    <item href="sec1_graph2.jpg" id="added18" media-type="image/jpeg"/>
+    <item href="sec1_hopper.jpg" id="added36" media-type="image/jpeg"/>
+    <item href="sec1_horrible.jpg" id="added8" media-type="image/jpeg"/>
+    <item href="sec1_interesting.jpg" id="added6" media-type="image/jpeg"/>
+    <item href="sec1_lovelace.jpg" id="added35" media-type="image/jpeg"/>
+    <item href="sec1_rubegoldberg.jpg" id="added11" media-type="image/jpeg"/>
+    <item href="sec1_taupe.jpg" id="added4" media-type="image/jpeg"/>
+    <item href="sec1_tree.jpg" id="added14" media-type="image/jpeg"/>
+    <item href="sec1_tree2.jpg" id="added15" media-type="image/jpeg"/>
+    <item href="sec1_wonderful.jpg" id="added7" media-type="image/jpeg"/>
+    <item href="sec2_backus.jpg" id="added56" media-type="image/jpeg"/>
+    <item href="sec2_clubmate.jpg" id="added51" media-type="image/jpeg"/>
+    <item href="sec2_cult.jpg" id="added49" media-type="image/jpeg"/>
+    <item href="sec2_fridgebike.jpg" id="added38" media-type="image/jpeg"/>
+    <item href="sec2_geekdesk.jpg" id="added55" media-type="image/jpeg"/>
+    <item href="sec2_gopher.jpg" id="added39" media-type="image/jpeg"/>
+    <item href="sec2_jerker.jpg" id="added54" media-type="image/jpeg"/>
+    <item href="sec2_jet.jpg" id="added79" media-type="image/jpeg"/>
+    <item href="sec2_lisp.jpg" id="added41" media-type="image/jpeg"/>
+    <item href="sec2_macbook.jpg" id="added52" media-type="image/jpeg"/>
+    <item href="sec2_octopus.jpg" id="added43" media-type="image/jpeg"/>
+    <item href="sec2_pacman.gif" id="added78" media-type="image/gif"/>
+    <item href="sec2_pullup.jpg" id="added42" media-type="image/jpeg"/>
+    <item href="sec2_ribbon.jpg" id="added60" media-type="image/jpeg"/>
+    <item href="sec2_scratch.jpg" id="added40" media-type="image/jpeg"/>
+    <item href="sec2_smalltalk2.jpg" id="added44" media-type="image/jpeg"/>
+    <item href="sec2_soylent.jpg" id="added50" media-type="image/jpeg"/>
+    <item href="sec2_sublime.jpg" id="added53" media-type="image/jpeg"/>
+    <item href="sec2_wiki.jpg" id="added80" media-type="image/jpeg"/>
+    <item href="sec3_addbook.jpg" id="added72" media-type="image/jpeg"/>
+    <item href="sec3_braids.jpg" id="added77" media-type="image/jpeg"/>
+    <item href="sec3_btn_gradient.jpg" id="added65" media-type="image/jpeg"/>
+    <item href="sec3_btn_inline.jpg" id="added70" media-type="image/jpeg"/>
+    <item href="sec3_btn_push.jpg" id="added64" media-type="image/jpeg"/>
+    <item href="sec3_btn_recessed.jpg" id="added69" media-type="image/jpeg"/>
+    <item href="sec3_btn_roundrec.jpg" id="added66" media-type="image/jpeg"/>
+    <item href="sec3_btn_roundtextured.jpg" id="added67" media-type="image/jpeg"/>
+    <item href="sec3_btn_textured.jpg" id="added68" media-type="image/jpeg"/>
+    <item href="sec3_diary.jpg" id="added62" media-type="image/jpeg"/>
+    <item href="sec3_django2.jpg" id="added71" media-type="image/jpeg"/>
+    <item href="sec3_django3.jpg" id="added75" media-type="image/jpeg"/>
+    <item href="sec3_helloworld.jpg" id="added81" media-type="image/jpeg"/>
+    <item href="sec3_helpwanted.jpg" id="added74" media-type="image/jpeg"/>
+    <item href="sec3_magic.jpg" id="added16" media-type="image/jpeg"/>
+    <item href="sec3_paul.jpg" id="added83" media-type="image/jpeg"/>
+    <item href="sec3_repositories.jpg" id="added76" media-type="image/jpeg"/>
+    <item href="sec3_semicolon.jpg" id="added73" media-type="image/jpeg"/>
+    <item href="sec3_xcode.jpg" id="added63" media-type="image/jpeg"/>
+    <item href="swagbot.gif" id="added32" media-type="image/gif"/>
+    <item href="taupe.gif" id="added5" media-type="image/gif"/>
+    <item href="toc_icon.gif" id="added142" media-type="image/gif"/>
+    <item href="twitter-blk.png" id="added9" media-type="image/png"/>
+    <item href="waving.gif" id="added84" media-type="image/gif"/>
+    <item href="backbone-min.js" id="added89" media-type="application/x-javascript"/>
+    <item href="backbone.localstorage-min.js" id="added90" media-type="application/x-javascript"/>
+    <item href="background.js" id="added99" media-type="application/x-javascript"/>
+    <item href="bot.js" id="added96" media-type="application/x-javascript"/>
+    <item href="botlearninal.js" id="added95" media-type="application/x-javascript"/>
+    <item href="certificate.js" id="added101" media-type="application/x-javascript"/>
+    <item href="circuit.js" id="added102" media-type="application/x-javascript"/>
+    <item href="crapplets.js" id="added103" media-type="application/x-javascript"/>
+    <item href="d3-jetpack.js" id="added94" media-type="application/x-javascript"/>
+    <item href="d3.v3.min.js" id="added93" media-type="application/x-javascript"/>
+    <item href="debug.js" id="added104" media-type="application/x-javascript"/>
+    <item href="es6-promise.min.js" id="added85" media-type="application/x-javascript"/>
+    <item href="esprima.js" id="added91" media-type="application/x-javascript"/>
+    <item href="gcd.js" id="added105" media-type="application/x-javascript"/>
+    <item href="grabbag.js" id="added106" media-type="application/x-javascript"/>
+    <item href="highlight.pack.js" id="added92" media-type="application/x-javascript"/>
+    <item href="jquery.fittext.js" id="added87" media-type="application/x-javascript"/>
+    <item href="jquery.min.js" id="added86" media-type="application/x-javascript"/>
+    <item href="keyboard.js" id="added107" media-type="application/x-javascript"/>
+    <item href="learninal.js" id="added108" media-type="application/x-javascript"/>
+    <item href="livehtml.js" id="added109" media-type="application/x-javascript"/>
+    <item href="main.js" id="added97" media-type="application/x-javascript"/>
+    <item href="maps.js" id="added115" media-type="application/x-javascript"/>
+    <item href="module-manager.js" id="added98" media-type="application/x-javascript"/>
+    <item href="mouse.js" id="added110" media-type="application/x-javascript"/>
+    <item href="paulbot.js" id="added111" media-type="application/x-javascript"/>
+    <item href="share.js" id="added116" media-type="application/x-javascript"/>
+    <item href="text-diff.js" id="added112" media-type="application/x-javascript"/>
+    <item href="tinder.js" id="added113" media-type="application/x-javascript"/>
+    <item href="toc.js" id="added100" media-type="application/x-javascript"/>
+    <item href="tracker.js" id="added139" media-type="application/x-javascript"/>
+    <item href="tree.js" id="added114" media-type="application/x-javascript"/>
+    <item href="underscore-min.js" id="added88" media-type="application/x-javascript"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="titlepage"/>
+    <itemref idref="html11"/>
+    <itemref idref="html10"/>
+    <itemref idref="html9"/>
+    <itemref idref="html8"/>
+    <itemref idref="html7"/>
+    <itemref idref="html6"/>
+    <itemref idref="html5"/>
+    <itemref idref="html4"/>
+    <itemref idref="html3"/>
+    <itemref idref="html2"/>
+    <itemref idref="html1"/>
+  </spine>
+  <guide>
+    <reference href="titlepage.xhtml" title="Cover" type="cover"/>
+  </guide>
+</package>
