@@ -400,7 +400,7 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
   -moz-transform: translate(-50%,0);
   -ms-transform: translate(-50%,0);
   display: none;
-  z-index: 2;
+  z-index: 3;
 }
 .fn-popup p {
   margin: 1em 0 0 0;
