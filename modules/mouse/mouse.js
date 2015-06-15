@@ -8,7 +8,8 @@
       "emote": "explaining",
       "speak": "Move your mouse, see the events. Every time you do something, your computer knows about it. That’s its job. And sometimes marketers are listening and your Web browser reports back to them. That’s their job! Is that happening right now on this website? Great question!"
     },
-    { "emote": "chill" }
+    { "emote": "chill",
+      "prompts": [{"prompt": "Stop it", do: function() { module.disabled = true; } }] }
   ];
 
   module.bot = bot();
@@ -33,7 +34,7 @@
 
     function drawMouse(e) {
 
-      if(!module.active) return;
+      if(!module.active || module.disabled) return;
 
       var xScale = d3.scale.linear().domain([0,$(window).width()]).range([0, 255]);
       var xScale2 = d3.scale.linear().domain([0,$(window).width()]).range([255, 0]);
