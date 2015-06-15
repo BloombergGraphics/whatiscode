@@ -436,14 +436,18 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
             .style('width', innerWidth > 740 ? '728px' : '300px')
             .style('margin', '0px auto')        
       } else{
+        console.log('adding ad ' + n)
         var sel = d3.select(this)
         addModule({
           sel: sel,
           oninit: function(){ 
+            console.log('asdfasdf')
             sel.html(innerHTML)
                 .style('width', innerWidth > 740 ? '728px' : '300px')
                 .style('margin', '0px auto')
-          }
+          },
+          minWidth: 1,
+          name: 'ad-' + n
         })
 
       }
