@@ -417,7 +417,7 @@
         "description": nodeDescription,
         "ref": node,
         "size": (node && node.innerHTML) ? node.innerHTML.length : 0,
-        "children": Array.prototype.slice.call(node.children).map(getDomTree)
+        "children": node.children ? Array.prototype.slice.call(node.children).map(getDomTree) : null
       };
     }
 

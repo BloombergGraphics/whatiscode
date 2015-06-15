@@ -95,9 +95,9 @@
   background: white;
 }
 
-
+/* TODO: this should be enabled if we can improve performance... gotta unload things more aggressively? */
 .safari [data-module="tree"], .safari [data-mname="tree"], .safari .learninal{
-  display: none !important
+  display: none !important;
 }
 
 [data-mname="tree"]{
