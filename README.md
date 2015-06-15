@@ -1,4 +1,8 @@
-http://www.bloomberg.com/whatiscode
+## [What Is Code?](http://www.bloomberg.com/whatiscode)
+*Businessweek*, June 11, 2015  
+by [Paul Ford](https://twitter.com/ftrain)  
+
+Report an [issue](https://github.com/BloombergMedia/whatiscode/issues) or suggest changes by submitting a [pull request](https://github.com/BloombergMedia/whatiscode/pulls). Issues and pull requests labeled “[text](https://github.com/BloombergMedia/whatiscode/labels/text)” will be reviewed by an editor, though we make no guarantees about timeliness. Changes merged into master may take a day or so to push live to production, especially on weekends.
 
 #### LICENSE
 ---
