@@ -423,17 +423,30 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
       (config.correlator || new String(Math.random()).substring(2,11));
 
     ads
-    .filter(function(__, i){ return i || innerWidth >= 1140 })
+    .filter(function(__, i){ return i || innerWidth >= 1240 })
     .each(function(__, i){
       var randValue = new String(Math.random()).substring(2,11);
       var n = i + 1;
       var innerHTML = new_leader + '&position=' + sizePos + n + '&ord=' + randValue + '"></iframe>';      
       
-      d3.select(this)
-          // .style('display', 'block')
-          .html(innerHTML)
-          .style('width', innerWidth > 740 ? '728px' : '300px')
-          .style('margin', '0px auto')
+      //always load top banner
+      if (!i && innerWidth >= 1240){
+        d3.select(this)
+            .html(innerHTML)
+            .style('width', innerWidth > 740 ? '728px' : '300px')
+            .style('margin', '0px auto')        
+      } else{
+        var sel = d3.select(this)
+        addModule({
+          sel: sel,
+          oninit: function(){ 
+            sel.html(innerHTML)
+                .style('width', innerWidth > 740 ? '728px' : '300px')
+                .style('margin', '0px auto')
+          }
+        })
+
+      }
     })  
 
 })()
