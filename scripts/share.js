@@ -32,7 +32,7 @@ function initInnerShare() {
       return 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left;
     },
 
-    postToTwitter: function() {
+    postToTwitter: function(event) {
       event.preventDefault()
       var data = moduleByName[d3.select(this).attr('data-mname')][0];
       // var data = shareData();
