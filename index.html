@@ -565,10 +565,11 @@
          </sup> the language of laser printers, came after Forth but is much like it. Look at how similar the code is, give or take some squiggles:</p>
     
 <pre><code class="nohighlight postscript">/gcd {
-{
-  {0 gt} {dup rup mod} {pop exit} ifte
-} loop
-}.</code></pre>
+   dup 0 ne {
+      dup 3 1 roll mod gcd
+   } { pop } ifelse
+} def
+</code></pre>
 
     <p>And that&rsquo;s Euclid&rsquo;s algorithm in PostScript. I admit, this might be fun only for me. Here it is in Python (all credit to Rosetta Code):</p>
 
