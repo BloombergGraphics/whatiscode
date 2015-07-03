@@ -365,12 +365,15 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 .footref:not(.correx)::before {
   content: "■ ";
 }
+.footref.notabene::before {
+  content: "✱"; 
+}
 .footref:hover {
   cursor: pointer;
   color: #2800d7;
   border: 1px solid #2800d7;
 }
-.footref.correx:hover {
+.footref.correx:not(.notabene):hover {
   border: 1px solid #f94600;
   color: #f94600;
 }
@@ -378,7 +381,7 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
   background: #6381ff;
   color: #2800d7;
 }
-.footref.correx.stick {
+.footref.correx:not(.notabene).stick {
   background: rgba(249,70,0,.5);
   color: rgba(249,70,0,1);
 }
