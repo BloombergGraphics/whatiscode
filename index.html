@@ -2184,7 +2184,9 @@ class Book(models.Model):
 
      <p>In programming, there are as many ways to destroy something as to create something. One stray character is all that&rsquo;s required. Say you forget a semicolon or use an accented &ldquo;&eacute;&rdquo; somewhere, but the code is not prepared for such a peculiarity&mdash;KABOOM! Or you add two things together, but one is the numeral 4 and the other is &ldquo;4&rdquo; as a string, as you might use to say &ldquo;4 and 20 blackbirds baked in a pie.&rdquo; To the computer, that &ldquo;4 and 20&rdquo; has no numeric significance.</p>
 
-     <p>This sort of thing really happens, and part of the job is remembering that 4 + 20 is 24 and 4 + &ldquo;20&rdquo; is &ldquo;420.&rdquo;</p>
+     <p>This sort of thing really happens, and part of the job is remembering that 4 + 20 is 24 and 4 + &ldquo;20&rdquo; is &ldquo;420&rdquo;.<span class="footwrapper" style="position: relative;"><a class="footref correx notabene"></a><span class="fn-popup" style="opacity: 0; display: none;">
+            The concatenation operation should have produced "420", with no period inside the quotation marks. <em><a href="https://github.com/BloombergMedia/whatiscode/issues/76" target="_blank">Thanks to @castaway on GitHub</a></em>
+         </span></span></p>
 
     <p>Programming is debugging. It&rsquo;s the expectation that things won&rsquo;t work. This is not something people bring up, just like they don&rsquo;t bring up their medical history on the first date. Most languages have constructs built in for catching failures, trapping them like wild animals, examining them, and, well, exterminating them. In time, as the relationship between you and a programming language blossoms, you come to realize that what truly characterizes a language is not what it does, but how it tells you what broke. Most of your programming life will be spent trying to figure out what broke, and if the computer helps you, maybe you can watch your kids play soccer.</p>
 
