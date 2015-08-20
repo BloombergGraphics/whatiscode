@@ -96,7 +96,7 @@
 }
 
 /* TODO: this should be enabled if we can improve performance... gotta unload things more aggressively? */
-.safari [data-module="tree"], .safari [data-mname="tree"], .safari .learninal{
+.safari [data-module="tree"], .safari [data-mname="tree"] {
   display: none !important;
 }
 
