@@ -324,25 +324,46 @@ a:hover{color:#f94600; border-bottom: 2px solid #f94600;}
 .icons {display: inline;}
 .icons img{height:50px;width: auto;}
 
-.terminal .videoWrapper {
-  display: none;
-}
+/* VIDEOS */
+/* re: bplayer, cf. http://bl.ocks.org/tophtucker/4bfe467ba870734de86c */
 
-.videoWrapper {
+.video-wrapper {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   padding-top: 25px;
   height: 0;
 }
-.videoWrapper iframe {
+
+.video-wrapper-inner {
+  width: 100%;
+  height: 0;
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.video-wrapper-inner > div {
+  position: absolute;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.videoRight{
+  width: 340px;
+  margin:0 -140px 0 0;
+  padding: 0 0 10px 20px;
+  float: right;
+}
+
+.video-wrapper iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
-  background: #eee;
-  z-index: 3;
+}
+
+.terminal .video-wrapper {
   display: none;
 }
 
@@ -549,46 +570,6 @@ ol ol li {list-style-type:lower-alpha;}
   width:240px;
 }
 .listRinner {padding: 8px;  border:4px solid #f94600;}
-
-
-.videoRight{
-  width: 340px;
-  margin:0 -140px 0 0;
-  padding: 0 0 10px 20px;
-  float: right;
-}
-
-
-.videoWrapperB {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  padding-top: 25px;
-  height: 0;
-  display: block;
-}
-
-.videoWrapperB iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.videoWrapper2 {
-  width: 100%;
-  height: 0;
-  position: relative;
-  padding-top: 56.25%;
-}
-
-
-.videoWrapper2 .video-js {
-  position: absolute;
-  top: 0;
-  width: 100% !important;
-  height: 100% !important;
-}
-
 
 
 .language{ border-bottom: 4px solid #f94600;margin: 20px auto; padding: 4px auto;}
