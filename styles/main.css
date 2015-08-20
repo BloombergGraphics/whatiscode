@@ -155,46 +155,46 @@ h4 {
 
 @keyframes "blink" {
   from, to {
-    color: transparent;
+    opacity: 0;
   }
   50% {
-    color: #fff;
+    opacity: 1;
   }
 }
 
 @-moz-keyframes blink {
   from, to {
-    color: transparent;
+    opacity: 0;
   }
   50% {
-    color: #fff;
+    opacity: 1;
   }
 }
 
 @-webkit-keyframes "blink" {
   from, to {
-    color: transparent;
+    opacity: 0;
   }
   50% {
-    color: #fff;
+    opacity: 1;
   }
 }
 
 @-ms-keyframes "blink" {
   from, to {
-    color: transparent;
+    opacity: 0;
   }
   50% {
-    color: #fff;
+    opacity: 1;
   }
 }
 
 @-o-keyframes "blink" {
   from, to {
-    color: transparent;
+    opacity: 0;
   }
   50% {
-    color: #fff;
+    opacity: 1;
   }
 }
 
