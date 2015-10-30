@@ -482,7 +482,12 @@ ol ol li {list-style-type:lower-alpha;}
 .imageRight{margin-right: -140px;float:right;width: 500px;padding-left: 24px;}
 .imageLeft img, .imageRight img{width: 100%}
 
-.inlineImg {display: inline;height:30px;}
+.inline-img {
+  display: inline;
+  vertical-align: middle;
+  height: 30px;
+  margin-top: -5px;
+}
 
 .noborder p{border-bottom:none!important;}
 
