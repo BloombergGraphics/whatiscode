@@ -262,7 +262,7 @@
     ]);
   }
 
-
+  // vestigial, half-redone...
   function destroyPage() {
     // setInterval(function() {
     //   var $el = $('body');
@@ -275,7 +275,7 @@
     d3.select('body').style('overflow', 'hidden')
 
     var firstDestroy = d3.select('#outline-container-sec-3-4').node()
-    d3.selectAll('#outline-container-sec-3-4').selectAll('h3, p, img, svg, table, .figureInline, .org-src-container, dl, .bot, .screen')
+    d3.selectAll('#outline-container-sec-3-4').selectAll('h3, p, img, svg, table, .bot')
         .transition().delay(function(d, i){ return i*50 })
           .style('display', 'none')
           .style('opacity', '0')
