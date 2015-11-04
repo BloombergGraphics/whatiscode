@@ -176,7 +176,7 @@ var stats,
       .enter()
       .append("div.toc-head")
       .attr("data-level", ƒ('tagName'))
-      .html(ƒ('innerHTML'))
+      .html(ƒ('innerText'))
       .on("click", function(d) {
         d3.select("body").transition().duration(500)
           .tween("tocscroll", scrollTopTween(d.getBoundingClientRect().top + pageYOffset));
