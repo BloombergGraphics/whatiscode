@@ -484,18 +484,33 @@ ol ol li {list-style-type:lower-alpha;}
 #paulR p{padding: 0 10px;margin:0;}
 .conference{display: inline-block;width: 33%;margin:0;vertical-align:top;}
 
-.josh {
-    border: 4px solid #3c3c3c;
-    margin: -80px 0 40px 0;
-    padding: 15px;
-    padding-top: 60px;
-    width: auto;
-}
-.josh p{margin: 0 0 10px 0 }
-.josh p:last-child {margin:0;}
 
-.letter{margin: 0 auto 40px auto;width: 290px;height:20px;text-align: center;}
-.letter a{border-bottom: 0;}
+.josh-letter {
+  margin: 2em 0;
+  padding: 15px;
+  border: 4px solid #fff;
+  transition: border .5s;
+}
+.josh-letter a {
+  border-bottom: none;
+  display: block;
+  text-align: center;
+}
+.josh-letter .josh-inner {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s;
+}
+.josh-letter.open {
+  border: 4px solid #3c3c3c;
+}
+.josh-letter.open .josh-inner {
+  max-height: 1000px;
+}
+.josh-letter .josh-inner p:last-child {
+  margin: 0;
+}
+
 
 .interactive-feature {
   position: relative;
@@ -603,7 +618,7 @@ ol ol li {list-style-type:lower-alpha;}
 
 @media (max-width: 400px) {
   .hide-mobile {display:none;}
-  .josh { margin-left: -15px; margin-right: -15px; }
+  .josh-letter { margin-left: -15px; margin-right: -15px; }
   .introText {font-size: 20px; line-height: 22px;}
   .listL, .listR,.ephemeraR,.ephemeraL,.profileR{display: none;}
   li {margin-left:0px}
