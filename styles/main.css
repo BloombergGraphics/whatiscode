@@ -180,6 +180,7 @@ h4 {
   border-bottom: none;
   display: block;
   text-align: center;
+  font-weight: bold;
 }
 .josh-letter a:hover {
   border-bottom: none;
