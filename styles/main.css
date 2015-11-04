@@ -285,13 +285,12 @@ h4 {
 a {
   color: #3c3c3c;
   text-decoration: none;
-  border-bottom: 2px solid #3c3c3c;
-  font-weight: bold;
-  transition: color .2s ease-out;
+  border-bottom: 1px solid #848484;
+  transition: color .2s, border .2s;
 }
 a:hover {
   color: #f94600; 
-  border-bottom: 2px solid #f94600;
+  border-bottom-color: #f94600;
 }
 
 #stockCreds, #changelog{
