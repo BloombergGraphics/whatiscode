@@ -384,11 +384,25 @@ a:hover {
 .interesting3{margin:-40px 0 0 580px}
 
 
-.roboto{font-family: 'Roboto Mono', courier, monospace;}
-.tokens{text-align: center;border-collapse: collapse;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;}
-
-.tokens tr:nth-child(odd){  background: #fff; }
-.tokens tr:nth-child(even){ background: #f94600;color:#fff;}
+#tokens {
+  text-align: center;
+  border-collapse: collapse;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+}
+#tokens tbody tr:nth-child(odd){
+  background: #f94600;
+  color:#fff;
+}
+#tokens tbody tr:nth-child(even){
+  background: #fff;
+}
+#tokens tr td:nth-child(1) {
+  font-family: 'Roboto Mono', courier, monospace;
+}
+#tokens tr td:nth-child(2) {
+  font-style: italic;
+}
 
 ol{overflow: visible;padding-left:0; list-style-position:inside;margin-left: 20px;}
 li {margin:0 0 0 40px;padding:0;list-style: decimal;}

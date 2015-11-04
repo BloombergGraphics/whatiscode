@@ -413,91 +413,96 @@
 
 
 
-                         <table align="center" class="tokens">
-                           <tr class="white">
-                             <th>Character</th>    <th>Meaning</th>
-                           </tr>
-                           <tr>
-                             <td class="roboto">P</td>
-                             <td><em>Hmmmm...?</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">R</td>
-                             <td><em>Someone say something?</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">I</td>
-                             <td><em>I&rsquo;m waiting...</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">N</td>
-                             <td>[drums fingers]</td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">T</td>
-                             <td><em>Any time now...</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">Space</td>
-                             <td><em>Ah, "PRINT"</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">{</td>
-                             <td><em>String coming!</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">H</td>
-                             <td><em>These</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">E</td>
-                             <td><em>letters</em></em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">L</td>
-                             <td><em>don&rsquo;t</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">L</td>
-                             <td><em>matter</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">O</td>
-                             <td><em>la</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">Space</td>
-                             <td><em>la</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">N</td>
-                             <td><em>just</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">E</td>
-                             <td><em>saving</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">R</td>
-                             <td><em>them</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">D</td>
-                             <td><em>for</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">S</td>
-                             <td><em>later</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">}</td>
-                             <td><em>Stringtime is over!</em></td>
-                           </tr>
-                           <tr>
-                             <td class="roboto">End of file</td>
-                             <td><em>Time to get to work.</em></td>
-                           </tr>
-                         </table>
+    <table id="tokens">
+      <thead>
+        <tr>
+          <th>Character</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P</td>
+          <td>Hmmmm...?</td>
+        </tr>
+        <tr>
+          <td>R</td>
+          <td>Someone say something?</td>
+        </tr>
+        <tr>
+          <td>I</td>
+          <td>I&rsquo;m waiting...</td>
+        </tr>
+        <tr>
+          <td>N</td>
+          <td>[drums fingers]</td>
+        </tr>
+        <tr>
+          <td>T</td>
+          <td>Any time now...</td>
+        </tr>
+        <tr>
+          <td>Space</td>
+          <td>Ah, "PRINT"</td>
+        </tr>
+        <tr>
+          <td>{</td>
+          <td>String coming!</td>
+        </tr>
+        <tr>
+          <td>H</td>
+          <td>These</td>
+        </tr>
+        <tr>
+          <td>E</td>
+          <td>letters</td>
+        </tr>
+        <tr>
+          <td>L</td>
+          <td>don&rsquo;t</td>
+        </tr>
+        <tr>
+          <td>L</td>
+          <td>matter</td>
+        </tr>
+        <tr>
+          <td>O</td>
+          <td>la</td>
+        </tr>
+        <tr>
+          <td>Space</td>
+          <td>la</td>
+        </tr>
+        <tr>
+          <td>N</td>
+          <td>just</td>
+        </tr>
+        <tr>
+          <td>E</td>
+          <td>saving</td>
+        </tr>
+        <tr>
+          <td>R</td>
+          <td>them</td>
+        </tr>
+        <tr>
+          <td>D</td>
+          <td>for</td>
+        </tr>
+        <tr>
+          <td>S</td>
+          <td>later</td>
+        </tr>
+        <tr>
+          <td>}</td>
+          <td>Stringtime is over!</td>
+        </tr>
+        <tr>
+          <td>End of file</td>
+          <td>Time to get to work.</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>The reason I&rsquo;m showing it to you is so you can see how every character matters. Computers usually &ldquo;understand&rdquo; things by going character by character, bit by bit, transforming the code into other kinds of code as they go. The Bolus compiler now organizes the tokens into a little tree. Kind of like a sentence diagram. Except instead of nouns, verbs, and adjectives, the computer is looking for functions and arguments. Our program above, inside the computer, becomes this: </p>
 
