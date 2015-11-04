@@ -10,34 +10,32 @@
 <html lang="en">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-                         <meta charset="utf-8">
-                         <title>Paul Ford: What is Code? | Bloomberg</title>
+  <meta charset="utf-8">
+  <title>Paul Ford: What is Code? | Bloomberg</title>
 
-                         <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width">
 
-                         
-                         <meta  name="author" content="Paul Ford" />
-                         <meta  name="description" content="What do you need to know about code to survive in a suspicious world?"/>
+  <meta  name="author" content="Paul Ford" />
+  <meta  name="description" content="What do you need to know about code to survive in a suspicious world?"/>
 
-                         <meta property="og:site_name" content="Bloomberg.com"/>
-                         <meta property="og:title" content="What Is Code? If You Don't Know, You Need to Read This">
-                         <meta property="og:longTitle" content="What is code? If you don't know, you need to read this:">
-                         <meta property="og:image" content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/images/promo.jpg"/>
-                         <meta property="og:description" content="The world belongs to people who code. Those who don’t understand will be left behind."/>
-                         <meta name="keywords" content="Bloomberg Graphics, BusinessWeek, code"/>
-                         <meta property="og:url" content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/"/>
+  <meta property="og:site_name" content="Bloomberg.com"/>
+  <meta property="og:title" content="What Is Code? If You Don't Know, You Need to Read This">
+  <meta property="og:longTitle" content="What is code? If you don't know, you need to read this:">
+  <meta property="og:image" content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/images/promo.jpg"/>
+  <meta property="og:description" content="The world belongs to people who code. Those who don’t understand will be left behind."/>
+  <meta name="keywords" content="Bloomberg Graphics, BusinessWeek, code"/>
+  <meta property="og:url" content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/"/>
 
+  <meta name="parsely-type" content="post" data-ephemeral="true">
+  <meta name="parsely-section" content="graphics" data-ephemeral="true">
 
-                         <meta name="parsely-type" content="post" data-ephemeral="true">
-                         <meta name="parsely-section" content="graphics" data-ephemeral="true">
+  <meta property="og:type" content="article"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@business"/>
 
-                         <meta property="og:type" content="article"/>
-                         <meta name="twitter:card" content="summary"/>
-                         <meta name="twitter:site" content="@business"/>
+  <link rel="stylesheet" type="text/css" href="http://www.bloomberg.com/graphics/assets/css/fonts.css"/>
 
-                         <link rel="stylesheet" type="text/css" href="http://www.bloomberg.com/graphics/assets/css/fonts.css"/>
-
-                         <script src='http://www.bloomberg.com/graphics/assets/js/lib/head.js?'></script>
+  <script src='http://www.bloomberg.com/graphics/assets/js/lib/head.js?'></script>
 
   <script>
     var isBrokenIE = /MSIE\s/.test(navigator.userAgent) && parseFloat(navigator.appVersion.split("MSIE")[1]) < 10;
@@ -55,70 +53,71 @@
 
   <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
 
-                         <!-- build:css head.css -->
-                         <link href="styles/background.css" rel="stylesheet"/>
-                         <link href="styles/business.css" rel="stylesheet"/>
-                         <link href="styles/main.css" rel="stylesheet"/>
-                         <!-- endbuild -->
+  <!-- build:css head.css -->
+  <link href="styles/background.css" rel="stylesheet"/>
+  <link href="styles/business.css" rel="stylesheet"/>
+  <link href="styles/main.css" rel="stylesheet"/>
+  <!-- endbuild -->
 
-                         <link href='http://fonts.googleapis.com/css?family=Roboto+Mono:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Mono:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 
 
 
 <body>
+
 <div id="background-canvas"></div>
 
-                         <div class="top-banner">
-                           <div class="center">
-                               <ul>
-                                   <li>
-                                       <a target="_blank" href="http://www.bloomberg.com/company/?tophat=open">Bloomberg the Company
+<div class="top-banner">
+  <div class="center">
+    <ul>
+      <li>
+        <a target="_blank" href="http://www.bloomberg.com/company/?tophat=open">Bloomberg the Company
 
-                                       <span class="banner-icon external-link">
-                                           <svg id="Layer_1" x="0px" y="0px" width="13px" height="12px">
-                                           <g>
-                                               <path fill="#FFFFFF" d="M9.929,7.071v2.144c0,0.531-0.189,0.985-0.566,1.362C8.985,10.954,8.531,11.143,8,11.143H2.429                                         c-0.531,0-0.986-0.189-1.363-0.566C0.688,10.2,0.5,9.746,0.5,9.214V3.643c0-0.531,0.188-0.985,0.566-1.363                                         c0.377-0.377,0.832-0.565,1.363-0.565h4.714c0.062,0,0.114,0.02,0.154,0.06c0.04,0.041,0.061,0.092,0.061,0.154v0.429                                         c0,0.062-0.021,0.114-0.061,0.154c-0.04,0.04-0.092,0.06-0.154,0.06H2.429c-0.295,0-0.547,0.105-0.757,0.315                                         c-0.21,0.209-0.314,0.462-0.314,0.756v5.572c0,0.294,0.104,0.547,0.314,0.757c0.21,0.209,0.462,0.314,0.757,0.314H8                                         c0.295,0,0.547-0.105,0.757-0.314c0.209-0.21,0.314-0.463,0.314-0.757V7.071c0-0.062,0.021-0.113,0.061-0.153                                         c0.04-0.041,0.091-0.061,0.154-0.061h0.429c0.062,0,0.114,0.02,0.154,0.061C9.908,6.958,9.929,7.009,9.929,7.071z M12.5,1.286                                         v3.429c0,0.116-0.042,0.216-0.127,0.301c-0.085,0.085-0.186,0.127-0.302,0.127S11.854,5.1,11.771,5.015l-1.179-1.179L6.226,8.203                                         C6.181,8.248,6.129,8.27,6.071,8.27S5.962,8.248,5.917,8.203L5.154,7.439C5.109,7.395,5.087,7.343,5.087,7.286                                         c0-0.058,0.022-0.109,0.067-0.154L9.52,2.765L8.342,1.586C8.257,1.502,8.214,1.402,8.214,1.286s0.042-0.217,0.127-0.302                                         c0.084-0.084,0.185-0.127,0.301-0.127h3.429c0.116,0,0.217,0.042,0.302,0.127C12.458,1.069,12.5,1.169,12.5,1.286z"></path>
-                                           </g>
-                                           </svg>
-                                       </span>
+          <span class="banner-icon external-link">
+            <svg id="Layer_1" x="0px" y="0px" width="13px" height="12px">
+              <g>
+                <path fill="#FFFFFF" d="M9.929,7.071v2.144c0,0.531-0.189,0.985-0.566,1.362C8.985,10.954,8.531,11.143,8,11.143H2.429                                         c-0.531,0-0.986-0.189-1.363-0.566C0.688,10.2,0.5,9.746,0.5,9.214V3.643c0-0.531,0.188-0.985,0.566-1.363                                         c0.377-0.377,0.832-0.565,1.363-0.565h4.714c0.062,0,0.114,0.02,0.154,0.06c0.04,0.041,0.061,0.092,0.061,0.154v0.429                                         c0,0.062-0.021,0.114-0.061,0.154c-0.04,0.04-0.092,0.06-0.154,0.06H2.429c-0.295,0-0.547,0.105-0.757,0.315                                         c-0.21,0.209-0.314,0.462-0.314,0.756v5.572c0,0.294,0.104,0.547,0.314,0.757c0.21,0.209,0.462,0.314,0.757,0.314H8                                         c0.295,0,0.547-0.105,0.757-0.314c0.209-0.21,0.314-0.463,0.314-0.757V7.071c0-0.062,0.021-0.113,0.061-0.153                                         c0.04-0.041,0.091-0.061,0.154-0.061h0.429c0.062,0,0.114,0.02,0.154,0.061C9.908,6.958,9.929,7.009,9.929,7.071z M12.5,1.286                                         v3.429c0,0.116-0.042,0.216-0.127,0.301c-0.085,0.085-0.186,0.127-0.302,0.127S11.854,5.1,11.771,5.015l-1.179-1.179L6.226,8.203                                         C6.181,8.248,6.129,8.27,6.071,8.27S5.962,8.248,5.917,8.203L5.154,7.439C5.109,7.395,5.087,7.343,5.087,7.286                                         c0-0.058,0.022-0.109,0.067-0.154L9.52,2.765L8.342,1.586C8.257,1.502,8.214,1.402,8.214,1.286s0.042-0.217,0.127-0.302                                         c0.084-0.084,0.185-0.127,0.301-0.127h3.429c0.116,0,0.217,0.042,0.302,0.127C12.458,1.069,12.5,1.169,12.5,1.286z"></path>
+              </g>
+            </svg>
+          </span>
 
-                                       </a>
-                                   </li>
-                                   <li>
-                                       <a target="_blank" href="https://bba.bloomberg.net/">Bloomberg Anywhere Login
-                                           <span class="banner-icon terminal">
-                                               <svg id="Layer_2" x="0px" y="0px" width="23px" height="13px" viewBox="0 0 22.708 14.833" enable-background="new 0 0 22.708 14.833">
-                                               <g>
-                                                   <path fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" d="M10.94,8.877c0,0.226-0.183,0.408-0.408,0.408                                             H1.126c-0.226,0-0.408-0.183-0.408-0.408V1.175c0-0.226,0.183-0.408,0.408-0.408h9.405c0.226,0,0.408,0.183,0.408,0.408V8.877z"></path>
-                                                   <path fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" d="M22.014,8.877c0,0.226-0.183,0.408-0.408,0.408                                             H12.2c-0.226,0-0.408-0.183-0.408-0.408V1.175c0-0.226,0.183-0.408,0.408-0.408h9.405c0.226,0,0.408,0.183,0.408,0.408V8.877z"></path>
-                                                   <path fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" d="M10.088,11.08v0.689                                             c0,0.256,0.287,0.464,0.852,0.464c0.565,0,0.852-0.208,0.852-0.464V11.08l0.22,0.004c1.593,0.177,2.79,0.754,2.79,1.46                                             c0,0.845-1.636,1.529-3.708,1.529s-3.729-0.685-3.729-1.529c0-0.693,1.14-1.279,2.691-1.466L10.088,11.08z"></path>
-                                               </g>
-                                               </svg>
-                                           </span>
-                                       </a>
-                                   </li>
-                               </ul>
-                               <div class="clear"></div>
-                           </div>
-                         </div>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://bba.bloomberg.net/">Bloomberg Anywhere Login
+          <span class="banner-icon terminal">
+            <svg id="Layer_2" x="0px" y="0px" width="23px" height="13px" viewBox="0 0 22.708 14.833" enable-background="new 0 0 22.708 14.833">
+              <g>
+                <path fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" d="M10.94,8.877c0,0.226-0.183,0.408-0.408,0.408                                             H1.126c-0.226,0-0.408-0.183-0.408-0.408V1.175c0-0.226,0.183-0.408,0.408-0.408h9.405c0.226,0,0.408,0.183,0.408,0.408V8.877z"></path>
+                <path fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" d="M22.014,8.877c0,0.226-0.183,0.408-0.408,0.408                                             H12.2c-0.226,0-0.408-0.183-0.408-0.408V1.175c0-0.226,0.183-0.408,0.408-0.408h9.405c0.226,0,0.408,0.183,0.408,0.408V8.877z"></path>
+                <path fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" d="M10.088,11.08v0.689                                             c0,0.256,0.287,0.464,0.852,0.464c0.565,0,0.852-0.208,0.852-0.464V11.08l0.22,0.004c1.593,0.177,2.79,0.754,2.79,1.46                                             c0,0.845-1.636,1.529-3.708,1.529s-3.729-0.685-3.729-1.529c0-0.693,1.14-1.279,2.691-1.466L10.088,11.08z"></path>
+              </g>
+            </svg>
+          </span>
+        </a>
+      </li>
+    </ul>
+    <div class="clear"></div>
+  </div>
+</div>
 
 
-                         <div id='top-space' ></div>
-  <div id="full-header" class='sticky-header'>
-    <a href="http://bloomberg.com/"><img id="header-logo" class='white' src="http://www.bloomberg.com/graphics/assets/img/BB-Logo-2line-wb.svg"></a>
+<div id='top-space' ></div>
+<div id="full-header" class='sticky-header'>
+  <a href="http://bloomberg.com/"><img id="header-logo" class='white' src="http://www.bloomberg.com/graphics/assets/img/BB-Logo-2line-wb.svg"></a>
 
-    <div id="hidden-banner-ad">
-      <div id='top-ad-container' class="container bannerad"></div>
+  <div id="hidden-banner-ad">
+    <div id='top-ad-container' class="container bannerad"></div>
 
-    </div>
+  </div>
 
-    <div id="header-sharing">
+  <div id="header-sharing">
     <div class="header-icon" id="header-icon-twitter"><img class="blue" src="http://www.bloomberg.com/graphics/assets/img/twitter.png"><img class="white" src="http://www.bloomberg.com/graphics/assets/img/twitter_w.png"></div>
     <div class="header-icon" id="header-icon-fb"><img class="blue" src="http://www.bloomberg.com/graphics/assets/img/facebook.png"><img class="white" src="http://www.bloomberg.com/graphics/assets/img/facebook_w.png"></div>
-    </div>
-    <div id='sharing-space' style='width: 100px;'></div>
   </div>
+  <div id='sharing-space' style='width: 100px;'></div>
+</div>
 
 
 <div class="bot overlay" id="paulbot" data-mode="off"></div>
@@ -157,77 +156,73 @@
 
 <div class="sectionNum sectionNum1">1</div>
 
-
-
 <h2 id="sec-1">The Man in the Taupe Blazer</h2>
 <div class="outline-text-2" id="text-1">
-                         <p class="introText">You are an educated, successful person capable of abstract thought. A VP doing an SVP&rsquo;s job. Your office, appointed with decent furniture and a healthy amount of natural light filtered through vertical blinds, is commensurate with nearly two decades of service to the craft of management.
-                         </p>
 
-    <p>Copper plaques on the wall attest to your various leadership abilities inside and outside the organization: One, the Partner in Innovation Banquet Award 2011, is from the sales team for your support of its 18-month effort to reduce cycle friction&mdash;net sales increased 6.5 percent; another, the Civic Guidelight 2008, is for overseeing a volunteer team that repainted a troubled public school top to bottom. </p>
+<p class="introText">You are an educated, successful person capable of abstract thought. A VP doing an SVP&rsquo;s job. Your office, appointed with decent furniture and a healthy amount of natural light filtered through vertical blinds, is commensurate with nearly two decades of service to the craft of management.</p>
 
-                         <p>You have a reputation throughout the organization as a careful person, bordering on penny-pinching. The way you&rsquo;d put it is, you are loath to pay for things that can&rsquo;t be explained. You expect your staff to speak in plain language. This policy has served you well in many facets of operations, but it hasn&rsquo;t worked at all when it comes to overseeing software development.</p>
+<p>Copper plaques on the wall attest to your various leadership abilities inside and outside the organization: One, the Partner in Innovation Banquet Award 2011, is from the sales team for your support of its 18-month effort to reduce cycle friction&mdash;net sales increased 6.5 percent; another, the Civic Guidelight 2008, is for overseeing a volunteer team that repainted a troubled public school top to bottom.</p>
 
-                         <p>For your entire working memory, <em>some Internet thing</em> has come along every two years and suddenly hundreds of thousands of dollars (inevitably millions) must be poured into amorphous projects with variable deadlines. Content management projects, customer relationship management integration projects, mobile apps, paperless office things, global enterprise resource planning initiatives&mdash;no matter how tightly you clutch the purse strings, software finds a way to pry open your fingers.</p>
+<p>You have a reputation throughout the organization as a careful person, bordering on penny-pinching. The way you&rsquo;d put it is, you are loath to pay for things that can&rsquo;t be explained. You expect your staff to speak in plain language. This policy has served you well in many facets of operations, but it hasn&rsquo;t worked at all when it comes to overseeing software development.</p>
 
-                         <p>Here we go again. On the other side of your (well-organized) desk sits <em>this guy</em> in his mid-30s with a computer in his lap. He&rsquo;s wearing a taupe blazer. He&rsquo;s come to discuss spending large sums to create intangible abstractions on a &ldquo;website re-architecture project.&rdquo; He needs money, support for his team, new hires, external resources. It&rsquo;s preordained that you&rsquo;ll give these things to him, because the CEO signed off on the initiative&mdash;and yet should it all go pear-shaped, you will be responsible. Coders are insanely expensive, and projects that start with uncomfortably large budgets have an ugly tendency to grow from there. You need to understand where the hours will go.</p>
+<p>For your entire working memory, <em>some Internet thing</em> has come along every two years and suddenly hundreds of thousands of dollars (inevitably millions) must be poured into amorphous projects with variable deadlines. Content management projects, customer relationship management integration projects, mobile apps, paperless office things, global enterprise resource planning initiatives&mdash;no matter how tightly you clutch the purse strings, software finds a way to pry open your fingers.</p>
 
-                         <div class="imageLeft"><img src="images/sec1_taupe.jpg"><div class="photoCaption">Photographer: Corey Olsen for Bloomberg Businessweek</div></div> 
+<p>Here we go again. On the other side of your (well-organized) desk sits <em>this guy</em> in his mid-30s with a computer in his lap. He&rsquo;s wearing a taupe blazer. He&rsquo;s come to discuss spending large sums to create intangible abstractions on a &ldquo;website re-architecture project.&rdquo; He needs money, support for his team, new hires, external resources. It&rsquo;s preordained that you&rsquo;ll give these things to him, because the CEO signed off on the initiative&mdash;and yet should it all go pear-shaped, you will be responsible. Coders are insanely expensive, and projects that start with uncomfortably large budgets have an ugly tendency to grow from there. You need to understand where the hours will go.</p>
 
-                         <p>He says: &ldquo;We&rsquo;re basically at the limits with WordPress.&rdquo;</p>
+<div class="imageLeft">
+  <img src="images/sec1_taupe.jpg">
+  <div class="photoCaption">Photographer: Corey Olsen for Bloomberg Businessweek</div>
+</div> 
 
-                         <p>Who wears a taupe blazer?</p>
+<p>He says: &ldquo;We&rsquo;re basically at the limits with WordPress.&rdquo;</p>
 
-                         <p>The CTO was fired six months ago. That CTO has three kids in college and a mustache. It was a bad exit. The man in the taupe blazer (TMitTB) works for the new CTO. She comes from Adobe and has short hair and no mustache. </p>
+<p>Who wears a taupe blazer?</p>
 
-     <p>Here is what you&rsquo;ve been told: All of the computer code that keeps the website running must be replaced. At one time, it was very valuable and was keeping the company running, but the new CTO thinks it&rsquo;s garbage. She tells you the old code is spaghetti and your systems are straining as a result. That the third-party services you use, and pay for monthly, are old and busted. Your competitor has an animated shopping cart that drives across the top of the screen at checkout. That cart remembers everything customers have ever purchased and generates invoices on demand. Your cart has no memory at all. </p>
+<p>The CTO was fired six months ago. That CTO has three kids in college and a mustache. It was a bad exit. The man in the taupe blazer (TMitTB) works for the new CTO. She comes from Adobe and has short hair and no mustache.</p>
 
-     <p>Salespeople stomp around your office, sighing like theater students, telling you how embarrassed they are by the site. Nothing works right on mobile. Orders are cutting off halfway. People are logged out with no warning. Something must be done.</p>
+<p>Here is what you&rsquo;ve been told: All of the computer code that keeps the website running must be replaced. At one time, it was very valuable and was keeping the company running, but the new CTO thinks it&rsquo;s garbage. She tells you the old code is spaghetti and your systems are straining as a result. That the third-party services you use, and pay for monthly, are old and busted. Your competitor has an animated shopping cart that drives across the top of the screen at checkout. That cart remembers everything customers have ever purchased and generates invoices on demand. Your cart has no memory at all.</p>
 
-     <p>Which is why TMitTB is here. </p>
+<p>Salespeople stomp around your office, sighing like theater students, telling you how embarrassed they are by the site. Nothing works right on mobile. Orders are cutting off halfway. People are logged out with no warning. Something must be done.</p>
 
-     <p>Who&rsquo;s he, anyway? Webmaster? IT? No, he&rsquo;s a &ldquo;Scrum Master.&rdquo;</p>
+<p>Which is why TMitTB is here.</p>
 
-     <p>&ldquo;My people are split on platform,&rdquo; he continues. &ldquo;Some want to use Drupal 7 and make it work with Magento&mdash;which is still PHP.&rdquo; He frowns. &ldquo;The other option is just doing the back end in Node.js with Backbone in front.&rdquo;</p>
+<p>Who&rsquo;s he, anyway? Webmaster? IT? No, he&rsquo;s a &ldquo;Scrum Master.&rdquo;</p>
 
-     <p>You&rsquo;ve furrowed your brow; he eyes you sympathetically and explains: &ldquo;With that option it&rsquo;s all JavaScript, front and back.&rdquo; </p>
+<p>&ldquo;My people are split on platform,&rdquo; he continues. &ldquo;Some want to use Drupal 7 and make it work with Magento&mdash;which is still PHP.&rdquo; He frowns. &ldquo;The other option is just doing the back end in Node.js with Backbone in front.&rdquo;</p>
 
-     <p>Those are all terms you&rsquo;ve heard. You&rsquo;ve read the first parts of the Wikipedia pages and a book on software project estimation. It made some sense at the time.</p>
+<p>You&rsquo;ve furrowed your brow; he eyes you sympathetically and explains: &ldquo;With that option it&rsquo;s all JavaScript, front and back.&rdquo; </p>
 
-     <p>You ask the universal framing question: &ldquo;Did you cost these options?&rdquo;</p>
+<p>Those are all terms you&rsquo;ve heard. You&rsquo;ve read the first parts of the Wikipedia pages and a book on software project estimation. It made some sense at the time.</p>
 
-     <p>He gives you a number and a date. You know in your soul that the number is half of what it should be and that the project will go a year over schedule. He promises long-term efficiencies: The $85,000 in Oracle licenses will no longer be needed; engineering is moving to a free, open-sourced database. &ldquo;We probably should have done that back when we did the Magento migration,&rdquo; he says. Meaning, of course, that his predecessor probably should have done that. </p>
+<p>You ask the universal framing question: &ldquo;Did you cost these options?&rdquo;</p>
 
-      <p>You consult a spreadsheet and remind him that the Oracle contract was renewed a few months ago. So, no, actually, at least for now, you&rsquo;ll keep eating that cost. Sigh.</p>
+<p>He gives you a number and a date. You know in your soul that the number is half of what it should be and that the project will go a year over schedule. He promises long-term efficiencies: The $85,000 in Oracle licenses will no longer be needed; engineering is moving to a free, open-sourced database. &ldquo;We probably should have done that back when we did the Magento migration,&rdquo; he says. Meaning, of course, that his predecessor probably should have done that. </p>
 
-                         <p>This man makes a third less than you, and his education ended with a B.S. from a large, perfectly fine state university. But he has 500+ connections on LinkedIn. That plus sign after the &ldquo;500&rdquo; bothers you. How many more than 500 people does he know? Five? Five thousand?</p>
+<p>You consult a spreadsheet and remind him that the Oracle contract was renewed a few months ago. So, no, actually, at least for now, you&rsquo;ll keep eating that cost. Sigh.</p>
+
+<p>This man makes a third less than you, and his education ended with a B.S. from a large, perfectly fine state university. But he has 500+ connections on LinkedIn. That plus sign after the &ldquo;500&rdquo; bothers you. How many more than 500 people does he know? Five? Five thousand?</p>
   
-    <div class="video-wrapper">
-      <div class="video-wrapper-inner">
-        <script src='//cdn.gotraffic.net/projector/latest/bplayer.js'>BPlayer(null, {"id":"P4_i7PihRGiWcPh3gdNMhg","htmlChildId":"bbg-video-player-P4_i7PihRGiWcPh3gdNMhg","serverUrl":"http://www.bloomberg.com/api/embed","idType":"BMMR","autoplay":false,"video_autoplay_on_page":false,"log_debug":false,"ui_controls_popout":false,"use_js_ads":true,"ad_code_prefix":"","ad_tag_gpt_preroll":true,"ad_tag_gpt_midroll":true,"ad_tag_sz_preroll":"1x7","ad_tag_sz_midroll":"1x7","ad_tag_sz_overlay":"1x7","ad_network_id_preroll":"5262","ad_network_id_midroll":"5262","ad_network_id_overlay":"5262","ad_tag_cust_params_preroll":"","ads_vast_timeout":10000,"ads_playback_timeout":10000,"wmode":"opaque","use_comscore":true,"comscore_ns_site":"bloomberg","comscore_page_level_tags":{"bb_brand":"bbiz","bss_cont_play":0,"bb_region":"US"},"use_chartbeat":true,"chartbeat_uid":"15087","chartbeat_domain":"bloomberg.com","use_share_overlay":true,"share_metadata":{"canonical_url":"http://bloom.bg/1GzwRDU"},"vertical":"business","ad_tag_overlay":"business/videooverlay","zone":"video","source":"BBIZweb","module_conviva_insights":"enabled","conviva_account":"c3.Bloomberg","width":640,"height":360,"ad_tag":"","ad_tag_midroll":"","offsite_embed":false});</script>
-      </div>
-    </div>
+<div class="video-wrapper">
+  <div class="video-wrapper-inner">
+    <script src='//cdn.gotraffic.net/projector/latest/bplayer.js'>BPlayer(null, {"id":"P4_i7PihRGiWcPh3gdNMhg","htmlChildId":"bbg-video-player-P4_i7PihRGiWcPh3gdNMhg","serverUrl":"http://www.bloomberg.com/api/embed","idType":"BMMR","autoplay":false,"video_autoplay_on_page":false,"log_debug":false,"ui_controls_popout":false,"use_js_ads":true,"ad_code_prefix":"","ad_tag_gpt_preroll":true,"ad_tag_gpt_midroll":true,"ad_tag_sz_preroll":"1x7","ad_tag_sz_midroll":"1x7","ad_tag_sz_overlay":"1x7","ad_network_id_preroll":"5262","ad_network_id_midroll":"5262","ad_network_id_overlay":"5262","ad_tag_cust_params_preroll":"","ads_vast_timeout":10000,"ads_playback_timeout":10000,"wmode":"opaque","use_comscore":true,"comscore_ns_site":"bloomberg","comscore_page_level_tags":{"bb_brand":"bbiz","bss_cont_play":0,"bb_region":"US"},"use_chartbeat":true,"chartbeat_uid":"15087","chartbeat_domain":"bloomberg.com","use_share_overlay":true,"share_metadata":{"canonical_url":"http://bloom.bg/1GzwRDU"},"vertical":"business","ad_tag_overlay":"business/videooverlay","zone":"video","source":"BBIZweb","module_conviva_insights":"enabled","conviva_account":"c3.Bloomberg","width":640,"height":360,"ad_tag":"","ad_tag_midroll":"","offsite_embed":false});</script>
+  </div>
+</div>
 
+<p>In some mysterious way, he outranks you. Not within the company, not in restaurant reservations, not around lawyers. Still: He strokes his short beard; his hands are tanned; he hikes; his socks are embroidered with little ninja. </p>
 
-   <p>In some mysterious way, he outranks you. Not within the company, not in restaurant reservations, not around lawyers. Still: He strokes his short beard; his hands are tanned; he hikes; his socks are embroidered with little ninja. </p>
+<p>&ldquo;Don&rsquo;t forget,&rdquo; he says, &ldquo;we&rsquo;ve got to budget for apps.&rdquo;</p>
 
-    <p>&ldquo;Don&rsquo;t forget,&rdquo; he says, &ldquo;we&rsquo;ve got to budget for apps.&rdquo;</p>
+<p>This is real. A Scrum Master in ninja socks has come into your office and said, &ldquo;We&rsquo;ve got to budget for apps.&rdquo; Should it all go pear-shaped, his career will be just fine.</p>
 
-                         <p>This is real. A Scrum Master in ninja socks has come into your office and said, &ldquo;We&rsquo;ve got to budget for apps.&rdquo; Should it all go pear-shaped, his career will be just fine.</p>
+<p>You keep your work in perspective by thinking about barrels of cash. You once heard that a U.S. dry barrel can hold about $100,000 worth of singles. Next year, you&rsquo;ll burn a little under a barrel of cash on Oracle. One barrel isn&rsquo;t that bad. But it&rsquo;s never one barrel. Is this a 5-barrel project or a 10-barreler? More? Too soon to tell. But you can definitely smell money burning.</p>
 
-                         <p>You keep your work in perspective by thinking about barrels of cash. You once heard that a U.S. dry barrel can hold about $100,000 worth of singles. Next year, you&rsquo;ll burn a little under a barrel of cash on Oracle. One barrel isn&rsquo;t that bad. But it&rsquo;s never one barrel. Is this a 5-barrel project or a 10-barreler? More? Too soon to tell. But you can definitely smell money burning.</p>
+<p>At this stage in the meeting, you like to look supplicants in the eye and say, <em>OK, you&rsquo;ve given me a date and a budget</em>. But when will it be done? Really, truly, top-line-revenue-reporting finished? Come to confession; unburden your soul.</p>
 
-                         <p>At this stage in the meeting, you like to look supplicants in the eye and say, <em>OK, you&rsquo;ve given me a date and a budget</em>. But when will it be done? Really, truly, top-line-revenue-reporting finished? Come to confession; unburden your soul. </p>
-
-     <p>This time you stop yourself. You don&rsquo;t want your inquiry to be met by a patronizing sigh of impatience or another explanation about ship dates, Agile cycles, and continuous delivery. Better for now to hide your ignorance. <em>When will it be done?</em> You are learning to accept that the answer for software projects is <em>never</em>.</p>
+<p>This time you stop yourself. You don&rsquo;t want your inquiry to be met by a patronizing sigh of impatience or another explanation about ship dates, Agile cycles, and continuous delivery. Better for now to hide your ignorance. <em>When will it be done?</em> You are learning to accept that the answer for software projects is <em>never</em>.</p>
 
 <img class="centered" src="images/emotes/taupe.gif">
 
 </div>
-
-
-
-
 
 
 <h3 id="sec-1-1"><span class="section">1.1</span> Why Are We Here?</h3>
