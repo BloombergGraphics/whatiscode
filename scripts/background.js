@@ -82,7 +82,7 @@
 
   // wave squares
   !(function(){
-    var module = {sel: d3.select('.sectionNum4'), active: false, minWidth: 600, onunload: unload, onload: load}
+    var module = {sel: d3.select('#why-are-coders-angry'), active: false, minWidth: 600, onunload: unload, onload: load}
     addModule(module)
 
     var colors = [green, Lblue, purple]
@@ -163,7 +163,7 @@
 
   //triangles
   !(function(){
-    var module = {sel: d3.select('.sectionNum7'), active: false, minWidth: 600, onunload: unload, onload: load}
+    var module = {sel: d3.select('#the-triumph-of-middle-management'), active: false, minWidth: 600, onunload: unload, onload: load}
 
     addModule(module)
 
@@ -229,7 +229,7 @@
 
   //tears
   !(function(){
-    var module = {sel: d3.select('.sectionNum6'), active: false, minWidth: 600, onunload: unload, onload: load}
+    var module = {sel: d3.select('#how-are-apps-made'), active: false, minWidth: 600, onunload: unload, onload: load}
 
     addModule(module)
 
@@ -267,7 +267,7 @@
 
   //circles
   !(function(){
-    var module = {sel: d3.select('.sectionNum5'), active: false, minWidth: 600, onunload: unload, onload: load}
+    var module = {sel: d3.select('#the-time-you-attended-the-e-mail-address-validation-meeting'), active: false, minWidth: 600, onunload: unload, onload: load}
     addModule(module)
 
     var colors = [red, purple, orange]
@@ -305,7 +305,7 @@
 
   //different sized squares
   !(function(){
-    var module = {sel: d3.select('.sectionNum2'), active: false, minWidth: 600, onunload: unload, onload: load}
+    var module = {sel: d3.select('#lets-begin'), active: false, minWidth: 600, onunload: unload, onload: load}
     addModule(module)
 
     var colors = [blue, green]
@@ -345,7 +345,7 @@
 
   //down wave
   !(function(){
-    var module = {sel: d3.select('.sectionNum3'), active: false, minWidth: 600, onunload: unload, onload: load}
+    var module = {sel: d3.select('#why-are-programmers-so-intense-about-languages'), active: false, minWidth: 600, onunload: unload, onload: load}
     addModule(module)
 
     var colors = [orange, red]

@@ -44,21 +44,45 @@ article img {max-width: 100%;}
 
 .introText {font-size: 26px; line-height: 30px;}
 
-.sectionNum {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-    background: #3c3c3c;
-    color: #fff;
-    text-align: center;
-    font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
-    margin:0 auto;
-}
-
 /* subsection numbers */
 .section{font-size: 16px}
 
+h2 {
+  font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif;
+  font-size: 100px;
+  line-height: 94px;
+  margin: 40px 0 40px 0;
+  text-align: center;
+}
+h2 a {
+  display: block;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: #3c3c3c;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  margin: 0 auto 40px auto;
+  transition: background .2s;
+}
+h2 a:hover {
+  border: none;
+  color: #fff;
+  background: #f94600;
+}
+
+h3 {
+  font-size: 34px;
+  line-height: 34px;
+  font-weight: bold;
+  margin-top:74px;
+  position: relative;
+}
 h3 a {
   right: 100%;
   padding: 0 1em;
@@ -71,20 +95,6 @@ h3 a {
   border-bottom: none;
 }
 
-h2 {
-  font-family: "BWHaasText-75Bold",Helvetica, Arial, sans-serif;
-  font-size: 100px;
-  line-height: 94px;
-  margin: 40px 0 40px 0;
-  text-align: center;
-}
-h3 {
-  font-size: 34px;
-  line-height: 34px;
-  font-weight: bold;
-  margin-top:74px;
-  position: relative;
-}
 h4 {
   font-size: 22px;
   line-height: 24px;
@@ -675,7 +685,6 @@ ol ol li {
   .chat{font-size: 14px;line-height: 16px;}
   .chatBig{font-size: 20px;line-height: 22px}
   .code-section { width: 100%; margin: 40px auto 0 auto;padding:10px 0;}
-  .sectionNum{margin-top: 40px}
   h2{font-size: 40px;line-height: 40px;}
 }
 
