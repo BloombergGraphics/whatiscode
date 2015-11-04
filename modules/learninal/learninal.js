@@ -88,7 +88,7 @@
       }
     }
   },
-  { "speak": "Now get rid of pugs. The way you do that is by calling the pop method: dogs.pop();" },
+  { "speak": "Now get rid of pugs. The way you do that is by calling the pop method, which removes and returns the last element of an array: dogs.pop();" },
   {
     "test": function(item) {
       if(dogs.length == 4 && item.result=="pug") {
