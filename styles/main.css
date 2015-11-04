@@ -29,6 +29,7 @@ html, body {
   /*position: relative;*/
   background-color: #fff;
   padding: 40px 0;
+  -webkit-transform: translate3d(0,0,0);
 }
 
 .code-section:first-child {
