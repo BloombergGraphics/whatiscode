@@ -79,7 +79,7 @@
       }));
     }
 
-    root.children = root.children.slice(48,68);
+    root.children = root.children.slice(45,65);
     // truncate(root);
     root.children.forEach(collapse);
     // collapse(root);
@@ -272,10 +272,15 @@
       
       d.iframe.append("div.title").text(function(d) { return d.description ? d.description : d.name; });
 
+      // could also append label for class list, like so...
+      // d.iframe.append("div.class-list").text(function(d) { return d.ref ? d.ref.classList : ''; });
+
+      var inlineStyle = "<style>img{max-width:100%;}</style>";
+
       var iframeEl = d.iframe.append("iframe");
       var iframeDocument = iframeEl.node().contentWindow.document;
       iframeDocument.open();
-      iframeDocument.write(d.ref.innerHTML);
+      iframeDocument.write(inlineStyle + d.ref.outerHTML);
       iframeDocument.close();
     }
 
@@ -342,7 +347,7 @@
         {"name":"html","description":"document root element"},
         {"name":"i","description":"italic text style"},
         {"name":"iframe","description":"inline subwindow"},
-        {"name":"img","description":"Embedded image"},
+        {"name":"img","description":"embedded image"},
         {"name":"input","description":"form control"},
         {"name":"ins","description":"inserted text"},
         {"name":"isindex","description":"single line prompt"},
