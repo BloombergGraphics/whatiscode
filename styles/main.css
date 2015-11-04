@@ -124,6 +124,7 @@ h4 {
 
 .blinking-cursor {
   animation: 1s blink step-end infinite;
+  -webkit-animation: 1s blink step-end infinite;
 }
 
 @keyframes "blink" {
@@ -134,6 +135,16 @@ h4 {
     opacity: 1;
   }
 }
+
+@-webkit-keyframes "blink" {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 
 /* ********** */
 /* END HEADER */
