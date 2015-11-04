@@ -15,27 +15,24 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-#background-canvas{
+#background-canvas {
   position: fixed;
   height: 100%;
   width: 100%;
-  background: white;
+  background-color: #f94600;
   z-index: -1;
 }
 
 .code-section {
   width: 90%;
   margin: 100px auto 0 auto;
-  /*position: relative;*/
   background-color: #fff;
   padding: 40px 0;
   -webkit-transform: translate3d(0,0,0);
 }
-
 .code-section:first-child {
   margin-top: 0;
 }
-
 .code-content{
   margin: 0 auto;
   max-width: 740px;
@@ -45,10 +42,6 @@ article img {max-width: 100%;}
 
 .centered {margin: 0 auto; display: block;}
 
-#background-canvas{
-  background-color: #f94600;
-}
-
 .introText {font-size: 26px; line-height: 30px;}
 
 .sectionNum {
@@ -57,13 +50,13 @@ article img {max-width: 100%;}
     height: 40px;
     padding: 8px;
     background: #3c3c3c;
-    border: 2px solid #3c3c3c;
     color: #fff;
     text-align: center;
     font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;
     margin:0 auto;
 }
 
+/* subsection numbers */
 .section{font-size: 16px}
 
 h2 {
@@ -150,6 +143,36 @@ h4 {
 /* ********** */
 /* END HEADER */
 /* ********** */
+
+/* Above the fold... */
+
+/* Josh's editor's letter */
+.josh-letter {
+  margin: 2em 0;
+  padding: 15px;
+  border: 4px solid #fff;
+  transition: border .5s;
+}
+.josh-letter a {
+  border-bottom: none;
+  display: block;
+  text-align: center;
+}
+.josh-letter .josh-inner {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s;
+}
+.josh-letter.open {
+  border: 4px solid #3c3c3c;
+}
+.josh-letter.open .josh-inner {
+  max-height: 1000px;
+}
+.josh-letter .josh-inner p:last-child {
+  margin: 0;
+}
+
 
 
 .indent{margin-left: 40px}
@@ -257,7 +280,7 @@ a:hover {
 .photoCaption{text-transform: uppercase;font-size: 10px;line-height:12px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;color:#848484;}
 
 
-/* VIDEOS */
+/* Videos */
 /* re: bplayer, cf. http://bl.ocks.org/tophtucker/4bfe467ba870734de86c */
 
 .video-wrapper {
@@ -300,7 +323,7 @@ a:hover {
   display: none;
 }
 
-/* FOOTNOTE POPUP POPOVERS */
+/* Footnote popups */
 
 .footwrapper {
   position: relative;
@@ -363,8 +386,7 @@ a:hover {
   margin: 0;
 }
 
-/* SYNTAX HIGHLIGHTING POPUPS */
-
+/* Syntax highlighting popups */
 .syntax-tooltip {
   position: absolute;
   font-size:0.875em;
@@ -384,6 +406,7 @@ a:hover {
 .interesting3{margin:-40px 0 0 580px}
 
 
+/* Table breaking down "PRINT {HELLO NERDS}" char-by-char */
 #tokens {
   text-align: center;
   border-collapse: collapse;
@@ -426,10 +449,6 @@ ol ol li {list-style-type:lower-alpha;}
   margin-top: -5px;
 }
 
-.noborder p{border-bottom:none!important;}
-
-
-
 /* asides */
 
 .ephemeraL a{border-bottom: 0px solid white; color:#f94600;font-weight: bold;}
@@ -469,6 +488,7 @@ ol ol li {list-style-type:lower-alpha;}
   padding: 0 0 0 24px;
 }
 .profileR p{ border-bottom: 4px solid #f94600;}
+.noborder p{border-bottom:none!important;}
 
 .listR{
   color:#f94600;
@@ -511,33 +531,7 @@ ol ol li {list-style-type:lower-alpha;}
 .conference{display: inline-block;width: 33%;margin:0;vertical-align:top;}
 
 
-.josh-letter {
-  margin: 2em 0;
-  padding: 15px;
-  border: 4px solid #fff;
-  transition: border .5s;
-}
-.josh-letter a {
-  border-bottom: none;
-  display: block;
-  text-align: center;
-}
-.josh-letter .josh-inner {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .5s;
-}
-.josh-letter.open {
-  border: 4px solid #3c3c3c;
-}
-.josh-letter.open .josh-inner {
-  max-height: 1000px;
-}
-.josh-letter .josh-inner p:last-child {
-  margin: 0;
-}
-
-
+/* every [data-module] also has this class... */
 .interactive-feature {
   position: relative;
   clear:both;
