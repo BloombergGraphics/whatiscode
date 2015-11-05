@@ -84,14 +84,16 @@ h3 {
   position: relative;
 }
 h3 a {
-  right: 100%;
-  padding: 0 1em;
   position: absolute;
+  right: 100%;
+  bottom: 0;
+  padding: 0 1em;
   border-bottom: none;
   font-size: 0.4705882353em;
   line-height: 2.125em;
+  line-height: 1em;
 }
-h3 a {
+h3 a:hover {
   border-bottom: none;
 }
 
