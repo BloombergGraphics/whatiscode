@@ -203,9 +203,6 @@ h4 {
 }
 
 
-
-.indent{margin-left: 40px}
-
 .chat{width: 100%;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 16px;line-height: 20px;margin: 0 auto;text-align: center;}
 .chatBig{font-size: 24px;line-height: 26px}
 
@@ -463,20 +460,24 @@ pre code {
   font-style: italic;
 }
 
-ol {
+article ul {
+  padding-left: 40px;
+  list-style-type: disc;
+}
+article ol {
   list-style-position: inside;
   margin-left: 20px;
   padding-left: 0;
 }
-li {
+article ol li {
   margin: 0 0 0 40px;
   padding: 0;
   list-style: decimal;
 }
-ol ol { 
+article ol ol { 
   margin: 0;
 }
-ol ol li {
+article ol ol li {
   list-style-type: lower-alpha;
 }
 
