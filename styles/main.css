@@ -308,10 +308,6 @@ a:hover {
   color:#848484 
 }
 
-.caption{font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 14px;line-height: 16px;margin-top: 4px;}
-.photoCaption{text-transform: uppercase;font-size: 10px;line-height:12px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;color:#848484;}
-
-
 /* Videos */
 /* re: bplayer, cf. http://bl.ocks.org/tophtucker/4bfe467ba870734de86c */
 
@@ -514,7 +510,6 @@ figure.three-column img {
   width: 33%;
   display: inline-block;
   vertical-align: middle;
-  padding: 1px;
 }
 
 figure figcaption {
@@ -523,7 +518,11 @@ figure figcaption {
   line-height: 16px;
   margin-top: 4px;
 }
-figure figcaption p { margin: 0 0 .5em 0; }
+figure figcaption p { margin: 0; }
+
+.caption{font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;font-size: 14px;line-height: 16px;margin-top: 4px;}
+.photoCaption{text-transform: uppercase;font-size: 10px;line-height:12px;font-family: "BWHaasText-55Roman",Helvetica, Arial, sans-serif;color:#848484;}
+
 
 /* asides */
 
