@@ -34,6 +34,10 @@ var stats,
   }, 1000);
 
   d3.select(window).on("scroll.toc", renderWindows);
+  d3.select(window).on("hashchange.toc", function() { 
+    stats.windows.previous = stats.windows.current;
+    renderWindows();
+  });
   window.onunload = window.onbeforeunload = saveStats;
   renderTOC();
 
@@ -174,10 +178,14 @@ var stats,
       .selectAll("div.toc-head")
       .data(function(d) { return d; })
       .enter()
-      .append("div.toc-head")
+      .append("a.toc-head")
       .attr("data-level", ƒ('tagName'))
-      .html(ƒ('innerText'))
+      .attr("href", function(d) { return '#' + d.id; })
+      .html(function(d) { return d.childNodes[0].innerText + ". " + d.childNodes[1].nodeValue; })
       .on("click", function(d) {
+        d3.event.preventDefault();
+        history.pushState(null, null, '#'+d.id);
+        stats.windows.previous = stats.windows.current; 
         d3.select("body").transition().duration(500)
           .tween("tocscroll", scrollTopTween(d.getBoundingClientRect().top + pageYOffset));
       });

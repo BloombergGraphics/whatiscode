@@ -82,6 +82,9 @@
 
 .toc .toc-head {
 	cursor: pointer;
+	display: block;
+	text-decoration: none;
+	border-bottom: none;
 }
 
 .toc .toc-head:hover {
