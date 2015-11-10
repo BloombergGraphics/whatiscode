@@ -11,7 +11,7 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="utf-8">
-  <title>Paul Ford: What is Code? | Bloomberg</title>
+  <title>Paul Ford: What Is Code? | Bloomberg</title>
 
   <meta name="viewport" content="width=device-width">
 
@@ -144,7 +144,7 @@
 <div class="code-content">
 
 <div class="josh-letter">
-  <a href="#"><img src="images/letter.jpg" alt="Icon of a letter"> A message from Josh Tyrangiel</a>
+  <a href="#"><img src="images/letter.svg" width="20" height="11" alt="Icon of a letter"> A message from Josh Tyrangiel</a>
   <div class="josh-inner">
     <p>Software has been around since the 1940s. Which means that people have been faking their way through meetings about software, and the code that builds it, for generations. Now that software lives in our pockets, runs our cars and homes, and dominates our waking lives, ignorance is no longer acceptable. The world belongs to people who code. Those who don’t understand will be left behind.</p>
 
@@ -340,13 +340,13 @@ That code will test if something is a palindrome. If you next typed in <code>isp
         
 <p>So how else might your code look? Maybe like so, in Excel (with all the formulas hidden away under the numbers they produce, and a check box that you can check): </p>
 
-<img class="centered" src="images/sec1_excel.jpg" alt="Excel">
+<img class="screenshot" src="images/sec1_excel.png" alt="Screenshot of Excel spreadsheet">
 
 <p>But Excel spreadsheets are tricky, because they can hide all kinds of things under their numbers. This opacity causes risks. One study by a researcher at the University of Hawaii found that 88 percent of spreadsheets <a href="http://panko.shidler.hawaii.edu/SSR/Mypapers/whatknow.htm" target="_blank">contain errors</a>.</p>
 
 <p>Programming can also look like Scratch, a language for kids:</p>
 
-<img class="centered" src="images/sec1_excel2.jpg" alt="Scratch">
+<img class="screenshot" src="images/sec1_scratch.png" alt="Screenshot of Scratch programming environment">
 
 <p>That&rsquo;s definitely programming right there&mdash;the computer is waiting for a click, for some input, just as it waits for you to type an &ldquo;a,&rdquo; and then it&rsquo;s doing something repetitive, and it involves hilarious animals. </p>
 
@@ -462,7 +462,7 @@ That code will test if something is a palindrome. If you next typed in <code>isp
 
 <p>The reason I&rsquo;m showing it to you is so you can see how every character matters. Computers usually &ldquo;understand&rdquo; things by going character by character, bit by bit, transforming the code into other kinds of code as they go. The Bolus compiler now organizes the tokens into a little tree. Kind of like a sentence diagram. Except instead of nouns, verbs, and adjectives, the computer is looking for functions and arguments. Our program above, inside the computer, becomes this:</p>
 
-<img class="centered" src="images/sec1_tree-tree.svg" width="250">
+<img src="images/sec1_tree-tree.svg" width="250" alt="Diagram of tree data structure of code">
 
 <p>Trees are a really pleasant way of thinking of the world. Your memo at work has sections that have paragraphs? Tree. Your e-mail program contains messages that contain subject lines and addresses? Tree. Your favorite software program that has a menu bar with individual items that have subitems? Tree. Every day is Arbor Day in Codeville. </p>
 
@@ -473,7 +473,7 @@ That code will test if something is a palindrome. If you next typed in <code>isp
 
 <p>Of course, it&rsquo;s all a trick. If you cut open a computer, you&rsquo;ll find countless little boxes in rows, places where you can put and retrieve bytes. Everything ultimately has to get down to things in little boxes pointing to each other. That&rsquo;s just how things work. So that tree is actually more like this:</p>
 
-<img class="centered" src="images/sec1_tree-array.svg" width="450">
+<img src="images/sec1_tree-array.svg" width="450" alt="Diagram of tree data structure of code, flattened">
 
 <p>Every character truly, truly matters. Every single stupid misplaced semicolon, space where you meant tab, bracket instead of a parenthesis&mdash;mistakes can leave the computer in a state of panic. The trees don&rsquo;t know where to put their leaves. Their roots decay. The boxes don&rsquo;t stack neatly. For not only are computers as dumb as a billion marbles, they&rsquo;re also positively Stradivarian in their delicacy.</p>
 
@@ -578,15 +578,24 @@ The sample PostScript code included in the article requires initlib to run, avai
    
 <p>Tech conferences look like you&rsquo;d expect. Tons of people at a Sheraton, keynote in Ballroom D. Or enormous streams of people wandering through South by Southwest in Austin. People come together in the dozens or thousands and attend panels, ostensibly to learn; they attend presentations and brush up their skills, but there&rsquo;s a secondary conference function, one of acculturation. You go to a technology conference to affirm your tribal identity, to transfer out of the throng of dilettantes and into the zone of the professional. You pick up swag and talk to vendors, if that&rsquo;s your thing.</p>
 
-<div class="bigimgWrap">
-  <img class="conference" src="images/sec1_conference04.jpg"><img class="conference" src="images/sec1_conference02.jpg"><img class="conference" src="images/sec1_conference06.jpg"><img class="conference" src="images/sec1_conference11.jpg"><img class="conference" src="images/sec1_conference09.jpg"><img class="conference" src="images/sec1_conference03.jpg"><img class="conference" src="images/sec1_conference07.jpg"><img class="conference" src="images/sec1_conference08.jpg"><img class="conference" src="images/sec1_conference05.jpg"><img class="conference" src="images/sec1_conference10.jpg"><img class="conference" src="images/sec1_conference01.jpg"><img class="conference" src="images/sec1_conference12.jpg">
-  <div class="caption">
-    <strong>First row:</strong> TechCrunch Disrupt NYC, May 2011; Google I/O developers conference, San Francisco, May 2013; Global Mobile Internet Conference, Beijing, April 2015<br>
-    <strong>Second row:</strong>Nvidia GPU, San Jose, September 2010; South by Southwest (SXSW) Interactive Festival, Austin, March 2013; Apple Worldwide Developers Conference (WWDC), San Francisco, June 2008<br>
-    <strong>Third row:</strong> TechCrunch Disrupt NYC, May 2012; Re:publica conference, Berlin, May 2015; TechCrunch Disrupt NYC, May 2015 <br>
-    <strong>Fourth row:</strong> SXSW Interactive Festival, Austin, March 2014; WWDC, San Francisco, June 2015; Bloomberg Technology Conference!, San Francisco, June 15-16
-  </div>
-</div>
+<figure class="wide three-column">
+
+  <img src="images/sec1_conference04.jpg" alt="TechCrunch Disrupt NYC, May 2011"><img src="images/sec1_conference02.jpg" alt="Google I/O developers conference, San Francisco, May 2013"><img src="images/sec1_conference06.jpg" alt="Global Mobile Internet Conference, Beijing, April 2015">
+
+  <img src="images/sec1_conference11.jpg" alt="Nvidia GPU, San Jose, September 2010"><img src="images/sec1_conference09.jpg" alt="South by Southwest (SXSW) Interactive Festival, Austin, March 2013"><img src="images/sec1_conference03.jpg" alt="Apple Worldwide Developers Conference (WWDC), San Francisco, June 2008">
+
+  <img src="images/sec1_conference07.jpg" alt="TechCrunch Disrupt NYC, May 2012"><img src="images/sec1_conference08.jpg" alt="Re:publica conference, Berlin, May 2015"><img src="images/sec1_conference05.jpg" alt="TechCrunch Disrupt NYC, May 2015">
+
+  <img src="images/sec1_conference10.jpg" alt="SXSW Interactive Festival, Austin, March 2014"><img src="images/sec1_conference01.jpg" alt="WWDC, San Francisco, June 2015"><img src="images/sec1_conference12.jpg" alt="Bloomberg Technology Conference!, San Francisco, June 15-16">
+
+  <figcaption>
+    <p><strong>First row:</strong> TechCrunch Disrupt NYC, May 2011; Google I/O developers conference, San Francisco, May 2013; Global Mobile Internet Conference, Beijing, April 2015</p>
+    <p><strong>Second row:</strong> Nvidia GPU, San Jose, September 2010; South by Southwest (SXSW) Interactive Festival, Austin, March 2013; Apple Worldwide Developers Conference (WWDC), San Francisco, June 2008</p>
+    <p><strong>Third row:</strong> TechCrunch Disrupt NYC, May 2012; Re:publica conference, Berlin, May 2015; TechCrunch Disrupt NYC, May 2015</p>
+    <p><strong>Fourth row:</strong> SXSW Interactive Festival, Austin, March 2014; WWDC, San Francisco, June 2015; Bloomberg Technology Conference!, San Francisco, June 15-16</p>
+  </figcaption>
+  
+</figure>
 
 <p>Technology conferences are where primate dynamics can be fully displayed, where relationships of power and hierarchy can be established. There are keynote speakers&mdash;often the people who created the technology at hand or crafted a given language. There are the regular speakers, often paid not at all or in airfare, who present some idea or technique or approach. Then there are the panels, where a group of people are lined up in a row and forced into some semblance of interaction while the audience checks its e-mail.</p>
 
@@ -621,7 +630,7 @@ The sample PostScript code included in the article requires initlib to run, avai
 
 <p>When people started talking about conference behavior, they also began to talk about the larger problems of programming culture. This was always an issue, but the conference issues gave people a point of common reference. Why were there so many men in this field? Why do they behave so strangely? Why is it so hard for them to be in groups with female programmers and behave in a typical, adult way?</p>
 
-<div class="thirty"><img class="centered" src="images/emotes/swagbot.gif"></div><div class="thirty"><img class="centered" src="images/emotes/conferencebot.gif"></div><div class="thirty"><img class="centered" src="images/emotes/drinkbot.gif"></div>
+<figure class="three-column"><img src="images/emotes/swagbot.gif" alt="Kevin collecting conference swag"><img src="images/emotes/conferencebot.gif" alt="Kevin reading conference guide"><img src="images/emotes/drinkbot.gif" alt="Kevin gesticulating with a cocktail glass"></figure>
 
 <p>&ldquo;I go to work and I stick out like a sore thumb. I have been mistaken for an administrative assistant more than once. I have been asked if I was physical security (despite security wearing very distinctive uniforms),&rdquo; wrote Erica Joy Baker on <a href="https://medium.com/thelist/the-other-side-of-diversity-1bb3de2f053e" target="_blank">Medium.com</a> who has worked, among other places, at Google.<span class="footwrapper" style="position: relative;"><a class="footref correx">Δ</a><span class="fn-popup" style="opacity: 0; display: none;">
 The original version of this story did not name Baker or link to her post. <em><a href="https://github.com/BloombergMedia/whatiscode/pull/36" target="_blank">Thanks to @EricaJoy on GitHub</a></em>
@@ -1075,15 +1084,15 @@ The quotation from Fast Company magazine was from an article by Ciara Byrne with
 
 <p>Some languages have cute logos, like the Go gopher.</p>
 
-<img class="centered"  src="images/sec2_gopher.jpg">
+<img class="screenshot" src="images/sec2_gopher.png" width="100" alt="The gopher mascot for the language Go">
 
 <p>There&rsquo;s Scratch, a teaching language for kids. It doesn&rsquo;t use text much at all but allows li&rsquo;l coders to move icons around on screen and assemble programs like Legos. Its logo is a smiling cat on two legs.</p>
                          
-<img class="centered" src="images/sec2_scratch.jpg">
+<img class="screenshot" src="images/sec2_scratch-cat.png" width="100" alt="The cat mascot for the language Scratch">
 
 <p>And then there&rsquo;s Lisp, which didn&rsquo;t come with a logo when it was first proposed in the 1950s but now has a community-created five-eyed alien holding a flag with its proboscis. Lisp is a classic language. There are some languages that just have authority, elegance&mdash;canonical computer languages. </p>
 
-<img class="centered" src="images/sec2_lisp.jpg">
+<img class="screenshot" src="images/sec2_lisp.png" width="200" alt="The alien mascot for the language Lisp">
 
 <p>And one of these is C. Most of the popular languages look a lot like it. C&rsquo;s de facto logo is, well, the letter C. C is called C because it came after another language. That language was called B.</p>
 
@@ -1177,7 +1186,7 @@ In recent versions of XCode the gcc command is an alias to clang. <em><a href="h
 
 <p>It prints that short sentence in the Transcript Window on the user&rsquo;s screen. The Transcript is an object&mdash;and here it&rsquo;s receiving a message <code>(show:)</code> with an argument&mdash;i.e., input&mdash;&ldquo;Hello,&rdquo; etc. You type that in, select it with your mouse (even in the early 1980s), and tell the computer to execute it. It compiles just that bit of code and adds it to the rest of the running system. It looks like this:</p>
 
-<img class="centered" src="images/sec2_smalltalk2.jpg" alt="Smalltalk UI">
+<img class="screenshot" src="images/sec2_smalltalk2.png" alt="Screenshot of the Smalltalk programming environment">
 <div class="caption">Tons of windows all talking to each other. Each window is, well, an object. And instead of programming it and compiling the program, then running it, you just dive right into this living, breathing, window-full environment, and start making new objects that send messages to other objects. If you save where you are, and come back five years later, well, everything will look exactly the same.</div>
 
 <p>The thing is, all those boxes can be manipulated. They&rsquo;re all objects. It&rsquo;s almost too powerful: The boundaries that are clear in most languages&mdash;between data and code, between files and executables, between the operating system and applications, between closed and open software&mdash;all of those borders are fuzzed by design. Smalltalk is a vision of the computer as its own, native medium. The whole system can be modified, by anyone. The dominant version is called Squeak (logo: cute mouse), and a modernized version is called Pharo (logo: lighthouse). Both are free and easy to download. </p>
@@ -1834,6 +1843,7 @@ PHP now stands for “PHP: Hypertext Preprocessor” <em><a href="https://github
 <p>Within Xcode are whole worlds to explore. For example, one component is the iOS SDK (Software Development Kit). You use that to make iPhone and iPad apps. That SDK is made up of dozens and dozens of APIs (Application Programming Interfaces). There&rsquo;s an API for keeping track of a user&rsquo;s location, one for animating pictures, one for playing sounds, and several for rendering text on the screen and collecting information from users. And so forth.</p>
 
 <p>Maybe you&rsquo;re starting to see some strands here. Remember the way the Smalltalk environment worked, a screen with a bunch of windows? There are powerful echoes in Xcode.</p>
+
 <p>There are other ways of working&mdash;I tend to do most of my code in a text editor with a black background, far less to see at first glance, though actually just as complex&mdash;but this right here is some serious code life. You fill out some fields, wire some things together (really, sometimes it&rsquo;s done by connecting virtual wires into virtual holes), and start coding.</p>
 
 <p>When someone from Apple stands onstage and announces some new thing that ends with &ldquo;Kit,&rdquo; such as ResearchKit or HealthKit&mdash;or WatchKit, the set of routines specifically for the Apple Watch&mdash;Xcode is where those kits will land, fully documented, to be used to make software.</p>
@@ -1856,31 +1866,31 @@ PHP now stands for “PHP: Hypertext Preprocessor” <em><a href="https://github
 
 <p>Sometimes this is the result of corporate ambition: Java was very much a Sun product, down to the class library; the same is true of C# for Microsoft. But much of the code in the world is freely available, created by generous volunteers over decades to serve their own needs. The give-and-take between corporations and programming languages is complex. Some language developers are hired to work on their open-sourced languages; Go and Python have been funded, to varying degrees, by Google; and the creator of PHP works at Etsy.</p>
 
-<div class="profileR noborder">
+<div id="many-buttons" class="profileR">
 
   <h4>The Many Button Bezels of Apple</h4>
 
   In Mac OS X, there&rsquo;s a class called NSButton. It intercepts the clicks of a mouse. A programmer makes a button and tells it what to do when someone clicks on it. A programmer also writes the code that sets a bezel.
 
-  <p><img src="images/sec3_btn_push.jpg"><br>
+  <p><button class="push"></button><br>
   <strong>Push Button:</strong> Most commonly used button</p>
 
-  <p><img src="images/sec3_btn_gradient.jpg"><br>
+  <p><button class="gradient"></button><br>
   <strong>Gradient Button:</strong> Usually below lists or grids</p>
 
-  <p><img src="images/sec3_btn_roundrec.jpg"><br>
+  <p><button class="roundrect"></button><br>
   <strong>Rounded Rect Button:</strong> Used for filtering in Mac Finder and Mail</p>
 
-  <p><img src="images/sec3_btn_roundtextured.jpg"><br>
+  <p><button class="roundtextured"></button><br>
   <strong>Rounded Textured Button:</strong> Designed for toolbars only</p>
 
-  <p><img src="images/sec3_btn_textured.jpg"><br>
+  <p><button class="textured"></button><br>
   <strong>Textured Button:</strong> Usage is a mystery</p>
 
-  <p><img src="images/sec3_btn_recessed.jpg"><br>
+  <p><button class="recessed"></button><br>
   <strong>Recessed Button:</strong> Used as a toggle button only</p>
 
-  <p><img src="images/sec3_btn_inline.jpg"><br>
+  <p><button class="inline"></button><br>
   <strong>Inline Button:</strong> New style of push button or indicator</p>
 
 </div>
@@ -1920,7 +1930,7 @@ class Book(models.Model):
 
 <p>So now we can make a book catalog. (Obviously we need to add authors and the like.) The incredibly neat thing is that with a few more lines of configuration you have a completely functional, working Web-based article editor; to wit:</p>
 
-<img class="centered" src="images/sec3_addbook.jpg">
+<img class="screenshot" src="images/sec3-32_addbook.png">
 
 <p>That&rsquo;s called the &ldquo;admin&rdquo; view, and it&rsquo;s always been a main feature of Django. Your work as a programmer has just started, but very soon after the moment of conception, your users&mdash;journalists, if you&rsquo;re building a publishing platform, or alpha testers, or maybe just you, in a testing frame of mind&mdash;can start to play with your baby, entering books, trying things out.</p>
 
@@ -2074,11 +2084,11 @@ The concatenation operation should have produced "420", with no period inside th
 
 <p>And that&rsquo;s why everyone gets excited about GitHub. You should go to GitHub, you really should. You should poke around and look through the thousands of repositories there, read some of the README files. And you should look into the code, and then look at the commits. A &ldquo;commit&rdquo; is a moment of action captured and stored. You can compare one commit with another and see a &ldquo;diff,&rdquo; see what&rsquo;s been added and what&rsquo;s been removed. See what you can figure out. Take a look at the screen shot below.</p>
 
-<img class="centered" src="images/sec3_django3.jpg">
+<img class="screenshot" src="images/sec3-31_django.png">
 
 <p>First, we&rsquo;re looking at the Django repository. This is the actual, real-life code that makes Django, the Web framework, run. It has 668 people keeping an eye on it, and 14,325 people have starred it as a favorite, and there are 5,692 forks&mdash;meaning that people have copied the code into their own repositories with some intention of manipulating and adding to or changing it. These numbers represent invested users. There are likely hundreds of thousands more who downloaded the code just to use it.</p>
 
-<p>We see that a user, claudep, has checked in some code. He did this five hours ago, adding a &ldquo;commit message&rdquo; that reads &ldquo;Fixed #24826&mdash;Accounted for filesystem-dependent filename max length.&rdquo; He&rsquo;s working in a file called tests.py, which means that this particular new code (marked in green and prefixed by &ldquo;+&rdquo; at the beginning of each line) is probably either test code or code to support tests. And thanks to user claudep, this code is now better than it was six hours ago.</p>
+<p>We see that a user, claudep, has <a href="https://github.com/django/django/commit/170f7115bbae45f26ca8078e749dfe67445a57ea" target="_blank">checked in some code</a>. He did this five hours ago, adding a &ldquo;commit message&rdquo; that reads &ldquo;Fixed #24826&mdash;Accounted for filesystem-dependent filename max length.&rdquo; He&rsquo;s working in a file called tests.py, which means that this particular new code (marked in green and prefixed by &ldquo;+&rdquo; at the beginning of each line) is probably either test code or code to support tests. And thanks to user claudep, this code is now better than it was six hours ago.</p>
 
 <p>This is the experience of using version control. It&rsquo;s a combination news feed and backup system. GitHub didn&rsquo;t invent version control. It took a program called git,<sup><a id="fnr.38" name="fnr.38" class="footref" href="#fn.38">38</a></sup> which had been developed at first by Linus Torvalds, the chief architect of Linux, and started adding tools and services around it.</p>
 
