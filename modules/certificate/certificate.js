@@ -41,7 +41,7 @@
       vidStream = stream
 
       video.onerror = function(e) {
-        stream.stop();
+        stream.getTracks()[0].stop();
       };
 
       video.width = certificate.width;
@@ -90,7 +90,7 @@
 
       output.src = canvas.toDataURL();
 
-      vidStream.stop();
+      vidStream.getTracks()[0].stop();
       // video.parentElement.removeChild(video);
 
       download.href = canvas.toDataURL('image/png');
