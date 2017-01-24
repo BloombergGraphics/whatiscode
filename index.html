@@ -2712,6 +2712,15 @@ This story has been annotated with corrections. <a href="https://github.com/Bloo
 <script src="scripts/libs/highlight.pack.js"></script>
 <script src="scripts/libs/d3.v3.min.js"></script>
 <script src="scripts/libs/d3-jetpack.js"></script>
+<script>
+  //bplayer loads a file that replaces _ with lodash -- doesn't have flatten or groupBy
+  !(function(){
+    var orginalUnderscore = _
+    d3.timer(function(){
+      _ = orginalUnderscore
+    })
+  })();
+</script>
 
 <!--Paulbot -->
 <script src="scripts/botLearninal.js"></script>
