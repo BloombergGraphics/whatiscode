@@ -181,12 +181,12 @@ var stats,
       .append("a.toc-head")
       .attr("data-level", ƒ('tagName'))
       .attr("href", function(d) { return '#' + d.id; })
-      .html(function(d) { return d.childNodes[0].innerText + ". " + d.childNodes[1].nodeValue; })
+      .html(function(d) { return d.childNodes[0].textContent + ". " + d.childNodes[1].nodeValue; })
       .on("click", function(d) {
         d3.event.preventDefault();
         history.pushState(null, null, '#'+d.id);
-        stats.windows.previous = stats.windows.current; 
-        d3.select("body").transition().duration(500)
+        stats.windows.previous = stats.windows.current;
+        d3.select("body, html").transition().duration(500)
           .tween("tocscroll", scrollTopTween(d.getBoundingClientRect().top + pageYOffset));
       });
   }
