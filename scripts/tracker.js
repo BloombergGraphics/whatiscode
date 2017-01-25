@@ -204,7 +204,7 @@ var _gaq = _gaq || [];
   var ga_account = window.location.pathname.split('/')[1]=='politics' ? 'UA-11413116-58' : 'UA-11413116-1'
   _gaq.push(['_setAccount', ga_account]);
   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 
   window._sf_endpt=(new Date()).getTime();
@@ -348,7 +348,7 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
 //   var new_leader = '<iframe width="728" height="90" id="lb_ad_frame" style="visibility:hidden;"' +
 //       'onload="this.style.visibility=' + "'visible'" +
 //       '" class="ad_frame" scrolling="no" frameborder="no" src="' +
-//       'http://www.bloomberg.com/graphics/assets/ad.html?url=/' + config.bb_slug + 
+//       '//www.bloomberg.com/graphics/assets/ad.html?url=/' + config.bb_slug + 
 //       "&size=728x90|1x1&iu="+config.ad_code+"&correlator=" +
 //       (config.correlator || new String(Math.random()).substring(2,11));
 
@@ -418,7 +418,7 @@ var Tracker = function(config, pageViewActions, refeshAdsFun) {
   var new_leader = '<iframe ' + sizeStr + ' id="lb_ad_frame" style="visibility:hidden;"' +
       'onload="this.style.visibility=' + "'visible'" +
       '" class="ad_frame" scrolling="no" frameborder="no" src="' +
-      'http://www.bloomberg.com/graphics/assets/ad.html?url=/' + config.bb_slug + 
+      '//www.bloomberg.com/graphics/assets/ad.html?url=/' + config.bb_slug + 
       "&size=" + sizeParm + "&iu="+config.ad_code+"&correlator=" +
       (config.correlator || new String(Math.random()).substring(2,11));
 

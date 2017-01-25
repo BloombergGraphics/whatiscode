@@ -1,7 +1,7 @@
 function initInnerShare() {
   if (isTerminal) return
 
-  var fullUrl = "http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/";
+  var fullUrl = "//www.bloomberg.com/graphics/2015-paul-ford-what-is-code/";
 
   var moduleByName = d3.nest()
     .key(function(d){ return d.name })
@@ -36,7 +36,7 @@ function initInnerShare() {
       event.preventDefault()
       var data = moduleByName[d3.select(this).attr('data-mname')][0];
       // var data = shareData();
-      var tweetUrl = "https://twitter.com/share?url=" + encodeURIComponent(fullUrl+"#"+data.name) + "&text=" + encodeURIComponent(data.tweet);
+      var tweetUrl = "//twitter.com/share?url=" + encodeURIComponent(fullUrl+"#"+data.name) + "&text=" + encodeURIComponent(data.tweet);
       var opts = that.centerPopup(820, 440) + "scrollbars=1";
       track("Twitter");
       window.open(tweetUrl, 'twitter', opts);
