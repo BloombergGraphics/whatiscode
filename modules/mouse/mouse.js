@@ -6,7 +6,7 @@
   var dialogue = [
     {
       "emote": "explaining",
-      "speak": "Move your mouse, see the events. Every time you do something, your computer knows about it. That’s its job. And sometimes marketers are listening and your Web browser reports back to them. That’s their job! Is that happening right now on this website? Great question!"
+      "speak": "Move or click your mouse, and see the events. Scroll past this module to stop event display. Every time you do something, your computer knows about it. That’s its job. And sometimes marketers are listening and your Web browser reports back to them. That’s their job! Is that happening right now on this website? Great question!"
     },
     { "emote": "chill",
       "prompts": [{"prompt": "Stop it", do: function() { module.disabled = true; } }] }
