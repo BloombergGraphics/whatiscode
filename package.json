@@ -12,8 +12,7 @@
     "type": "git",
     "url": "https://github.com/bizweekgraphics/code.git"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-develop": "~0.2.2",

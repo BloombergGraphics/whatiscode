@@ -1,5 +1,5 @@
 function initInnerShare() {
-  if (isTerminal) return
+  if (window.isTerminal) return
 
   var fullUrl = "//www.bloomberg.com/graphics/2015-paul-ford-what-is-code/";
 

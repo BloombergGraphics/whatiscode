@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <!--
     Copyright 2015 Bloomberg Finance L.P.
 
@@ -8,17 +7,12 @@
     license. For the full text of the license, please see:
     https://creativecommons.org/licenses/by-nc-nd/4.0/
 -->
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="utf-8">
   <title>Paul Ford: What Is Code? | Bloomberg</title>
-
-  <meta name="viewport" content="width=device-width">
 
   <meta  name="author" content="Paul Ford" />
   <meta  name="description" content="What do you need to know about code to survive in a suspicious world?"/>
 
-  <meta property="og:site_name" content="Bloomberg.com"/>
   <meta property="og:title" content="What Is Code? If You Don't Know, You Need to Read This">
   <meta property="og:longTitle" content="What is code? If you don't know, you need to read this:">
   <meta property="og:image" content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/images/promo.jpg"/>
@@ -29,13 +23,8 @@
   <meta name="parsely-type" content="post" data-ephemeral="true">
   <meta name="parsely-section" content="graphics" data-ephemeral="true">
 
-  <meta property="og:type" content="article"/>
   <meta name="twitter:card" content="summary"/>
   <meta name="twitter:site" content="@business"/>
-
-  <link rel="stylesheet" type="text/css" href="//www.bloomberg.com/graphics/assets/css/fonts.css"/>
-
-  <script src='//www.bloomberg.com/graphics/assets/js/lib/head.js?'></script>
 
   <script>
     var isBrokenIE = /MSIE\s/.test(navigator.userAgent) && parseFloat(navigator.appVersion.split("MSIE")[1]) < 10;
@@ -47,78 +36,21 @@
       document.documentElement.className += " safari";
       // alert('safari')
     }
-  
+
   </script>
 
 
   <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
 
   <!-- build:css head.css -->
+  <link href="styles/fonts.css" rel="stylesheet"/>
   <link href="styles/background.css" rel="stylesheet"/>
-  <link href="styles/business.css" rel="stylesheet"/>
   <link href="styles/main.css" rel="stylesheet"/>
   <!-- endbuild -->
 
-  <link href='//fonts.googleapis.com/css?family=Roboto+Mono:400,300,700' rel='stylesheet' type='text/css'>
-</head>
-
-
-
-<body>
-
 <div id="background-canvas"></div>
 
-<div class="top-banner">
-  <div class="center">
-    <ul>
-      <li>
-        <a target="_blank" href="http://www.bloomberg.com/company/?tophat=open">Bloomberg the Company
-
-          <span class="banner-icon external-link">
-            <svg id="Layer_1" x="0px" y="0px" width="13px" height="12px">
-              <g>
-                <path fill="#FFFFFF" d="M9.929,7.071v2.144c0,0.531-0.189,0.985-0.566,1.362C8.985,10.954,8.531,11.143,8,11.143H2.429                                         c-0.531,0-0.986-0.189-1.363-0.566C0.688,10.2,0.5,9.746,0.5,9.214V3.643c0-0.531,0.188-0.985,0.566-1.363                                         c0.377-0.377,0.832-0.565,1.363-0.565h4.714c0.062,0,0.114,0.02,0.154,0.06c0.04,0.041,0.061,0.092,0.061,0.154v0.429                                         c0,0.062-0.021,0.114-0.061,0.154c-0.04,0.04-0.092,0.06-0.154,0.06H2.429c-0.295,0-0.547,0.105-0.757,0.315                                         c-0.21,0.209-0.314,0.462-0.314,0.756v5.572c0,0.294,0.104,0.547,0.314,0.757c0.21,0.209,0.462,0.314,0.757,0.314H8                                         c0.295,0,0.547-0.105,0.757-0.314c0.209-0.21,0.314-0.463,0.314-0.757V7.071c0-0.062,0.021-0.113,0.061-0.153                                         c0.04-0.041,0.091-0.061,0.154-0.061h0.429c0.062,0,0.114,0.02,0.154,0.061C9.908,6.958,9.929,7.009,9.929,7.071z M12.5,1.286                                         v3.429c0,0.116-0.042,0.216-0.127,0.301c-0.085,0.085-0.186,0.127-0.302,0.127S11.854,5.1,11.771,5.015l-1.179-1.179L6.226,8.203                                         C6.181,8.248,6.129,8.27,6.071,8.27S5.962,8.248,5.917,8.203L5.154,7.439C5.109,7.395,5.087,7.343,5.087,7.286                                         c0-0.058,0.022-0.109,0.067-0.154L9.52,2.765L8.342,1.586C8.257,1.502,8.214,1.402,8.214,1.286s0.042-0.217,0.127-0.302                                         c0.084-0.084,0.185-0.127,0.301-0.127h3.429c0.116,0,0.217,0.042,0.302,0.127C12.458,1.069,12.5,1.169,12.5,1.286z"></path>
-              </g>
-            </svg>
-          </span>
-
-        </a>
-      </li>
-      <li>
-        <a target="_blank" href="https://bba.bloomberg.net/">Bloomberg Anywhere Login
-          <span class="banner-icon terminal">
-            <svg id="Layer_2" x="0px" y="0px" width="23px" height="13px" viewBox="0 0 22.708 14.833" enable-background="new 0 0 22.708 14.833">
-              <g>
-                <path fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" d="M10.94,8.877c0,0.226-0.183,0.408-0.408,0.408                                             H1.126c-0.226,0-0.408-0.183-0.408-0.408V1.175c0-0.226,0.183-0.408,0.408-0.408h9.405c0.226,0,0.408,0.183,0.408,0.408V8.877z"></path>
-                <path fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" d="M22.014,8.877c0,0.226-0.183,0.408-0.408,0.408                                             H12.2c-0.226,0-0.408-0.183-0.408-0.408V1.175c0-0.226,0.183-0.408,0.408-0.408h9.405c0.226,0,0.408,0.183,0.408,0.408V8.877z"></path>
-                <path fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-miterlimit="10" d="M10.088,11.08v0.689                                             c0,0.256,0.287,0.464,0.852,0.464c0.565,0,0.852-0.208,0.852-0.464V11.08l0.22,0.004c1.593,0.177,2.79,0.754,2.79,1.46                                             c0,0.845-1.636,1.529-3.708,1.529s-3.729-0.685-3.729-1.529c0-0.693,1.14-1.279,2.691-1.466L10.088,11.08z"></path>
-              </g>
-            </svg>
-          </span>
-        </a>
-      </li>
-    </ul>
-    <div class="clear"></div>
-  </div>
-</div>
-
-
-<div id='top-space' ></div>
-<div id="full-header" class='sticky-header'>
-  <a href="http://bloomberg.com/"><img id="header-logo" class='white' src="//www.bloomberg.com/graphics/assets/img/BB-Logo-2line-wb.svg"></a>
-
-  <div id="hidden-banner-ad">
-    <div id='top-ad-container' class="container bannerad"></div>
-
-  </div>
-
-  <div id="header-sharing">
-    <div class="header-icon" id="header-icon-twitter"><img class="blue" src="//www.bloomberg.com/graphics/assets/img/twitter.png"><img class="white" src="//www.bloomberg.com/graphics/assets/img/twitter_w.png"></div>
-    <div class="header-icon" id="header-icon-fb"><img class="blue" src="//www.bloomberg.com/graphics/assets/img/facebook.png"><img class="white" src="//www.bloomberg.com/graphics/assets/img/facebook_w.png"></div>
-  </div>
-  <div id='sharing-space' style='width: 100px;'></div>
-</div>
-
+<div id="full-header" style="background:white;height:70px;border-bottom:1px solid black;"><!-- NAV PLACEHOLDER --></div>
 
 <div class="bot overlay" id="paulbot" data-mode="off"></div>
 <div style='display: none' id="toc" data-module="toc">
@@ -149,7 +81,7 @@
     <p>Software has been around since the 1940s. Which means that people have been faking their way through meetings about software, and the code that builds it, for generations. Now that software lives in our pockets, runs our cars and homes, and dominates our waking lives, ignorance is no longer acceptable. The world belongs to people who code. Those who don’t understand will be left behind.</p>
 
     <p>This issue comprises a single story devoted to ­demystifying code and the culture of the people who make it. There’s some technical language along with a few pretty basic mathematical concepts. There are also lots of solid jokes and lasting insights. It may take a few hours to read, but that’s a small price to pay for adding decades to your career.</p>
-    
+
     <p><em>&mdash;Josh Tyrangiel</em></p>
   </div>
 </div>
@@ -169,7 +101,7 @@
 <div class="imageLeft">
   <img src="images/sec1_taupe.jpg" alt="A Pantone swatch of Simply Taupe">
   <div class="photoCaption">Photographer: Corey Olsen for Bloomberg Businessweek</div>
-</div> 
+</div>
 
 <p>He says: &ldquo;We&rsquo;re basically at the limits with WordPress.&rdquo;</p>
 
@@ -198,7 +130,7 @@
 <p>You consult a spreadsheet and remind him that the Oracle contract was renewed a few months ago. So, no, actually, at least for now, you&rsquo;ll keep eating that cost. Sigh.</p>
 
 <p>This man makes a third less than you, and his education ended with a B.S. from a large, perfectly fine state university. But he has 500+ connections on LinkedIn. That plus sign after the &ldquo;500&rdquo; bothers you. How many more than 500 people does he know? Five? Five thousand?</p>
-  
+
 <div class="video-wrapper">
   <div class="video-wrapper-inner">
     <script src='//cdn.gotraffic.net/projector/latest/bplayer.js'>BPlayer(null, {"id":"P4_i7PihRGiWcPh3gdNMhg","htmlChildId":"bbg-video-player-P4_i7PihRGiWcPh3gdNMhg","serverUrl":"//www.bloomberg.com/api/embed","idType":"BMMR","autoplay":false,"video_autoplay_on_page":false,"log_debug":false,"ui_controls_popout":false,"use_js_ads":true,"ad_code_prefix":"","ad_tag_gpt_preroll":true,"ad_tag_gpt_midroll":true,"ad_tag_sz_preroll":"1x7","ad_tag_sz_midroll":"1x7","ad_tag_sz_overlay":"1x7","ad_network_id_preroll":"5262","ad_network_id_midroll":"5262","ad_network_id_overlay":"5262","ad_tag_cust_params_preroll":"","ads_vast_timeout":10000,"ads_playback_timeout":10000,"wmode":"opaque","use_comscore":true,"comscore_ns_site":"bloomberg","comscore_page_level_tags":{"bb_brand":"bbiz","bss_cont_play":0,"bb_region":"US"},"use_chartbeat":true,"chartbeat_uid":"15087","chartbeat_domain":"bloomberg.com","use_share_overlay":true,"share_metadata":{"canonical_url":"//bloom.bg/1GzwRDU"},"vertical":"business","ad_tag_overlay":"business/videooverlay","zone":"video","source":"BBIZweb","module_conviva_insights":"enabled","conviva_account":"c3.Bloomberg","width":640,"height":360,"ad_tag":"","ad_tag_midroll":"","offsite_embed":false});</script>
@@ -239,11 +171,11 @@
 
 <div id="interestingWrap">
   <div class="interesting1">
-    interesting, 
+    interesting,
     <img class="centered" src="images/sec1_interesting.jpg" alt="Disaster response robot">
   </div>
   <div class="interesting2">
-    wonderful, 
+    wonderful,
     <img class="centered" src="images/sec1_wonderful.jpg" alt="Patient with a cochlear implant">
   </div>
   <div class="interesting3">
@@ -270,7 +202,7 @@
   <div class="innertw" data-mname='circuit'><img src="images/twitter-blk.png" width="20"></div>
 </div>
 
-<p>You, using a pen and paper, can do anything a computer can; you just can&rsquo;t do those things billions of times per second. And those billions of tiny operations add up. They can cause a phone to boop, elevate an elevator, or redirect a missile. That raw speed makes it possible to pull off not one but multiple sleights of hand, card tricks on top of card tricks. Take a bunch of pulses of light reflected from an optical disc, apply some math to unsqueeze them, and copy the resulting pile of expanded impulses into some memory cells&mdash;then read from those cells to paint light on the screen. Millions of pulses, 60 times a second. That&rsquo;s how you make the rubes believe they&rsquo;re watching a movie. 
+<p>You, using a pen and paper, can do anything a computer can; you just can&rsquo;t do those things billions of times per second. And those billions of tiny operations add up. They can cause a phone to boop, elevate an elevator, or redirect a missile. That raw speed makes it possible to pull off not one but multiple sleights of hand, card tricks on top of card tricks. Take a bunch of pulses of light reflected from an optical disc, apply some math to unsqueeze them, and copy the resulting pile of expanded impulses into some memory cells&mdash;then read from those cells to paint light on the screen. Millions of pulses, 60 times a second. That&rsquo;s how you make the rubes believe they&rsquo;re watching a movie.
 </p>
 
 <p>Apple has always made computers; Microsoft used to make only software (and occasional accessory hardware, such as mice and keyboards), but now it&rsquo;s in the hardware business, with Xbox game consoles, Surface tablets, and Lumia phones. Facebook assembles its own computers for its massive data centers.</p>
@@ -335,9 +267,9 @@
 
 <pre><code class="k">ispal: {x~|x}</code></pre>
 
-<p>That&rsquo;s in a language called, simply, K, famous for its brevity. <sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup> 
+<p>That&rsquo;s in a language called, simply, K, famous for its brevity. <sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>
 That code will test if something is a palindrome. If you next typed in <code>ispal "able was i ere i saw elba"</code>, K will confirm that yes, this is a palindrome. </p>
-        
+
 <p>So how else might your code look? Maybe like so, in Excel (with all the formulas hidden away under the numbers they produce, and a check box that you can check): </p>
 
 <img class="screenshot" src="images/sec1_excel.png" alt="Screenshot of Excel spreadsheet">
@@ -506,14 +438,14 @@ That code will test if something is a palindrome. If you next typed in <code>isp
 <p>Many algorithms have their own pages on Wikipedia. You can spend days poking around them in wonder. <a href="https://en.wikipedia.org/wiki/Euclidean_algorithm" target="_blank">Euclid&rsquo;s algorithm</a>, for example, is the go-to specimen that shows up whenever anyone wants to wax on about algorithms, so why buck the trend? It&rsquo;s a simple way of determining the greatest common divisor for two numbers. Take two numbers, like 16 and 12. Divide the first by the second. If there&rsquo;s a remainder (in this case there is, 4), divide the smaller number, 12, by that remainder, 4, which gives you 3 and no remainder, so we&rsquo;re done&mdash;and 4 is the greatest common divisor.<span class="footwrapper" style="position: relative;"><a class="footref correx">Δ</a><span class="fn-popup" style="opacity: 0; display: none;">
 The original version of this story divided the larger number by the remainder, instead of the smaller. <em><a href="https://github.com/BloombergMedia/whatiscode/pull/7" target="_blank">Thanks to @kuro5hin on GitHub</a></em>
 </span></span> (Now translate that into machine code, and we can get out of here.)</p>
-      
+
 <p>There&rsquo;s a site called Rosetta Code that shows you different algorithms in different languages. The <a href="http://rosettacode.org/wiki/Greatest_common_divisor" target="_blank">Euclid&rsquo;s algorithm page</a> is great. Some of the examples are suspiciously long and laborious, and some are tiny nonsense poetry, like this one, in the language Forth:<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup></p>
 
 <pre><code class="nohighlight forth">: gcd ( a b -- n )
   begin dup while tuck mod repeat drop ;</code></pre>
-    
+
 <p>Read it out loud, preferably to friends. Forth is based on the concept of a stack, which is a special data structure. You make &ldquo;words&rdquo; that do things on the stack, building up a little language of your own. PostScript,<sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup> the language of laser printers, came after Forth but is much like it. Look at how similar the code is, give or take some squiggles:</p>
-    
+
 <pre><code class="nohighlight postscript">/gcd {
 {
   {0 gt} {dup rup mod} {pop exit} ifte
@@ -575,7 +507,7 @@ The sample PostScript code included in the article requires initlib to run, avai
 <h3 id="whats-with-all-these-conferences-anyway"><a href="#whats-with-all-these-conferences-anyway">2.6</a> What&rsquo;s With All These Conferences, Anyway?</h3>
 
 <p>Conferences! The website Lanyrd lists hundreds of technology conferences for June 2015. There&rsquo;s an event for software testers in Chicago, a Twitter conference in São Paulo, and one on enterprise content management in Amsterdam. In New York alone there&rsquo;s the Big Apple Scrum Day, the Razorfish Tech Summit, an entrepreneurship boot camp for veterans, a conference dedicated to digital mapping, many conferences for digital marketers, one dedicated to Node.js, one for Ruby, and one for Scala (these are programming languages), a couple of breakfasts, a conference for cascading style sheets, one for text analytics, and something called the Employee Engagement Awards.</p>
-   
+
 <p>Tech conferences look like you&rsquo;d expect. Tons of people at a Sheraton, keynote in Ballroom D. Or enormous streams of people wandering through South by Southwest in Austin. People come together in the dozens or thousands and attend panels, ostensibly to learn; they attend presentations and brush up their skills, but there&rsquo;s a secondary conference function, one of acculturation. You go to a technology conference to affirm your tribal identity, to transfer out of the throng of dilettantes and into the zone of the professional. You pick up swag and talk to vendors, if that&rsquo;s your thing.</p>
 
 <figure class="wide three-column">
@@ -594,7 +526,7 @@ The sample PostScript code included in the article requires initlib to run, avai
     <p><strong>Third row:</strong> TechCrunch Disrupt NYC, May 2012; Re:publica conference, Berlin, May 2015; TechCrunch Disrupt NYC, May 2015</p>
     <p><strong>Fourth row:</strong> SXSW Interactive Festival, Austin, March 2014; WWDC, San Francisco, June 2015; Bloomberg Technology Conference!, San Francisco, June 15-16</p>
   </figcaption>
-  
+
 </figure>
 
 <p>Technology conferences are where primate dynamics can be fully displayed, where relationships of power and hierarchy can be established. There are keynote speakers&mdash;often the people who created the technology at hand or crafted a given language. There are the regular speakers, often paid not at all or in airfare, who present some idea or technique or approach. Then there are the panels, where a group of people are lined up in a row and forced into some semblance of interaction while the audience checks its e-mail.</p>
@@ -1077,7 +1009,7 @@ The quotation from Fast Company magazine was from an article by Ciara Byrne with
 
 
 <p>It&rsquo;s possible for a C programmer and a Java programmer to read each other&rsquo;s code, but it&rsquo;s harder to make C code and Java code work together. C and Java represent the world in different ways, structure data in different ways, and address the components of the computer in different ways. There are true benefits to everyone on a team using the same language. They&rsquo;re all thinking the same way about how to instruct the computer to process data. </p>
-      
+
 <p>It&rsquo;s not necessary for every team across a big organization to use the same language. In fact, it&rsquo;s often counterproductive. Large organizations have lots of needs and use many languages and services to meet them. For example, Etsy is built atop PHP&mdash;but its product-search service uses Java libraries, because the solutions for search available in Java are great.</p>
 
 <p>Some programming languages, such as C, will do their best to do exactly as you ask, even if that means crashing your computer. Others, like OCaml and Haskell, are very constrained and ask a programmer to hew to a narrow form, trying to steer you away from anything stupid.<sup><a id="fnr.11" name="fnr.11" class="footref" href="#fn.11">11</a></sup></p>
@@ -1087,7 +1019,7 @@ The quotation from Fast Company magazine was from an article by Ciara Byrne with
 <img class="screenshot" src="images/sec2_gopher.png" width="100" alt="The gopher mascot for the language Go">
 
 <p>There&rsquo;s Scratch, a teaching language for kids. It doesn&rsquo;t use text much at all but allows li&rsquo;l coders to move icons around on screen and assemble programs like Legos. Its logo is a smiling cat on two legs.</p>
-                         
+
 <img class="screenshot" src="images/sec2_scratch-cat.png" width="100" alt="The cat mascot for the language Scratch">
 
 <p>And then there&rsquo;s Lisp, which didn&rsquo;t come with a logo when it was first proposed in the 1950s but now has a community-created five-eyed alien holding a flag with its proboscis. Lisp is a classic language. There are some languages that just have authority, elegance&mdash;canonical computer languages. </p>
@@ -1107,7 +1039,7 @@ The quotation from Fast Company magazine was from an article by Ciara Byrne with
 
 <p>C is a simple language, simple like a shotgun that can blow off your foot. It allows you to manage every last part of a computer&mdash;the memory, files, a hard drive&mdash;which is great if you&rsquo;re meticulous and dangerous if you&rsquo;re sloppy. Software made in C is known for being fast. When you compile C, it doesn&rsquo;t simply become a bunch of machine language in one go; there are many steps to making it really, ridiculously fast. These are called optimizations, and they are to programming what loopholes are to taxes. Think of C as sort of a plain-spoken grandfather who grew up trapping beavers and served in several wars but can still do 50 pullups. </p>
 
-<p>C&rsquo;s legendary, lucid manual and specification, <em>The C Programming Language</em>, written by Ritchie and Brian Kernighan (known by its nickname, K&amp;R), is a quick and simple read&mdash;physically light in comparison with modern, heavy-stock guides to programming on bookstore shelves. This recommended text was published in 1978, when personal computing barely existed, back when a computer was a large piece of industrial equipment used to control a refrigeration system or calculate actuarial tables. It was in K&amp;R that &ldquo;Hello, world!&rdquo; became the canonical example program for any language. By convention, almost every introduction to any programming language since then starts with a variation on &ldquo;Hello, world!&rdquo; </p> 
+<p>C&rsquo;s legendary, lucid manual and specification, <em>The C Programming Language</em>, written by Ritchie and Brian Kernighan (known by its nickname, K&amp;R), is a quick and simple read&mdash;physically light in comparison with modern, heavy-stock guides to programming on bookstore shelves. This recommended text was published in 1978, when personal computing barely existed, back when a computer was a large piece of industrial equipment used to control a refrigeration system or calculate actuarial tables. It was in K&amp;R that &ldquo;Hello, world!&rdquo; became the canonical example program for any language. By convention, almost every introduction to any programming language since then starts with a variation on &ldquo;Hello, world!&rdquo; </p>
 
 <p>Here is the ur-text of computational self-introduction:</p>
 
@@ -1122,7 +1054,7 @@ int main()
 
 <pre><code class="c">#include&lt;stdio.h&gt;
 
-void squares(int v) 
+void squares(int v)
 {
   for (int i=1;i&lt;v+1;i++) {
     printf("%d ", i*i);
@@ -1130,7 +1062,7 @@ void squares(int v)
   printf("\n");
 }
 
-int main() 
+int main()
 {
   squares(10);
 }
@@ -1144,13 +1076,13 @@ $ ./a.out</code></pre>
 <p>And it produced:</p>
 
 <pre><code>1 4 9 16 25 36 49 64 81 100</code></pre>
-    
+
 <p>That runs the GNU C Compiler<span class="footwrapper" style="position: relative;"><a class="footref correx notabene"></a><span class="fn-popup" style="opacity: 0; display: none;">
 In recent versions of XCode the gcc command is an alias to clang. <em><a href="https://github.com/BloombergMedia/whatiscode/issues/22" target="_blank">Thanks to @kdungs on GitHub</a></em>
 </span></span> and produces a default file called <code>a.out</code>, which I ran on the command line,<sup>
 <a id="fnr.13" name="fnr.13" class="footref" href="#fn.13">13</a>
 </sup> to get my squared numbers, and bully for me. If I wanted to change the code, I would run the commands, and the program would update accordingly.</p>
-    
+
 <p>This isn&rsquo;t great code by any stretch.<sup>
 <a id="fnr.14" name="fnr.14" class="footref" href="#fn.14">14</a>
 </sup> You just need to squint a little to see that there are small, repeatable units that fit together in certain ways. There&rsquo;s a function called squares. That&rsquo;s the important part. You feed it a number, an integer. Then it counts from 1 to that integer and with each count it prints the square of that number. Then it prints a new line. Done.</p>
@@ -1316,7 +1248,7 @@ The original version of this story incorrectly stated $2 billion. <em><a href="h
 <p>Somehow it keeps working out. The industry is always promising to eat itself, to come up with a paradigm so perfect that we can all stop wasting our time and enter a world of pure digital thought. It never happens.</p>
 
 <h3 id="we-still-need-to-choose"><a href="#we-still-need-to-choose">4.3</a> We Still Need to Choose &hellip;</h3>
-      
+
 <p>Nine weeks into the re-architecture, you have asked TMitTB to come by the office and talk next steps.</p>
 
 <p>You&rsquo;ve noticed that his team has started to dress like him. One of the women is in tall boots and has done something complex with her hair. She&rsquo;s wearing a black leather jacket. Nothing ostentatious, just cooler. She was previously all Patagonia. Is this how programmers dress? How did they get their own executive style?</p>
@@ -1370,7 +1302,7 @@ The original version of this story incorrectly stated $2 billion. <em><a href="h
 
 <p>Lisp, though, is another kind of beast. It emerged straight out of mathematical research. There are many things that made Lisp peculiar. Some people say it stands for &ldquo;Lots of superfluous parentheses.&rdquo;<sup><a id="fnr.21" name="fnr.21" class="footref" href="#fn.21">21</a></sup></p>
 
-<pre><code class="lisp">(defun squares (count)    
+<pre><code class="lisp">(defun squares (count)
   (dotimes (n count)
     (format t "~a " (* (+ n 1)  (+ n 1)))))
 (squares 10)
@@ -1399,7 +1331,7 @@ The original version of this story incorrectly stated $2 billion. <em><a href="h
 <p>Two of them are late, and bravely you ask the one already in attendance to explain what&rsquo;s going on. He quickly gathers the limits of your information through a series of questions, beginning with, &ldquo;Do you know what a Web page is?&rdquo; </p>
 
 <p>Here&rsquo;s what he shows you: To gather an e-mail address and a name, you can make a Web page using HTML.
-<sup><a id="fnr.23" name="fnr.23" class="footref" href="#fn.23">23</a></sup> 
+<sup><a id="fnr.23" name="fnr.23" class="footref" href="#fn.23">23</a></sup>
 
 <div id="livehtml" class="interactive-feature" data-module="livehtml">
 
@@ -1432,7 +1364,7 @@ And that looks like this:
 <p>Enter the remaining two programmers. Programmer A, who is senior, takes her place at the whiteboard. &hellip;</p>
 
 <div class="chat centered">
-                         
+
   <div class="chatterL">
     <img src="images/emotes/chatter_Orange.gif" class="centered" alt="Programmer A">
   </div><div class="chatterR">
@@ -1685,7 +1617,7 @@ And that looks like this:
 <p>Don&rsquo;t ever count Microsoft out. Its great corporate skill has always been to take the sheer weirdness of computer ideas and translate them for corporations, in the language of Global Business Leadership. Whatever is discussed in this issue, Microsoft offers at least one of it. Statically typed, scripting, data-driven, functional&mdash;name your ambiguous adjective, and Microsoft will sell something that delivers that to you, and you can write Windows code in it and live a Windows life. And this is not disparagement; Microsoft products can be as good as or better than anything else on the market.</p>
 
 <h3 id="liquid-infrastructure"><a href="#liquid-infrastructure">5.5</a> Liquid Infrastructure</h3>
-    
+
 <p>&ldquo;Enterprise&rdquo; is a feared word among programmers, because enterprise programming is a lot of work without much to show for it. Remember healthcare.gov, the first version that was a total disaster? Perfect example of enterprise coding. At the same time, programmers respect big systems&mdash;when they work. We respect the ambition of huge heavy machines running big blobs of code. We grew up reading about supercomputers. Big iron is cool, even if the future seems to be huge cloud platforms hosting with tons of cheap computers. </p>
 
 <p>But Java is also in wide use at Google. It&rsquo;s a language for places such as General Electric and Accenture. These aren&rsquo;t startups, but if their product schedules slip, so does their revenue, and they are beholden to the public markets. Gigantic data-driven organizations are structured around code, around getting software made. But that doesn&rsquo;t mean their teams are huge&mdash;Amazon, for example, is famous for its two-pizza rule:  &ldquo;Never have a meeting where two pizzas couldn&rsquo;t feed the entire group.&rdquo; </p>
@@ -1817,7 +1749,7 @@ PHP now stands for “PHP: Hypertext Preprocessor” <em><a href="https://github
 
 <p>Coding in PHP for a living is not a death sentence. Lots of people have gotten rich off PHP. It just means a lot of cutting and pasting, and a lot of trips to Google to figure out why things aren&rsquo;t working.</p>
 
-<p>Poor, sad, misbegotten, incredibly effective, massively successful PHP. Reading PHP code is like reading poetry, the poetry you wrote freshman year of college. 
+<p>Poor, sad, misbegotten, incredibly effective, massively successful PHP. Reading PHP code is like reading poetry, the poetry you wrote freshman year of college.
 </p>
 
 <p>I spent so many hundreds, maybe thousands, of hours programming in PHP, back when I didn&rsquo;t know what I was doing and neither did PHP. Reloading Web pages until my fingers were sore. (I can hear your sympathetic sobs.) Everything was always broken, and people were always hacking into my sites.</p>
@@ -1918,7 +1850,7 @@ PHP now stands for “PHP: Hypertext Preprocessor” <em><a href="https://github
 
 <p>A popular Web framework is Django, which is used for coding in Python. Instagram was bootstrapped on it. When you sit down for the first time with Django, you run the command <code>"startproject,"</code> and it makes a directory with some files and configuration inside. This is your project directory. Now you have access to libraries and services that add to and enhance the ­standard library.<sup><a id="fnr.36" name="fnr.36" class="footref" href="#fn.36">36</a></sup></p>
 
-<p>Suppose we&rsquo;re still making our bookstore, the Amazonesque one with the relational database that we started a few pages back. With Django, we run the 
+<p>Suppose we&rsquo;re still making our bookstore, the Amazonesque one with the relational database that we started a few pages back. With Django, we run the
 <code>"startproject"</code> command. You might tell it to start an app called bookstore. Then you&rsquo;d &ldquo;set up your models,&rdquo; meaning you&rsquo;d start to define how your data looks, using Python&rsquo;s idioms, which the framework will translate into database-ese.</p>
 
 <pre><code class="python">from django.db import models
@@ -2159,7 +2091,7 @@ The article identified git commit identifiers as random. They are SHA-1 hashes. 
 
 <section class="code-section" data-section="7">
 <div class="code-content">
-                         
+
 <h2 id="the-triumph-of-middle-management"><a href="#the-triumph-of-middle-management">7</a> The Triumph of Middle Management</h2>
 
 <p>&ldquo;I mean, this company will do everything imaginable to slow down shipping,&rdquo; TMitTB says as the CTO winces. That&rsquo;s fine; you expected this to be a stressful meeting. &ldquo;First, I needed to pass everything through the security team, which was five months of review,&rdquo; TMitTB says, &ldquo;and then it took me weeks to get a working development environment, so I had my developers sneaking out to Starbucks to check in their code. &hellip;&rdquo;</p>
@@ -2188,7 +2120,7 @@ The article identified git commit identifiers as random. They are SHA-1 hashes. 
   <div class="photoCaption">Photographer: Joanna Mcclure for bloomberg businessweek; prop stylist: Amy Henry</div>
 </div>
 
-<p>He&rsquo;s afraid, you realize, that you can&rsquo;t understand the work he&rsquo;s doing, that you see software as a thing and not a golden braid forever weaving. 
+<p>He&rsquo;s afraid, you realize, that you can&rsquo;t understand the work he&rsquo;s doing, that you see software as a thing and not a golden braid forever weaving.
 </p>
 
 <p>But you&rsquo;ve been coming around. Finding your way to some programmer meetings. It&rsquo;s like your smartphone and its constant updates. Nothing is ever done. That&rsquo;s fine.</p>
@@ -2802,12 +2734,7 @@ This story has been annotated with corrections. <a href="https://github.com/Bloo
   }
 </script>
 
-<script src='//www.bloomberg.com/graphics/assets/js/lib/share.js?'></script>
-<script src="scripts/tracker.js"></script>
-<script src="scripts/share.js"></script>
-
 <script type="text/javascript">
-  initShare()
   initInnerShare()
 
   //stick header to top of page
@@ -2815,7 +2742,7 @@ This story has been annotated with corrections. <a href="https://github.com/Bloo
   var offHeader = pageYOffset > 300
   d3.select('#full-header').style('top', offHeader ? '-100px' : '0px')
   d3.select('#toc-toggle').style('opacity', offHeader ? '1' : '0')
-  
+
   d3.select(window).on('scroll.sticky', function(){
     var fixedHeader1 = pageYOffset > 31
     if (fixedHeader != fixedHeader1){
@@ -2866,5 +2793,4 @@ jQuery("#fit2").fitText(0.38);
 
 </script>
 
-</body>
-</html>
+<!-- FOOTER PLACEHOLDER -->
