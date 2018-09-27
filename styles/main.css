@@ -15,6 +15,12 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+footer {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+}
+
 #background-canvas {
   position: fixed;
   height: 100%;
@@ -132,8 +138,8 @@ h4 {
 }
 
 #headerArt h2 {
-  font-size: 40px; 
-  line-height:1em; 
+  font-size: 40px;
+  line-height:1em;
   margin-bottom: 0;
   margin-top:0;
   font-family: 'Roboto Mono', courier, monospace;
@@ -264,7 +270,7 @@ h4 {
   display: block;
   width: 0;
   z-index: 0;
-  top: 15px;  
+  top: 15px;
 }
 
 .chat .person.a:before {
@@ -296,7 +302,7 @@ a {
   transition: color .2s, border .2s;
 }
 a:hover {
-  color: #f94600; 
+  color: #f94600;
   border-bottom-color: #f94600;
 }
 
@@ -305,7 +311,7 @@ a:hover {
   font-size: 14px;
   line-height: 16px;
   font-family: "BWHaasText-55Roman";
-  color:#848484 
+  color:#848484
 }
 
 /* Videos */
@@ -360,7 +366,7 @@ a:hover {
 
 .footref {
   border-radius: 10px;
-  border: 1px solid #848484;
+  border: 1px solid #848484 !important;
   color: #848484;
   padding: 2px 8px;
   font-size: small;
@@ -371,7 +377,7 @@ a:hover {
   content: "■ ";
 }
 .footref.notabene::before {
-  content: "✱"; 
+  content: "✱";
 }
 .footref:hover {
   cursor: pointer;
@@ -477,7 +483,7 @@ article ol li {
   padding: 0;
   list-style: decimal;
 }
-article ol ol { 
+article ol ol {
   margin: 0;
 }
 article ol ol li {
@@ -697,7 +703,7 @@ figure figcaption p { margin: 0; }
 
   #headerArt .bylinePaul, #headerArt .bylineDate {
     float: none;
-    width: 100%; 
+    width: 100%;
     margin: 0
   }
 
@@ -731,7 +737,7 @@ figure figcaption p { margin: 0; }
   #headerArt {padding: 0;}
   #headerArt{background: url('../images/mobileBG.gif');}
   #background-canvas{display:none;}
-  
+
   body{font-size: 16px; line-height: 20px;}
   h2{font-size: 55px;line-height: 55px;}
   h3{font-size:26px;line-height: 28px}

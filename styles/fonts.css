@@ -1,0 +1,32 @@
+@font-face{
+  font-family: "Roboto Mono";
+  font-weight: 700;
+  font-style: normal;
+  src: url("/graphics/soup/fonts/robotomono/RobotoMono-Bold.woff2") format("woff2"),url("/graphics/soup/fonts/robotomono/RobotoMono-Bold.woff") format("woff")
+}
+@font-face{
+  font-family: "Roboto Mono";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/graphics/soup/fonts/robotomono/RobotoMono-Regular.woff2") format("woff2"),url("/graphics/soup/fonts/robotomono/RobotoMono-Regular.woff") format("woff")
+}
+@font-face{
+  font-family: "Roboto Mono";
+  font-weight: 300;
+  font-style: normal;
+  src: url("/graphics/soup/fonts/robotomono/RobotoMono-Light.woff2") format("woff2"),url("/graphics/soup/fonts/robotomono/RobotoMono-Light.woff") format("woff")
+}
+@font-face{
+  font-family: "TiemposTextWeb-Regular";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/graphics/soup/fonts/tiempos-text/TiemposTextWeb-Regular.woff2") format("woff2"),url("/graphics/soup/fonts/tiempos-text/TiemposTextWeb-Regular.woff") format("woff")
+}
+@font-face {
+  font-family:'BWHaasText-55Roman';
+  src: url("/graphics/soup/fonts/bw-haas/BWHaasText-55Roman.woff2") format("woff2"),url("/graphics/soup/fonts/bw-haas/BWHaasText-55Roman.woff") format("woff");
+}
+@font-face {
+  font-family:'BWHaasText-75Bold';
+  src: url("/graphics/soup/fonts/bw-haas/BWHaasText-75Bold.woff2") format("woff2"),url("/graphics/soup/fonts/bw-haas/BWHaasText-75Bold.woff") format("woff");
+}
