@@ -17,7 +17,7 @@
     "grunt": "~0.4.1",
     "grunt-develop": "~0.2.2",
     "grunt-contrib-watch": "~0.5.3",
-    "request": "~2.27.0",
+    "request": "~2.47.0",
     "time-grunt": "~0.1.1",
     "load-grunt-tasks": "~0.2.0",
     "grunt-contrib-stylus": "~0.15.0",
