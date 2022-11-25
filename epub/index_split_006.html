@@ -1,0 +1,657 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+    <title>Paul Ford: What is Code? | Bloomberg</title>
+    <meta content="width=device-width" name="viewport"/>
+    <meta content="Paul Ford" name="author"/>
+    <meta content="What do you need to know about code to survive in a suspicious world?" name="description"/>
+    <meta content="Bloomberg.com" property="og:site_name"/>
+    <meta content="What Is Code? If You Don't Know, You Need to Read This" property="og:title"/>
+    <meta content="What is code? If you don't know, you need to read this:" property="og:longTitle"/>
+    <meta content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/images/promo.jpg" property="og:image"/>
+    <meta content="The world belongs to people who code. Those who don’t understand will be left behind." property="og:description"/>
+    <meta content="Bloomberg Graphics, BusinessWeek, code" name="keywords"/>
+    <meta content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/" property="og:url"/>
+    <meta content="post" name="parsely-type" data-ephemeral="true"/>
+    <meta content="graphics" name="parsely-section" data-ephemeral="true"/>
+    <meta content="article" property="og:type"/>
+    <meta content="summary" name="twitter:card"/>
+    <meta content="@business" name="twitter:site"/>
+    <script src="http://www.bloomberg.com/graphics/assets/js/lib/head.js?"></script>
+    <script>
+    var isBrokenIE = /MSIE\s/.test(navigator.userAgent) &amp;&amp; parseFloat(navigator.appVersion.split("MSIE")[1]) &lt; 10;
+    if (isBrokenIE) document.documentElement.className += ' b-ie'
+
+    if (!console.log) console.log = function(){}
+
+    if (navigator.userAgent.indexOf('Safari') != -1 &amp;&amp; navigator.userAgent.indexOf('Chrome') == -1) {
+      document.documentElement.className += " safari";
+      // alert('safari')
+    }
+  
+  </script>
+    
+    <!-- build:css head.css -->
+    <!-- endbuild -->
+    
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+<article id="code" class="calibre15">
+<section data-section="3" class="code-section1">
+<div class="code-content">
+<h2 class="calibre21" id="calibre_pb_5">Why Are Programmers So Intense About Languages?</h2>
+
+      <p class="calibre16">Many conferences are organized around specific programming languages or specific communities (PyCon for Python programmers; the Strata conference for big data; Oscon for open-source coders); these are ritual events for the people in those communities. Attendees gather, talk, and post the videos on YouTube. Language matters.</p>
+
+      <p class="calibre16">Programmers track the success of computer languages the way other people track sports rankings, commenting on Web forums such as Reddit (where many languages get their own “subreddit,” and <a href="http://www.reddit.com/r/programming" target="_blank" class="calibre7 pcalibre2">reddit.com/r/programming</a> currently has 620,202 readers), or <a href="https://news.ycombinator.com/" target="_blank" class="calibre7 pcalibre2">Hacker News</a>, run by the venture capital firm Y Combinator (a company named after a special kind of function that operates on other functions), or <a href="http://lambda-the-ultimate.org/" target="_blank" class="calibre7 pcalibre2">Lambda the Ultimate</a> (named after a series of papers written mostly in the 1970s about the influential programming language Scheme—the more inside-baseball the name, the nerdier the subject matter).</p>
+
+      <p class="calibre16">There are hundreds of programming blogs. Many large corporations let their engineers blog (a generous gift, given how many recruiters are hovering). Discussions about programming go on everywhere, in public, at all times, about hundreds of languages. There is a keen sense of what’s coming up and what’s fading out.</p>
+
+      <p class="calibre16">It’s not simply fashion; one’s career as a programmer depends on demonstrating capacity in one or more languages. So there are rankings, frequently updated, rarely shocking. As of April 15, the world’s most-used computer languages, according to the Tiobe index (which uses a variety of indicators to generate a single ranking for the world of programming), are Java, C, C++, Objective-C, and C#, followed by JavaScript, PHP, and Python. The rankings are necessarily inexact; another list, by a consulting firm called RedMonk, gives JavaScript the top spot, followed by Java. There are many possible conclusions here, but the obvious one is that, all things being equal, a very good Java programmer who performs well in interviews will have more career options than a similar candidate using a more obscure language.</p>
+      <p class="calibre16">If you code, by the time a language breaks through to the top 10 or 20, you’ve heard of it, read blog posts about it, heard people lament how terrible or wonderful or misguided it is, possibly watched a few video tutorials, or played with it a little. Taking new languages out for a spin is a good thing for a programmer to do. Often all you have to do is download some files and write a couple lines of code, then decide if you want to go further. Most languages are free to download and use.</p>
+
+      <p class="calibre16">Why do people construct and then give away free languages? Well, the creation of a good computer language is the work of an apex programmer. To have produced a successful language is acknowledged as a monumental effort, akin to publishing a multivolume history of a war, or fighting in one. The reward is glory.</p>
+
+      <p class="calibre16">Changing a language is like fighting that war all over again, and some languages have at times been trapped in a liminal state between their old, busted selves, and their new, promised version. Perl 5, released in the mid-1990s, was a language uniquely suited to the World Wide Web, and it grew as the Web grew; Perl 6 was supposed to be better in every way, and a redesign began with grand pronouncements in 2000. But after 15 years of people working continually and often for free on a project they consider in the public interest, there’s still no official Perl 6. (Latest ETA: Christmas 2015.)</p>
+
+      <p class="calibre16">The Python language community, keenly aware of the Perl community’s problems, decided to make necessary but difficult changes to the language as part of the transition from Version 2 to Version 3. They would modernize, clean up rough edges—but avoid grand reinventions. Development of Python 3.0 started in 2006; the first working version came out in 2008; and in 2015, the transition is ongoing.</p>
+
+      <p class="calibre16">Making a new language is hard. Making a popular language is much harder still and requires the smile of fortune. And changing the way a popular language works appears to be one of the most difficult things humans can do, requiring years of coordination to make the standards align. Languages are large, complex, dynamic expressions of human culture. </p>
+
+
+<!-- map needs to be static pls dont delete -->
+<div class="interactive-feature4" data-module="maps" id="code-atlas">
+                         <div class="maps-intro"></div>
+                         <div id="g-map-box" class="calibre6">
+                                                  <!-- Generated by ai2html v0.54 - 2015-06-09 - 12:29 -->
+                                                  <!-- ai file: map -->
+                                                  <!-- Artboard: Artboard_1 -->
+                                                  <div id="g-map-Artboard_1" class="g-artboard">
+                                                                           <div id="g-map-Artboard_1-graphic" class="calibre6">
+                                                                                                    <div class="globies"></div>
+                                                                                                    
+                                                                                                    <div class="maps-text-layer">
+                                                                                                    <div id="g-ai0-1" class="g-layer_">
+                                                                                                                             <p class="g-aipstyle">P</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-2" class="g-layer_1">
+                                                                                                                             <p class="g-aipstyle">y</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-3" class="g-layer_2">
+                                                                                                                             <p class="g-aipstyle">thon</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-4" class="g-layer_3">
+                                                                                                                             <p class="g-aipstyle">Visual</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-5" class="g-layer_4">
+                                                                                                                             <p class="g-aipstyle"> </p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-6" class="g-layer_5">
+                                                                                                                             <p class="g-aipstyle">B</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-7" class="g-layer_6">
+                                                                                                                             <p class="g-aipstyle">asic</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-8" class="g-layer_7">
+                                                                                                                             <p class="g-aipstyle1">Uni</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-9" class="g-layer_8">
+                                                                                                                             <p class="g-aipstyle1">t</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-10" class="g-layer_9">
+                                                                                                                             <p class="g-aipstyle1">ed </p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-11" class="g-layer_10">
+                                                                                                                             <p class="g-aipstyle">C+</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-12" class="g-layer_11">
+                                                                                                                             <p class="g-aipstyle">+</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-13" class="g-layer_12">
+                                                                                                                             <p class="g-aipstyle">11</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-14" class="g-layer_13">
+                                                                                                                             <p class="g-aipstyle">C</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-15" class="g-layer_14">
+                                                                                                                             <p class="g-aipstyle2">WordPress</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-16" class="g-layer_15">
+                                                                                                                             <p class="g-aipstyle1">M</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-17" class="g-layer_16">
+                                                                                                                             <p class="g-aipstyle1">e</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-18" class="g-layer_17">
+                                                                                                                             <p class="g-aipstyle1">xico</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-19" class="g-layer_18">
+                                                                                                                             <p class="g-aipstyle2">(PHP)</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-20" class="g-layer_19">
+                                                                                                                             <p class="g-aipstyle1">St</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-21" class="g-layer_20">
+                                                                                                                             <p class="g-aipstyle1">a</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-22" class="g-layer_21">
+                                                                                                                             <p class="g-aipstyle1">t</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-23" class="g-layer_22">
+                                                                                                                             <p class="g-aipstyle1">es</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-24" class="g-layer_23">
+                                                                                                                             <p class="g-aipstyle">And</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-25" class="g-layer_24">
+                                                                                                                             <p class="g-aipstyle">r</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-26" class="g-layer_25">
+                                                                                                                             <p class="g-aipstyle">oid</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-27" class="g-layer_26">
+                                                                                                                             <p class="g-aipstyle1">G</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-28" class="g-layer_27">
+                                                                                                                             <p class="g-aipstyle1">r</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-29" class="g-layer_28">
+                                                                                                                             <p class="g-aipstyle1">eece</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-30" class="g-layer_29">
+                                                                                                                             <p class="g-aipstyle1">Indonesia</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-31" class="g-layer_30">
+                                                                                                                             <p class="g-aipstyle1">P</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-32" class="g-layer_31">
+                                                                                                                             <p class="g-aipstyle1">aki</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-33" class="g-layer_32">
+                                                                                                                             <p class="g-aipstyle1">s</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-34" class="g-layer_33">
+                                                                                                                             <p class="g-aipstyle1">tan</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-35" class="g-layer_34">
+                                                                                                                             <p class="g-aipstyle1">F</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-36" class="g-layer_35">
+                                                                                                                             <p class="g-aipstyle1">r</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-37" class="g-layer_36">
+                                                                                                                             <p class="g-aipstyle1">ance</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-38" class="g-layer_37">
+                                                                                                                             <p class="g-aipstyle1">Spain</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-39" class="g-layer_38">
+                                                                                                                             <p class="g-aipstyle1">South </p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-40" class="g-layer_39">
+                                                                                                                             <p class="g-aipstyle1">A</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-41" class="g-layer_40">
+                                                                                                                             <p class="g-aipstyle1">fri</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-42" class="g-layer_41">
+                                                                                                                             <p class="g-aipstyle1">c</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-43" class="g-layer_42">
+                                                                                                                             <p class="g-aipstyle1">a</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-44" class="g-layer_43">
+                                                                                                                             <p class="g-aipstyle1">Nor</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-45" class="g-layer_44">
+                                                                                                                             <p class="g-aipstyle1">w</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-46" class="g-layer_45">
+                                                                                                                             <p class="g-aipstyle1">a</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-47" class="g-layer_46">
+                                                                                                                             <p class="g-aipstyle1">y</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-48" class="g-layer_47">
+                                                                                                                             <p class="g-aipstyle1">P</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-49" class="g-layer_48">
+                                                                                                                             <p class="g-aipstyle1">ortugal</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-50" class="g-layer_49">
+                                                                                                                             <p class="g-aipstyle1">R</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-51" class="g-layer_50">
+                                                                                                                             <p class="g-aipstyle1">ussia</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-52" class="g-layer_51">
+                                                                                                                             <p class="g-aipstyle1">Sw</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-53" class="g-layer_52">
+                                                                                                                             <p class="g-aipstyle1">eden</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-54" class="g-layer_53">
+                                                                                                                             <p class="g-aipstyle1">P</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-55" class="g-layer_54">
+                                                                                                                             <p class="g-aipstyle1">oland</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-56" class="g-layer_55">
+                                                                                                                             <p class="g-aipstyle1">Canada</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-57" class="g-layer_56">
+                                                                                                                             <p class="g-aipstyle1">C</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-58" class="g-layer_57">
+                                                                                                                             <p class="g-aipstyle1">z</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-59" class="g-layer_58">
+                                                                                                                             <p class="g-aipstyle1">ech </p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-60" class="g-layer_59">
+                                                                                                                             <p class="g-aipstyle1">Germa</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-61" class="g-layer_60">
+                                                                                                                             <p class="g-aipstyle1">n</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-62" class="g-layer_61">
+                                                                                                                             <p class="g-aipstyle1">y</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-63" class="g-layer_62">
+                                                                                                                             <p class="g-aipstyle1">R</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-64" class="g-layer_63">
+                                                                                                                             <p class="g-aipstyle1">epublic</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-65" class="g-layer_64">
+                                                                                                                             <p class="g-aipstyle1">A</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-66" class="g-layer_65">
+                                                                                                                             <p class="g-aipstyle1">u</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-67" class="g-layer_66">
+                                                                                                                             <p class="g-aipstyle1">s</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-68" class="g-layer_67">
+                                                                                                                             <p class="g-aipstyle1">tria</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-69" class="g-layer_68">
+                                                                                                                             <p class="g-aipstyle1">I</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-70" class="g-layer_69">
+                                                                                                                             <p class="g-aipstyle1">r</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-71" class="g-layer_70">
+                                                                                                                             <p class="g-aipstyle1">eland</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-72" class="g-layer_71">
+                                                                                                                             <p class="g-aipstyle1">T</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-73" class="g-layer_72">
+                                                                                                                             <p class="g-aipstyle1">ur</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-74" class="g-layer_73">
+                                                                                                                             <p class="g-aipstyle1">k</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-75" class="g-layer_74">
+                                                                                                                             <p class="g-aipstyle1">e</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-76" class="g-layer_75">
+                                                                                                                             <p class="g-aipstyle1">y</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-77" class="g-layer_76">
+                                                                                                                             <p class="g-aipstyle1">China</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-78" class="g-layer_77">
+                                                                                                                             <p class="g-aipstyle1">N</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-79" class="g-layer_78">
+                                                                                                                             <p class="g-aipstyle1">e</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-80" class="g-layer_79">
+                                                                                                                             <p class="g-aipstyle1">w</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-81" class="g-layer_80">
+                                                                                                                             <p class="g-aipstyle1"> </p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-82" class="g-layer_81">
+                                                                                                                             <p class="g-aipstyle1">Z</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-83" class="g-layer_82">
+                                                                                                                             <p class="g-aipstyle1">ealand</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-84" class="g-layer_83">
+                                                                                                                             <p class="g-aipstyle1">B</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-85" class="g-layer_84">
+                                                                                                                             <p class="g-aipstyle1">elgium</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-86" class="g-layer_85">
+                                                                                                                             <p class="g-aipstyle1">B</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-87" class="g-layer_86">
+                                                                                                                             <p class="g-aipstyle1">r</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-88" class="g-layer_87">
+                                                                                                                             <p class="g-aipstyle1">azil</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-89" class="g-layer_88">
+                                                                                                                             <p class="g-aipstyle1">Finland</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-90" class="g-layer_89">
+                                                                                                                             <p class="g-aipstyle1">A</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-91" class="g-layer_90">
+                                                                                                                             <p class="g-aipstyle1">r</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-92" class="g-layer_91">
+                                                                                                                             <p class="g-aipstyle1">ge</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-93" class="g-layer_92">
+                                                                                                                             <p class="g-aipstyle1">n</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-94" class="g-layer_93">
+                                                                                                                             <p class="g-aipstyle1">tina</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-95" class="g-layer_94">
+                                                                                                                             <p class="g-aipstyle1">I</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-96" class="g-layer_95">
+                                                                                                                             <p class="g-aipstyle1">r</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-97" class="g-layer_96">
+                                                                                                                             <p class="g-aipstyle1">an</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-98" class="g-layer_97">
+                                                                                                                             <p class="g-aipstyle1">Uk</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-99" class="g-layer_98">
+                                                                                                                             <p class="g-aipstyle1">r</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-100" class="g-layer_99">
+                                                                                                                             <p class="g-aipstyle1">aine</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-101" class="g-layer_100">
+                                                                                                                             <p class="g-aipstyle">Node</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-102" class="g-layer_101">
+                                                                                                                             <p class="g-aipstyle">.</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-103" class="g-layer_102">
+                                                                                                                             <p class="g-aipstyle">js</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-104" class="g-layer_103">
+                                                                                                                             <p class="g-aipstyle">AngularJS</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-105" class="g-layer_104">
+                                                                                                                             <p class="g-aipstyle">iOS</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-106" class="g-layer_105">
+                                                                                                                             <p class="g-aipstyle">C#</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-107" class="g-layer_106">
+                                                                                                                             <p class="g-aipstyle">R</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-108" class="g-layer_107">
+                                                                                                                             <p class="g-aipstyle">u</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-109" class="g-layer_108">
+                                                                                                                             <p class="g-aipstyle">b</p>
+                                                                                                    </div>
+                                                                                                    <div id="g-ai0-110" class="g-layer_109">
+                                                                                                                             <p class="g-aipstyle">y</p>
+                                                                                                    </div>
+                                                                                                    </div>
+                                                                           </div>
+                                                  </div>
+                                                  <!-- End ai2html - 2015-06-09 - 12:29 -->
+                         </div>
+                         <div class="calibre6"></div>
+</div>
+<!-- end map -->
+
+
+
+
+
+
+
+
+<h3 class="calibre24" id="ucd9c75e1-3818-4546-97c9-355d0a68acb8"><span class="section">3.1</span> The Beauty of the Standard Library</h3>
+
+      <p class="calibre16">The true measure of a language isn’t how it uses semicolons; it’s the <em class="calibre20">standard library</em> of each language. A language is software for making software. The standard library is a set of premade software that you can reuse and reapply. </p>
+
+      <p class="calibre16">Take Python, which is “batteries included,”  meaning that it comes with tons of preexisting code, organized into “modules,” that you can reuse. Its standard library has functions that let you copy Web pages or replace words in a document. </p>
+
+
+      <div id="grabbag" data-module="grabbag" class="interactive-feature5">
+
+      </div>
+
+                                                                                                    <div class="calibre6">
+                                                                                                                             <div class="pcalibre3 innertw1" data-mname="grabbag"><img src="twitter-blk.png" class="calibre28"/></div>
+                                                                                                    </div>
+
+      <p class="calibre16">What does that mean, to process text? Well, you might have a string of text (The Quick Brown Fox) and save it in a variable called <code class="calibre25">my_string</code>. So now you can call standard methods on that string. You can say <code class="calibre25">my_string.lower()</code>, and it will make all the words lowercase, producing “the quick brown fox.” </p>
+
+    <p class="calibre16">Truly understanding a language’s standard library is one of the ways one becomes proficient in that language. Typically you just visit Web pages or read a book.</p>
+      <p class="calibre16">But the standard library is only the beginning. For many languages—and Python is exemplary—there’s an enormous library of prewritten modules available for nearly instantaneous download, using “package manager” software. A module (or library, or package) is code that is intended to extend a language’s capabilities.</p>
+      <p class="calibre16">Let’s say you work for an advertising agency and need to process through 100,000 pictures and scale and sharpen them. </p>
+
+      <p class="calibre16">You type one command: <code class="calibre25">sudo pip install Pillow</code>, and the Pillow module is downloaded, compiled automatically, and placed into the correct directory for later reuse. You have to know, of course, that most modern languages have modules for image processing; you also need to know that Pillow is the most commonly used image-processing toolkit. Knowing how to find that out is part of the job of coding. You might learn it by Googling. You might ask a friend. You might get that information out of a book, or a website like The Hitchhiker’s Guide to Python. </p>
+
+      <p class="calibre16">A coder needs to be able to quickly examine and identify which giant, complex library is the one that’s the most recently and actively updated and the best match for his or her current needs. A coder needs to be a good listener.</p>
+
+      <p class="calibre16">But what a payoff! Now that Pillow is installed, you have, at your typing fingertips, dozens of routines and functions related to image processing that you can use in your code: change colors, rotate by a number of degrees, scale, convert GIF images to JPEGs, and so forth. Or if you need to do very complex numerical analysis and statistics work, you can download NumPy, and suddenly an enormous range of mathematical algorithms are available to you, hundreds of years of science and research boiled down. Audio processing, interacting with peculiar hardware, speaking to databases—there are packages for all of these things. But you need to know how to find them, what they are called. Code isn’t just obscure commands in a file. It requires you to have a map in your head, to know where the good libraries, the best documentation, and the most helpful message boards are located. If you don’t know where those things are, you will spend all of your time searching, instead of building cool new things.</p>
+
+
+
+
+
+
+<!--end section 1 from indesign -->
+
+
+
+
+
+
+
+
+<h3 class="calibre24" id="u97b016d6-4877-4d34-b538-92a0e5f86961"><span class="section">3.2</span> What Do Different Languages Do?</h3>
+
+<div class="bigimgwrap">
+                         <img src="sec2_fridgebike.jpg" class="calibre17"/><div class="photocaption">Photographer: Steven Brahms for Bloomberg Businessweek; Prop Stylist: Zachary Kinsella</div>
+</div>
+
+                          <p class="calibre16">If all computer languages do the same thing (make the computer do what you want), then why does it matter which one you choose? For the same reason that you wouldn’t take a bicycle to pick up a fridge or get a physical from an oncological neurosurgeon. Some tools are better for certain jobs. </p>
+
+
+                         <p class="calibre16">It’s possible for a C programmer and a Java programmer to read each other’s code, but it’s harder to make C code and Java code work together. C and Java represent the world in different ways, structure data in different ways, and address the components of the computer in different ways. There are true benefits to everyone on a team using the same language. They’re all thinking the same way about how to instruct the computer to process data. </p>
+      
+    <p class="calibre16">It’s not necessary for every team across a big organization to use the same language. In fact, it’s often counterproductive. Large organizations have lots of needs and use many languages and services to meet them. For example, Etsy is built atop PHP—but its product-search service uses Java libraries, because the solutions for search available in Java are great.</p>
+
+    <p class="calibre16">Some programming languages, such as C, will do their best to do exactly as you ask, even if that means crashing your computer. Others, like OCaml and Haskell, are very constrained and ask a programmer to hew to a narrow form, trying to steer you away from anything stupid.
+    <sup class="calibre29"><a href="index_split_010.html#fn.11" class="footref pcalibre5 pcalibre4" id="fnr.11">11</a></sup></p>
+
+                         <p class="calibre16">Some languages have cute logos, like the Go gopher. </p>
+                         <img src="sec2_gopher.jpg" class="centered"/>
+
+                         <p class="calibre16">There’s Scratch, a teaching language for kids. It doesn’t use text much at all but allows li’l coders to move icons around on screen and assemble programs like Legos. Its logo is a smiling cat on two legs.</p>
+                         <img src="sec2_scratch.jpg" class="centered"/>
+
+                         <p class="calibre16">And then there’s Lisp, which didn’t come with a logo when it was first proposed in the 1950s but now has a community-created five-eyed alien holding a flag with its proboscis. Lisp is a classic language. There are some languages that just have authority, elegance—canonical computer languages. </p>
+                         <img src="sec2_lisp.jpg" class="centered"/>
+
+                         <p class="calibre16">And one of these is C. Most of the popular languages look a lot like it. C’s de facto logo is, well, the letter C. C is called C because it came after another language. That language was called B.</p>
+
+
+
+
+
+<h3 class="calibre24" id="u1a109284-c893-42da-9f40-52998f1f66b2"><span class="section">3.3</span> The Importance of C</h3>
+
+                         <p class="calibre16">C is as big a deal as you can get in computing. Created by Dennis Ritchie starting in the late 1960s at Bell Labs, it’s the principal development language of the UNIX operating system. Unix (lowercased now, to refer to the idea of Unix instead of the branded version) is a simple operating system—basically it’s a kernel<sup class="calibre29">    <a href="index_split_010.html#fn.12" class="footref pcalibre5 pcalibre4" id="fnr.12">12</a></sup> 
+
+     that manages memory and runs software, a large collection of very small utility programs, and a “shell” that helps you knit programs into “shell scripts.” If you couldn’t do what you needed with shell scripts, you might write a new utility in C and add it to the utility library. This was a nice and practical way of working, and it coincided with the rise of various kinds of networks that today we refer to collectively as the Internet. So Unix spread from Bell Labs to academia, to large industrial systems, and eventually leached into the water supply of computing until it was everywhere. And everywhere that Unix went, C was sure to go.</p>
+
+                         <div class="imageleft"><img src="sec2_pullup.jpg" class="calibre22"/>
+                         <div class="photocaption">Photographer: Jeremy Liebman for Bloomberg Businessweek</div>
+                         </div>
+
+                         <p class="calibre16">C is a simple language, simple like a shotgun that can blow off your foot. It allows you to manage every last part of a computer—the memory, files, a hard drive—which is great if you’re meticulous and dangerous if you’re sloppy. Software made in C is known for being fast. When you compile C, it doesn’t simply become a bunch of machine language in one go; there are many steps to making it really, ridiculously fast. These are called optimizations, and they are to programming what loopholes are to taxes. Think of C as sort of a plain-spoken grandfather who grew up trapping beavers and served in several wars but can still do 50 pullups. </p>
+
+    <p class="calibre16">C’s legendary, lucid manual and specification, <em class="calibre20">The C Programming Language</em>, written by Ritchie and Brian Kernighan (known by its nickname, K&amp;R), is a quick and simple read—physically light in comparison with modern, heavy-stock guides to programming on bookstore shelves. This recommended text was published in 1978, when personal computing barely existed, back when a computer was a large piece of industrial equipment used to control a refrigeration system or calculate actuarial tables. It was in K&amp;R that “Hello, world!” became the canonical example program for any language. By convention, almost every introduction to any programming language since then starts with a variation on “Hello, world!” </p> 
+
+    <p class="calibre16">Here is the ur-text of computational self-introduction:</p>
+
+<pre class="calibre30"><code class="k">#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("Hello, world!\n");
+}</code></pre>
+<p class="calibre16"></p>
+
+      <p class="calibre16">Which will, when compiled and run, print “Hello, world!” to the screen. Let’s write a program where you give it a number x and it prints out all the squares of the numbers from 1 to x—just the sort of practical, useful program that always appears in programming tutorials to address the needs of people who urgently require a list of squares.</p>
+
+<pre class="calibre30"><code class="k">#include&lt;stdio.h&gt;
+
+void squares(int v) 
+{
+  for (int i=1;i&lt;v+1;i++) {
+    printf("%d ", i*i);
+  }
+  printf("\n");
+}
+
+int main() 
+{
+  squares(10);
+}
+</code></pre>
+
+      <p class="calibre16">To compile this program on a Macintosh, I saved it as <code class="calibre25">squares.c</code> and opened up Terminal.app and typed:</p>
+
+<pre class="calibre30"><code class="k">gcc squares.c
+$ ./a.out</code></pre>
+
+      <p class="calibre16">And it produced:</p>
+
+    <pre class="calibre30"><code class="k">1 4 9 16 25 36 49 64 81 100</code></pre>
+    
+    <p class="calibre16">That runs the GNU C Compiler and produces a default file called <code class="calibre25">a.out</code>, which I ran on the command line,<sup class="calibre29">
+        <a href="index_split_010.html#fn.13" class="footref pcalibre5 pcalibre4" id="fnr.13">13</a>
+         </sup> to get my squared numbers, and bully for me. If I wanted to change the code, I would run the commands, and the program would update accordingly.</p>
+    
+    <p class="calibre16">This isn’t great code by any stretch.<sup class="calibre29">
+            <a href="index_split_010.html#fn.14" class="footref pcalibre5 pcalibre4" id="fnr.14">14</a>
+         </sup> You just need to squint a little to see that there are small, repeatable units that fit together in certain ways. There’s a function called squares. That’s the important part. You feed it a number, an integer. Then it counts from 1 to that integer and with each count it prints the square of that number. Then it prints a new line. Done.</p>
+
+    <p class="calibre16">The Linux kernel is written in C. The software that connects your printer to your computer could be in C. The Web servers that serve up your Web pages are often written in C. It’s also a good language for writing other languages—Python, PHP, and Perl are written in C, as are many others. C is a language you use for building systems; it has the same role in computing that Latin did among Renaissance academics. You won’t often meet a serious practitioner of the digital arts who doesn’t have at least a passing familiarity. The more serious scholars are pretty fluent. </p>
+
+    <p class="calibre16">But remember that list of popular languages? C++? Objective-C? C#? Java? What many people code daily is not actually C, but one of the many Vulgates. Advocates of these languages make various arguments in their favor; they are better for large groups, for “programming in the large.” These languages, they say, organize code into libraries that are shareable, reusable, and less likely to cause pain and suffering. These are object-oriented adaptations of C. </p>
+
+
+
+
+
+
+
+
+
+
+
+<h3 class="calibre24" id="uc177896a-32d4-424a-8478-e6d5b7154f86"><span class="section">3.4</span> The Corporate Object Revolution</h3>
+
+                         <p class="calibre16">If you’re going to understand how code works in a corporate environment, you need to understand what object-oriented programming is.</p>
+
+      <p class="calibre16">There are many definitions. I’ll wade in and provide my own and face the consequences. Object-oriented programming is, at its essence, a filing system for code. As anyone who’s ever shared a networked folder—or organized a physical filing cabinet—knows, without a good shared filing system your office will implode. C, people said in the 1980s and ’90s, is a great language! An excellent language! But it doesn’t really let you organize things. You end up with all these functions. It’s a mess. I mean, we have this data structure for our customers (name, address, and so forth), and we have all these functions for manipulating that data (<code class="calibre25">update_address</code>, <code class="calibre25">send_bill</code>, <code class="calibre25">delete_account</code>), but the thing is, those functions aren’t related to the data except by the naming convention. C doesn’t have a consistent way to name things. Which means it’s hard to find them later. Object-oriented programming gave programmers a great way to name things—a means of building up a library. I could call (run) <code class="calibre25">update address</code> on a picture of a dog or an Internet address. That approach is sloppy and dangerous and leads to bugs (our forebears reasoned, and not without precedent), and it makes it hard to program with big teams and keep track of everything. </p>
+
+                         <div class="imageright"><img src="sec2_octopus.jpg" class="calibre22"/><div class="photocaption">Photographer: Thomas Albdorf for Bloomberg Businessweek; Prop Stylist: Amélie Chapalain</div></div>
+
+      <p class="calibre16">So what if, whaaaat if, we made a little box called Customer (call it a “class,” as in the taxonomical sense, like a Customer is a subclass of the species human, which is a subclass of mammal, etc.), and we put the data and methods relating to customers into that box. (And by box, it’s literally just “<code class="calibre25">public class Customer {}</code>” and anything inside the <code class="calibre25">{}</code> relates to that particular class.) </p>
+
+      <p class="calibre16">I mean, you wouldn’t even need to look inside the box. You’d just download a large set of classes, all nested inside one another, study the available, public methods and the expected data, and start programming. Hey, you’d say, let’s put some data into our object, take some data out. Every time we have a new customer we make a new instance of our class. Code can be a black box, with tentacles and wires sticking out, and you don’t need to—don’t want to—look inside the box. You can just put a couple of boxes next to each other, touch their tentacles together, and watch their eldritch mating. </p>
+
+                         <p class="calibre16">This works out very well, in theory.</p>
+
+    <p class="calibre16">The archetypal object-oriented programming language is Smalltalk, created by a coterie of geniuses at Xerox PARC during that institution’s most glorious of glory days. After years of gestation, Smalltalk was born in 1972, the same year as C, and gelled around 1980. It was inspired by many of the big ideas in computer science, but also by Platonism, by cell biology, and by a predecessor language called Simula, the first object-oriented language, which per its name was designed to … simulate things. While C was created within the New Jersey research facilities (Bell Labs) of an industrial monolith (AT&amp;T) to solve problems at hand, Smalltalk was built at the far-off California outpost of a different industrial monolith, Xerox, to solve the problems of the distant future. Thus Smalltalk represents the world differently than C. </p>
+
+    <p class="calibre16">Smalltalk has a funny name and a friendly attitude, but its specification ran to 700 pages. It was a big system. C gave you an abstraction over the entire computer, helping you manage memory and processes inside the machine. Smalltalk gave you an abstraction over all of reality, so you could start dividing the world into classes and methods and the like. Where C tried to make it easier to do computer things, Smalltalk tried to make it easier to do human things. </p>
+
+    <p class="calibre16">This isn’t better or worse. It’s just different. Here is some Smalltalk code:</p>
+    <pre class="calibre30"><code class="k">Transcript show: 'Hello, world!'.</code></pre>
+
+    <p class="calibre16">It prints that short sentence in the Transcript Window on the user’s screen. The Transcript is an object—and here it’s receiving a message <code class="calibre25">(show:)</code> with an argument—i.e., input—“Hello,” etc. You type that in, select it with your mouse (even in the early 1980s), and tell the computer to execute it. It compiles just that bit of code and adds it to the rest of the running system. It looks like this:</p>
+
+                         <img src="sec2_smalltalk2.jpg" alt="Smalltalk UI" class="centered"/>
+  <div class="caption1">Tons of windows all talking to each other. Each window is, well, an object. And instead of programming it and compiling the program, then running it, you just dive right into this living, breathing, window-full environment, and start making new objects that send messages to other objects. If you save where you are, and come back five years later, well, everything will look exactly the same.</div>
+
+    <p class="calibre16">The thing is, all those boxes can be manipulated. They’re all objects. It’s almost too powerful: The boundaries that are clear in most languages—between data and code, between files and executables, between the operating system and applications, between closed and open software—all of those borders are fuzzed by design. Smalltalk is a vision of the computer as its own, native medium. The whole system can be modified, by anyone. The dominant version is called Squeak (logo: cute mouse), and a modernized version is called Pharo (logo: lighthouse). Both are free and easy to download. </p>
+
+    <p class="calibre16">As a middling programmer I find the Smalltalk environment fascinating, but it never pulls me all the way through the looking glass. One day, I’ve promised myself, I’ll read (or skim with intent) the huge Smalltalk specification from the 1980s—a seminal text and a grand attempt to organize reality along computer principles. The problem is that Smalltalk requires one to adopt not just a method of working but also a philosophy of the world, where everything is organized in a hierarchy of classes. I love to play with it, but I typically stumble back to more familiar approaches. Being an advocate for Smalltalk is a little like being very into Slovenian cinema or free jazz. Some of its advocates are particularly brilliant people. I’m not one of them.</p>
+
+                         <p class="calibre16">Smalltalk’s history is often described as slightly tragic, because many of its best ideas never permeated the culture of code. But it’s still around, still has users, and anyone can use Squeak or Pharo. Also—</p>
+
+                         <ol class="calibre41">
+                                                  <li class="calibre42">Java is an object-oriented language, influenced by C++, that runs on a virtual machine (just like Smalltalk).</li>
+                                                  <li class="calibre42">Objective-C, per its name, jammed C and Smalltalk together with no apologies.</li>
+                                                  <li class="calibre42">C# (pronounced “C sharp”) is based on C and influenced by Java, but it was created by Microsoft for use in its .NET framework.</li>
+                                                  <li class="calibre42">C++ is an object-oriented version of C, although its roots are more in Simula.</li>
+                         </ol>
+
+    <p class="calibre16">The number of digital things conceived in 1972 that are still under regular discussion is quite small. (It was the year of <em class="calibre20">The Godfather </em>and Al Green’s <em class="calibre20">Let’s Stay Together</em>.) The world corrupts the pure vision of great ideas. I pronounce Smalltalk a raging, wild, global success.</p>
+
+
+
+
+
+<h3 class="calibre24" id="uad075199-4663-43cb-99e0-7a19ed685dd7"><span class="section">3.5</span> Look How Big and Weird Things Get With Just Python</h3>
+
+    <p class="calibre16">Python 
+           is a very interesting language and quite popular, too. It’s object-oriented but not rigid.<sup class="calibre29">
+            <a href="index_split_010.html#fn.15" class="footref pcalibre5 pcalibre4" id="fnr.15">15</a>
+    </sup> And it’s widely understood to be easier than C for programmers to use, because it provides more abstractions for programmers to reuse. It hides much of the weirdness of the computer and many details of how computation is performed. Python is usually slower than C; this is the price you pay for all those sweet levels of abstraction. In the vast majority of cases this difference in speed truly doesn’t matter, regardless of how much people protest. It’s only of consequence when you’ve built up a system in Python and a part of it runs millions or billions of times, slowing down the computer—and thus requiring more resources to get its work done.</p>
+
+    <p class="calibre16">What then? Does this mean you need to throw away all your Python and start over in some other language? Probably not. Python has a deserved reputation as a “glue language,” meaning you can take code from other, lower-level languages such as C, C++, and Fortran 77 (yes, as in the year 1977), code that is close to the machine and known to be sound, and write “wrapper functions.” That is, you can embed the older, faster code in the newer, slower, but easier-to-use system. </p>
+
+    <p class="calibre16">A big part of this process is in wrapping up the old code in nice, well-organized Python functions. In many ways the idiom of a language is not just how it looks but also how it feels. Some languages emphasize brevity. Some support long, complex functions, while others encourage you to break up functionality into small pieces. Style and usage matter; sometimes programmers recommend Strunk &amp; White’s <em class="calibre20">The Elements of Style</em>—that’s right, the one about the English language. Its focus on efficient usage resonates with programmers. The idiom of a language is part of its communal identity. </p>
+
+    <p class="calibre16">Python is not the glue for everything, though. It’s hard to connect to Java but fits C hand to glove. There’s a version of Python designed to run inside of Java and use Java code. That’s called Jython. If you want a version that works with Microsoft’s .NET, you can go with IronPython.</p>
+
+    <p class="calibre16">But there’s another way to interpret all this activity around Python: People love it and want it to work everywhere and do everything. They’ve spent tens of thousands of hours making that possible and then given the fruit of their labor away. That’s a powerful indicator. A huge amount of effort has gone into making Python practical as well as pleasurable to use. There are lots of conferences, frequent code updates, and vibrant mailing lists. You pick a language not just on its technical merits, or its speediness, or the job opportunities it may present, but also on its culture.</p>
+
+    <p class="calibre16">Python people, generally, are pretty cool.</p>
+
+
+</div></section>
+
+
+
+
+
+<div class="banner-container"><div class="bannerad"></div></div>
+
+
+
+
+<section data-section="4" class="code-section1">
+<div class="code-content">
+
+
+<div class="sectionnum">4</div>
+</div></section>
+
+
+
+
+
+
+</article>
+
+
+      </body></html>
