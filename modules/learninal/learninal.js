@@ -121,7 +121,7 @@
   { "speak": "Great! RECAP: You’ve learned how to make and manipulate a list. You can learn a hell of a lot more elsewhere:",
     "prompts": [
       {"prompt": "Eloquent JavaScript, Chapter 4", "link": "http://eloquentjavascript.net/04_data.html"},
-      {"prompt": "Or just Google it", "link": "https://www.google.com/#q=javascript%20array%20tutorial"},
+      {"prompt": "Or just Google it", "link": "https://www.google.com/search?q=javascript%20array%20tutorial"},
       // {"prompt": "I am a masochist and want to do more of this", "dialogue": function() {return tutorialDOM;}}
     ]
   }
