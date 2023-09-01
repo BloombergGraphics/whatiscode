@@ -21,12 +21,21 @@ var paulbot;
     { "emote": "waving", "speak": message },
     { "mode": "off" }
   ];
+  var justStarted,
+    startingTimeout;
 
   if(stats && stats.windows.previous) {
     dialogue[0].prompts = [
       {
         "prompt": "Continue reading from last spot",
-        "do": function() { document.getElementsByTagName('body')[0].scrollTop = stats.windows.previous; }
+        "do": function() {
+          justStarted = true;
+            var clearJustStarted = function() {
+              justStarted = !justStarted;
+            }
+            startingTimeout = setTimeout(clearJustStarted, 500);
+            document.getElementsByTagName('body')[0].scrollTop = stats.windows.previous;
+          }
       },
       {
         "prompt": "Go away"
@@ -74,6 +83,23 @@ var paulbot;
     ]
     paulbot.dialogue(dialogue);
   }
+  function alertJustStarting() {
+
+    var message = "Welcome back. Proceed.";
+
+     var dialogue = [
+      {
+        "emote": "explaining",
+        "speak": message,
+        "wait": 2000
+      },
+      {
+        "mode": "off"
+      }
+    ];
+
+    module.bot.dialogue(dialogue);
+  }
 
   function logScroll() {
     scrollLog.push({
@@ -86,11 +112,15 @@ var paulbot;
     var scrollSpeed =
       (scrollLog[scrollLog.length-1].scrollTop - scrollLog[scrollLog.length-2].scrollTop) /
       (scrollLog[scrollLog.length-1].timestamp - scrollLog[scrollLog.length-2].timestamp)
-
-    if(pageYOffset + innerHeight > $(document).height() - 400) {
-      completionThrottled();
-    } else if(scrollSpeed > 4 && fastSass.length) {
-      alertTooFastThrottled();
+    if(!justStarted) {
+      if(pageYOffset + innerHeight > $(document).height() - 400) {
+        completionThrottled();
+      } else if(scrollSpeed > 4 && fastSass.length) {
+        alertTooFastThrottled();
+      }
+    }
+    else {
+      alertJustStarting();
     }
   }
 
