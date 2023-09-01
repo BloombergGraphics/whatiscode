@@ -21,6 +21,10 @@ footer {
   background: #fff;
 }
 
+blockquote footer {
+  position: static;
+}
+
 #background-canvas {
   position: fixed;
   height: 100%;
