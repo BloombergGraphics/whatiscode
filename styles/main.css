@@ -15,12 +15,6 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-footer {
-  position: absolute;
-  width: 100%;
-  background: #fff;
-}
-
 #background-canvas {
   position: fixed;
   height: 100%;
