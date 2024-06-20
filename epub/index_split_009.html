@@ -1,0 +1,408 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+    <title>Paul Ford: What is Code? | Bloomberg</title>
+    <meta content="width=device-width" name="viewport"/>
+    <meta content="Paul Ford" name="author"/>
+    <meta content="What do you need to know about code to survive in a suspicious world?" name="description"/>
+    <meta content="Bloomberg.com" property="og:site_name"/>
+    <meta content="What Is Code? If You Don't Know, You Need to Read This" property="og:title"/>
+    <meta content="What is code? If you don't know, you need to read this:" property="og:longTitle"/>
+    <meta content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/images/promo.jpg" property="og:image"/>
+    <meta content="The world belongs to people who code. Those who don’t understand will be left behind." property="og:description"/>
+    <meta content="Bloomberg Graphics, BusinessWeek, code" name="keywords"/>
+    <meta content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/" property="og:url"/>
+    <meta content="post" name="parsely-type" data-ephemeral="true"/>
+    <meta content="graphics" name="parsely-section" data-ephemeral="true"/>
+    <meta content="article" property="og:type"/>
+    <meta content="summary" name="twitter:card"/>
+    <meta content="@business" name="twitter:site"/>
+    <script src="http://www.bloomberg.com/graphics/assets/js/lib/head.js?"></script>
+    <script>
+    var isBrokenIE = /MSIE\s/.test(navigator.userAgent) &amp;&amp; parseFloat(navigator.appVersion.split("MSIE")[1]) &lt; 10;
+    if (isBrokenIE) document.documentElement.className += ' b-ie'
+
+    if (!console.log) console.log = function(){}
+
+    if (navigator.userAgent.indexOf('Safari') != -1 &amp;&amp; navigator.userAgent.indexOf('Chrome') == -1) {
+      document.documentElement.className += " safari";
+      // alert('safari')
+    }
+  
+  </script>
+    
+    <!-- build:css head.css -->
+    <!-- endbuild -->
+    
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+<article id="code" class="calibre15">
+<section data-section="6" class="code-section1">
+<div class="code-content">
+<h2 class="calibre21" id="calibre_pb_8">How Are Apps Made?</h2>
+
+      <p class="calibre16">One of the privileges of owning a Mac is that you can download a program by Apple called Xcode. This is an IDE, an Integrated Development Environment.<sup class="calibre29">
+            <a href="index_split_010.html#fn.32" class="footref pcalibre5 pcalibre4" id="fnr.32">32</a>
+         </sup>
+      </p>
+      <p class="calibre16">It’s an enormous download, more than 2 gigabytes, or roughly the size of an hour of DVD-quality video. Xcode is the heart of Apple. It’s not only how the company writes software, it’s the tool for everyone who wants to write software for the Mac or iPhone.<sup class="calibre29">
+            <a href="index_split_010.html#fn.33" class="footref pcalibre5 pcalibre4" id="fnr.33">33</a>
+         </sup>
+      </p>
+      
+      <img src="sec3_xcode.jpg" class="calibre17"/>
+
+      <p class="calibre16">Within Xcode are whole worlds to explore. For example, one component is the iOS SDK (Software Development Kit). You use that to make iPhone and iPad apps. That SDK is made up of dozens and dozens of APIs (Application Programming Interfaces). There’s an API for keeping track of a user’s location, one for animating pictures, one for playing sounds, and several for rendering text on the screen and collecting information from users. And so forth.</p>
+
+      <p class="calibre16">Maybe you’re starting to see some strands here. Remember the way the Smalltalk environment worked, a screen with a bunch of windows? There are powerful echoes in Xcode.</p>
+      <p class="calibre16">There are other ways of working—I tend to do most of my code in a text editor with a black background, far less to see at first glance, though actually just as complex—but this right here is some serious code life. You fill out some fields, wire some things together (really, sometimes it’s done by connecting virtual wires into virtual holes), and start coding.</p>
+
+      <p class="calibre16">When someone from Apple stands onstage and announces some new thing that ends with “Kit,” such as ResearchKit or HealthKit—or WatchKit, the set of routines specifically for the Apple Watch—Xcode is where those kits will land, fully documented, to be used to make software.</p>
+
+      <p class="calibre16">Some functions are reserved for the manufacturer. You know how Apple is touting that you can track someone’s heartbeat using an Apple Watch? Apple hasn’t documented how to do it yet, not for the world. Maybe the company is worried that you’ll misuse it somehow. Perhaps heartbeat monitoring requires careful battery management, and because the watch already has battery issues, Apple wants to avoid making things worse by letting anyone in there. It’s likely that people are trying to figure out how to access that heartbeat API right now, though. That’s just the way people are. 
+      </p>
+
+      <p class="calibre16">Apple is really good at all of this. It publishes interface guidelines and gives people tools for arranging app interfaces in predictable ways that end users will find familiar. It sets the flow with which to go.<sup class="calibre29"><a href="index_split_010.html#fn.34" class="footref pcalibre5 pcalibre4" id="fnr.34">34</a></sup>      </p>
+
+      <p class="calibre16">Let’s say you’re making a podcasting application, and playing an audio file is a key feature. Great. Create an object of class AVAudioPlayer, and add a button to the screen, then connect that button to the code so that when clicked, the button sends the message “play.”</p>
+
+      <p class="calibre16">There’s a lot going on at once, so you want to leave it to the operating system to keep track of where windows are. It’s up to an IDE to help you connect your ideas into this massive, massive world with tens of thousands of methods so you can play a song, rewind a song, keep track of when the song was played (meaning you also need to be aware of the time zones), or keep track of the title of the song (which means you need to be aware of the language of the song’s title—and know if it displays left-to-right or right-to-left).</p>
+
+      <p class="calibre16">You should also know the length of the song, which means you need a mechanism for extracting durations from music files. Once you have that—say, it’s in milliseconds—you need to divide it by 1,000, then 60, to get minutes. But what if the song is a podcast and 90 minutes long? Do you want to divide further to get hours? So many variables. Gah!</p>
+
+      <p class="calibre16">I guess you have problems to solve after all. The IDE doesn’t do everything for you.</p>
+
+      <p class="calibre16">The greatest commercial insight of the technology industry is that if you control a computing environment, you can move the market. You can change the way people do things, the way they listen to music, watch videos, and respond to advertising. People who work at technology companies are supposed to take an idea and multiply it by a few million people, yielding a few billion dollars.</p>
+
+      <p class="calibre16">A great way to do that is to wrap up your intentions in APIs and SDKs and IDEs. That’s why so much software to make software is free: It stimulates the development of even more software.</p>
+
+      <p class="calibre16">Sometimes this is the result of corporate ambition: Java was very much a Sun product, down to the class library; the same is true of C# for Microsoft. But much of the code in the world is freely available, created by generous volunteers over decades to serve their own needs. The give-and-take between corporations and programming languages is complex. Some language developers are hired to work on their open-sourced languages; Go and Python have been funded, to varying degrees, by Google; and the creator of PHP works at Etsy.</p>
+
+<div class="profiler">
+                         <h4 class="calibre39">The Many Button Bezels of Apple</h4>
+                         In Mac OS X, there’s a class called NSButton. It intercepts the clicks of a mouse. A programmer makes a button and tells it what to do when someone clicks on it. A programmer also writes the code that sets a bezel.
+
+                         <p class="calibre44"><img src="sec3_btn_push.jpg" class="calibre17"/><br class="calibre6"/>
+                         <strong class="calibre45">Push Button:</strong> Most commonly used button</p>
+
+                         <p class="calibre44"><img src="sec3_btn_gradient.jpg" class="calibre17"/><br class="calibre6"/>
+                         <strong class="calibre45">Gradient Button:</strong> Usually below lists or grids</p>
+
+                         <p class="calibre44"><img src="sec3_btn_roundrec.jpg" class="calibre17"/><br class="calibre6"/>
+                         <strong class="calibre45">Rounded Rect Button:</strong> Used for filtering in Mac Finder and Mail</p>
+
+                         <p class="calibre44"><img src="sec3_btn_roundtextured.jpg" class="calibre17"/><br class="calibre6"/>
+                         <strong class="calibre45">Rounded Textured Button:</strong> Designed for toolbars only</p>
+
+                         <p class="calibre44"><img src="sec3_btn_textured.jpg" class="calibre17"/><br class="calibre6"/>
+                         <strong class="calibre45">Textured Button:</strong> Usage is a mystery</p>
+                         
+                         <p class="calibre44"><img src="sec3_btn_recessed.jpg" class="calibre17"/><br class="calibre6"/>
+                         <strong class="calibre45">Recessed Button:</strong> Used as a toggle button only</p>
+                         
+                         <p class="calibre44"><img src="sec3_btn_inline.jpg" class="calibre17"/><br class="calibre6"/>
+                         <strong class="calibre45">Inline Button:</strong> New style of push button or indicator</p>
+
+</div>
+      <p class="calibre16">Apple and Microsoft, Amazon and Google: factory factories. Their APIs are the products of many thousands of hours of labor from many programmers. Think of the work involved. Someone needs to manage the SDK. Hundreds of programmers need to write the code for it. People need to write the documentation and organize the demos. Someone needs to fight for a feature to get funded and finished. Someone needs to make sure the translation into German is completed and that there aren’t any embarrassing mistakes that go viral on Twitter. Someone needs to actually write the software that goes into making the IDE work.</p>
+
+      <p class="calibre16">The modern OS is a feast of wonders: fast video, music players, buckets of buttons. Apple may be the best imaginary button maker in history. Just the bezels are a work to behold.  Today there are 15 bezel styles, from NSThickSquareBezelStyle to NSSmallSquareBezelStyle.<sup class="calibre29">
+            <a href="index_split_010.html#fn.35" class="footref pcalibre5 pcalibre4" id="fnr.35">35</a>
+         </sup> Freedom. (Sort of. They’re still just bezels.) Things that used to require labor and care—showing a map, rotating a giant 3D landscape—can now be done with a few lines of code.</p>
+
+
+      <p class="calibre16">When everyone goes to Apple’s annual Worldwide Developers Conference in San Francisco and they stare rapturously as some man in an untucked, expensive shirt talks about “core data,” this is the context. Onstage, presenting its Kits, Apple is rearranging abstractions, saying: Look at the new reality we’ve defined, the way that difficult things are now easy and drab things can be colorful. Your trust in our platform and your dedication of thousands of hours of time have not been misplaced.</p>
+
+      <p class="calibre16">They’ve pitched variations on this annually for 30 years.</p>
+
+      <p class="calibre16">In Xcode you can compile everything with one command, and up pops your software for testing. You can see the button you made. You need to click on it. It yearns for clicks. It cries out in a shrill signaling voice like a nano cat on a microfence. Everything inside a computer beseeches everything else. It’s a racket. You click your mouse, and the button cat is finally satisfied. Now the computer can increase the volume, change the color, or bring out the talking paper clip. Destiny fulfilled and, after many rounds of this, test complete.</p>
+
+      <p class="calibre16">When your app is done, you may sell it in an app store. And if users are excited to use your app, they’ll be motivated to buy more apps. Loops upon loops, feeding into one another, capital accruing to the coffers of the patient software giants. An ecosystem. “Ecosystem” is another debased word, especially given what we keep doing to the real, physical one around us. But if a few hundred thousand people are raising their kids and making things for 100 million people, that’s what they call it.</p>
+
+
+
+
+<h3 class="calibre24" id="u5be9b502-6859-401e-8efb-9585a05c9a76"><span class="section">6.1</span> The Framework: Wilder, Younger Cousin of the Software Development Kit</h3>
+
+      <p class="calibre16">Odds are, if you’re doing any kind of programming, especially Web programming, you’ve adopted a framework. Whereas an SDK is an expression of a corporate philosophy, a framework is more like a product pitch. Want to save time? Tired of writing the same old code? Curious about the next new thing? You use a graphics framework to build graphical applications, a Web framework to build Web applications, a network framework to build network servers. There are hundreds of frameworks out there; just about every language has one.</p>
+
+                         <div class="ephemerar">
+                                                  <img src="sec3_django2.jpg" class="calibre35"/>
+                                                  <p class="calibre16">Django Reinhardt, guitar virtuoso and namesake of the Django framework</p>
+                         </div>
+      <p class="calibre16">A popular Web framework is Django, which is used for coding in Python. Instagram was bootstrapped on it. When you sit down for the first time with Django, you run the command <code class="calibre25">"startproject,"</code> and it makes a directory with some files and configuration inside. This is your project directory. Now you have access to libraries and services that add to and enhance the standard library.
+         <sup class="calibre29"><a href="index_split_010.html#fn.36" class="footref pcalibre5 pcalibre4" id="fnr.36">36</a></sup></p>
+
+
+                         <p class="calibre16">Suppose we’re still making our bookstore, the Amazonesque one with the relational database that we started a few pages back. With Django, we run the 
+                                                  <code class="calibre25">"startproject"</code> command. You might tell it to start an app called bookstore. Then you’d “set up your models,” meaning you’d start to define how your data looks, using Python’s idioms, which the framework will translate into database-ese.</p>
+
+<pre class="calibre30"><code class="k">from django.db import models
+
+class Book(models.Model):
+    title = models.CharField(max_length=140)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=6,decimal_places=2)</code></pre>
+
+      <p class="calibre16">So now we can make a book catalog. (Obviously we need to add authors and the like.) The incredibly neat thing is that with a few more lines of configuration you have a completely functional, working Web-based article editor; to wit:</p>
+      
+      <img src="sec3_addbook.jpg" class="centered"/>
+
+      <p class="calibre16">That’s called the “admin” view, and it’s always been a main feature of Django. Your work as a programmer has just started, but very soon after the moment of conception, your users—journalists, if you’re building a publishing platform, or alpha testers, or maybe just you, in a testing frame of mind—can start to play with your baby, entering books, trying things out.</p>
+
+      <p class="calibre16">Take a moment on that. You learn a programming language like Python. You need to make a website that allows a few dozen people to enter data at once. You write a few lines of Python code and set up accounts for people using the admin, and they can start to enter that data. If you do it a few times, you can get very good at this sort of work. You can get a team started on a project in a few hours.</p>
+
+      <p class="calibre16">Remember those issues about entering e-mail addresses? If you use Django, you can use "<code class="calibre25">EmailField</code>," and many of them are taken care of. Ditto many of the security concerns that arise when building websites, the typical abuses people perpetrate. You have entered into a pool with many thousands of other programmers who share the framework, use it, and suggest improvements; who write tutorials; who write plug-ins that can be used to accomplish tasks related to passwords, blogging, managing spam, providing calendars, accelerating the site, creating discussion forums, and integrating with other services. You can think in terms of architecture.</p>
+
+      <p class="calibre16">Magnificent! Wonderful! So what’s the downside? Well, frameworks lock you into a way of thinking. You can look at a website and, with a trained eye, go, “Oh, that’s a Ruby on Rails site.”       </p>
+
+      <p class="calibre16">Frameworks have an obvious influence on the kind of work developers can do. Some people feel that frameworks make things too easy and that they become a crutch. It’s pretty easy to code yourself into a hole, to find yourself trying to force the framework to do something it doesn’t want to. Django, for example, isn’t the right tool for building a giant chat application, nor would you want to try competing with Google Docs using a Django backend. You pay a price in speed and control for all that convenience. The problem is really in knowing how much speed, control, and convenience you need.</p>
+
+      <p class="calibre16">Programmers talk about “premature optimization”—overthinking your code before you know what the real problems will be—and describe people who overthink programming as “architecture astronauts.” There’s another tendency, NIH (“not invented here”), that comes up a lot.</p>
+
+      <p class="calibre16">Frameworks can feel a little insulting, because they anticipate your problems and are used by thousands of people. They imply that yours are common, everyday problems, rather than special, amazing mysteries that require a true genius to solve.</p>
+
+      <p class="calibre16">The opinions of a framework are strong, but not as strong as an SDK. Those are tightly bundled, often commercial, and arrive with PR trumpets blasting, especially when they’re from Apple or Microsoft. Frameworks tend to be derived from frustration and on first release are bound with tape and thrust onto the Web with a blog post. From there they survive—or not. There are Web application frameworks for every major language; <a href="https://en.wikipedia.org/wiki/Comparison_of_web_application_frameworks" target="_blank" class="calibre7 pcalibre2">one Wikipedia listing</a><sup class="calibre29">
+            <a href="index_split_010.html#fn.37" class="footref pcalibre5 pcalibre4" id="fnr.37">37</a>
+         </sup> shows almost 40 different frameworks for Java alone and almost 30 for PHP.</p>
+
+      <p class="calibre16">Most of the good frameworks are free, released to solve problems and bring glory and influence to their creators, rather than great riches and control. They spread organically. People see a video tutorial showing them how to make a blog in a few minutes. Then they copy that work and say, “That was easy,” and show their friends. Websites go live, and programmers talk about how quickly they developed said websites.</p>
+
+      <p class="calibre16">If you’re building a Web app, you’d be a fool not to use a Web framework at first. There are tiny ones for control freaks, focused on URL routing, and massive ones like Django and Rails, which pursue the goals first outlined by large systems such as Smalltalk in days of yore: to enable the development of large, collaborative systems where data can be manipulated and shared. Take the work that’s been done for you. DRY (don’t repeat yourself).
+      </p>
+
+
+
+
+
+<h3 class="calibre24" id="ua2f0b9d7-19c1-41bf-9c44-565057241a7a"><span class="section">6.2</span> What Is Debugging?</h3>
+
+     <p class="calibre16">In programming, there are as many ways to destroy something as to create something. One stray character is all that’s required. Say you forget a semicolon or use an accented “é” somewhere, but the code is not prepared for such a peculiarity—KABOOM! Or you add two things together, but one is the numeral 4 and the other is “4” as a string, as you might use to say “4 and 20 blackbirds baked in a pie.” To the computer, that “4 and 20” has no numeric significance.</p>
+
+     <p class="calibre16">This sort of thing really happens, and part of the job is remembering that 4 + 20 is 24 and 4 + “20” is “420.”</p>
+
+    <p class="calibre16">Programming is debugging. It’s the expectation that things won’t work. This is not something people bring up, just like they don’t bring up their medical history on the first date. Most languages have constructs built in for catching failures, trapping them like wild animals, examining them, and, well, exterminating them. In time, as the relationship between you and a programming language blossoms, you come to realize that what truly characterizes a language is not what it does, but how it tells you what broke. Most of your programming life will be spent trying to figure out what broke, and if the computer helps you, maybe you can watch your kids play soccer.</p>
+
+      <p class="calibre16">When I started programming I felt that each time the program crashed, I’d failed. I found myself cringing, desperate, unable to move forward. There’s even a novel by Ellen Ullman, <em class="calibre20">The Bug</em>, about the anxieties and social complexities that arise when a serious bug is hard to find.</p>
+
+      <div id="debug" data-module="debug" class="interactive-feature10"></div>
+
+                                                                                                    <div class="calibre6">
+                                                                                                                             <div class="pcalibre3 innertw1" data-mname="debug"><img src="twitter-blk.png" class="calibre28"/></div>
+                                                                                                    </div>
+
+
+      <p class="calibre16">Eventually, though, I learned to submit. I let myself drift into the computer, to remember the math I know, the things I understand about types and categories and lists and syntax. Sometimes bugs cause error messages to pop up; sometimes they cause the program to give up the ghost and quit suddenly; sometimes they get caught in terrible loops and fill up the memory and choke all the resources of the computer until it has to be restarted. That’s called a stack overflow. Sometimes a request goes too hard, for example, calling itself so many times that the stack, which is a finite resource, fills up and can’t take it anymore. Hence the name of the website Stack Overflow, where programmers go to answer questions and help each other solve bugs. It’s the 62nd-most-visited website in the world, trailing Craigslist by a few spots.</p>
+ 
+      <p class="calibre16">Randomly selected item from Stack Overflow, to give you a taste of programming:</p>
+
+      <p class="indent">Angular 1.3 + ui-router + generator-hg-poly embedding nested(?) views not working
+                         <br class="calibre6"/>—<em class="calibre20">TheOncomingCode, StackOverflow.com</em></p>
+
+      <p class="calibre16">TheOncomingCode seems to be saying that he’s using the AngularJS framework in JavaScript and another piece of code called ui-router. Judging from its name, the latter helps set up routes to address components of a user interface—that is, it helps manage how you view your data.</p>
+                         <div class="imageleft"><img src="sec3_semicolon.jpg" class="calibre22"/>
+                         <div class="photocaption">Thomas Albdorf for Bloomberg Businessweek; Prop Stylist: Amélie Chapalain</div>
+                         </div>
+
+      <p class="calibre16">But wait, it turns out that generator-hg-poly is actually generator-ng-poly, which … Oh, man. I went and looked at that tool, and it describes itself as a—brace yourself—“Yeoman generator for modular AngularJS apps with Gulp and optional Polymer support,” which, I mean, come the hell on. But you know what? In for a pound. Let’s do this.</p>
+
+      <p class="calibre16">A search for Yeoman says it’s a scaffolding tool, which means it makes little folders for your Web apps that help you get started programming. Useful. …</p>
+
+      <p class="calibre16">We know what Angular is; it’s a framework. …</p>
+
+
+      <p class="calibre16">Gulp, its website says, will “automate and enhance your workflow.” You can intuit, using context clues, that it’s a tool that helps you build software. Somehow. You’d never know this from the salmon background on its site, and sometimes you simply get so, so tired. …</p>
+
+      <p class="calibre16">Polymer is a “Web components” library, which means it gives you little reusable code components you can use on your Web pages—sliding drawers and drop-down menus, buttons, etc. OK.</p>
+      <p class="calibre16">So what we know now is that the combination of Angular, ui-router, Yeoman, Gulp, and Polymer is somehow not working for TheOncomingCode. All of these things are tools designed to make it easier to code. But they all introduce their own complexity. This person is trying to make a Web browser do something in JavaScript, and it’s crapping out.</p>
+
+     <div class="ephemerar1">
+                            <strong class="calibre45">The top 10 tags on Stack Overflow’s help-wanted listings, June 1:</strong>
+                            <img src="sec3_helpwanted.jpg" class="calibre35"/>
+                         </div>
+                         
+      <p class="calibre16">Someone came in to answer this question, too. “To be able to use the header state in the home state,” wrote Stack Overflow user Matt Tester, “they will need to [be] nested (chained). So, it’s not obvious, but you can safely make one state the parent of another in separate files/configs because of the way registration works.” So. There you go. That solves it.</p>
+
+      <p class="calibre16">JavaScript is fast-moving right now. Too much of what you know today will be useless in six months. Every hard-fought factoid about the absolute best and most principled way to use the language will be fetid zoo garbage by the end of the year. And some sniveling, bearded man-toddler will be looking slightly to your right with his pale, buzzword-infected eyes and awkwardly mumbling, “Yeah, no, wow, it says you have a lot of Gulp and Angular, but I’m guessing you don’t use Fleejob or Grimmex with the Snurt extensions? (<em class="calibre20">Long sigh</em>.) I’m just not sure if you’re gonna like working here.”</p>
+
+      <p class="calibre16">Anyway, that’s one question on Stack Overflow. </p>
+
+
+
+
+
+
+
+<h3 class="calibre24" id="u9a7bfea9-2f21-42ad-a650-5626a6a0d5c9"><span class="section">6.3</span> Nothing Is Built</h3>
+
+      <p class="calibre16">More months go by. Nothing is built. The old website remains, showing its age, infuriating everyone. Pressure mounts. Pressure from above and below. The re-architecture has failed. The new CTO is a charlatan. TMitTB has apparently spent all of his time at conferences and no time actually working.</p>
+
+      <p class="calibre16">These things are not spoken out loud; it’s not that kind of company. Things are said through eye rolls and shrugs in the hallway, in the ordering of addresses in e-mails, and via BCC. You let your antennae work. You hear words such as “boondoggle” and “late” and phrases like “not operationally sound.” There’s a lot about compliance and governance.</p>
+
+      <p class="calibre16">Earlier in your career, you might have panicked. Instead, you feel a sense of calm. You call the CTO and TMitTB to your office, as soon as they’re back in the vicinity. They come in looking sheepish. The CTO is braced, her shoulders firm. TMitTB oscillates between sheepish and angry.</p>
+
+      <p class="calibre16">“People believe,” you say, pointing upward, where the C-suite is, “that it is time to cut our losses and shut down this project.”</p>
+
+
+
+
+
+
+<h3 class="calibre24" id="ua8692ef4-8e3b-40f5-bee7-a7b4f47ed622"><span class="section">6.4</span> How Does Testing Work?</h3>
+
+      <p class="calibre16">If you hover near programmers, you will hear them talk tests—the writing of tests, the passing of tests. Some don’t even program until they’ve written the tests that the code they hope to write must pass. This is called test-driven design.</p>
+
+      <p class="calibre16">Tests are just code, of course. They check the functions in other code. They run, you hope, automatically, so you can find out if the day’s work you did breaks things or not.</p>
+
+      <p class="calibre16">Relentless testing is one way to keep an eye on yourself and to make sure the other person’s bugs and your bugs don’t find each other one wintry night when everyone is home by the fireplace and crash the server right before Christmas, setting up all kinds of automated alarms and forcing programmers into terrible apology loops with deeply annoyed spouses.</p>
+
+      <p class="calibre16">One of the best-tested pieces of code in the world is called SQLite, the database mentioned earlier that’s probably on your smartphone. It was developed by D. Richard Hipp, who’s been working on it for 15 years. It’s totally open, totally free, and has 33,402 tests. It’s one of the most widely used pieces of software and one of the most respected.</p>
+
+      <p class="calibre16">Bugs aren’t the original sin of programming. They’re just part of life, like unwanted body hair or political campaigns. The original sin of programming is cheating—breaking other people’s code with your new features, trying to jam your changes into the main codebase before they’re ready. Automated testing isn’t only a way to head off bugs; it’s also a way to suggest that you write respectable code, code that earns a salute.</p>
+
+
+
+
+
+<h3 class="calibre24" id="u5b084e61-17d3-47a1-9a4b-a02921573bcd"><span class="section">6.5</span> And Now for Something Beautiful</h3>
+
+ <p id="text-diff" data-module="text-diff" class="interactive-feature11">In my opinion, version control is one of the most beautiful things about programming. It’s one of code culture’s gifts to the world. Version control isn’t like “track changes” in Microsoft Word. That’s a shameful monstrosity that can make even a powerful computer stutter, something only a lawyer could love. No, version control is something different.</p>
+
+<div id="width-calc" class="calibre52"></div>
+
+<div class="chat">
+
+                         <div class="chatterr">
+                         <div class="manb pcalibre10 pcalibre9">
+                         <p class="calibre48">What if I told you ...</p>
+                         </div></div><div class="chatterl">
+                         <img src="chatter_blue.gif" alt="Programmer A" class="centered1"/>
+                         </div>
+
+                         <div class="chatterl"><img src="chatter_green.gif" alt="Programmer B" class="centered1"/></div><div class="chatterr">
+                         <div class="manc pcalibre11 pcalibre12">
+                         <p class="calibre48">Go on...</p>
+                         </div></div>
+
+
+                                                  <div class="manb1 pcalibre10 pcalibre9"><p class="calibre16">... that you could have a record of every change made to the many, many documents that go into your codebase ...</p></div>
+
+                                                  <div class="pcalibre11 manc1 pcalibre12"><p class="calibre16">Well that’s interesting. I mean, I could use that for all kinds of things. I could use that to find out where bugs entered the system, for example.</p></div>
+
+                                                  <div class="manb1 pcalibre10 pcalibre9"><p class="calibre16">... and a record of who made them, up to the minute, a permanent record ...</p></div>
+
+                                                  <div class="pcalibre11 manc1 pcalibre12"><p class="calibre16">Well that is powerful. I could use it to review the progress my team was making, if I was a manager, by looking at the changes every day.</p></div>
+
+                                                  <div class="manb1 pcalibre10 pcalibre9"><p class="calibre16">... and every change could be reviewed by anyone, in a totally transparent way ...</p></div>
+
+                                                  <div class="pcalibre11 manc1 pcalibre12"><p class="calibre16">Everyone can keep up with all the changes and understand how the code is evolving? Every change?</p></div>
+
+                                                  <div class="manb1 pcalibre10 pcalibre9"><p class="calibre16">... and you can bundle changes and turn them into branches, and anyone can make as many branches as needed, without violating the integrity of the other branches ...</p></div>
+
+                                                  <div class="pcalibre11 manc1 pcalibre12"><p class="calibre16">I’d say this sounds like some insane parallel-universe fantasy. Someone can completely change the code without interfering with the work of others?</p></div>
+
+                                                  <div class="manb1 pcalibre10 pcalibre9"><p class="calibre16">... and then you could merge a finished branch back into the main trunk of code, reviewing and fixing inconsistencies as you go ...</p></div>
+
+                                                  <div class="pcalibre11 manc1 pcalibre12"><p class="calibre16">My God, it’s like you can hear inside my brain. So even though my code is a huge pile of fragile, interdependent components, I can have my code team off working in their own branches and then, because I have spent the time to have a solid testing suite, we can, at the appropriate time, merge their changes and run automated tests to make sure that everything is still working.</p></div>
+
+                                                  <div class="manb1 pcalibre10 pcalibre9"><p class="calibre16">... and everyone can have the history of every change ever made to the code, even if the codebase is decades old ...</p></div>
+
+                                                  <div class="pcalibre11 manc1 pcalibre12"><p class="calibre16">Shut up, shut up, and take everything, disembodied code voice, take everything! Take me!</p></div>
+
+                                                  <div class="manb1 pcalibre10 pcalibre9"><p class="calibre16">... and it’s all completely, totally free to download and is the default way of distributing source code throughout the world!</p></div>
+
+                                                  <div class="pcalibre11 manc1 pcalibre12"><p class="calibre16">(<i class="calibre20">Faints.</i>)</p></div>
+</div>
+
+<p class="calibre16"></p>
+
+      <p class="calibre16">And that’s why everyone gets excited about GitHub. You should go to GitHub, you really should. You should poke around and look through the thousands of repositories there, read some of the README files. And you should look into the code, and then look at the commits. A “commit” is a moment of action captured and stored. You can compare one commit with another and see a “diff,” see what’s been added and what’s been removed. See what you can figure out. Take a look at the screen shot below.</p>
+
+      <img src="sec3_django3.jpg" class="centered"/>
+
+      <p class="calibre16">First, we’re looking at the Django repository. This is the actual, real-life code that makes Django, the Web framework, run. It has 668 people keeping an eye on it, and 14,325 people have starred it as a favorite, and there are 5,692 forks—meaning that people have copied the code into their own repositories with some intention of manipulating and adding to or changing it. These numbers represent invested users. There are likely hundreds of thousands more who downloaded the code just to use it.</p>
+
+      <p class="calibre16">We see that a user, claudep, has checked in some code. He did this five hours ago, adding a “commit message” that reads “Fixed #24826—Accounted for filesystem-dependent filename max length.” He’s working in a file called tests.py, which means that this particular new code (marked in green and prefixed by “+” at the beginning of each line) is probably either test code or code to support tests. And thanks to user claudep, this code is now better than it was six hours ago.</p>
+
+      <p class="calibre16">This is the experience of using version control. It’s a combination news feed and backup system. GitHub didn’t invent version control. It took a program called git,<sup class="calibre29">
+            <a href="index_split_010.html#fn.38" class="footref pcalibre5 pcalibre4" id="fnr.38">38</a>
+         </sup> which had been developed at first by Linus Torvalds, the chief architect of Linux, and started adding tools and services around it.</p>
+
+      <p class="calibre16">The way git works is that you can copy the code and all the changes ever made to the code with one command:</p>
+
+      <pre class="calibre30"><code class="k">git clone git@github.com:nodejs/node.git</code></pre>
+
+      <p class="calibre16">That will copy all of the code that is and was in Node.js to your local machine. Now you can go in and change that code to your heart’s delight. When you’re done changing it, you can type </p>
+      <pre class="calibre30"><code class="k">git add .           </code></pre>
+      <p class="calibre16">which adds the files that you changed; and then</p>
+      <pre class="calibre30"><code class="k">git commit</code></pre>
+
+      <p class="calibre16">which asks you to enter a commit message explaining what you’ve done; and then</p>
+
+      <pre class="calibre30"><code class="k">git push origin master</code></pre>
+
+      <p class="calibre16">which will cause an error because who do you think you are to come in and start pushing code to the node repository? But if you did have permission, that would push your changes to the master branch of the git repository that is hosted on GitHub.</p>
+
+<div class="ephemerar1">
+   <strong class="calibre45">Github Repositories</strong>
+   <img src="sec3_repositories.jpg" class="calibre35"/>
+</div>
+
+      <p class="calibre16">These commands are now part of the sense memory of many programmers. They type variations on them dozens of times a day, checking in their code to keep a record of the work they’ve done, so they can rewind to any point if they go too deep and screw up too many things.</p>
+
+      <p class="calibre16">Sometimes the changes pile up to the point that you can look at them all and say, “This is good. We are ready to release some new code into the world.” Maybe you do this every two weeks; maybe you do it once a year. Maybe, like Facebook, you do it all the time.</p>
+
+      <p class="calibre16">If your software was at Version 2, you could bundle up all the changes and tag the code. Behold, Version 3.</p>
+
+      <p class="calibre16">A change comes in a few seconds later from a coder far away; doesn’t matter to Version 3. You’re done with Version 3. Version 3 is part of the permanent record. You might fix some bugs and call that Version 3.1. You might add another feature and call it Version 4.</p>
+
+      <p class="calibre16">Tools such as git give programmers a common language. “Did you check that in?” they ask. “Which commit was that?” “That was going to be in 2.4, but we pushed it to 2.5.” Because each commit gets a random, unique identifier, you can pinpoint that commit in space and time and feel confident in the record of code changes in a way that you can rarely feel confident about anything.</p>
+
+      <p class="calibre16">A side effect of this confidence is increased automation. Let’s say you have a Web server program that’s very popular and serves hundreds of millions of people every month. It runs on 50 different computers on the cloud. Aren’t you something.</p>
+
+      <p class="calibre16">Your diligent decentralized team frequently writes new code that runs on the servers. So here’s a problem: What’s the best way to get that code onto those 50 computers? Click and drag with your mouse? God, no. What are you, an animal? You set up a continuous integration server and install plug-ins and let the robots serve you.</p>
+
+      <p class="calibre16">Programmers hardly talk about code.<sup class="calibre29">
+            <a href="index_split_010.html#fn.39" class="footref pcalibre5 pcalibre4" id="fnr.39">39</a>
+         </sup> They chat about data. They chat about requirements and interesting approaches. And they chat constantly about deployment. Which makes sense, because that’s the goal of their work—getting their code from their brain through testing and out to the world, in Web, app, or other form. Programmers, good ones, want to ship and move on to the next nail-biting problem. So there are lots of policies, tons of them, for deploying fresh code. For example:</p>
+
+         <ol class="calibre41">
+             <li class="calibre42">All programming work must happen in a branch.</li>
+             <li class="calibre42">When work is done, we will merge it back into the main branch; and </li>
+             <ol class="calibre41">
+                 <li class="calibre53">Run tests;</li>
+                 <li class="calibre53">Then “push” the code over to GitHub.</li>
+             </ol>
+             <li class="calibre42">At which point an automated service will run; and</li>
+             <li class="calibre42">A service running on each of the 50 computers will “check out” the code; and</li>
+             <li class="calibre42">Install it, overwriting the old version;</li>
+             <li class="calibre42">Then stop the computer’s Web servers;</li>
+             <li class="calibre42">Then restart them, so the new code can load and get to work.</li>
+          </ol>
+
+      <p class="calibre16">See, tests and version control are now the trigger for actually shipping code. If you can follow a process like this, you can release software several times a day—which in the days of shrink-wrapped software would have been folly. (Often builds were done nightly, by big “build servers,” and one would come in the next morning to get the score.) But now that software can be released via the Web or an app store, why wait? Why not continually release software, every day, whenever you have something that’s ready to go?</p>
+
+
+
+</div></section>
+
+
+
+
+
+<div class="banner-container"><div class="bannerad"></div></div>
+
+
+
+
+<section data-section="7" class="code-section1">
+<div class="code-content">
+                         
+<div class="sectionnum">7</div>
+</div></section></article>
+
+
+      </body></html>

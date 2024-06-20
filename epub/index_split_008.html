@@ -1,0 +1,533 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
+    <title>Paul Ford: What is Code? | Bloomberg</title>
+    <meta content="width=device-width" name="viewport"/>
+    <meta content="Paul Ford" name="author"/>
+    <meta content="What do you need to know about code to survive in a suspicious world?" name="description"/>
+    <meta content="Bloomberg.com" property="og:site_name"/>
+    <meta content="What Is Code? If You Don't Know, You Need to Read This" property="og:title"/>
+    <meta content="What is code? If you don't know, you need to read this:" property="og:longTitle"/>
+    <meta content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/images/promo.jpg" property="og:image"/>
+    <meta content="The world belongs to people who code. Those who don’t understand will be left behind." property="og:description"/>
+    <meta content="Bloomberg Graphics, BusinessWeek, code" name="keywords"/>
+    <meta content="http://www.bloomberg.com/graphics/2015-paul-ford-what-is-code/" property="og:url"/>
+    <meta content="post" name="parsely-type" data-ephemeral="true"/>
+    <meta content="graphics" name="parsely-section" data-ephemeral="true"/>
+    <meta content="article" property="og:type"/>
+    <meta content="summary" name="twitter:card"/>
+    <meta content="@business" name="twitter:site"/>
+    <script src="http://www.bloomberg.com/graphics/assets/js/lib/head.js?"></script>
+    <script>
+    var isBrokenIE = /MSIE\s/.test(navigator.userAgent) &amp;&amp; parseFloat(navigator.appVersion.split("MSIE")[1]) &lt; 10;
+    if (isBrokenIE) document.documentElement.className += ' b-ie'
+
+    if (!console.log) console.log = function(){}
+
+    if (navigator.userAgent.indexOf('Safari') != -1 &amp;&amp; navigator.userAgent.indexOf('Chrome') == -1) {
+      document.documentElement.className += " safari";
+      // alert('safari')
+    }
+  
+  </script>
+    
+    <!-- build:css head.css -->
+    <!-- endbuild -->
+    
+  <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+  <body class="calibre">
+<article id="code" class="calibre15">
+<section data-section="5" class="code-section1">
+<div class="code-content">
+<h2 class="calibre21" id="calibre_pb_7">The Time You Attended the E-mail Address Validation Meeting</h2>
+
+    <p class="calibre16">In the interest of understanding more about how all this works, and with an open invitation from TMitTB, you attend a meeting of the programmers. </p>
+
+    <p class="calibre16">Two of them are late, and bravely you ask the one already in attendance to explain what’s going on. He quickly gathers the limits of your information through a series of questions, beginning with, “Do you know what a Web page is?” </p>
+
+    <p class="calibre16">Here’s what he shows you: To gather an e-mail address and a name, you can make a Web page using HTML.
+         <sup class="calibre29"><a href="index_split_010.html#fn.23" class="footref pcalibre5 pcalibre4" id="fnr.23">23</a></sup> 
+
+
+
+                         </p><div id="livehtml" data-module="livehtml" class="interactive-feature7">
+
+                                                  <div class="side-by-side">
+<div class="left-side">
+                         <p class="calibre16"> Here’s the HTML—make changes below!</p>
+                         <pre class="calibre30" id="email-form"><code contenteditable="" class="k">&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Make an account&lt;/h1&gt;
+    &lt;form method="post" action="/"&gt;
+      Name: &lt;input type="text" name="name"&gt;
+      &lt;br/&gt;
+      Email: &lt;input type="text" name="email"&gt;
+      &lt;input type="submit"&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+                                                  <div class="right-side">
+                                                                           <p class="calibre16">
+                                                                           And that looks like this:
+                                                                           </p>
+                                                                           <iframe class="calibre47"/>
+                                                  </div>
+                         </div>
+                         </div>
+
+
+                         <p class="calibre16">On today’s agenda: How to make sure that registration is a positive experience for users but also a secure experience for the company. The questions to be discussed, the programmer tells you, are along the lines of, “Where will you put this data? Will you put it in a text file? What will you do with it? How will you act upon it?”</p>
+
+    <p class="calibre16">Enter the remaining two programmers. Programmer A, who is senior, takes her place at the whiteboard. …</p>
+
+
+<div class="chat">
+                         
+                         <div class="chatterl">
+                         <img src="chatter_orange.gif" alt="Programmer A" class="centered1"/>
+                         </div><div class="chatterr">
+                         <div class="pcalibre7 mana pcalibre8">
+                         <p class="calibre48"><strong class="calibre37">Programmer A:</strong> “Let’s just start with e-mail validation.”</p>
+                         </div></div>
+
+                         <div class="chatterr">
+                         <div class="manb pcalibre10 pcalibre9">
+                         <p class="calibre48"><strong class="calibre37">Programmer B:</strong> “Can you define valid?”</p>
+                         </div></div><div class="chatterl"><img src="chatter_blue.gif" alt="Programmer B" class="centered1"/></div>
+
+
+                         <div class="chatterl">
+                         <img src="chatter_green.gif" alt="Programmer B" class="centered1"/>
+                         </div><div class="chatterr">
+                         <div class="manc pcalibre11 pcalibre12">
+                         <p class="calibre48"><strong class="calibre37">Programmer C:</strong> “A well-formed—”</p>
+                         </div></div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                                                  <p class="calibre16">—well-formed via a regular expression test?</p>
+                         </div>
+
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                                                  <p class="calibre16">—or well-formed according to RFC 5321 and RFC 5322?</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Let's assume a library, OK?</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">Do we send everyone who submits a form a confirmation message?</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">We should, right?</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Is it in the spec?</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">No.</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">Then we shouldn‘t do it.</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Well, wait, maybe we should update the spec.</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">It’s best practice.</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">Can I say what worries me?</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Wait–capture that. We need to check on confirmations.</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">Got it.</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">What really, really worries me are “temporary” e-mail services, right? Like Mailinator.com, which allows you to give out “disposable” e-mail addresses.</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">So don’t let anyone enter a Mailinator address.</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16"><em class="calibre20">[Typing.]</em></p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">Right, but Mailinator.com doesn’t have just one address. It has, like, 300.</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">So get a list.</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">There’s no list actually. You have to go and reload the Mailinator page and make a list and cross your fingers.</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">Yeah, we looked at this. There's no list.</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Can we not rathole on Mailinator before we talk overall security?</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">I mean, if we're counting on the library validation, is that good enough? No one is going to enter a 500-page e-mail.</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">Russians will.</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Very possibly.</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">But we can set upload limits, right?</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">Sort of, but we also allow people to upload large images for their profiles–up to 2 megabytes.</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">So?</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">No, he‘s right. Those all come as a lump, so someone could enter a 500-page-long e-mail, and we need to check it.</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">I'll take that if you want, because it's going to relate to the overall database schema.</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Can we catch it at the database?</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">That‘s why I‘ll take it.</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Someone take a picture of the whiteboard?</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">Sure.</p>
+                         </div>
+
+                         <div class="pcalibre11 manc1 pcalibre12">
+                         <p class="calibre16">And we should talk about account expiration?</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Is that in the spec?</p>
+                         </div>
+
+                         <div class="manb1 pcalibre10 pcalibre9">
+                         <p class="calibre16">No, but it’s a dependency for the password-expiration admin tool.</p>
+                         </div>
+
+                         <div class="pcalibre7 mana1 pcalibre8">
+                         <p class="calibre16">Who owns that?</p>
+                         </div>
+
+</div>
+
+    <p class="calibre16">And on it goes, whiteboard after whiteboard, punctuated by the sound of a mobile phone’s fake camera shutter. “Do we need to keep track of how many times they’ve been e-mailed?” “How do we remove e-mails once they’re in the system?” “What if someone enters the same e-mail twice?”</p>
+
+    <p class="calibre16">Programmer A, the leader, seems very professional. She’s at the whiteboard, scribbling, erasing, scribbling, erasing. Lists, arrows, boxes, lines. She wrote RUSSIANS? on the board. But after an hour you realize: This is just e-mail. One field. One little bit of data. You haven’t even hit names yet. What if the user has one name? What if Bono or Cher signs up for an account? What if it’s the Chinese Bono? Do we want to allow sign-ups in Chinese? What browsers do we need to support? Do the call center people need to be able to manage accounts?</p>
+
+    <p class="calibre16">It’s hard not to think of barrels of cash burning.</p>
+
+    <p class="calibre16">Programmer B is entering things into a tracking system, creating issues, assigning tasks to people. A flurry of e-mailed assignments is emerging from this meeting. Programmer C is young and annoying and very programmery, but the others seem to like him well enough. </p>
+
+    <p class="calibre16">How do we ensure that credit cards are valid, that physical addresses are real? Will we perform financial transactions ourselves? Which external systems will integrate with our systems? Who will get the sales reports? We didn’t talk about the mailing list software. We didn’t talk about password length, the number of letters and symbols necessary for passwords to be secure, or whether our password strategy on this site will fit in with the overall security profile of the company, which is the responsibility of a different division. </p>
+
+    <p class="calibre16">So this is the work. It goes on for days. </p>
+
+    <p class="calibre16">It gets turned into specifications and user stories, then reviewed with TMitTB, who right now is away at a conference (but tells you he’s overjoyed you attended this meeting).</p>
+
+    <p class="calibre16">Not a line of code is written throughout this process.</p>
+
+
+
+
+
+<h3 class="calibre24" id="u35292494-341c-49d1-9364-ca96ebd04de0"><span class="section">5.1</span> What Is the Relationship Between Code and Data?</h3>
+
+   <p class="calibre16">Data comes from everywhere. Sometimes it comes from third parties—Spotify imports big piles of music files from record labels. Sometimes data is user-created, like e-mails and tweets and Facebook posts and Word documents. Sometimes the machines themselves create data, as with a Fitbit exercise tracker or a Nest thermostat. When you work as a coder, you talk about data all the time. When you create websites, you need to get data out of a database and put them into a Web page. If you’re Twitter, tweets are data. If you’re the IRS, tax returns are data, broken into fields. </p>
+
+   <p class="calibre16">Data management is the problem that programming is supposed to solve. But of course now that we have computers everywhere, we keep generating more data, which requires more programming, and so forth. It’s a hell of a problem with no end in sight. This is why people in technology make so much money. Not only do they sell infinitely reproducible nothings, but they sell so many of them that they actually have to come up with new categories of infinitely reproducible nothings just to handle what happened with the last batch. That’s how we ended up with “big data.”  I’ve been to big-data conferences and they are packed.</p>
+
+
+
+
+<h3 class="calibre24" id="u87d35a9d-e941-4e42-abb4-dc6d1f752d1b"><span class="section">5.2</span> Where Does Data Live?</h3>
+
+    <p class="calibre16">It’s rare that a large task is ever very far from a database. Amazon, Google, Yahoo!, Netflix, Spotify—all have huge, powerful databases.</p>
+
+    <p class="calibre16">The most prevalent is the relational database, using a language called SQL, for Structured Query Language. Relational databases represent the world using tables, which have rows and columns. SQL looks like this:</p>
+      <pre class="calibre30"><code class="k">SELECT * FROM BOOKS WHERE ID = 294;</code></pre>
+
+    <p class="calibre16">Implying that there’s a table called BOOKS and a row in that table, where a book resides with an ID of 294. IDs are important in databases. Imagine a bookstore database. It has a customer table that lists customers. It has a books table that lists books. And it has a clever in-between table of purchases with a row for every time a customer bought a book.<sup class="calibre29">
+            <a href="index_split_010.html#fn.24" class="footref pcalibre5 pcalibre4" id="fnr.24">24</a>
+         </sup>
+      </p>
+
+    <p class="calibre16">Congratulations! You just built Amazon! Of course, while we were trying to build a bookstore, we actually built the death of bookstores—that seems to happen a lot in the business. You set out to do something cool and end up destroying lots of things that came before. </p>
+
+    <p class="calibre16">Relational databases showed up in the 1970s and never left. There’s Oracle, of course. Microsoft has SQL Server; IBM has DB2. They all speak SQL and work in a similar manner, with just enough differences to make it costly to switch. </p>
+
+    <p class="calibre16">Oracle makes you pay thousands of dollars to use its commercial enterprise database, but more and more of the world runs on free software databases such as PostgreSQL and MySQL. There’s even a tiny little database called SQLite that’s so small, so well-behaved, and so permissively licensed that it’s now in basically every smartphone, available to apps to help them save and load data. You probably have a powerful SQL-driven database in your pocket right now.</p>
+
+
+
+
+
+<h3 class="calibre24" id="u2472f7ce-c6b5-4eae-9eb4-60ef8c5cb14b"><span class="section">5.3</span> The Language of White Collars</h3>
+
+      <p class="calibre16">If you walk up to some programmers and say, “Big corporate programming,” they’ll think of Java. Go to any of the popular coding job sites, such as dice.com, and search for openings in New York City—almost 2,000 results for Java on a recent search; 1,195 for JavaScript; 930 for Python; 344 for Ruby. Only two for Lisp. </p>
+
+      <p class="calibre16">Java is a programming language that was born at Sun Microsystems (R.I.P.), the product of a team led by a well-regarded programmer named James Gosling. It’s object-oriented, but it also looks a lot like C and C++, so for people who understood those languages, it was fairly easy to pick up. It was conceived in 1991, eventually floating onto the Internet on a massive cloud of marketing in 1995, proclaimed as the answer to every woe that had ever beset programmers. Java ran on every computer! Java would run right inside your Web browser, in “applets” (soon called “crapplets”), and would probably take over the Web in time. Java! It ran very slowly compared with more traditional languages such as C. What was it for? Java! They also had network-connected computer terminals called JavaStations. Java! Kleiner Perkins Caufield &amp; Byers even announced a $100 million Java fund in 1996. But after all that excitement, Java sort of … hung out for a while. The future didn’t look like Sun said it would. </p>
+
+      <div id="crapplets" data-module="crapplets" class="interactive-feature8"></div>
+
+      <p class="calibre16">Java running “inside” a Web browser, as a plug-in, never worked well. It was slow and clunky, and when it loaded it felt like you were teetering on the edge of disaster, a paranoia that was frequently validated when your browser froze up and crashed. Java-enabled jewelry, meant to serve as a kind of digital key/credit card/ID card, also had a low success rate. But Java was free to download and designed to be useful for small and large teams alike.</p>
+
+      <p class="calibre16">Here are some facts about Java to help you understand how it slowly took over the world by the sheer power of being pretty good.</p>
+
+
+                         <div class="imageright"><img src="sec2_ribbon.jpg" class="calibre22"/>
+                                                  <div class="photocaption">Photographer: Joanna Mcclure for Bloomberg Businessweek; Prop Stylist: Amy Henry</div>
+                         </div>
+
+      <p class="calibre16">It was a big language. It came with a ton of code already there, the “class library,” which had all the classes and methods you’d need to talk to a database, deal with complex documents, do mathematics, and talk to various network services. There were a ton of classes in that library waiting to be turned into objects and brought to life.</p>
+
+      <p class="calibre16">It automatically generated documentation. This was huge. Everyone says code deserves excellent documentation and documentation truly matters, but this is a principle mostly proven in the breach. Now you could run a tool called <code class="calibre25">javadoc</code>, and it would make you Web pages that listed all the classes and methods. It was lousy documentation, but better than nothing and pretty easy to enhance if you took the time to clean up your code.</p>
+
+      <p class="calibre16">There were a lot of Java manuals, workshops and training seminars, and certifications. Programmers can take classes and tests to be officially certified in many technologies. Java programmers had an especially wide range to choose from.</p>
+
+      <p class="calibre16">It ran on a “virtual” machine, which meant that Java “ran everywhere,” which meant that you could run it on Windows, Mac, or Unix machines and it would behave the same. It was an exceptionally well-engineered compromise. Which made it perfect for big companies. As the 2000s kept going, Java became more popular for application servers. Creating a content management system for a nongovernmental organization with 2,000 employees? Java’s fine. Connecting tens of thousands of people in a company to one another? Java. Need to help one bank talk to another bank every day at 5:01 p.m.? Java. Charts and diagrams, big stacks of paper, five-year projects? Java. Not exciting, hardly wearable, but very predictable. A language for building great big things for great big places with great big teams.</p>
+
+      <p class="calibre16">People complain, but it works.
+         <sup class="calibre29"><a href="index_split_010.html#fn.25" class="footref pcalibre5 pcalibre4" id="fnr.25">25</a></sup>
+      </p>
+
+
+
+
+
+
+
+<h3 class="calibre24" id="u9d5affef-ea77-4951-abf8-2fa10ddca981"><span class="section">5.4</span> Briefly on the Huge Subject of Microsoft</h3>
+
+  <p class="calibre16">Of course if you are Microsoft, this is intolerable. You can’t have some other company creeping into your banks and enterprises with this dumb language. You can’t have people choosing to run stuff on a virtual machine when they should be running it on Windows machines, as God and Bill Gates intended. </p>
+<div class="videoright">
+                         <div class="videowrapper">
+                                                  <iframe width="420" src="http://www.youtube.com/embed/kGYcNcFhctc" allowfullscreen="" height="315" frameborder="0" class="calibre49"/>
+                         </div>
+                         <div class="caption1">Microsoft Windows 95 Video Guide with Jennifer Aniston and Matthew Perry from Friends</div>
+                         <div class="photocaption">Source: Youtube</div>
+</div>
+
+    <p class="calibre16">Don’t ever count Microsoft out. Its great corporate skill has always been to take the sheer weirdness of computer ideas and translate them for corporations, in the language of Global Business Leadership. Whatever is discussed in this issue, Microsoft offers at least one of it. Statically typed, scripting, data-driven, functional—name your ambiguous adjective, and Microsoft will sell something that delivers that to you, and you can write Windows code in it and live a Windows life. And this is not disparagement; Microsoft products can be as good as or better than anything else on the market.</p>
+
+
+
+<h3 class="calibre24" id="ueb354283-03d1-448a-9df9-0beeef440020"><span class="section">5.5</span> Liquid Infrastructure</h3>
+    
+                         <p class="calibre16">“Enterprise” is a feared word among programmers, because enterprise programming is a lot of work without much to show for it. Remember healthcare.gov, the first version that was a total disaster? Perfect example of enterprise coding. At the same time, programmers respect big systems—when they work. We respect the ambition of huge heavy machines running big blobs of code. We grew up reading about supercomputers. Big iron is cool, even if the future seems to be huge cloud platforms hosting with tons of cheap computers. </p>
+
+      <p class="calibre16">But Java is also in wide use at Google. It’s a language for places such as General Electric and Accenture. These aren’t startups, but if their product schedules slip, so does their revenue, and they are beholden to the public markets. Gigantic data-driven organizations are structured around code, around getting software made. But that doesn’t mean their teams are huge—Amazon, for example, is famous for its two-pizza rule:  “Never have a meeting where two pizzas couldn’t feed the entire group.” </p>
+
+                         <div class="profiler">
+                                                  <img src="pizza.gif" class="calibre17"/>
+                                                  <img src="pizza.gif" class="calibre17"/>
+                         </div>
+
+    <p class="calibre16">These companies have cultures that know how to make software. They have whole departments dedicated to testing. The process is important because there are so many moving pieces, many of them invisible.</p>
+
+    <p class="calibre16">Academic researchers often produce things that basically work but don’t have interfaces. They need to prove their theses, publish, and move on to the next thing. People in the free software community often code to scratch an itch and release that code into the digital commons so that other people can modify and manipulate it. While more often than not this process goes nowhere, over time some projects capture the imagination of others and become part of the infrastructure of the world.</p>
+
+    <p class="calibre16">Java, interestingly, profits from all this. It’s designed for big corporate projects and has the infrastructure to support them. It’s also a useful language for midsize tasks. So the libraries that you need to do things—image processing, logging on to files, full-text search—keep appearing at a steady clip, improving on the standard libraries or supplanting them entirely.</p>
+      
+    <p class="calibre16">Eventually, people realized that if they didn’t like the Java language, they could write other languages that compile to Java “bytecode” and run on the Java virtual machine (JVM). So there are now many languages that run on top of Java. Some are versions of well-known languages, such as Jython and JRuby. Others are totally new, like Scala, which is one of the languages that Twitter began to use when it outgrew Ruby. There’s also Clojure, which is … a Lisp. That is, Clojure takes a much-adored computer language that was born in the 1950s, updates it for the 2010s, and gives that language the ability to reuse all the Java classes in the world.</p>
+
+
+    <p class="calibre16">Clojure was created by Rich Hickey, who decided that he wanted a new, modern version of Lisp.<sup class="calibre29">
+            <a href="index_split_010.html#fn.26" class="footref pcalibre5 pcalibre4" id="fnr.26">26</a>
+         </sup> Lisp may be old for a language, but it’s still revered as a classic model for thought, like a Braun shaver or an Eames chair for the mind. Hickey worked on Clojure for many years, eventually adapting it to run on the JVM. This was a dramatic choice, because it meant that Clojure had access to the entirety of the Java class library.</p>
+
+    <p class="calibre16">Now you walk into the office and sit at your computer and write a little Lisp-ish code, very elegant and well-considered and trim and comfortable, but you have access to thousands and thousands of incredibly well-thought-out and totally functional free libraries that you can use to get your work done.</p>
+
+    <p class="calibre16">Anything Java can do, Clojure can do. And since it’s built atop the JVM, it can do it on any computer. There were already Lisp editing tools out there, and it was pretty easy to modify them for Clojure. It was joined to Java like a remora to a shark. Or more accurately, it’s a remora attached to a remora, because the JVM itself is a fake machine running inside real machines.</p>
+
+    <p class="calibre16">Clojure is beloved but not widely used. Perhaps it will become more popular. It shows up in interesting places. It’s used at Wal-Mart Stores to collect and manage receipt data, for example. It was ported to the world of Microsoft and runs right inside Excel. It’s the craziest thing. Take a spreadsheet. Inside the spreadsheet is some Clojure code just running away, addressing the different cells and columns. Someone made a version that compiles (well, transpiles) to JavaScript, so blam, Clojure’s running in your Web browser. Actually that version is called ClojureScript.</p>
+
+    <p class="calibre16">The point is that things are fluid in the world of programming, fluid in a way that other industries don’t seem to be. Languages are liquid infrastructure. You download a few programs and, whoa, suddenly you have a working Clojure environment. Which is actually the Java Runtime Environment. You grab an old PC that’s outlived its usefulness, put Linux on it, and suddenly you have a powerful Web server. Now you can participate in whole new cultures. There are meetups, gatherings, conferences, blogs, and people chatting on Twitter. And you are welcomed. They are glad for the new blood.</p>
+
+    <p class="calibre16">Java was supposed to supplant C and run on smart jewelry. Now it runs application servers, hosts Lisplike languages, and is the core language of the Android operating system.<sup class="calibre29">
+            <a href="index_split_010.html#fn.27" class="footref pcalibre5 pcalibre4" id="fnr.27">27</a></sup> 
+        It runs on billions of things. It won. C and C++, which it was designed to supplant, also won. A lot of things keep winning because computers keep getting more plentiful. It’s weird.</p>
+
+
+
+
+<h3 class="calibre24" id="u479b860e-6d8b-4d4c-a923-53b6a82b3bcc"><span class="section">5.6</span> Off the Shelf</h3>
+
+    <p class="calibre16">A few weeks later, when he’s in the office and in for his meeting, you ask TMitTB if there’s a way to use more off-the-shelf components, a way to buy your way out of this.</p>
+
+<div class="listr1">
+                         <div class="listlinner">
+                         <h4 class="calibre39"><span class="calibre50">Sending an e-mail</span></h4>
+                         <strong class="calibre45">If you need your JavaScript application to automatically send someone an e-mail, you might do something like:</strong>
+                         <ol class="calibre41">
+                                                  <li class="calibre51">Google <code class="calibre25">npm e-mail;</code></li>
+                                                  <li class="calibre51">Follow the first link; see that there’s a very common module simply called “e-mail” that was downloaded 5,015 times a month;</li>
+                                                  <li class="calibre51">Type <code class="calibre25">npm install e-mail</code> from your command-line;</li>
+                                                  <li class="calibre51">Skim the Web page for the module looking for sample code;</li>
+                                                  <li class="calibre51">Copy and paste the code;</li>
+                                                  <li class="calibre51">Modify it a little;</li>
+                                                  <li class="calibre51">Run the code by typing <code class="calibre25">node myscript.js;</code></li>
+                                                  <li class="calibre51">Stare in perplexity when nothing happens;</li>
+                                                  <li class="calibre51">Spend half a day or more configuring your mail server so it actually sends e-mail;</li>
+                                                  <li class="calibre51">Send yourself so much e-mail that your corporate network blocks you as spam;</li>
+                                                  <li class="calibre51">Give up on that for a day;</li>
+                                                  <li class="calibre51">Try to run the e-mail code the next day;</li>
+                                                  <li class="calibre51">Repeat the thousands of times with a familiar sense of dread;</li>
+                                                  <li class="calibre51">Once it works, check it into the code repository, send an e-mail to the team, and update the status of code in the issue tracker;</li>
+                                                  <li class="calibre51">Promise yourself that you will write documentation and tests tomorrow;</li>
+                                                  <li class="calibre51">Never write these things.</li>
+                         </ol>
+                         </div>
+</div>
+    <p class="calibre16">He makes a face. Sort of, he says, but when you’re making a system that will integrate with the systems around it and your company is a set of such systems, nothing is truly off the shelf. There are tools and packages and libraries, and if you have any wit at all you already use well-documented, free code for things such as e-mail validation, but that obviates only so much.</p>
+
+    <p class="calibre16">“Everything is edge cases,” he says. “Testing and edge cases.”</p>
+
+    <p class="calibre16">You come to the conclusion: The world is broken.</p>
+
+
+
+
+<h3 class="calibre24" id="uf2071ac4-583c-4258-a4e1-7c76d41c7570"><span class="section">5.7</span> What About JavaScript?</h3>
+
+    <p class="calibre16">Remember Netscape, the first huge commercial Web browser? In 1995, as Java was blooming, Netscape was resolving a problem. It displayed Web pages that were not very lively. You could have a nice cartoon of a monkey on the Web page, but there was no way to make the monkey dance when you moved over it with your mouse.  Figuring out how to make that happen was the job of a language developer named Brendan Eich. He sat down and in a few weeks created a language called JavaScript. </p>
+                         
+
+                         <p class="calibre16">JavaScript’s relationship with Java is tenuous; the strongest bond between the languages is the marketing linkage of their names. And the early history of JavaScript was uninspiring. So the monkey could now dance. You could do things to the cursor, make things blink when a mouse touched them.</p>
+
+    <p class="calibre16">But as browsers proliferated and the Web grew from a document-delivery platform into a software-delivery platform, JavaScript became, arguably, the most widely deployed language runtime<sup class="calibre29"> <a href="index_split_010.html#fn.28" class="footref pcalibre5 pcalibre4" id="fnr.28">28</a></sup> in the world. If you wrote some JavaScript code, you could run it wherever the Web was—everywhere.</p>
+
+    <p class="calibre16">JavaScript puttered around for years in the wilderness, as Java did, too. But without the resolute support of a corporate entity like Sun.</p>
+
+    <p class="calibre16">Then, about a decade ago people began to talk about Ajax<sup class="calibre29"><a href="index_split_010.html#fn.29" class="footref pcalibre5 pcalibre4" id="fnr.29">29</a></sup>—the idea that you could build real software into a Web page, not just a document, but a program that could do real work.</p>
+
+    <p class="calibre16">Things could respond and change according to inputs. You could distribute your software to hundreds of millions of people this way, and JavaScript would work for them. It wasn’t as controlled as Java, it was much slower than natively compiled C, and it had a terrible lack of niceties. And yet: Gmail, Google Maps, Flickr, Twitter, and Facebook. Every single pixel on a Web page can be manipulated now; the type can be changed, the words can move around; buttons can be pressed.</p>
+
+    <p class="calibre16">As with any celebrity, there’s a whole industry dedicated to spackling up its deficiencies and making it look good. There are books about the “good parts” of JavaScript; there are libraries that make it easier and more consistent to program, too, such as jQuery, which can turn the many lines of code necessary to make a paragraph disappear into a single <code class="calibre25">$("p.optional").hide();</code>.</p>
+
+    <p class="calibre16">Back in the era of the iPod and candy-colored Macintoshes, Apple took the code of an open-source Web browser called Konqueror and modified it to create Safari, its own Web browser to compete with Microsoft’s Internet Explorer. Then in 2008 Google started to make its own modifications to the Web engine underneath Safari, called Webkit, and made its own version called Chrome with a spanking-fast JavaScript engine called V8. They made JavaScript fast. “Devs still approach performance of JS code as if they are riding a horse cart,” tweeted one developer, “but the horse had long been replaced with fusion reactor.” Google does better when JavaScript is fast.</p>
+
+    <p class="calibre16">In 2008 a developer named Ryan Dahl modified the V8 engine, which was free software, and made it run outside the browser. There had been freestanding versions of JavaScript before (including some that ran inside Java, natch), but none so fast. He called this further fork Node.js, and it just took off. One day, JavaScript ran inside Web pages. Then it broke out of its browser prison. Now it could operate anywhere. It could touch your hard drive, send e-mail, erase all your files. It was a real programming language now. And the client … had become the server.</p>
+
+
+ <p class="calibre16">Here’s some JavaScript, squaring some numbers for you:</p>
+
+<pre class="calibre30"><code class="k">function squares(count) {
+    var x = [];
+    for (var i=1;i&lt;count+1;i++) {
+    x.push(i*i);
+    }
+    console.log(x.join(" "));
+}
+squares(10);</code></pre>
+
+      <p class="calibre16">In a great and sudden wave, thousands of developers began to use Node.js and create modular libraries. If you knew how JavaScript worked on a Web page, then you could make it work on a server. And a few interesting characteristics of the language made it good for writing software that handles lots of simultaneous users. JavaScript listened for lots of things at once in a Web browser: A mouse moves; a key is typed; some information comes in from the network. On a server it could listen to dozens or hundreds of people all at once and give them the information they requested.</p>
+
+      <div id="mouse" data-module="mouse" class="interactive-feature9"></div>
+
+      <p class="calibre16">Soon the community developed a huge library of packages—bits of software that do specific things, such as reading files, or chattering with databases, or talking to Amazon’s Web services tools. At this writing, npmjs.com has 150,000 packages, and more than a billion copies of various packages have been downloaded in the past month.</p>
+
+      <p class="calibre16">NPM stands for Node Package Manager. It’s software that helps you install packages and … well, it’s unwieldy, honestly, because many of those 150,000 packages are just not that great. It’s a lot of searching and testing and sighing. But when you have this much stuff to pick from, for free, you shouldn’t complain.<sup class="calibre29">
+            <a href="index_split_010.html#fn.30" class="footref pcalibre5 pcalibre4" id="fnr.30">30</a>
+         </sup> JavaScript is a hodgepodge designed in a hurry, and it runs on, well, who knows, but let’s say a billion-plus devices, so you might as well get with the program. Your customers may not have iPhones, but they probably have some way of running JavaScript.</p>
+
+      <p class="calibre16">So you might use JavaScript to make a more interesting Web page. You might use it to make the client-side of a full-fledged application, like Google Docs, that runs in the browser. You might use it to make a Web server that talks to a Web browser. Or you might use it to make an API
+                         <sup class="calibre29"><a href="index_split_010.html#fn.31" class="footref pcalibre5 pcalibre4" id="fnr.31">31</a></sup> that serves up data to a “client,” and sure, that client could be a laptop Web browser. But it’s 2015, and that client is quite probably an app on a smartphone. </p>
+
+
+
+
+<h3 class="calibre24" id="ue9e2e9ac-9944-4c78-9635-3bd06b36d4e4"><span class="section">5.8</span> What’s the Absolute Minimum I Must Know About PHP?</h3>
+
+    <p class="calibre16">You can get a site up and running in PHP in a few minutes, and that’s the problem. It used to be the terrible choice you made when you needed to get something done on the Web, but increasingly JavaScript has replaced it as the default terrible choice.</p>
+
+    <p class="calibre16">PHP stands for Personal Home Page/Forms Interpreter. The idea was that when you loaded your Web pages, the PHP code would run before the page went out to the Internet. And PHP could, say, check whether you were logged in. If you were, it could show you your top secret account details; and if you weren’t, it could say, “Please log in.”</p>
+
+    <p class="calibre16">I know a lot of people who program in PHP, and they are smart, good people. PHP powers Etsy and Facebook. It powers Wikipedia, for God’s sake. WordPress. Out of all the Web’s pages, an enormous percentage is created with PHP.</p>
+
+                         <div class="bigimgwrap"><img src="sec3_diary.jpg" class="calibre22"/>
+                         <div class="photocaption">Photographer: Jeremy Liebman for Bloomberg Businessweek</div>
+                         </div>
+
+    <p class="calibre16">Coding in PHP for a living is not a death sentence. Lots of people have gotten rich off PHP. It just means a lot of cutting and pasting, and a lot of trips to Google to figure out why things aren’t working.</p>
+
+    <p class="calibre16">Poor, sad, misbegotten, incredibly effective, massively successful PHP. Reading PHP code is like reading poetry, the poetry you wrote freshman year of college. 
+      </p>
+
+    <p class="calibre16">I spent so many hundreds, maybe thousands, of hours programming in PHP, back when I didn’t know what I was doing and neither did PHP. Reloading Web pages until my fingers were sore. (I can hear your sympathetic sobs.) Everything was always broken, and people were always hacking into my sites.</p>
+
+    <p class="calibre16">PHP. I don’t wish it any harm. I’m glad to see how well it’s done for itself. We had some good times together. I just don’t ever want to go back there.</p>
+
+</div></section>
+
+
+
+
+
+<div class="banner-container"><div class="bannerad"></div></div>
+
+
+
+
+<section data-section="6" class="code-section1">
+<div class="code-content">
+                         
+
+<div class="sectionnum">6</div>
+</div></section>
+
+
+
+
+
+</article>
+
+
+      </body></html>
